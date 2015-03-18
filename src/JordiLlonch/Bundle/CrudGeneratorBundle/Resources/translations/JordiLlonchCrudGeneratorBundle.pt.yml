@@ -1,0 +1,38 @@
+views:
+    layout:
+        bannersadmin: Administrador
+    index:
+        filters: Filtros
+        filter: Filtrar
+        reset: Limpar
+        list: %entity%: lista
+        actions: Ações
+        createnew: Salvar
+        pagprev: '&larr; Anterior'
+        pagnext: 'Próximo &rarr;'
+    actions:
+        show: ver
+        edit: editar
+    recordactions:
+        backtothelist: Voltar à lista
+        edit: Salvar
+        delete: Excluir
+        confirm: Deseja realmente excluir?
+    new:
+        creation: Novo %entity%
+        create: Novo
+    edit:
+        edit: Editar %entity%
+        editbutton: Editar
+    show:
+        show: Ver %entity%
+flash:
+    create:
+        success: Item criado com sucesso.
+        error: Erro durante a criação do elemento.
+    update:
+        success: Atualização realizada com sucesso.
+        error: Erro durante a atualização.
+    delete:
+        success: Exclusão realizada com sucesso.
+        error: Erro ao excluir o item.

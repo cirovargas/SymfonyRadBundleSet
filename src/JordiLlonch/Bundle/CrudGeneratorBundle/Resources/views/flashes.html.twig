@@ -1,0 +1,8 @@
+{% for type, messages in app.session.flashbag.all() %}
+    {% for message in messages %}
+        <div class="alert alert-page pa_page_alerts_default alert-{{ type }}" data-animate="true" style="">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}

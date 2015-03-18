@@ -1,0 +1,30 @@
+project_external:
+    resource: "@ProjectExternalBundle/Resources/config/routing.yml"
+    prefix:   /
+
+project_admin:
+    resource: "@ProjectAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+core_user:
+    resource: "@CoreUserBundle/Resources/config/routing.yml"
+    prefix:   /admin/users
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /admin/groups
+    
+admin:
+    resource: "@JordiLlonchCrudGeneratorBundle/Resources/config/routing.yml"
+    prefix: /admin
+    
+# HOME
+admin_root:
+    path: /admin
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: admin_dashboard
+        permanent: true

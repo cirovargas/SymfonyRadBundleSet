@@ -1,0 +1,3 @@
+project_external_homepage:
+    path:     /
+    defaults: { _controller: ProjectExternalBundle:Default:index }

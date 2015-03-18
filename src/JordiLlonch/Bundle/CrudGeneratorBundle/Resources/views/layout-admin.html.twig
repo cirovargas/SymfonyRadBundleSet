@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+{% spaceless %}
+<!--[if IE 8]>         <html class="ie8"> <![endif]-->
+<!--[if IE 9]>         <html class="ie9 gt-ie8"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="gt-ie8 gt-ie9 not-ie"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{% block title %}Dashboard{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+    <!-- Open Sans font from Google CDN -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
+
+    <!-- Pixel Admin's stylesheets -->
+    <link href="{{ asset('bundles/jordillonchcrudgenerator/admin/stylesheets/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/jordillonchcrudgenerator/admin/stylesheets/pixel-admin.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/jordillonchcrudgenerator/admin/stylesheets/widgets.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/jordillonchcrudgenerator/admin/stylesheets/pages.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/jordillonchcrudgenerator/admin/stylesheets/rtl.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/jordillonchcrudgenerator/admin/stylesheets/themes.min.css') }}" rel="stylesheet" type="text/css">
+
+    <!--[if lt IE 9]>
+            <script src="{{ asset('bundles/jordillonchcrudgenerator/admin/javascripts/ie.min.js') }}"></script>
+    <![endif]-->
+
+    {% block stylesheets %}{% endblock %}
+</head>
+<body class="{% block theme %}theme-default{% endblock%} main-menu-animated">
+    <script>var init = [];</script>
+    <div id="main-wrapper">
+        <div id="main-navbar" class="navbar navbar-inverse" role="navigation">
+            <button type="button" id="main-menu-toggle"><i class="navbar-icon fa fa-bars icon"></i><span class="hide-menu-text">HIDE MENU</span></button>
+            <div class="navbar-inner">
+                <div class="navbar-header">
+                    <a href="{{ path('admin_root') }}" class="navbar-brand">
+                        <div><img alt="Admin" src="{{ asset('bundles/jordillonchcrudgenerator/admin/images/pixel-admin/main-navbar-logo.png') }}"></div>
+                        Admin
+                    </a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse"><i class="navbar-icon fa fa-bars"></i></button>
+                </div> <!-- / .navbar-header -->
+                <div id="main-navbar-collapse" class="collapse navbar-collapse main-navbar-collapse">
+                    <div>
+                        {% block vertical_menu %}
+                            {#<ul class="nav navbar-nav">
+                                <li>
+                                    <a href="#">Home</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">First item</a></li>
+                                        <li><a href="#">Second item</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Third item</a></li>
+                                    </ul>
+                                </li>
+                            </ul>#}
+                        {% endblock %}
+                        <div class="right clearfix">
+                            <ul class="nav navbar-nav pull-right right-navbar-nav">
+                                {#{% include 'JordiLlonchCrudGeneratorBundle::notifications.html.twig' %}
+                                {% include 'JordiLlonchCrudGeneratorBundle::messages.html.twig' %}
+                                {% include 'JordiLlonchCrudGeneratorBundle::search.html.twig' %}#}
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
+                                        <img src="{{ asset('bundles/jordillonchcrudgenerator/admin/demo/avatars/1.jpg') }}" alt="">
+                                        <span>John Doe</span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#"><span class="label label-warning pull-right">New</span>Profile</a></li>
+                                        <li><a href="#"><span class="badge badge-primary pull-right">New</span>Account</a></li>
+                                        <li><a href="#"><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="pages-signin.html"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
+                                    </ul>
+                                </li>
+                            </ul> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="main-menu" role="navigation">
+            <div id="main-menu-inner">
+                <div class="menu-content top" id="menu-content-demo">
+                    <div>
+                        <div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold">John</span></div>
+                        <img src="{{ asset('bundles/jordillonchcrudgenerator/admin/demo/avatars/1.jpg') }}" alt="" class="">
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-envelope"></i></a>
+                            <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
+                            <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-cog"></i></a>
+                            <a href="#" class="btn btn-xs btn-danger btn-outline dark"><i class="fa fa-power-off"></i></a>
+                        </div>
+                        <a href="#" class="close">&times;</a>
+                    </div>
+                </div>
+                {{ knp_menu_render('JordiLlonchCrudGeneratorBundle:Builder:admin', {'currentClass': 'active', 'template': 'JordiLlonchCrudGeneratorBundle::knp_menu_admin.html.twig'}) }}
+                <div class="menu-content">
+                    <a href="pages-invoice.html" class="btn btn-primary btn-block btn-outline dark">Create Invoice</a>
+                </div>
+            </div> 
+        </div>
+        <div id="content-wrapper">
+            {% if preventDefaultFlashBag is not defined or (preventDefaultFlashBag is defined and preventDefaultFlashBag != true) %}
+            <div id="pa-page-alerts-box">
+                {% include 'JordiLlonchCrudGeneratorBundle::flashes.html.twig' %}
+            </div>
+            {% endif %}
+            {% block page %}{% endblock %}
+        </div>
+        <div id="main-menu-bg"></div>
+    </div>
+    <!-- Get jQuery from Google CDN -->
+    <!--[if !IE]> -->
+            <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js">'+"<"+"/script>"); </script>
+    <!-- <![endif]-->
+    <!--[if lte IE 9]>
+            <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">'+"<"+"/script>"); </script>
+    <![endif]-->
+
+    <script src="{{ asset('jquery.transit.js') }}"></script>
+    <!-- Pixel Admin's javascripts -->
+    <script src="{{ asset('bundles/jordillonchcrudgenerator/admin/javascripts/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/jordillonchcrudgenerator/admin/javascripts/pixel-admin.min.js') }}"></script>
+    <script type="text/javascript">
+        init.push(function () {
+                // Javascript code here
+        });
+        window.PixelAdmin.start(init);
+    </script>
+    {% block javascripts %} {% endblock %}
+</body>
+</html>
+{% endspaceless %}

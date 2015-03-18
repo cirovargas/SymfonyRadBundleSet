@@ -1,0 +1,3 @@
+admin_dashboard:
+    pattern:  /
+    defaults: { _controller: JordiLlonchCrudGeneratorBundle:Default:index }

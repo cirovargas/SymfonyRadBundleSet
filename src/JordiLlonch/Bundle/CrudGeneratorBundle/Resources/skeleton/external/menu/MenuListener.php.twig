@@ -1,0 +1,34 @@
+<?php
+
+namespace {{ namespace }}\EventListener{{ entity_namespace ? '\\' ~ entity_namespace : '' }};
+
+use JordiLlonch\Bundle\CrudGeneratorBundle\Event\ConfigureMenuEvent;
+
+class {{ form_class }}
+{
+    /**
+     * @param \AppBundle\Event\ConfigureMenuEvent $event
+     */
+    public function onMenuConfigure(ConfigureMenuEvent $event)
+    {
+        $menu = $event->getMenu();
+        
+        {% if needWriteActions is true %}
+        $menu->addChild('{{ entity_class }}', array(
+            'attributes'    => array(
+                'class'             => 'mm-dropdown mm-dropdown-root',
+                )
+            )
+        );
+        
+        $menu['{{ entity_class }}']->setUri('#');
+        $menu['{{ entity_class }}']->addChild('List {{ entity_class}}', array('route' => '{{ route_prefix }}'));
+        $menu['{{ entity_class }}']->addChild('New {{ entity_class }}', array('route' => '{{ route_prefix }}_new'));
+        {% else %}
+        $menu->addChild('{{ entity_class }}', array(
+            'route'    => '{{ route_prefix }}'
+            )
+        );
+        {% endif %}
+    }
+}
