@@ -1,0 +1,59 @@
+{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
+
+{% block title %}
+{{ parent() }} - {{ 'views.new.creation'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}
+{% endblock %}
+
+{% block page %}
+    <div id="pad-wrapper" class="">
+        <div class="row header">
+            <div class="col-md-12">
+                <h3>Edit permissions</h3>
+            </div>                
+        </div>
+
+        <div class="row form-wrapper">
+            <!-- left column -->
+            <div class="col-md-9 with-sidebar">
+                {{ form_errors(form) }}
+                <form class="form-horizontal" role="form" action="{{ path('admin_user_group_permissions', { 'groupName': entity.getName() }) }}" method="POST" {{ form_enctype(form) }}>
+        <input type="hidden" name="_method" value="PUT" />
+                    <div class="form-group">                
+                        {{ form_label(form.roles,null,{label_attr:{class:'col-md-2 control-label'}}) }}
+                        <div class="col-md-8">
+                            {% for role in form.roles %}
+                                <p>{{ form_widget(role) }} {{ form_label(role) }}</p>
+                            {% endfor %}
+                            {{ form_errors(form.roles) }}
+                        </div>
+                    </div>
+                    {{ form_rest(form) }}
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
+                          <input type="submit" class="btn-glow primary" value="Save Changes">
+                            <span>OR</span>
+                            <a href="{{ path('admin_users') }}" class="reset">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+             
+            </div>
+
+            <!-- side right column -->
+            <div class="col-md-3 form-sidebar">
+                <div class="alert alert-info">
+                    <i class="icon-lightbulb pull-left"></i>
+                    Display a sidebar note over here
+                </div>                        
+                <h6>Sidebar text for instructions</h6>
+                <p>Add multiple users at once</p>
+                <p>Choose one of the following file types:</p>
+                <ul>
+                    <li><a href="#">Upload a vCard file</a></li>
+                    <li><a href="#">Import from a CSV file</a></li>
+                    <li><a href="#">Import from an Excel file</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

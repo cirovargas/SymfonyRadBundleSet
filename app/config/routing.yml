@@ -1,6 +1,8 @@
 project_external:
     resource: "@ProjectExternalBundle/Resources/config/routing.yml"
     prefix:   /
+    
+
 
 project_admin:
     resource: "@ProjectAdminBundle/Resources/config/routing.yml"
@@ -22,9 +24,16 @@ admin:
     prefix: /admin
     
 # HOME
-admin_root:
+admin_home:
     path: /admin
     defaults:
         _controller: FrameworkBundle:Redirect:redirect
         route: admin_dashboard
+        permanent: true
+        
+external_home:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: project_external_homepage
         permanent: true

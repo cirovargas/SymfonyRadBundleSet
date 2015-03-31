@@ -65,7 +65,7 @@ class JordiLlonchCrudGenerator extends DoctrineCrudGenerator
         $this->classPath = $dirPath.'/'.str_replace('\\', '/', $entity).'MenuListener.php';
 
         if (!$forceOverwrite && file_exists($this->classPath)) {
-            throw new \RuntimeException(sprintf('Unable to generate the %s form class as it already exists under the %s file', $this->className, $this->classPath));
+            throw new \RuntimeException(sprintf('Unable to generate the %s menu class as it already exists under the %s file', $this->className, $this->classPath));
         }
 
         if (count($metadata->identifier) > 1) {
@@ -87,28 +87,31 @@ class JordiLlonchCrudGenerator extends DoctrineCrudGenerator
             'form_filter_type_name'   => strtolower(str_replace('\\', '_', $bundle->getNamespace()).($parts ? '_' : '').implode('_', $parts).'_'.$this->className),
         ));
         
-        if ($forceOverwrite) {
-            throw new \RuntimeException(sprintf('Unable to generate the %s form class as it already exists under the %s file', $this->className, $this->classPath));
-        }
+        if((isset($value['parameters']['app.'.$routePrefix.'_configure_menu_listener.class']) ||
+            isset($value['parameters']['app.'.$routePrefix.'_configure_menu_listener'])    )
+                && !$forceOverwrite){
         
-        if($forceOverwrite){
+            throw new \RuntimeException(sprintf('Unable to generate the %s menu servoce as it already exists under the %s file', $this->className, $this->classPath));
+            
+        } else {
             unset($value['parameters']['app.'.$routePrefix.'_configure_menu_listener.class']);
             unset($value['parameters']['app.'.$routePrefix.'_configure_menu_listener']);
+            
+            $value['parameters']['app.'.$routePrefix.'_configure_menu_listener.class'] = $bundle->getNamespace().'\EventListener'.implode('\\', $parts).'\\'.$entityClass.'MenuListener';
+            $value['services']['app.'.$routePrefix.'_configure_menu_listener'] = array(
+                    'class' => '%app.'.$routePrefix.'_configure_menu_listener.class%',
+                    'tags' => array(
+                        array(
+                            'name'=> 'kernel.event_listener',
+                            'event' => 'app.menu_configure',
+                            'method' => 'onMenuConfigure'
+                        )
+                    )
+            );
+            $dumper = new Dumper();
+            file_put_contents($bundle->getPath().'/Resources/config/services.yml', $dumper->dump($value,2));
         }
         
-        $value['parameters']['app.'.$routePrefix.'_configure_menu_listener.class'] = $bundle->getNamespace().'\EventListener'.implode('\\', $parts).'\\'.$entityClass.'MenuListener';
-        $value['services']['app.'.$routePrefix.'_configure_menu_listener'] = array(
-                'class' => '%app.'.$routePrefix.'_configure_menu_listener.class%',
-                'tags' => array(
-                    array(
-                        'name'=> 'kernel.event_listener',
-                        'event' => 'app.menu_configure',
-                        'method' => 'onMenuConfigure'
-                    )
-                )
-        );
-        $dumper = new Dumper();
-        file_put_contents($bundle->getPath().'/Resources/config/services.yml', $dumper->dump($value,2));
     }
 
     /**

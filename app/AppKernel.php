@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new JordiLlonch\Bundle\CrudGeneratorBundle\JordiLlonchCrudGeneratorBundle(),
             new Project\AdminBundle\ProjectAdminBundle(),
             new Project\ExternalBundle\ProjectExternalBundle(),
+            new Knp\RadBundle\KnpRadBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

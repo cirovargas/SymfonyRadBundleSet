@@ -74,5 +74,6 @@ swiftmailer:
     spool:     { type: memory }
 
 mopa_bootstrap:
-    form: ~  
+    form:
+        show_legend: false
     menu: ~

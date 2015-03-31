@@ -1,0 +1,32 @@
+{% extends 'JordiLlonchCrudGeneratorBundle::layout-admin.html.twig' %}
+
+{% block title %}
+{{ parent() }} - {{ 'views.new.creation'|trans({'%entity%': 'Teste'}, 'JordiLlonchCrudGeneratorBundle') }}
+{% endblock %}
+
+{% block page %}
+<div class="page-header">
+    <h1>{{ 'views.new.creation'|trans({'%entity%': 'Teste'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        {% form_theme form 'MopaBootstrapBundle:Form:fields.html.twig' %}
+        <form class="panel form-horizontal" action="{{ path('teste_create') }}" method="POST" {{ form_enctype(form) }}>
+            <div class="panel-heading">
+                <span class="panel-title">{{ 'views.new.creation'|trans({'%entity%': 'Teste'}, 'JordiLlonchCrudGeneratorBundle') }}</span>
+            </div>
+            <div class="panel-body">
+                {{ form_rest(form) }}
+               
+            </div>
+            <div class="panel-footer text-right">
+                                <a class="btn" href="{{ path('teste') }}">
+    {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+</a>
+                
+                <button type="submit" class="btn btn-success">{{ 'views.new.create'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

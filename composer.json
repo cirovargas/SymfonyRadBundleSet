@@ -30,7 +30,8 @@
 	"jms/translation-bundle": "dev-master",
 	"egeloen/ckeditor-bundle": "~2.0",
 	"helios-ag/fm-elfinder-bundle": "1.*",
-        "mopa/bootstrap-bundle": "dev-master"
+        "mopa/bootstrap-bundle": "dev-master",
+        "knplabs/rad-bundle": "2.6.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

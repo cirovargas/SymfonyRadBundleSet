@@ -1,0 +1,62 @@
+{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
+
+{% block title %}
+{{ parent() }} - {{ 'views.new.creation'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}
+{% endblock %}
+
+{% block page %}
+    <div id="pad-wrapper" class="">
+        <div class="row header">
+            <div class="col-md-12">
+                <h3>Edit user</h3>
+            </div>                
+        </div>
+
+        <div class="row form-wrapper">
+            <!-- left column -->
+            <div class="col-md-9 with-sidebar">
+                <form class="form-horizontal" role="form" action="{{ path('admin_users_update', { 'id': entity.id }) }}" method="POST" {{ form_enctype(edit_form) }}>
+        <input type="hidden" name="_method" value="PUT" />
+                    {#<div class="form-group">
+                        {{ form_label(edit_form.avatar.file,null,{label_attr:{class:'col-md-2 control-label'}}) }}
+                        <div class="col-md-8">
+                          {{ form_widget(edit_form.avatar.file) }}
+                        </div>
+                        {{ form_errors(edit_form.avatar.file) }}
+                    </div>#}
+                    {{ form_rest(edit_form) }}
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
+                          <input type="submit" class="btn-glow primary" value="Save Changes">
+                            <span>OR</span>
+                            <a href="{{ path('admin_users') }}" class="reset">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+                        <div class="float-left">
+        <form action="{{ path('admin_users_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button class="btn btn-danger" type="submit" onclick="return confirm('{{ 'views.recordactions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+        </form>
+    </div>
+            </div>
+
+            <!-- side right column -->
+            <div class="col-md-3 form-sidebar">
+                <div class="alert alert-info">
+                    <i class="icon-lightbulb pull-left"></i>
+                    Display a sidebar note over here
+                </div>                        
+                <h6>Sidebar text for instructions</h6>
+                <p>Add multiple users at once</p>
+                <p>Choose one of the following file types:</p>
+                <ul>
+                    <li><a href="#">Upload a vCard file</a></li>
+                    <li><a href="#">Import from a CSV file</a></li>
+                    <li><a href="#">Import from an Excel file</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,5 +1,17 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "JordiLlonchCrudGeneratorBundle::layout-admin.html.twig" %}
 
-{% block fos_user_content %}
+{% block page %}
 {% include "FOSUserBundle:Group:edit_content.html.twig" %}
-{% endblock fos_user_content %}
+{% endblock page %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            $('#btn-delete-confirm').click(function(){
+                $('#form-delete').submit();
+            });
+        });
+    </script>
+{% endblock %}

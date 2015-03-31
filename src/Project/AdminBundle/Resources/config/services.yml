@@ -1,4 +1,4 @@
 services:
-#    project_admin.example:
-#        class: Project\AdminBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    app.teste_configure_menu_listener: { class: '%app.teste_configure_menu_listener.class%', tags: [{ name: kernel.event_listener, event: app.menu_configure, method: onMenuConfigure }] }
+parameters:
+    app.teste_configure_menu_listener.class: Project\AdminBundle\EventListener\TesteMenuListener

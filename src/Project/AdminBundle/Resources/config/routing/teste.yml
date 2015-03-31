@@ -1,0 +1,30 @@
+teste:
+    pattern:  /
+    defaults: { _controller: "ProjectAdminBundle:Teste:index" }
+
+teste_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ProjectAdminBundle:Teste:show" }
+
+teste_new:
+    pattern:  /new
+    defaults: { _controller: "ProjectAdminBundle:Teste:new" }
+
+teste_create:
+    pattern:  /create
+    defaults: { _controller: "ProjectAdminBundle:Teste:create" }
+    requirements: { _method: post }
+
+teste_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ProjectAdminBundle:Teste:edit" }
+
+teste_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ProjectAdminBundle:Teste:update" }
+    requirements: { _method: post|put }
+
+teste_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ProjectAdminBundle:Teste:delete" }
+    requirements: { _method: post|delete }

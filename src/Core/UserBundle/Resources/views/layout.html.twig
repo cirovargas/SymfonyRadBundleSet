@@ -1,31 +1,52 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-    </head>
-    <body>
-        <div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            {% endif %}
-        </div>
+{% extends 'JordiLlonchCrudGeneratorBundle::base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block stylesheets %}
+    <!-- Open Sans font from Google CDN -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
 
-        {% for type, messages in app.session.flashbag.all() %}
-            {% for message in messages %}
-                <div class="flash-{{ type }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endfor %}
+    <!-- Pixel Admin's stylesheets -->
+    <link href="{{ asset('bundles/jordillonchcrudgenerator/admin/stylesheets/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/jordillonchcrudgenerator/admin/stylesheets/pixel-admin.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/jordillonchcrudgenerator/admin/stylesheets/pages.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/jordillonchcrudgenerator/admin/stylesheets/rtl.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/jordillonchcrudgenerator/admin/stylesheets/themes.min.css') }}" rel="stylesheet" type="text/css">
 
-        <div>
-            {% block fos_user_content %}
-            {% endblock fos_user_content %}
-        </div>
-    </body>
-</html>
+    <!--[if lt IE 9]>
+            <script src="{{ asset('bundles/jordillonchcrudgenerator/admin/javascripts/ie.min.js') }}"></script>
+    <![endif]-->
+    <script>var init = [];</script>
+{% endblock %}
+{% block body_class %}theme-default page-signin-alt{% endblock %}
+{% block body %}
+    <div class="signin-header">
+        <a href="index.html" class="logo">
+                <div class="demo-logo bg-primary"><img src="{{ asset('bundles/jordillonchcrudgenerator/admin/demo/logo-big.png') }}" alt="" style="margin-top: -4px;"></div>&nbsp;
+                <strong>Pixel</strong>Admin
+        </a> 
+        {% if buttom_login is defined and buttom_login == true %}      
+        <a href="{{ path('fos_user_security_login') }}" class="btn btn-primary">{{ 'layout.login'|trans }}</a>
+        {% endif %}
+        {% if buttom_register is defined and buttom_register == true %}      
+        <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary">{{ 'layout.register'|trans }}</a>
+        {% endif %}
+    </div> 
+    {% include 'JordiLlonchCrudGeneratorBundle::flashes.html.twig' %}
+    {% block fos_user_content %}
+
+	
+    {% endblock fos_user_content %}
+{% endblock %}
+{% block javascripts %}
+    <!--[if !IE]> -->
+            <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js">'+"<"+"/script>"); </script>
+    <!-- <![endif]-->
+    <!--[if lte IE 9]>
+            <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">'+"<"+"/script>"); </script>
+    <![endif]-->
+
+    <script src="{{ asset('jquery.transit.js') }}"></script>
+    <!-- Pixel Admin's javascripts -->
+    <script src="{{ asset('bundles/jordillonchcrudgenerator/admin/javascripts/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/jordillonchcrudgenerator/admin/javascripts/pixel-admin.min.js') }}"></script>
+    
+{% endblock %}

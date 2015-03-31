@@ -14,5 +14,10 @@ _errors:
     resource: "@TwigBundle/Resources/config/routing/errors.xml"
     prefix:   /_error
 
+
+_knp_rad_assistant:
+    resource: "@KnpRadBundle/Resources/config/routing/assistant.xml"
+    prefix: /_assistant
+
 _main:
     resource: routing.yml

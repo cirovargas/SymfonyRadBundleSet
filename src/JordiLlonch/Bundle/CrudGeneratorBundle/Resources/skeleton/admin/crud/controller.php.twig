@@ -23,6 +23,8 @@ use {{ namespace }}\Form\{{ entity }}Type;
 {% endif %}
 use {{ namespace }}\Form\{{ entity }}FilterType;
 
+use Knp\RadBundle\Controller as RadController;
+
 /**
  * {{ entity }} controller.
  *
@@ -30,7 +32,7 @@ use {{ namespace }}\Form\{{ entity }}FilterType;
  * @Route("/{{ route_prefix }}")
 {% endif %}
  */
-class {{ entity_class }}Controller extends Controller
+class {{ entity_class }}Controller extends RadController
 {
 
     {%- if 'index' in actions %}

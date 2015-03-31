@@ -27,8 +27,8 @@ fos_user:
             enabled:    false # change to true for required email confirmation
             template:   FOSUserBundle:Registration:email.txt.twig
         form:
-            type:               fos_user_registration
-            name:               fos_user_registration_form
+            type:               core_user_registration
+            name:               core_user_registration
             validation_groups:  [Registration, Default]
     resetting:
         token_ttl: 86400
@@ -48,7 +48,7 @@ fos_user:
         token_generator:        fos_user.util.token_generator.default
         user_manager:           fos_user.user_manager.default
     group:
-        group_class:    CoreBundle\User\Entity\Group
+        group_class:    Core\UserBundle\Entity\Group
         group_manager:  fos_user.group_manager.default
         form:
             type:               fos_user_group

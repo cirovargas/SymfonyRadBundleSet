@@ -1,13 +1,13 @@
 <?php
 
-namespace CoreBundle\User\Entity;
+namespace Core\UserBundle\Entity;
 
 use FOS\UserBundle\Model\Group as BaseGroup;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="group")
+ * @ORM\Table(name="user_group")
  */
 class Group extends BaseGroup
 {
