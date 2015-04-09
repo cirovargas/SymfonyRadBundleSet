@@ -18,8 +18,10 @@
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-            $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
-
+            $this->get('session')->getFlashBag()->add('success', 
+                $this->get('translator')->trans('flash.create.success',array(),'JordiLlonchCrudGeneratorBundle')
+            );
+            
             {% if 'show' in actions -%}
                 return $this->redirect($this->generateUrl('{{ route_name_prefix }}_show', array('id' => $entity->getId())));
             {%- else -%}

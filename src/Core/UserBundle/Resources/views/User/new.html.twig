@@ -1,48 +1,32 @@
-{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
+{% extends 'JordiLlonchCrudGeneratorBundle::layout-admin.html.twig' %}
 
 {% block title %}
-{{ parent() }} - {{ 'views.new.creation'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}
+{{ parent() }} - {{ 'views.new.creation'|trans({'%entity%': 'Teste'}, 'JordiLlonchCrudGeneratorBundle') }}
 {% endblock %}
 
 {% block page %}
-    <div id="pad-wrapper" class="">
-        <div class="row header">
-            <div class="col-md-12">
-                <h3>Create a new user</h3>
-            </div>                
-        </div>
-
-        <div class="row form-wrapper">
-            <!-- left column -->
-            <div class="col-md-9 with-sidebar">
-                <form class="form-horizontal" role="form" action="{{ path('admin_users_create') }}" method="POST" {{ form_enctype(form) }}>
-                   
-                    {{ form_rest(form) }}
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-8">
-                          <input type="submit" class="btn-glow primary" value="Save Changes">
-                            <span>OR</span>
-                            <a href="{{ path('admin_users') }}" class="reset">Cancel</a>
-                        </div>
-                    </div>
-                </form>
+<div class="page-header">
+    <h1>{{ 'views.new.creation'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        {% form_theme form 'MopaBootstrapBundle:Form:fields.html.twig' %}
+        <form class="panel form-horizontal" action="{{ path('admin_users_create') }}" method="POST" {{ form_enctype(form) }}>
+            {#<div class="panel-heading">
+                <span class="panel-title">{{ 'views.new.creation'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}</span>
+            </div>#}
+            <div class="panel-body">
+                {{ form_rest(form) }}
+               
             </div>
-
-            <!-- side right column -->
-            <div class="col-md-3 form-sidebar">
-                <div class="alert alert-info">
-                    <i class="icon-lightbulb pull-left"></i>
-                    Display a sidebar note over here
-                </div>                        
-                <h6>Sidebar text for instructions</h6>
-                <p>Add multiple users at once</p>
-                <p>Choose one of the following file types:</p>
-                <ul>
-                    <li><a href="#">Upload a vCard file</a></li>
-                    <li><a href="#">Import from a CSV file</a></li>
-                    <li><a href="#">Import from an Excel file</a></li>
-                </ul>
+            <div class="panel-footer text-right">
+                                <a class="btn" href="{{ path('admin_users') }}">
+    {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+</a>
+                
+                <button type="submit" class="btn btn-success">{{ 'views.new.create'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
             </div>
-        </div>
+        </form>
     </div>
+</div>
 {% endblock %}

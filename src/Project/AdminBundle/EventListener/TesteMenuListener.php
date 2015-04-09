@@ -18,7 +18,7 @@ class TesteMenuListener
                 'class'             => 'mm-dropdown mm-dropdown-root',
                 )
             )
-        );
+        )->setAttribute('icon', 'menu-icon fa fa-th-list');
         
         $menu['Teste']->setUri('#');
         $menu['Teste']->addChild('List Teste', array('route' => 'teste'));

@@ -13,11 +13,13 @@ use Project\AdminBundle\Entity\Teste;
 use Project\AdminBundle\Form\TesteType;
 use Project\AdminBundle\Form\TesteFilterType;
 
+use Knp\RadBundle\Controller\Controller as RadController;
+
 /**
  * Teste controller.
  *
  */
-class TesteController extends Controller
+class TesteController extends RadController
 {
     /**
      * Lists all Teste entities.
@@ -123,8 +125,10 @@ class TesteController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-            $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
-
+            $this->get('session')->getFlashBag()->add('success', 
+                $this->get('translator')->trans('flash.create.success',array(),'JordiLlonchCrudGeneratorBundle')
+            );
+            
             return $this->redirect($this->generateUrl('teste_show', array('id' => $entity->getId())));
         }
 
@@ -221,7 +225,9 @@ class TesteController extends Controller
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
-            $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
+            $this->get('session')->getFlashBag()->add('success', 
+                $this->get('translator')->trans('flash.update.success',array(),'JordiLlonchCrudGeneratorBundle')
+            );
 
             return $this->redirect($this->generateUrl('teste_edit', array('id' => $id)));
         } else {
@@ -256,9 +262,13 @@ class TesteController extends Controller
 
             $em->remove($entity);
             $em->flush();
-            $this->get('session')->getFlashBag()->add('success', 'flash.delete.success');
+            $this->get('session')->getFlashBag()->add('success', 
+                $this->get('translator')->trans('flash.delete.success',array(),'JordiLlonchCrudGeneratorBundle')
+            );
         } else {
-            $this->get('session')->getFlashBag()->add('danger', 'flash.delete.error');
+        $this->get('session')->getFlashBag()->add('success', 
+                $this->get('translator')->trans('flash.delete.error',array(),'JordiLlonchCrudGeneratorBundle')
+            );
         }
 
         return $this->redirect($this->generateUrl('teste'));

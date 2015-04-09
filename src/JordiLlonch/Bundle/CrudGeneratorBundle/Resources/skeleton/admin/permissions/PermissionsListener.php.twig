@@ -1,0 +1,32 @@
+<?php
+
+namespace {{ namespace }}\EventListener{{ entity_namespace ? '\\' ~ entity_namespace : '' }};
+
+use Core\UserBundle\Event\ConfigurePermissionsEvent;
+
+class {{ form_class }}
+{
+    public function addModulePermissions(ConfigurePermissionsEvent $event)
+    {
+        $event->addRootNode('{{ entity_class }}',array(
+            'label' => 'Access {{ entity_class }}',
+            'role' => 'ROLE_ADMIN_{{ entity_class|upper }}',
+            'children' => array(
+                {% if needWriteActions == true %}
+                array(
+                    'label' => 'Add {{ entity_class }}',
+                    'role' => 'ROLE_ADMIN_{{ entity_class|upper }}_ADD'
+                ),
+                array(
+                    'label' => 'Edit {{ entity_class }}',
+                    'role' => 'ROLE_ADMIN_{{ entity_class|upper }}_EDIT'
+                ),
+                {% endif %}
+                array(
+                    'label' => 'View {{ entity_class }}',
+                    'role' => 'ROLE_ADMIN_{{ entity_class|upper }}_SHOW'
+                )
+            )
+        ));
+    }
+}

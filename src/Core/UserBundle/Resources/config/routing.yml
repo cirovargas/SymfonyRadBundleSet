@@ -1,3 +1,39 @@
-core_user_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: CoreUserBundle:Default:index }
+admin_users:
+    pattern:  /
+    defaults: { _controller: "CoreUserBundle:User:index" }
+
+admin_users_pendentes:
+    pattern:  /pendentes
+    defaults: { _controller: "CoreUserBundle:User:pendentes" }
+    
+admin_users_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CoreUserBundle:User:show" }
+
+admin_users_new:
+    pattern:  /new
+    defaults: { _controller: "CoreUserBundle:User:new" }
+
+admin_users_create:
+    pattern:  /create
+    defaults: { _controller: "CoreUserBundle:User:create" }
+    requirements: { _method: post }
+
+admin_users_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CoreUserBundle:User:edit" }
+
+admin_users_permissions:
+    pattern:  /{id}/permissions
+    defaults: { _controller: "CoreUserBundle:User:permissions" }
+
+admin_users_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "CoreUserBundle:User:update" }
+    requirements: { _method: post|put }
+
+admin_users_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CoreUserBundle:User:delete" }
+    requirements: { _method: post|delete }
+

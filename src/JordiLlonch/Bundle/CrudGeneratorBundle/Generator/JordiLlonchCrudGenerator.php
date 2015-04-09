@@ -34,11 +34,13 @@ class JordiLlonchCrudGenerator extends DoctrineCrudGenerator
 
         $this->generateFormFilter($bundle, $entity, $metadata, $forceOverwrite);
         $this->generateMenuItem($bundle, $entity, $metadata, $format, $routePrefix, $needWriteActions, $forceOverwrite);
+        $this->generatePermissions($bundle, $entity, $metadata, $format, $routePrefix, $needWriteActions, $forceOverwrite);
     }
     
     public function generateMenuItem($bundle, $entity, $metadata, $format, $routePrefix, $needWriteActions, $forceOverwrite){
         
         $fs = new Filesystem();
+        $routeNamePrefix = str_replace('/', '_', $routePrefix);
         if(!$fs->exists($bundle->getPath().'/Resources'))
                 throw new \RuntimeException($bundle->getPath().'/Resources folder not found.');
         
@@ -105,6 +107,84 @@ class JordiLlonchCrudGenerator extends DoctrineCrudGenerator
                             'name'=> 'kernel.event_listener',
                             'event' => 'app.menu_configure',
                             'method' => 'onMenuConfigure'
+                        )
+                    )
+            );
+            $dumper = new Dumper();
+            file_put_contents($bundle->getPath().'/Resources/config/services.yml', $dumper->dump($value,2));
+        }
+        
+    }
+    
+    public function generatePermissions($bundle, $entity, $metadata, $format, $routePrefix, $needWriteActions, $forceOverwrite){
+        
+        $fs = new Filesystem();
+        if(!$fs->exists($bundle->getPath().'/Resources'))
+                throw new \RuntimeException($bundle->getPath().'/Resources folder not found.');
+        
+        if(!$fs->exists($bundle->getPath().'/Resources/config'))
+                throw new \RuntimeException($bundle->getPath().'/Resources/config folder not found.');
+        
+        if(!$fs->exists($bundle->getPath().'/Resources/config/services.yml'))
+                throw new \RuntimeException($bundle->getPath().'/Resources/config/services.yml file not found.');
+        
+        $yaml = new Parser();
+        $value = $yaml->parse(file_get_contents($bundle->getPath().'/Resources/config/services.yml'));
+        
+        if(!$forceOverwrite && isset($value['parameters']['app.'.$routePrefix.'_configure_permissions_listener.class']))
+                throw new \RuntimeException(sprintf('Service parameter class %s already exists','app.'.$routePrefix.'_configure_permissions_listener.class'));
+        
+        if(!$forceOverwrite && isset($value['services']['app.'.$routePrefix.'_configure_permissions_listener']))
+                throw new \RuntimeException(sprintf('Service definition %s already exists','app.'.$routePrefix.'_configure_permissions_listener'));
+        
+        $parts       = explode('\\', $entity);
+        $entityClass = array_pop($parts);
+
+        $this->className = $entityClass.'PermissionsListener';
+        $dirPath         = $bundle->getPath().'/EventListener';
+        $this->classPath = $dirPath.'/'.str_replace('\\', '/', $entity).'PermissionsListener.php';
+
+        if (!$forceOverwrite && file_exists($this->classPath)) {
+            throw new \RuntimeException(sprintf('Unable to generate the %s permissions class as it already exists under the %s file', $this->className, $this->classPath));
+        }
+
+        if (count($metadata->identifier) > 1) {
+            throw new \RuntimeException('The form generator does not support entity classes with multiple primary keys.');
+        }
+
+        $parts = explode('\\', $entity);
+        array_pop($parts);
+          
+        $this->renderFile('permissions/PermissionsListener.php.twig', $this->classPath, array(
+            'fields_data'      => $this->getFieldsDataFromMetadata($metadata),
+            'namespace'        => $bundle->getNamespace(),
+            'entity_namespace' => implode('\\', $parts),
+            'entity_class'     => $entityClass,
+            'route_prefix'     => $routePrefix,
+            'bundle'           => $bundle->getName(),
+            'needWriteActions' => $needWriteActions,
+            'form_class'       => $this->className,
+            'form_filter_type_name'   => strtolower(str_replace('\\', '_', $bundle->getNamespace()).($parts ? '_' : '').implode('_', $parts).'_'.$this->className),
+        ));
+        
+        if((isset($value['parameters']['app.'.$routePrefix.'_configure_permissions_listener.class']) ||
+            isset($value['parameters']['app.'.$routePrefix.'_configure_permissions_listener'])    )
+                && !$forceOverwrite){
+        
+            throw new \RuntimeException(sprintf('Unable to generate the %s permissions service as it already exists under the %s file', $this->className, $this->classPath));
+            
+        } else {
+            unset($value['parameters']['app.'.$routePrefix.'_configure_permissions_listener.class']);
+            unset($value['parameters']['app.'.$routePrefix.'_configure_permissions_listener']);
+            
+            $value['parameters']['app.'.$routePrefix.'_configure_permissions_listener.class'] = $bundle->getNamespace().'\EventListener'.implode('\\', $parts).'\\'.$entityClass.'PermissionsListener';
+            $value['services']['app.'.$routePrefix.'_configure_permissions_listener'] = array(
+                    'class' => '%app.'.$routePrefix.'_configure_permissions_listener.class%',
+                    'tags' => array(
+                        array(
+                            'name'=> 'kernel.event_listener',
+                            'event' => 'core_user.permissions.tree',
+                            'method' => 'addModulePermissions'
                         )
                     )
             );

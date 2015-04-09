@@ -19,7 +19,7 @@ class {{ form_class }}
                 'class'             => 'mm-dropdown mm-dropdown-root',
                 )
             )
-        );
+        )->setAttribute('icon', 'menu-icon fa fa-th-list');
         
         $menu['{{ entity_class }}']->setUri('#');
         $menu['{{ entity_class }}']->addChild('List {{ entity_class}}', array('route' => '{{ route_prefix }}'));
@@ -28,7 +28,7 @@ class {{ form_class }}
         $menu->addChild('{{ entity_class }}', array(
             'route'    => '{{ route_prefix }}'
             )
-        );
+        )->setAttribute('icon', 'menu-icon fa fa-th-list');
         {% endif %}
     }
 }

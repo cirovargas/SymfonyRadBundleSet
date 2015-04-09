@@ -1,65 +1,56 @@
-{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
+{% extends 'JordiLlonchCrudGeneratorBundle::layout-admin.html.twig' %}
 
 {% block title %}
 {{ parent() }} - {{ 'views.index.list'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}
 {% endblock %}
 
 {% block page %}
-    
-    
-<div class="table-wrapper users-table section">
-    <div class="row head">
-                    <div class="col-md-12">
-                        <h4>Usuários</h4>
+    <div class="page-header">
+        <h1>{{ 'views.index.list'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
+    </div>
+    {% form_theme filterForm 'MopaBootstrapBundle:Form:fields.html.twig' %}
+    <div class="row">
+        <div class="col-sm-12">
+            {% if form_errors(filterForm) %}
+            <div class="alert alert-block alert-error fade in form-errors">
+                {{ form_errors(filterForm) }}
+            </div>
+            {% endif %}
+            <div class="panel-group panel-group-info">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-example" href="#collapseOne">
+                            {{ 'views.index.filters'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+                        </a>
                     </div>
-                </div>
-
-                <div class="row filter-block">
-                    <div class="pull-right">
-                        <div class="btn-group pull-right">
-                            <button class="glow large" data-toggle="collapse" data-target="#filters">Filtrar</button>
-                            <a class="btn-flat pull-right success new-product add-user" href="{{ path('admin_users_new') }}">+ Add user</a>
+                    <div id="collapseOne" class="panel-collapse collapse{% if form_errors(filterForm) %} in{% endif %}" style="height: auto;">
+                        <div class="panel-body">
+                            <form class="form-horizontal" action="{{ path('teste') }}" method="GET" {{ form_enctype(filterForm) }}>
+                            {{ form_rest(filterForm) }}
+                            <div class="col-sm-1 col-sm-offset-10">
+                                <button type="submit" class="btn btn-warning" name="filter_action" value="reset">{{ 'views.index.reset'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="submit" class="btn btn-info" name="filter_action" value="filter">{{ 'views.index.filter'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div id="filters" class="collapse form-wrapper">
-                    {% if form_errors(filterForm) %}
-                    <div class="alert alert-block alert-error fade in form-errors">
-                        {{ form_errors(filterForm) }}
-                    </div>
-                    {% endif %}
-                    <form action="{{ path('admin_users') }}" method="get" {{ form_enctype(filterForm) }}>
-                        <div class="row">
-                            <div class="field-box col-md-3">
-                                {{ form_label(filterForm.id) }}
-                                {{ form_widget(filterForm.id) }}
-                            </div>
-                            <div class="field-box col-md-3">
-                                
-                            </div>
-                            <div class="field-box col-md-3">
-                            </div>
-                            <div class="field-box col-md-3">
-                                <br />
-                                <div class="right">
-                            <button class="btn-flat default" type="submit" name="filter_action" value="filter">{{ 'views.index.filter'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-                            <button class="btn-flat gray" type="submit" name="filter_action" value="reset">{{ 'views.index.reset'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-                        </div>
-                            </div>
-                        </div>
-                        {{ form_rest(filterForm) }}
-
-                        
-                    </form>
-                        <br />
-                        <br />
-                        <br />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel">
+                <div class="panel-heading">
+                    <span class="panel-title">{{ 'views.index.list'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}</span>
                 </div>
-                <div class="row">
-                    <table class="table table-hover">
+                <div class="panel-body">
+                    <table class="table">
                         <thead>
                             <tr>
-                                <th class="col-md-4">
+                                <th class="col-md-3">
                                     Name
                                 </th>
                                 <th class="col-md-3">
@@ -68,8 +59,8 @@
                                 <th class="col-md-3 align-right">
                                     <span class="line"></span>Email
                                 </th>
-                                <th class="col-md-2">
-                                    <span class="line"></span>Actions
+                                <th class="col-md-3">
+                                    <span class="line"></span>{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
                                 </th>
                             </tr>
                         </thead>
@@ -80,10 +71,7 @@
     
                             <tr class="first">
                                 <td>
-                                    {% if entity.avatar is not null %}
-                                        <img src="{{ vich_uploader_asset(entity.avatar, 'uploads') }}" width="45px" height="45px" alt="avatar" class="img-circle avatar hidden-phone">
-                                    {% endif %}
-                                    <a href="{{ path('admin_users_show', { 'id': entity.id }) }}" class="name">{{ entity.name }}</a>
+                                    <a href="{{ path('admin_users_show', { 'id': entity.id }) }}" class="name">{{ entity.username }}</a>
                                     <span class="subtext"></span>
                                 </td>
                                 <td>
@@ -99,16 +87,35 @@
                                     <a class="btn btn-mini" href="{{ path('admin_users_edit', { 'id': entity.id }) }}">
                                         {{ 'views.actions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
                                     </a>  
+                                    <a class="btn btn-mini" href="{{ path('admin_users_permissions', { 'id': entity.id }) }}">
+                                        Permissions
+                                    </a>  
+                                        {% if is_granted('ROLE_ALLOWED_TO_SWITCH') %}
+                                    <a class="btn btn-mini" href="{{ path('admin_users_edit', { 'id': entity.id }) }}">
+                                        Switch
+                                    </a> 
+                                        {% endif %}
                                 </td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
-                </div>
+		</div>
             </div>
-
-    <div class="col-md-4">
-    {{ pagerHtml|raw }}
+        </div>
     </div>
-
+    <div class="row">
+        <br />
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            {{ pagerHtml|raw }}
+        </div>
+        <div class="col-md-2">
+                    <a class="btn btn-primary likepaginator" href="{{ path('admin_users_new') }}">
+            {{ 'views.index.createnew'|trans({}, 'JordiLlonchCrudGeneratorBundle') }} User
+            </a>
+                </div>
+    </div>
 {% endblock %}

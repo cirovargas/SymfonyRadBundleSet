@@ -1,4 +1,1 @@
-services:
-    app.teste_configure_menu_listener: { class: '%app.teste_configure_menu_listener.class%', tags: [{ name: kernel.event_listener, event: app.menu_configure, method: onMenuConfigure }] }
-parameters:
-    app.teste_configure_menu_listener.class: Project\AdminBundle\EventListener\TesteMenuListener
+{ services: { app.teste_configure_menu_listener: { class: '%app.teste_configure_menu_listener.class%', tags: [{ name: kernel.event_listener, event: app.menu_configure, method: onMenuConfigure }] }, app.teste_configure_permissions_listener: { class: '%app.teste_configure_permissions_listener.class%', tags: [{ name: kernel.event_listener, event: core_user.permissions.tree, method: addModulePermissions }] } }, parameters: { app.teste_configure_menu_listener.class: Project\AdminBundle\EventListener\TesteMenuListener, app.teste_configure_permissions_listener.class: Project\AdminBundle\EventListener\TestePermissionsListener } }

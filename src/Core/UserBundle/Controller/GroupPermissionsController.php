@@ -1,10 +1,10 @@
 <?php
 
-namespace ADMIN\UserBundle\Controller;
+namespace Core\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use ADMIN\UserBundle\Form\GroupPermissionsType;
+use Core\UserBundle\Form\GroupPermissionsType;
 
 class GroupPermissionsController extends Controller
 {
@@ -17,13 +17,13 @@ class GroupPermissionsController extends Controller
         $entity = $groupManager->findGroupBy(array('name' => $groupName));
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
+            throw $this->createNotFoundException('Unable to find Group entity.');
         }
         
-        $roles = $this->get('security.system_roles')->getRoles();
+        $roles = $this->get('security.system_roles')->getRolesArray();
         
         $editForm = $this->createForm(new GroupPermissionsType(array('roles'=>$roles)), $entity);
-        if ($request->getMethod() == 'PUT') {
+        if ($request->getMethod() == 'POST') {
             $editForm->bind($request);
 
             if ($editForm->isValid()) {
@@ -37,9 +37,11 @@ class GroupPermissionsController extends Controller
                 $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
             }
         }
-        return $this->render('ADMINUserBundle:Group:permissions.html.twig', array(
+        return $this->render('CoreUserBundle:Group:permissions.html.twig', array(
             'entity'      => $entity,
-            'form'   => $editForm->createView()
+            'form'   => $editForm->createView(),
+            'permissions' => $this->get('security.system_roles')->getRoles()
         ));
     }
+    
 }

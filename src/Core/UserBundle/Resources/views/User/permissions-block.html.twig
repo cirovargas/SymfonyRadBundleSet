@@ -1,0 +1,15 @@
+<li style="list-style: none">
+    <div class="checkbox" style="margin: 0;">
+        <label>
+            <input type="checkbox" value="{{ group.role }}" class="px" name="permissions">
+            <span class="lbl">{{ group.label }}</span>
+        </label>
+    </div>
+        {% if group.children is defined and group.children|length >0 %}
+    <ul style="display:none">
+        {% for children in group.children %}
+        {% include 'CoreUserBundle:User:permissions-block.html.twig' with {'group': children} %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+</li>

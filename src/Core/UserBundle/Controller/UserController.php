@@ -1,6 +1,6 @@
 <?php
 
-namespace ADMIN\UserBundle\Controller;
+namespace Core\UserBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -9,10 +9,11 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\View\TwitterBootstrap3View;
 
-use ADMIN\UserBundle\Entity\User;
-use ADMIN\UserBundle\Form\UserType;
-use ADMIN\UserBundle\Form\EditUserType;
-use ADMIN\UserBundle\Form\UserFilterType;
+use Core\UserBundle\Entity\User;
+use Core\UserBundle\Form\UserType;
+use Core\UserBundle\Form\EditUserType;
+use Core\UserBundle\Form\UserFilterType;
+use Core\UserBundle\Form\UserPermissionsType;
 
 /**
  * User controller.
@@ -30,7 +31,7 @@ class UserController extends Controller
 
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
 
-        return $this->render('ADMINUserBundle:User:index.html.twig', array(
+        return $this->render('CoreUserBundle:User:index.html.twig', array(
             'entities' => $entities,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
@@ -43,7 +44,7 @@ class UserController extends Controller
 
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
 
-        return $this->render('ADMINUserBundle:User:index.html.twig', array(
+        return $this->render('CoreUserBundle:User:index.html.twig', array(
             'entities' => $entities,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
@@ -60,7 +61,7 @@ class UserController extends Controller
         $session = $request->getSession();
         $filterForm = $this->createForm(new UserFilterType());
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('ADMINUserBundle:User')->createQueryBuilder('e');
+        $queryBuilder = $em->getRepository('CoreUserBundle:User')->createQueryBuilder('e');
         if($list == 'pendentes'){
             $queryBuilder->andWhere('e.enabled = false or e.enabled is null');
             $queryBuilder->andWhere('e.lastLogin is null');
@@ -156,7 +157,7 @@ class UserController extends Controller
                 ->setTo($entity->getEmail())
                 ->setBody(
                     $this->renderView(
-                        'ADMINUserBundle:Mail:welcome.html.twig',
+                        'CoreUserBundle:Mail:welcome.html.twig',
                         array(
                             'name' => $entity->getName(),
                             'username' => $entity->getUsername(),
@@ -170,7 +171,7 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('admin_users_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('ADMINUserBundle:User:new.html.twig', array(
+        return $this->render('CoreUserBundle:User:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -187,7 +188,7 @@ class UserController extends Controller
         $roles = $this->get('security.system_roles')->getRoles();
         $form = $this->createForm(new UserType(array('roles'=>$roles)), $entity);
 
-        return $this->render('ADMINUserBundle:User:new.html.twig', array(
+        return $this->render('CoreUserBundle:User:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -201,7 +202,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ADMINUserBundle:User')->find($id);
+        $entity = $em->getRepository('CoreUserBundle:User')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -209,7 +210,7 @@ class UserController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ADMINUserBundle:User:show.html.twig', array(
+        return $this->render('CoreUserBundle:User:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
@@ -222,7 +223,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ADMINUserBundle:User')->find($id);
+        $entity = $em->getRepository('CoreUserBundle:User')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -231,7 +232,7 @@ class UserController extends Controller
         $editForm = $this->createForm(new EditUserType(array('roles'=>$roles)), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ADMINUserBundle:User:edit.html.twig', array(
+        return $this->render('CoreUserBundle:User:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -246,7 +247,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ADMINUserBundle:User')->find($id);
+        $entity = $em->getRepository('CoreUserBundle:User')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -260,14 +261,16 @@ class UserController extends Controller
         if ($editForm->isValid()) {
             $this->get('fos_user.user_manager')->updateUser($entity, false);
             $em->flush();
-            $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
+            $this->get('session')->getFlashBag()->add('success', 
+                $this->get('translator')->trans('flash.update.success',array(),'JordiLlonchCrudGeneratorBundle')
+            );
 
             return $this->redirect($this->generateUrl('admin_users_edit', array('id' => $id)));
         } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
         }
 
-        return $this->render('ADMINUserBundle:User:edit.html.twig', array(
+        return $this->render('CoreUserBundle:User:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -285,7 +288,7 @@ class UserController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ADMINUserBundle:User')->find($id);
+            $entity = $em->getRepository('CoreUserBundle:User')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find User entity.');
@@ -299,6 +302,32 @@ class UserController extends Controller
         }
 
         return $this->redirect($this->generateUrl('admin_users'));
+    }
+    
+    public function permissionsAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('CoreUserBundle:User')->find($id);
+        $permissionsForm = $this->createForm(new UserPermissionsType(array('roles'=> $this->get('security.system_roles')->getRolesArray())), $entity);
+        
+        if($request->getMethod() == 'POST'){
+            $permissionsForm->bind($request);
+            if($permissionsForm->isValid()){
+                $userManager = $this->get('fos_user.user_manager');
+                $userManager->updateUser($entity,false);
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
+            } else {
+                $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
+            }
+        }
+        
+        return $this->render('CoreUserBundle:User:permissions.html.twig', array(
+            'entity'      => $entity,
+            'form' => $permissionsForm->createView(),
+            'permissions' => $this->get('security.system_roles')->getRoles()
+        ));
     }
 
     /**
@@ -315,4 +344,6 @@ class UserController extends Controller
             ->getForm()
         ;
     }
+    
+    
 }

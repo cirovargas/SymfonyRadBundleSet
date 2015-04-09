@@ -1,8 +1,20 @@
 services:
-    app.user_configure_menu_listener: { class: '%app.user_configure_menu_listener.class%', tags: [{ name: kernel.event_listener, event: app.menu_configure, method: onMenuConfigure }] }
+    app.user_configure_menu_listener:  
+        class: '%app.user_configure_menu_listener.class%'
+        tags: 
+            - { name: kernel.event_listener, event: app.menu_configure, method: onMenuConfigure }
+    app.user_configure_permissions_listener:  
+        class: '%app.user_configure_permissions_listener.class%'
+        tags: 
+            - { name: kernel.event_listener, event: core_user.permissions.tree, method: addModulePermissions } 
     core_user.registration.form.type:
         class: Core\UserBundle\Form\Type\RegistrationFormType
         tags:
             - { name: form.type, alias: core_user_registration }
+    security.system_roles:
+        class: %security.system_roles.class%
+        arguments: ["@event_dispatcher"]
 parameters:
     app.user_configure_menu_listener.class: Core\UserBundle\EventListener\UserMenuListener
+    app.user_configure_permissions_listener.class: Core\UserBundle\EventListener\UserPermissionsListener
+    security.system_roles.class: Core\UserBundle\Services\SystemRoles

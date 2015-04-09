@@ -1,62 +1,71 @@
-{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
+{% extends 'JordiLlonchCrudGeneratorBundle::layout-admin.html.twig' %}
 
 {% block title %}
-{{ parent() }} - {{ 'views.new.creation'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}
+{{ parent() }} -  {{ 'views.edit.edit'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}
 {% endblock %}
 
 {% block page %}
-    <div id="pad-wrapper" class="">
-        <div class="row header">
-            <div class="col-md-12">
-                <h3>Edit user</h3>
-            </div>                
-        </div>
-
-        <div class="row form-wrapper">
-            <!-- left column -->
-            <div class="col-md-9 with-sidebar">
-                <form class="form-horizontal" role="form" action="{{ path('admin_users_update', { 'id': entity.id }) }}" method="POST" {{ form_enctype(edit_form) }}>
-        <input type="hidden" name="_method" value="PUT" />
-                    {#<div class="form-group">
-                        {{ form_label(edit_form.avatar.file,null,{label_attr:{class:'col-md-2 control-label'}}) }}
-                        <div class="col-md-8">
-                          {{ form_widget(edit_form.avatar.file) }}
-                        </div>
-                        {{ form_errors(edit_form.avatar.file) }}
-                    </div>#}
-                    {{ form_rest(edit_form) }}
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-8">
-                          <input type="submit" class="btn-glow primary" value="Save Changes">
-                            <span>OR</span>
-                            <a href="{{ path('admin_users') }}" class="reset">Cancel</a>
-                        </div>
-                    </div>
-                </form>
-                        <div class="float-left">
-        <form action="{{ path('admin_users_delete', { 'id': entity.id }) }}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
-            {{ form_widget(delete_form) }}
-            <button class="btn btn-danger" type="submit" onclick="return confirm('{{ 'views.recordactions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+<div class="page-header">
+    <h1>{{ 'views.edit.edit'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        {% form_theme edit_form 'MopaBootstrapBundle:Form:fields.html.twig' %}
+        <form class="panel form-horizontal" action="{{ path('admin_users_update', { 'id': entity.id }) }}" method="POST" {{ form_enctype(edit_form) }}>
+            <input type="hidden" name="_method" value="PUT" />
+            <div class="panel-heading">
+                <span class="panel-title">{{ 'views.edit.edit'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}</span>
+            </div>
+            <div class="panel-body">
+                {{ form_rest(edit_form) }}
+               
+            </div>
+            <div class="panel-footer text-right">
+                                <a class="btn" href="{{ path('admin_users') }}">
+    {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+</a>
+                
+                <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+                
+                <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</a>
+            </div>
         </form>
     </div>
-            </div>
+</div>
 
-            <!-- side right column -->
-            <div class="col-md-3 form-sidebar">
-                <div class="alert alert-info">
-                    <i class="icon-lightbulb pull-left"></i>
-                    Display a sidebar note over here
-                </div>                        
-                <h6>Sidebar text for instructions</h6>
-                <p>Add multiple users at once</p>
-                <p>Choose one of the following file types:</p>
-                <ul>
-                    <li><a href="#">Upload a vCard file</a></li>
-                    <li><a href="#">Import from a CSV file</a></li>
-                    <li><a href="#">Import from an Excel file</a></li>
-                </ul>
+                
+<form id="form-delete" action="{{ path('admin_users_delete', { 'id': entity.id }) }}" method="POST" style="display:none">
+    <input type="hidden" name="_method" value="DELETE" />
+    {{ form_widget(delete_form) }}
+</form>
+        
+<div id="modalDelete" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">{{ 'views.actions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</h4>
+            </div>
+            <div class="modal-body">
+                <p>{{ 'views.recordactions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'views.actions.close'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+                <button type="button" id="btn-delete-confirm" class="btn btn-primary">{{ 'views.actions.save'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            $('#btn-delete-confirm').click(function(){
+                $('#form-delete').submit();
+            });
+        });
+    </script>
+{% endblock %}
+

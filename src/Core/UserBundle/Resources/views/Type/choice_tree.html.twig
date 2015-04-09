@@ -1,0 +1,14 @@
+{%- block choice_tree_widget -%}
+    {% if expanded %}
+        <div {{ block('widget_container_attributes') }}>
+    {%- for child in form %}
+    {% if child is iterable %}teste{% endif %}
+        {{- form_widget(child) -}}
+        {{- form_label(child) -}}
+        
+    {% endfor -%}
+    </div>
+    {% else %}
+        {{- block('choice_widget_collapsed') -}}
+    {% endif %}
+{%- endblock choice_tree_widget -%}
