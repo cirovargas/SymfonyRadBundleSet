@@ -1,6 +1,3 @@
-project_admin_teste:
-    resource: "@ProjectAdminBundle/Resources/config/routing/teste.yml"
-    prefix:   /teste
 
 project_admin_homepage:
     path:     /hello/{name}
