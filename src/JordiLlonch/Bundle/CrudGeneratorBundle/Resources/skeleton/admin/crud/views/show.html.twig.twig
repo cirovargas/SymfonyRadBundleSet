@@ -33,37 +33,38 @@
                 {% set hide_edit, hide_delete = false, true %}
                 {% include 'crud/views/others/record_actions.html.twig.twig' %}
                 
-                <button type="submit" class="btn btn-success">{{ "{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}" }}</button>
-                
+                {{ "{% if is_granted('ROLE_ADMIN_" }}{{ entity|upper }}{{ "_DELETE') %}" }}    
                 <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">{{ "{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}" }}</a>
+                {{ "{% endif %}" }}
             </div>
         </form>
     </div>
 </div>
 
-                
-<form id="form-delete" action="{{ "{{ path('"~ route_name_prefix ~"_delete', { 'id': entity.id }) }}" }}" method="POST" style="display:none">
-    <input type="hidden" name="_method" value="DELETE" />
-    {{ "{{ form_widget(delete_form) }}" }}
-</form>
-        
-<div id="modalDelete" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">{{ "{{ 'views.actions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}" }}</h4>
-            </div>
-            <div class="modal-body">
-                <p>{{ "{{ 'views.recordactions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}" }}</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">{{ "{{ 'views.actions.close'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}" }}</button>
-                <button type="button" id="btn-delete-confirm" class="btn btn-primary">{{ "{{ 'views.actions.save'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}" }}</button>
+    {{ "{% if is_granted('ROLE_ADMIN_" }}{{ entity|upper }}{{ "_DELETE') %}" }}               
+    <form id="form-delete" action="{{ "{{ path('"~ route_name_prefix ~"_delete', { 'id': entity.id }) }}" }}" method="POST" style="display:none">
+        <input type="hidden" name="_method" value="DELETE" />
+        {{ "{{ form_widget(delete_form) }}" }}
+    </form>
+
+    <div id="modalDelete" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">{{ "{{ 'views.actions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}" }}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{ "{{ 'views.recordactions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}" }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ "{{ 'views.actions.close'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}" }}</button>
+                    <button type="button" id="btn-delete-confirm" class="btn btn-primary">{{ "{{ 'views.actions.save'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}" }}</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    {{ "{% endif %}" }}
 {{ "{% endblock %}" }}
 
 {{ "{% block javascripts %}" }}

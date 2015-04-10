@@ -1,8 +1,7 @@
-
 {%- for action in record_actions %}
-
-        <a class="btn btn-mini" href="{{ "{{ path('"~ route_name_prefix ~"_"~ action ~"', { 'id': entity.id }) }}" }}">
-            {{ "{{ 'views.actions."~action~"'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}" }}
-        </a>
-
+    {{ "{% if is_granted('ROLE_ADMIN_" }}{{ entity|upper }}{{ "_" }}{{ action|upper }}{{ "') %}" }}
+    <a class="btn btn-mini" href="{{ "{{ path('"~ route_name_prefix ~"_"~ action ~"', { 'id': entity.id }) }}" }}">
+        {{ "{{ 'views.actions."~action~"'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}" }}
+    </a>
+    {{ "{% endif %}" }}
 {%- endfor %}

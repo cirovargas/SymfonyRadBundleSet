@@ -14,14 +14,18 @@ class TestePermissionsListener
             'children' => array(
                                 array(
                     'label' => 'Add Teste',
-                    'role' => 'ROLE_ADMIN_TESTE_ADD'
+                    'role' => 'ROLE_ADMIN_TESTE_NEW'
                 ),
                 array(
-                    'label' => 'Edit Teste',
+                    'label' => 'Update Teste',
                     'role' => 'ROLE_ADMIN_TESTE_EDIT'
                 ),
+                array(
+                    'label' => 'Delete Teste',
+                    'role' => 'ROLE_ADMIN_TESTE_DELETE'
+                ),
                                 array(
-                    'label' => 'View Teste',
+                    'label' => 'Show Teste',
                     'role' => 'ROLE_ADMIN_TESTE_SHOW'
                 )
             )

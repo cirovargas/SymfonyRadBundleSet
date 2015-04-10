@@ -62,16 +62,24 @@
                         <tbody>
                             {% for entity in entities %}
                             <tr>
-                                <td><a href="{{ path('teste_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                                <td>
+                                    {% if is_granted('ROLE_ADMIN_TESTE_SHOW') %}    
+                                        <a href="{{ path('teste_show', { 'id': entity.id }) }}">{{ entity.id }}</a>
+                                    {% else %}
+                                        {{ entity.id }}
+                                    {% endif %}
+                                </td>
                                 <td>{{ entity.nome }}</td>
                                 <td>{{ entity.ordem }}</td>
-                                <td>
-        <a class="btn btn-mini" href="{{ path('teste_show', { 'id': entity.id }) }}">
-            {{ 'views.actions.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-        </a>
-        <a class="btn btn-mini" href="{{ path('teste_edit', { 'id': entity.id }) }}">
-            {{ 'views.actions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-        </a>                                </td>
+                                <td>    {% if is_granted('ROLE_ADMIN_TESTE_SHOW') %}
+    <a class="btn btn-mini" href="{{ path('teste_show', { 'id': entity.id }) }}">
+        {{ 'views.actions.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+    </a>
+    {% endif %}    {% if is_granted('ROLE_ADMIN_TESTE_EDIT') %}
+    <a class="btn btn-mini" href="{{ path('teste_edit', { 'id': entity.id }) }}">
+        {{ 'views.actions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+    </a>
+    {% endif %}                                </td>
                             </tr>
                             {% endfor %}
 			</tbody>
@@ -89,9 +97,11 @@
             {{ pagerHtml|raw }}
         </div>
         <div class="col-md-2">
-                    <a class="btn btn-primary likepaginator" href="{{ path('teste_new') }}">
+                    {% if is_granted('ROLE_ADMIN_TESTE_NEW') %}    
+            <a class="btn btn-primary likepaginator" href="{{ path('teste_new') }}">
             {{ 'views.index.createnew'|trans({}, 'JordiLlonchCrudGeneratorBundle') }} Teste
             </a>
+            {% endif %}
                 </div>
     </div>
 {% endblock %}

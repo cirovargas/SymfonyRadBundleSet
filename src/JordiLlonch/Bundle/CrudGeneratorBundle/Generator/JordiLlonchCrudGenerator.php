@@ -108,7 +108,8 @@ class JordiLlonchCrudGenerator extends DoctrineCrudGenerator
                             'event' => 'app.menu_configure',
                             'method' => 'onMenuConfigure'
                         )
-                    )
+                    ),
+                    'arguments'=> array("@security.token_storage")
             );
             $dumper = new Dumper();
             file_put_contents($bundle->getPath().'/Resources/config/services.yml', $dumper->dump($value,2));

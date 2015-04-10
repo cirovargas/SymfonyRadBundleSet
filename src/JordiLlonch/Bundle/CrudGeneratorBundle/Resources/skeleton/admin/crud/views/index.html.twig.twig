@@ -72,7 +72,13 @@
                         {%- for field, metadata in fields %}
                             {%- if loop.first and ('show' in actions) %}
 
-                                <td><a href="{{ "{{ path('"~ route_name_prefix ~"_show', { 'id': entity.id }) }}" }}">{{ '{{ entity.'~ field|replace({'_': ''}) ~' }}' }}</a></td>
+                                <td>
+                                    {{ "{% if is_granted('ROLE_ADMIN_" }}{{ entity|upper }}{{ "_SHOW') %}" }}    
+                                        <a href="{{ "{{ path('"~ route_name_prefix ~"_show', { 'id': entity.id }) }}" }}">{{ '{{ entity.'~ field|replace({'_': ''}) ~' }}' }}</a>
+                                    {{ "{% else %}" }}
+                                        {{ '{{ entity.'~ field|replace({'_': ''}) ~' }}' }}
+                                    {{ "{% endif %}" }}
+                                </td>
 
                             {%- elseif metadata.type in ['date', 'datetime'] %}
 
@@ -111,9 +117,11 @@
         </div>
         <div class="col-md-2">
         {% if 'new' in actions %}
+            {{ "{% if is_granted('ROLE_ADMIN_" }}{{ entity|upper }}{{ "_NEW') %}" }}    
             <a class="btn btn-primary likepaginator" href="{{ "{{ path('"~ route_name_prefix ~"_new') }}" }}">
             {{ "{{ 'views.index.createnew'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}" }} {{ entity }}
             </a>
+            {{ "{% endif %}" }}
         {% endif %}
         </div>
     </div>

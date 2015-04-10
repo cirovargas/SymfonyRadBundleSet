@@ -15,15 +15,19 @@ class {{ form_class }}
                 {% if needWriteActions == true %}
                 array(
                     'label' => 'Add {{ entity_class }}',
-                    'role' => 'ROLE_ADMIN_{{ entity_class|upper }}_ADD'
+                    'role' => 'ROLE_ADMIN_{{ entity_class|upper }}_NEW'
                 ),
                 array(
-                    'label' => 'Edit {{ entity_class }}',
+                    'label' => 'Update {{ entity_class }}',
                     'role' => 'ROLE_ADMIN_{{ entity_class|upper }}_EDIT'
+                ),
+                array(
+                    'label' => 'Delete {{ entity_class }}',
+                    'role' => 'ROLE_ADMIN_{{ entity_class|upper }}_DELETE'
                 ),
                 {% endif %}
                 array(
-                    'label' => 'View {{ entity_class }}',
+                    'label' => 'Show {{ entity_class }}',
                     'role' => 'ROLE_ADMIN_{{ entity_class|upper }}_SHOW'
                 )
             )
