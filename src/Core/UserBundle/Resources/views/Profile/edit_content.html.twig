@@ -1,8 +1,26 @@
 {% trans_default_domain 'FOSUserBundle' %}
-
-<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+<div class="page-header">
+    <h1>{{ 'views.edit.edit'|trans({'%entity%': 'Profile'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="panel form-horizontal">
+            <div class="panel-body">
+            {{ form_row(form.username) }}
+            {{ form_row(form.email) }}
+            {#{{ form_row(form.profile.name) }}
+            {{ form_row(form.profile.surnames) }}
+            {{ form_row(form.profile.phone) }}
+            {{ form_row(form.profile.cellphone) }}
+            {{ form_row(form.profile.workphone) }}
+            {{ form_row(form.profile.bornDate) }}
+            {{ form_row(form.profile.gender) }}
+            {{ form_row(form.profile.about) }}#}
+            {{ form_rest(form) }}
+            </div>
+            <div class="panel-footer text-right">
+                <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+            </div>
+        </form>
     </div>
-</form>
+</div>

@@ -25,13 +25,28 @@ class User extends BaseUser
      * )
      */
     protected $groups;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Core\UserBundle\Entity\Profile", mappedBy="user",cascade={"ALL"})
+     */
+    private $profile;
 
     public function __construct()
     {
         parent::__construct();
-        // your own logic
+        $this->profile = new Profile;
     }
     
+    function getProfile() {
+        return $this->profile;
+    }
+
+    function setProfile( $profile) {
+        $profile->setUser($this);
+        $this->profile = $profile;
+    }
+
+        
     public function getUserRoles(){
         return $this->roles;
     }

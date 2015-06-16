@@ -11,6 +11,10 @@ services:
         class: Core\UserBundle\Form\Type\RegistrationFormType
         tags:
             - { name: form.type, alias: core_user_registration }
+    core_user.profile.form.type:
+        class: Core\UserBundle\Form\Type\ProfileFormType
+        tags:
+            - { name: form.type, alias: core_user_profile }
     security.system_roles:
         class: %security.system_roles.class%
         arguments: ["@event_dispatcher"]
