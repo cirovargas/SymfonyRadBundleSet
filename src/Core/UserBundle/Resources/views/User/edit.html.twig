@@ -1,4 +1,4 @@
-{% extends 'JordiLlonchCrudGeneratorBundle::layout-admin.html.twig' %}
+{% extends 'CoreAdminBundle::layout-admin.html.twig' %}
 
 {% block title %}
 {{ parent() }} -  {{ 'views.edit.edit'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}
@@ -9,15 +9,27 @@
     <h1>{{ 'views.edit.edit'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
 </div>
 <div class="row">
+    <form action="{{ path('admin_users_update', { 'id': entity.id }) }}" method="POST" {{ form_enctype(form) }}>
     <div class="col-sm-12">
-        {% form_theme edit_form 'MopaBootstrapBundle:Form:fields.html.twig' %}
-        <form class="panel form-horizontal" action="{{ path('admin_users_update', { 'id': entity.id }) }}" method="POST" {{ form_enctype(edit_form) }}>
+        <div class="panel">
+        {% form_theme form 'MopaBootstrapBundle:Form:fields.html.twig' %}
             <input type="hidden" name="_method" value="PUT" />
             <div class="panel-heading">
-                <span class="panel-title">{{ 'views.edit.edit'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}</span>
+                <span class="panel-title">Basic Information</span>
             </div>
             <div class="panel-body">
-                {{ form_rest(edit_form) }}
+                {{ form_row(form.username) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.enabled) }}
+                {{ form_row(form.profile.name) }}
+                {{ form_row(form.profile.surnames) }}
+                {{ form_row(form.profile.phone) }}
+                {{ form_row(form.profile.cellphone) }}
+                {{ form_row(form.profile.workphone) }}
+                {{ form_row(form.profile.bornDate) }}
+                {{ form_row(form.profile.gender) }}
+                {{ form_row(form.profile.about) }}
+                
                
             </div>
             <div class="panel-footer text-right">
@@ -29,8 +41,51 @@
                 
                 <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</a>
             </div>
-        </form>
+        </div>
     </div>
+    <div class="col-sm-12 ">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">Groups</span>
+            </div>
+            <div class="panel-body">
+                {{ form_row(form.groups) }}
+            </div>
+            <div class="panel-footer text-right">
+                <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 ">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">Profile Image</span>
+            </div>
+            <div class="panel-body">
+                {{ form_row(form.profile.avatar.file) }}
+            </div>
+            <div class="panel-footer text-right">
+                <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 ">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">Configuration</span>
+            </div>
+            <div class="panel-body">
+                {% for config in form.profile.configs %}
+                {{ form_row(config) }}
+                {% endfor %}
+            </div>
+            <div class="panel-footer text-right">
+                <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+            </div>
+        </div>
+    </div>
+            {{ form_rest(form) }}
+</form>
 </div>
 
                 

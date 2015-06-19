@@ -1,0 +1,8 @@
+parameters:
+    app.admin_configure_menu_listener.class: Core\AdminBundle\EventListener\ConfigureMenuListener
+
+services:
+    app.admin_configure_menu_listener:
+        class: %app.admin_configure_menu_listener.class%
+        tags:
+          - { name: kernel.event_listener, event: app.menu_configure, method: onMenuConfigure }

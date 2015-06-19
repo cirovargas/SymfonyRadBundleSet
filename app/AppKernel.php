@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Project\ExternalBundle\ProjectExternalBundle(),
             new Knp\RadBundle\KnpRadBundle(),
             new Core\UploadBundle\CoreUploadBundle(),
+            new Core\AdminBundle\CoreAdminBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

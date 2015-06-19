@@ -1,5 +1,4 @@
 {% trans_default_domain 'FOSUserBundle' %}
-<div id="content-wrapper">
     <div class="profile-full-name">
         <span class="text-semibold">{{ user.profile.name|default('') }}</span>'s profile
     </div>
@@ -7,8 +6,12 @@
             <div class="left-col">
                     <div class="profile-block">
                             <div class="panel profile-photo">
-                                    <img src="assets/demo/avatars/5.jpg" alt="">
-                            </div><br>
+                                {% if user.id == app.user.id %}
+                                <a href="#"><i class="profile-list-icon fa fa-camera-retro"></i> Alterar foto</a>
+                                {% endif %}
+                                <img height="160px" width="160px" src="{{ asset('bundles/coreadmin/admin/images/pixel-admin/profile.png') }}" alt="">
+                            </div>
+                            <br>
                             <a href="#" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;&nbsp;Following</a>&nbsp;&nbsp;
                             <a href="#" class="btn"><i class="fa fa-comment"></i></a>
                     </div>
@@ -738,4 +741,3 @@
                     </div>
             </div>
     </div>
-</div> <!-- / #content-wrapper -->

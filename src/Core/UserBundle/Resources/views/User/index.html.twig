@@ -1,4 +1,4 @@
-{% extends 'JordiLlonchCrudGeneratorBundle::layout-admin.html.twig' %}
+{% extends 'CoreAdminBundle::layout-admin.html.twig' %}
 
 {% block title %}
 {{ parent() }} - {{ 'views.index.list'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}
@@ -50,7 +50,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="col-md-3">
+                                <th class="col-md-4">
                                     Name
                                 </th>
                                 <th class="col-md-3">
@@ -59,7 +59,7 @@
                                 <th class="col-md-3 align-right">
                                     <span class="line"></span>Email
                                 </th>
-                                <th class="col-md-3">
+                                <th class="col-md-2">
                                     <span class="line"></span>{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
                                 </th>
                             </tr>
@@ -81,20 +81,19 @@
                                     <a href="#">{{ entity.email }}</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-mini" href="{{ path('admin_users_show', { 'id': entity.id }) }}">
-                                        {{ 'views.actions.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-                                    </a>
-                                    <a class="btn btn-mini" href="{{ path('admin_users_edit', { 'id': entity.id }) }}">
-                                        {{ 'views.actions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-                                    </a>  
-                                    <a class="btn btn-mini" href="{{ path('admin_users_permissions', { 'id': entity.id }) }}">
-                                        Permissions
-                                    </a>  
-                                        {% if is_granted('ROLE_ALLOWED_TO_SWITCH') %}
-                                    <a class="btn btn-mini" href="{{ path('admin_users_edit', { 'id': entity.id }) }}">
-                                        Switch
-                                    </a> 
-                                        {% endif %}
+                                    <div class="btn-group">
+                                            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                                    {{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }} &nbsp;<i class="fa fa-caret-down"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                    <li><a href="{{ path('admin_users_show', { 'id': entity.id }) }}">{{ 'views.actions.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</a></li>
+                                                    <li><a href="{{ path('admin_users_edit', { 'id': entity.id }) }}">{{ 'views.actions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</a></li>
+                                                    <li><a href="{{ path('admin_users_permissions', { 'id': entity.id }) }}">Permissions</a></li>
+                                                    {% if is_granted('ROLE_ALLOWED_TO_SWITCH') %}
+                                                    <li><a href="{{ path('admin_users_edit', { 'id': entity.id }) }}">Switch</a></li>
+                                                    {% endif %}
+                                            </ul>
+                                    </div>
                                 </td>
                             </tr>
                             {% endfor %}

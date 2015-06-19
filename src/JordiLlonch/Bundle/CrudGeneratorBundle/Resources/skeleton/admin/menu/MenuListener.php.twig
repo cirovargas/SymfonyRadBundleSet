@@ -2,7 +2,7 @@
 
 namespace {{ namespace }}\EventListener{{ entity_namespace ? '\\' ~ entity_namespace : '' }};
 
-use JordiLlonch\Bundle\CrudGeneratorBundle\Event\ConfigureMenuEvent;
+use CoreAdminBundle\Event\ConfigureMenuEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 class {{ form_class }}{

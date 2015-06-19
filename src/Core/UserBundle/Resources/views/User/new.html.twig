@@ -1,4 +1,4 @@
-{% extends 'JordiLlonchCrudGeneratorBundle::layout-admin.html.twig' %}
+{% extends 'CoreAdminBundle::layout-admin.html.twig' %}
 
 {% block title %}
 {{ parent() }} - {{ 'views.new.creation'|trans({'%entity%': 'Teste'}, 'JordiLlonchCrudGeneratorBundle') }}
@@ -9,14 +9,25 @@
     <h1>{{ 'views.new.creation'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
 </div>
 <div class="row">
+    <form class="panel form-horizontal" action="{{ path('admin_users_create') }}" method="POST" {{ form_enctype(form) }}>
     <div class="col-sm-12">
         {% form_theme form 'MopaBootstrapBundle:Form:fields.html.twig' %}
-        <form class="panel form-horizontal" action="{{ path('admin_users_create') }}" method="POST" {{ form_enctype(form) }}>
-            {#<div class="panel-heading">
-                <span class="panel-title">{{ 'views.new.creation'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}</span>
-            </div>#}
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">Basic informations</span>
+            </div>
             <div class="panel-body">
-                {{ form_rest(form) }}
+                {{ form_row(form.username) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.enabled) }}
+                {{ form_row(form.profile.name) }}
+                {{ form_row(form.profile.surnames) }}
+                {{ form_row(form.profile.phone) }}
+                {{ form_row(form.profile.cellphone) }}
+                {{ form_row(form.profile.workphone) }}
+                {{ form_row(form.profile.bornDate) }}
+                {{ form_row(form.profile.gender) }}
+                {{ form_row(form.profile.about) }}
                
             </div>
             <div class="panel-footer text-right">
@@ -26,7 +37,50 @@
                 
                 <button type="submit" class="btn btn-success">{{ 'views.new.create'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
             </div>
-        </form>
+        </div>
     </div>
+    <div class="col-sm-12 ">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">Groups</span>
+            </div>
+            <div class="panel-body">
+                {{ form_row(form.groups) }}
+            </div>
+            <div class="panel-footer text-right">
+                <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 ">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">Profile Image</span>
+            </div>
+            <div class="panel-body">
+                {{ form_row(form.profile.avatar.file) }}
+            </div>
+            <div class="panel-footer text-right">
+                <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 ">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">Configuration</span>
+            </div>
+            <div class="panel-body">
+                {% for config in form.profile.configs %}
+                {{ form_row(config) }}
+                {% endfor %}
+            </div>
+            <div class="panel-footer text-right">
+                <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+            </div>
+        </div>
+    </div>        
+                {{ form_rest(form) }}
+    </form>
 </div>
 {% endblock %}

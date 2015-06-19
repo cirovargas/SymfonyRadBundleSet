@@ -26,17 +26,17 @@ class Upload
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
      */
-    public $name;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    public $extension;
+    private $extension;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    public $path;
+    private $path;
 
     /**
      * @Assert\File(maxSize="6000000")
@@ -45,7 +45,6 @@ class Upload
 
 
     private $temp;
-    private $imgAsset;
 
     /**
      * Get file.
@@ -57,11 +56,7 @@ class Upload
         return $this->file;
     }
     
-    public function getImgAsset(){
-        return $this->path.$this->id.'-'.$this->name.'.'.$this->extension;
-    }
-    
-    public function imgAsset(){
+    public function asset(){
         return $this->path.$this->id.'-'.$this->name.'.'.$this->extension;
     }
 
@@ -103,10 +98,7 @@ class Upload
     public function preUpload()
     {
         if (null !== $this->getFile()) {
-            $this->extension = $this->getFile()->guessExtension();
-            $this->path = $this->getUploadDir();
-            $id = ($this->id)?$this->id : "";
-            $this->name = $id."-".$this->getFile()->getClientOriginalName();
+            $this->path = $this->getFile()->guessExtension();
         }
     }
 
@@ -123,7 +115,7 @@ class Upload
         // check if we have an old image
         if (isset($this->temp)) {
             // delete the old image
-            @unlink($this->temp);
+            unlink($this->temp);
             // clear the temp image path
             $this->temp = null;
         }
@@ -133,11 +125,8 @@ class Upload
         // which the UploadedFile move() method does
         $this->getFile()->move(
             $this->getUploadRootDir(),
-            $this->id."-".$this->name.'.'.$this->getFile()->guessExtension()
+            $this->id.'.'.$this->getFile()->guessExtension()
         );
-
-        $this->name = $this->id."-".$this->name.'.'.$this->extension;
-       // $this->extension = $this->getUploadDir().$this->id.'.'.$this->getFile()->guessExtension();
 
         $this->setFile(null);
     }
@@ -162,9 +151,9 @@ class Upload
 
     public function getAbsolutePath()
     {
-        return null === $this->extension
+        return null === $this->path
             ? null
-            : $this->getUploadRootDir().'/'.$this->id.'.'.$this->extension;
+            : $this->getUploadRootDir().'/'.$this->id.'.'.$this->path;
     }
 
     protected function getUploadRootDir()

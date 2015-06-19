@@ -76,11 +76,18 @@ class Profile
      * @ORM\Column(name="about", type="text")
      */
     private $about;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="configs", type="array")
+     */
+    private $configs;
 
     /**
      * @var \Upload
      *
-     * @ORM\ManyToOne(targetEntity="Core\UploadBundle\Entity\Upload")
+     * @ORM\ManyToOne(targetEntity="Core\UploadBundle\Entity\Upload", cascade={"ALL"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="avatar", referencedColumnName="id")
      * })
@@ -90,7 +97,7 @@ class Profile
     /**
      * @var \Upload
      *
-     * @ORM\OneToOne(targetEntity="Core\UserBundle\Entity\User")
+     * @ORM\OneToOne(targetEntity="Core\UserBundle\Entity\User", inversedBy="profile")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
@@ -98,24 +105,11 @@ class Profile
     private $user;
     
 
-    
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Profile
-     */
     public function setName($name)
     {
         $this->name = $name;
@@ -123,22 +117,11 @@ class Profile
         return $this;
     }
 
-    /**
-     * Get name
-     *
-     * @return string 
-     */
     public function getName()
     {
         return $this->name;
     }
 
-    /**
-     * Set surnames
-     *
-     * @param string $surnames
-     * @return Profile
-     */
     public function setSurnames($surnames)
     {
         $this->surnames = $surnames;
@@ -146,22 +129,11 @@ class Profile
         return $this;
     }
 
-    /**
-     * Get surnames
-     *
-     * @return string 
-     */
     public function getSurnames()
     {
         return $this->surnames;
     }
 
-    /**
-     * Set phone
-     *
-     * @param string $phone
-     * @return Profile
-     */
     public function setPhone($phone)
     {
         $this->phone = $phone;
@@ -169,22 +141,11 @@ class Profile
         return $this;
     }
 
-    /**
-     * Get phone
-     *
-     * @return string 
-     */
     public function getPhone()
     {
         return $this->phone;
     }
 
-    /**
-     * Set cellphone
-     *
-     * @param string $cellphone
-     * @return Profile
-     */
     public function setCellphone($cellphone)
     {
         $this->cellphone = $cellphone;
@@ -192,22 +153,11 @@ class Profile
         return $this;
     }
 
-    /**
-     * Get cellphone
-     *
-     * @return string 
-     */
     public function getCellphone()
     {
         return $this->cellphone;
     }
 
-    /**
-     * Set workphone
-     *
-     * @param string $workphone
-     * @return Profile
-     */
     public function setWorkphone($workphone)
     {
         $this->workphone = $workphone;
@@ -215,22 +165,11 @@ class Profile
         return $this;
     }
 
-    /**
-     * Get workphone
-     *
-     * @return string 
-     */
     public function getWorkphone()
     {
         return $this->workphone;
     }
 
-    /**
-     * Set bornDate
-     *
-     * @param string $bornDate
-     * @return Profile
-     */
     public function setBornDate($bornDate)
     {
         $this->bornDate = $bornDate;
@@ -238,22 +177,11 @@ class Profile
         return $this;
     }
 
-    /**
-     * Get bornDate
-     *
-     * @return string 
-     */
     public function getBornDate()
     {
         return $this->bornDate;
     }
 
-    /**
-     * Set gender
-     *
-     * @param string $gender
-     * @return Profile
-     */
     public function setGender($gender)
     {
         $this->gender = $gender;
@@ -261,53 +189,43 @@ class Profile
         return $this;
     }
 
-    /**
-     * Get gender
-     *
-     * @return string 
-     */
     public function getGender()
     {
         return $this->gender;
     }
     
-    function getAbout() {
+    function getAbout(){
         return $this->about;
     }
 
-    function setAbout($about) {
+    function setAbout($about){
         $this->about = $about;
     }
-
     
-    /**
-     * Set avatar
-     *
-     * @param integer $avatar
-     * @return Profile
-     */
-    public function setAvatar($avatar)
-    {
-        $this->avatar = $avatar;
+    function getConfigs(){
+        return $this->configs;
+    }
 
+    function setConfigs($configs){
+        $this->configs = $configs;
         return $this;
     }
 
-    /**
-     * Get avatar
-     *
-     * @return integer 
-     */
-    public function getAvatar()
-    {
+    public function setAvatar($avatar){
+        $this->avatar = $avatar;
+        return $this;
+    }
+
+    public function getAvatar(){
         return $this->avatar;
     }
     
-    function getUser() {
+    function getUser(){
         return $this->user;
     }
 
-    function setUser( $user) {
+    function setUser($user){
         $this->user = $user;
+        return $this;
     }
 }

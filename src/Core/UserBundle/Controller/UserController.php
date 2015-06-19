@@ -208,11 +208,9 @@ class UserController extends Controller
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('CoreUserBundle:User:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
+            'user'      => $entity
+        ));
     }
 
     /**
@@ -234,7 +232,7 @@ class UserController extends Controller
 
         return $this->render('CoreUserBundle:User:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -272,7 +270,7 @@ class UserController extends Controller
 
         return $this->render('CoreUserBundle:User:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

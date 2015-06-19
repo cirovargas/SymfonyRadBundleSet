@@ -21,6 +21,7 @@ class UserType extends AbstractType
                 ->add('enabled')
 //                ->add('avatar',new \UTIL\UploadBundle\Form\UploadsType(array('label' => 'Avatar')))
                 ->remove('plainPassword')
+                ->add('profile',new \Core\UserBundle\Form\ProfileType());
 //                ->add('plainPassword', 'repeated', array(
 //                'type' => 'password',
 //                'required' => false,

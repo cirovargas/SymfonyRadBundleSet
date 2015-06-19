@@ -20,7 +20,12 @@ class ProfileType extends AbstractType
             ->add('phone')
             ->add('cellphone')
             ->add('workphone')
-            ->add('bornDate')
+            ->add('avatar', new \Core\UploadBundle\Form\UploadType())
+            ->add('configs', new UserConfigType())
+            ->add('bornDate',null,array(
+                'format' => 'ddMMyyyy',
+                'years' => range(1950,(date('Y')-16))
+            ))
             ->add('gender','choice',array(
                 'choices' => array(
                     'M' => 'Male',

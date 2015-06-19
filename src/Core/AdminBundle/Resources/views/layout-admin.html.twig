@@ -1,0 +1,130 @@
+{% extends 'CoreAdminBundle::base.html.twig' %}
+{% block stylesheets %}
+    <!-- Open Sans font from Google CDN -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
+
+    <!-- Pixel Admin's stylesheets -->
+    <link href="{{ asset('bundles/coreadmin/admin/stylesheets/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/coreadmin/admin/stylesheets/pixel-admin.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/coreadmin/admin/stylesheets/widgets.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/coreadmin/admin/stylesheets/pages.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/coreadmin/admin/stylesheets/rtl.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/coreadmin/admin/stylesheets/themes.css') }}" rel="stylesheet" type="text/css">
+
+    <!--[if lt IE 9]>
+            <script src="{{ asset('bundles/coreadmin/admin/javascripts/ie.min.js') }}"></script>
+    <![endif]-->
+    <script>var init = [];</script>
+{% endblock %}
+{% block body_class %}theme-default main-menu-animated {% endblock %}
+{% block body %}
+    <div id="main-wrapper">
+        <div id="main-navbar" class="navbar navbar-inverse" role="navigation">
+            <button type="button" id="main-menu-toggle"><i class="navbar-icon fa fa-bars icon"></i><span class="hide-menu-text">HIDE MENU</span></button>
+            <div class="navbar-inner">
+                <div class="navbar-header">
+                    <a href="{{ path('admin_home') }}" class="navbar-brand">
+                        <div><img alt="Admin" src="{{ asset('bundles/coreadmin/admin/images/pixel-admin/main-navbar-logo.png') }}"></div>
+                        Admin
+                    </a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse"><i class="navbar-icon fa fa-bars"></i></button>
+                </div> <!-- / .navbar-header -->
+                <div id="main-navbar-collapse" class="collapse navbar-collapse main-navbar-collapse">
+                    <div>
+                        {% block vertical_menu %}
+                            {#<ul class="nav navbar-nav">
+                                <li>
+                                    <a href="#">Home</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">First item</a></li>
+                                        <li><a href="#">Second item</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Third item</a></li>
+                                    </ul>
+                                </li>
+                            </ul>#}
+                        {% endblock %}
+                        <div class="right clearfix">
+                            <ul class="nav navbar-nav pull-right right-navbar-nav">
+                                {#{% include 'JordiLlonchCrudGeneratorBundle::notifications.html.twig' %}
+                                {% include 'JordiLlonchCrudGeneratorBundle::messages.html.twig' %}
+                                {% include 'JordiLlonchCrudGeneratorBundle::search.html.twig' %}#}
+                                {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                                <li>
+                                    <a href="{{ path('admin_home', {'_switch_user': '_exit'}) }}">Exit impersonation</a>
+                                </li>
+                                {% endif %}
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
+                                        
+                                        <img src="{{ asset('bundles/coreadmin/admin/images/pixel-admin/profile.png') }}" alt="">
+                                        <span>{{ app.user.profile.name }}</span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
+                                        <li><a href="#">Account</a></li>
+                                        <li><a href="{{ path('fos_user_profile_edit') }}"><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="{{ path('logout') }}"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
+                                    </ul>
+                                </li>
+                            </ul> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="main-menu" role="navigation">
+            <div id="main-menu-inner">
+                <div class="menu-content top" id="menu-content-demo">
+                    <div>
+                        <div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold">{{ app.user.profile.name }}</span></div>
+                        <img src="{{ asset('bundles/coreadmin/admin/images/pixel-admin/profile.png') }}" alt="" class="">
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-envelope"></i></a>
+                            <a href="{{ path('fos_user_profile_show') }}" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
+                            <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-cog"></i></a>
+                            <a href="{{ path('logout') }}" class="btn btn-xs btn-danger btn-outline dark"><i class="fa fa-power-off"></i></a>
+                        </div>
+                        <a href="#" class="close">&times;</a>
+                    </div>
+                </div>
+                {{ knp_menu_render('CoreAdminBundle:Builder:admin', {'currentClass': 'active', 'template': 'CoreAdminBundle::knp_menu_admin.html.twig'}) }}
+                <div class="menu-content">
+                    <a href="pages-invoice.html" class="btn btn-primary btn-block btn-outline dark">Create Invoice</a>
+                </div>
+            </div> 
+        </div>
+        <div id="content-wrapper">
+            {% if preventDefaultFlashBag is not defined or (preventDefaultFlashBag is defined and preventDefaultFlashBag != true) %}
+            <div id="pa-page-alerts-box">
+                {% include 'CoreAdminBundle::flashes.html.twig' %}
+            </div>
+            {% endif %}
+            {% block page %}{% endblock %}
+        </div>
+        <div id="main-menu-bg"></div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <!--[if !IE]> -->
+            <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js">'+"<"+"/script>"); </script>
+    <!-- <![endif]-->
+    <!--[if lte IE 9]>
+            <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">'+"<"+"/script>"); </script>
+    <![endif]-->
+
+    <script src="{{ asset('jquery.transit.js') }}"></script>
+    <!-- Pixel Admin's javascripts -->
+    <script src="{{ asset('bundles/coreadmin/admin/javascripts/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/coreadmin/admin/javascripts/pixel-admin.min.js') }}"></script>
+    <script type="text/javascript">
+        init.push(function () {
+                // Javascript code here
+        });
+        window.PixelAdmin.start(init);
+    </script>
+{% endblock %}

@@ -1,18 +1,18 @@
-{% extends 'JordiLlonchCrudGeneratorBundle::base.html.twig' %}
+{% extends 'CoreAdminBundle::base.html.twig' %}
 {% trans_default_domain 'FOSUserBundle' %}
 {% block stylesheets %}
     <!-- Open Sans font from Google CDN -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
 
     <!-- Pixel Admin's stylesheets -->
-    <link href="{{ asset('bundles/jordillonchcrudgenerator/admin/stylesheets/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('bundles/jordillonchcrudgenerator/admin/stylesheets/pixel-admin.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('bundles/jordillonchcrudgenerator/admin/stylesheets/pages.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('bundles/jordillonchcrudgenerator/admin/stylesheets/rtl.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('bundles/jordillonchcrudgenerator/admin/stylesheets/themes.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/coreadmin/admin/stylesheets/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/coreadmin/admin/stylesheets/pixel-admin.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/coreadmin/admin/stylesheets/pages.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/coreadmin/admin/stylesheets/rtl.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/coreadmin/admin/stylesheets/themes.min.css') }}" rel="stylesheet" type="text/css">
 
     <!--[if lt IE 9]>
-            <script src="{{ asset('bundles/jordillonchcrudgenerator/admin/javascripts/ie.min.js') }}"></script>
+            <script src="{{ asset('bundles/coreadmin/admin/javascripts/ie.min.js') }}"></script>
     <![endif]-->
     <script>var init = [];</script>
 {% endblock %}
@@ -20,7 +20,7 @@
 {% block body %}
     <div class="signin-header">
         <a href="index.html" class="logo">
-                <div class="demo-logo bg-primary"><img src="{{ asset('bundles/jordillonchcrudgenerator/admin/demo/logo-big.png') }}" alt="" style="margin-top: -4px;"></div>&nbsp;
+                <div class="demo-logo bg-primary"><img src="{{ asset('bundles/coreadmin/admin/demo/logo-big.png') }}" alt="" style="margin-top: -4px;"></div>&nbsp;
                 <strong>Pixel</strong>Admin
         </a> 
         {% if buttom_login is defined and buttom_login == true %}      
@@ -30,7 +30,7 @@
         <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary">{{ 'layout.register'|trans }}</a>
         {% endif %}
     </div> 
-    {% include 'JordiLlonchCrudGeneratorBundle::flashes.html.twig' %}
+    {% include 'CoreAdminBundle::flashes.html.twig' %}
     {% block fos_user_content %}
 
 	
@@ -46,7 +46,7 @@
 
     <script src="{{ asset('jquery.transit.js') }}"></script>
     <!-- Pixel Admin's javascripts -->
-    <script src="{{ asset('bundles/jordillonchcrudgenerator/admin/javascripts/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('bundles/jordillonchcrudgenerator/admin/javascripts/pixel-admin.min.js') }}"></script>
+    <script src="{{ asset('bundles/coreadmin/admin/javascripts/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/coreadmin/admin/javascripts/pixel-admin.min.js') }}"></script>
     
 {% endblock %}

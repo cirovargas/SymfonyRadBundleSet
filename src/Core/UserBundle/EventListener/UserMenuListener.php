@@ -2,7 +2,7 @@
 
 namespace Core\UserBundle\EventListener;
 
-use JordiLlonch\Bundle\CrudGeneratorBundle\Event\ConfigureMenuEvent;
+use Core\AdminBundle\Event\ConfigureMenuEvent;
 
 class UserMenuListener
 {
