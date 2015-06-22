@@ -13,8 +13,8 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="col-md-9">Nome</th>
-                                <th class="col-md-3">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+                                <th class="col-md-10">Nome</th>
+                                <th class="col-md-2">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -22,14 +22,16 @@
                             <tr>
                                 <td><a href="{{ path('fos_user_group_show', {'groupName': group.getName()} ) }}">{{ group.getName() }}</a></td>
                                <td>
-                                    
-                                    <a class="btn btn-mini" href="{{ path('fos_user_group_edit', {'groupName': group.getName()}) }}">
-            {{ 'views.actions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-            
-        </a>     
-            <a class="btn btn-mini btn-danger" onclick="return confirm('{{ 'views.recordactions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}')" href="{{ path('fos_user_group_delete', {'groupName': group.getName()}) }}">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</a>
-            
-                                <a class="btn btn-mini" href="{{ path('admin_user_group_permissions', {'groupName': group.getName()}) }}">Permissions</a>
+                                   <div class="btn-group">
+                                            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                                    {{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }} &nbsp;<i class="fa fa-caret-down"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                    <li><a href="{{ path('fos_user_group_edit', {'groupName': group.getName()}) }}">{{ 'views.actions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</a></li>
+                                                    <li><a href="{{ path('fos_user_group_delete', {'groupName': group.getName()}) }}" onclick="return confirm('{{ 'views.recordactions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}')">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</a></li>
+                                                    <li><a href="{{ path('admin_user_group_permissions', {'groupName': group.getName()}) }}">Permissions</a></li>
+                                            </ul>
+                                    </div>
                                </td>
                             </tr>
                             {% endfor %}

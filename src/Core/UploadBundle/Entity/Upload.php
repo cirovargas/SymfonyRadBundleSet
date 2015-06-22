@@ -73,6 +73,10 @@ class Upload
     public function getPath(){
         return $this->path;
     }
+    
+    public function getName(){
+        return $this->name;
+    }
 
     /**
      * Sets file.
@@ -98,7 +102,12 @@ class Upload
     public function preUpload()
     {
         if (null !== $this->getFile()) {
-            $this->path = $this->getFile()->guessExtension();
+            $this->extension = $this->getFile()->guessExtension();
+            $this->path = $this->getUploadDir();
+            $name = explode('.',$this->getFile()->getClientOriginalName());
+            unset($name[count($name)-1]);
+            $this->name = implode('.', $name);
+           // $this->name = $this->getFile()->get;
         }
     }
 
@@ -125,7 +134,7 @@ class Upload
         // which the UploadedFile move() method does
         $this->getFile()->move(
             $this->getUploadRootDir(),
-            $this->id.'.'.$this->getFile()->guessExtension()
+            $this->id.'-'.$this->name.'.'.$this->getFile()->guessExtension()
         );
 
         $this->setFile(null);
@@ -153,7 +162,7 @@ class Upload
     {
         return null === $this->path
             ? null
-            : $this->getUploadRootDir().'/'.$this->id.'.'.$this->path;
+            : $this->getUploadRootDir().'/'.$this->id.'-'.$this->name.'.'.$this->extension;
     }
 
     protected function getUploadRootDir()

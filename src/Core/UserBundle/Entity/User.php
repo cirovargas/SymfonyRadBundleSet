@@ -41,7 +41,7 @@ class User extends BaseUser
         return $this->profile;
     }
 
-    function setProfile( $profile) {
+    function setProfile($profile) {
         $profile->setUser($this);
         $this->profile = $profile;
     }

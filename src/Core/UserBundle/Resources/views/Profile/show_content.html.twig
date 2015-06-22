@@ -7,9 +7,9 @@
                     <div class="profile-block">
                             <div class="panel profile-photo">
                                 {% if user.id == app.user.id %}
-                                <a href="#"><i class="profile-list-icon fa fa-camera-retro"></i> Alterar foto</a>
+                                <a href="{{ path('fos_user_profile_edit') }}#avatar"><i class="profile-list-icon fa fa-camera-retro"></i> Alterar foto</a>
                                 {% endif %}
-                                <img height="160px" width="160px" src="{{ asset('bundles/coreadmin/admin/images/pixel-admin/profile.png') }}" alt="">
+                                <img height="160px" width="160px" src="{% if app.user.profile.avatar is not null %}{{ asset(user.profile.avatar.asset) }}{% else %}{{ asset('bundles/coreadmin/admin/images/pixel-admin/profile.png') }}{% endif %}" alt="">
                             </div>
                             <br>
                             <a href="#" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;&nbsp;Following</a>&nbsp;&nbsp;

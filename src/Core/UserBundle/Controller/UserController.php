@@ -250,13 +250,21 @@ class UserController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
-
+        $avatar = $entity->getProfile()->getAvatar();
+        
+        $entity->getProfile()->setAvatar(null);
         $deleteForm = $this->createDeleteForm($id);
         $roles = $this->get('security.system_roles')->getRoles();
         $editForm = $this->createForm(new EditUserType(array('roles'=>$roles)), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+            if($entity->getProfile()->getAvatar() == null || 
+                    $entity->getProfile()->getAvatar()->getFile() == null){
+                $entity->getProfile()->setAvatar($avatar);
+            } else {
+                $em->remove($avatar);
+            }
             $this->get('fos_user.user_manager')->updateUser($entity, false);
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 
