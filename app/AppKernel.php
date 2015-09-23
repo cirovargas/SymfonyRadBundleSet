@@ -16,17 +16,25 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Core\UserBundle\CoreUserBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
             new JordiLlonch\Bundle\CrudGeneratorBundle\JordiLlonchCrudGeneratorBundle(),
-            new Project\AdminBundle\ProjectAdminBundle(),
-            new Project\ExternalBundle\ProjectExternalBundle(),
             new Knp\RadBundle\KnpRadBundle(),
             new Core\UploadBundle\CoreUploadBundle(),
             new Core\AdminBundle\CoreAdminBundle(),
+            // LDAP
+            //new FR3D\LdapBundle\FR3DLdapBundle(),
+            //new Core\AdLDAPBundle\CoreAdLDAPBundle(),
+            new Core\AlertBundle\CoreAlertBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Knp\Bundle\TimeBundle\KnpTimeBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            //CKEDITOR
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -41,6 +49,6 @@ class AppKernel extends Kernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
+        $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
     }
 }

@@ -900,6 +900,11 @@ html body.page-signup {
   height: 24px;
   line-height: 24px;
 }
+
+.page-signin-alt .signin-header .demo-logo img{
+    height: 36px;
+}
+
 .page-signin-alt .form-header {
   font-size: 22px;
   font-weight: 300;

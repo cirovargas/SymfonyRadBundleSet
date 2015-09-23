@@ -2,15 +2,12 @@
 
     
     <div class="page-header">
-    <h1>{{ 'views.new.creation'|trans({'%entity%': 'Group'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
+    <h1>Adicionar grupo</h1>
 </div>
 <div class="row">
     <div class="col-sm-12">
         {% form_theme form 'MopaBootstrapBundle:Form:fields.html.twig' %}
         <form class="panel form-horizontal" action="{{ path('fos_user_group_new') }}" method="POST" {{ form_enctype(form) }}>
-            <div class="panel-heading">
-                <span class="panel-title">{{ 'views.new.creation'|trans({'%entity%': 'Group'}, 'JordiLlonchCrudGeneratorBundle') }}</span>
-            </div>
             <div class="panel-body">
                 {{ form_rest(form) }}
                

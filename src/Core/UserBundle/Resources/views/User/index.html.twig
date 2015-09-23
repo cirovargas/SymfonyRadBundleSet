@@ -51,7 +51,7 @@
                         <thead>
                             <tr>
                                 <th class="col-md-4">
-                                    Name
+                                    Nome
                                 </th>
                                 <th class="col-md-3">
                                     <span class="line"></span>Signed up
@@ -88,9 +88,9 @@
                                             <ul class="dropdown-menu">
                                                     <li><a href="{{ path('admin_users_show', { 'id': entity.id }) }}">{{ 'views.actions.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</a></li>
                                                     <li><a href="{{ path('admin_users_edit', { 'id': entity.id }) }}">{{ 'views.actions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</a></li>
-                                                    <li><a href="{{ path('admin_users_permissions', { 'id': entity.id }) }}">Permissions</a></li>
+                                                    <li><a href="{{ path('admin_users_permissions', { 'id': entity.id }) }}">Permissões</a></li>
                                                     {% if is_granted('ROLE_ALLOWED_TO_SWITCH') %}
-                                                    <li><a href="{{ path('admin_users_edit', { 'id': entity.id }) }}">Switch</a></li>
+                                                    <li><a href="{{ path('admin_users_edit', { 'id': entity.id }) }}">Personificar</a></li>
                                                     {% endif %}
                                             </ul>
                                     </div>
@@ -113,7 +113,7 @@
         </div>
         <div class="col-md-2">
                     <a class="btn btn-primary likepaginator" href="{{ path('admin_users_new') }}">
-            {{ 'views.index.createnew'|trans({}, 'JordiLlonchCrudGeneratorBundle') }} User
+            Adicionar usuário
             </a>
                 </div>
     </div>

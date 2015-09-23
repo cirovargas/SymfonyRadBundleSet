@@ -2,7 +2,12 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: bundles/fosuserbundle.yml }
+    - { resource: fosuserbundle.yml }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
 
 framework:
     esi:             ~
@@ -14,6 +19,7 @@ framework:
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
@@ -30,8 +36,6 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    form_themes:
-        - 'CoreUserBundle:Type:choice_tree.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -49,7 +53,7 @@ assetic:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   "%database_driver%"
+        driver:   pdo_mysql
         host:     "%database_host%"
         port:     "%database_port%"
         dbname:   "%database_name%"
@@ -65,6 +69,7 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
 # Swiftmailer Configuration
@@ -79,3 +84,36 @@ mopa_bootstrap:
     form:
         show_legend: false
     menu: ~
+    
+#      enable LDAP    
+#fr3d_ldap:
+#    driver:
+#        host:         172.16.0.3
+#        username:     
+#        password:     
+#        accountDomainName: organization.com.br
+#        accountDomainNameShort: 
+#    user:
+#        baseDn: OU=organization,DC=organization,DC=organization,DC=com,DC=br
+#        filter: (&(ObjectClass=Person))
+#        attributes:
+#            - { ldap_attr: samaccountname,  user_method: setUsername }
+#            - { ldap_attr: userprincipalname, user_method: setEmailLdap }
+#            - { ldap_attr: mail, user_method: setEmailLdap }
+#            - { ldap_attr: cn, user_method: setProfileNameLdap }
+#            
+#core_ad_ldap:
+#    account_suffix: ""
+#    admin_username: 
+#    admin_password: 
+#    base_dn: OU=Organization,DC=Organization,DC=Organization,DC=com,DC=br
+#    domain_controllers: [ "172.16.0.3" ]
+
+ivory_ck_editor:
+    default_config: default
+    
+stof_doctrine_extensions:
+    default_locale: "%locale%"
+    orm:
+        default:
+            sluggable: true

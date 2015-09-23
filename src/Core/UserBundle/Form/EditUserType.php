@@ -13,9 +13,9 @@ class EditUserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('groups',null,array('expanded'=>true))
+                ->add('groups',null,array('label'=>'Grupos','expanded'=>true))
  //               ->add('name')
-                ->add('enabled')
+                ->add('enabled',null,array('label'=>'Ativo'))
                 //->add('roles','choice_tree',array(
                 //    'choices'=> $this->roles, 
                 //    'expanded'=> true,

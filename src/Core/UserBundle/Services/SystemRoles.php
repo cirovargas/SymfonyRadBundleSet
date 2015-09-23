@@ -32,9 +32,6 @@ class SystemRoles {
         $this->dispatcher->dispatch(CoreUserEvents::CREATE_PERMISSIONS_TREE,$event);
         
         return $this->getRole($event->getPermissions());
-        
-        
-        
     }
     
     private function getRole($permissions){
@@ -45,6 +42,6 @@ class SystemRoles {
                 $roles = array_merge($roles,$this->getRole($permission['children']));
             }
         }
-        return array_unique($roles);
+        return $roles;
     }
 }

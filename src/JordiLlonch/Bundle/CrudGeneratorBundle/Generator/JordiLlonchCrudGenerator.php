@@ -104,7 +104,7 @@ class JordiLlonchCrudGenerator extends DoctrineCrudGenerator
                     'class' => '%app.'.$routePrefix.'_configure_menu_listener.class%',
                     'tags' => array(
                         array(
-                            'name'=> 'kernel.event_listener',
+                            'name'=> 'kernel.event_subscriber',
                             'event' => 'app.menu_configure',
                             'method' => 'onMenuConfigure'
                         )
@@ -183,7 +183,7 @@ class JordiLlonchCrudGenerator extends DoctrineCrudGenerator
                     'class' => '%app.'.$routePrefix.'_configure_permissions_listener.class%',
                     'tags' => array(
                         array(
-                            'name'=> 'kernel.event_listener',
+                            'name'=> 'kernel.event_subscriber',
                             'event' => 'core_user.permissions.tree',
                             'method' => 'addModulePermissions'
                         )

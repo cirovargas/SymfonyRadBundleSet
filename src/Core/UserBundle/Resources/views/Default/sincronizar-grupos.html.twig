@@ -1,0 +1,81 @@
+{% extends 'CoreAdminBundle::layout-admin.html.twig' %}
+
+{% block title %}
+{{ parent() }} - Sincronizar grupos LDAP
+{% endblock %}
+
+{% block page %}
+<div class="page-header">
+    <h1>Sincronizar grupos LDAP</h1>
+</div>
+<div class="row">
+    <form action="" method="POST" {{ form_enctype(form) }}>
+    <div class="col-sm-12">
+        {% form_theme form 'MopaBootstrapBundle:Form:fields.html.twig' %}
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">Grupos Sincronizados</span>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for grupo in gruposSincronizados %}
+                            <tr>
+                                <td>{{ grupo.getName() }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+               
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-sm-12 ">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">{{ form.gruposLDAP.vars.label }}</span>
+            </div>
+            <div class="panel-body">
+                {{ form_errors(form.gruposLDAP) }}
+                {{ form_widget(form.gruposLDAP) }}
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-sm-12 ">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">{{ form.gruposExcluir.vars.label }}</span>
+            </div>
+            <div class="panel-body">
+                {{ form_errors(form.gruposExcluir) }}
+                {{ form_widget(form.gruposExcluir) }}
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-sm-12 ">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">{{ form.gruposBase.vars.label }}</span>
+            </div>
+            <div class="panel-body">
+                {{ form_errors(form.gruposBase) }}
+                {{ form_widget(form.gruposBase) }}
+            </div>
+            <div class="panel-footer text-right">
+                <a href="#" class="btn">Cancelar</a>
+                <button type="submit" class="btn btn-success">Sincronizar</button>
+            </div>
+        </div>
+    </div>        
+    {{ form_rest(form) }}
+    </form>
+</div>
+{% endblock %}

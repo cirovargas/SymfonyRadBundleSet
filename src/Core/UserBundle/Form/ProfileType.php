@@ -15,24 +15,26 @@ class ProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('surnames')
-            ->add('phone')
-            ->add('cellphone')
-            ->add('workphone')
-            ->add('avatar', new \Core\UploadBundle\Form\UploadType())
+            ->add('name',null,array('label' => 'Nome'))
+            ->add('surnames',null,array('label' => 'Sobrenomes'))
+            ->add('phone',null,array('label' => 'Telefone'))
+            ->add('cellphone',null,array('label' => 'Celular'))
+            ->add('workphone',null,array('label' => 'Ramal'))
+            //->add('avatar', new \Core\UploadBundle\Form\UploadType())
             ->add('configs', new UserConfigType())
             ->add('bornDate',null,array(
                 'format' => 'ddMMyyyy',
-                'years' => range(1950,(date('Y')-16))
+                'years' => range(1940,(date('Y')-16)),
+                'label' => 'Data de Nascimento'
             ))
             ->add('gender','choice',array(
                 'choices' => array(
-                    'M' => 'Male',
-                    'F' => 'Female'
-                )
+                    'M' => 'Masculino',
+                    'F' => 'Feminino'
+                ),
+                'label' => 'Sexo'
             ))
-            ->add('about','textarea')
+            ->add('about','textarea',array('label' =>'Sobre'))
             //->add('avatar', new \Core\UploadBundle\Form\UploadType())
         ;
     }

@@ -44,11 +44,15 @@ class UserPermissionsListener
                 array(
                     'label' => 'Editar grupo',
                     'role' => 'ROLE_ADMIN_USERGROUPS_EDIT'
+                ),
+                array(
+                    'label' => 'Sincronizar grupos ao LDAP',
+                    'role' => 'ROLE_ADMIN_USERGROUPS_SINCRONIZE'
                 )
             )
         ));
         $event->addRootNode('switch',array(
-            'label' => 'Logar como usuários',
+            'label' => 'Personificar usuários',
             'role' => 'ROLE_ALLOWED_TO_SWITCH'
         ));
     }

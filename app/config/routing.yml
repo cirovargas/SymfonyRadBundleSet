@@ -1,3 +1,11 @@
+core_alert:
+    resource: "@CoreAlertBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+#core_ad_ldap:
+#    resource: "@CoreAdLDAPBundle/Resources/config/routing.yml"
+#    prefix:   /
+
 core_admin:
     resource: "@CoreAdminBundle/Resources/config/routing.yml"
     prefix:   /admin
@@ -5,16 +13,6 @@ core_admin:
 core_upload:
     resource: "@CoreUploadBundle/Resources/config/routing.yml"
     prefix:   /
-
-project_external:
-    resource: "@ProjectExternalBundle/Resources/config/routing.yml"
-    prefix:   /
-    
-
-
-project_admin:
-    resource: "@ProjectAdminBundle/Resources/config/routing.yml"
-    prefix:   /admin
 
 core_user:
     resource: "@CoreUserBundle/Resources/config/routing.yml"
@@ -25,6 +23,9 @@ fos_user:
 
 logout:
     path: /logout
+    
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
     
 fos_user_group:
     resource: "@FOSUserBundle/Resources/config/routing/group.xml"
@@ -38,6 +39,7 @@ admin:
     resource: "@JordiLlonchCrudGeneratorBundle/Resources/config/routing.yml"
     prefix: /admin
     
+    
 # HOME
 admin_home:
     path: /admin
@@ -50,5 +52,9 @@ external_home:
     path: /
     defaults:
         _controller: FrameworkBundle:Redirect:redirect
-        route: project_external_homepage
+        route: admin_dashboard
         permanent: true
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

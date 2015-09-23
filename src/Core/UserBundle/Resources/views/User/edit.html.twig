@@ -1,12 +1,12 @@
 {% extends 'CoreAdminBundle::layout-admin.html.twig' %}
 
 {% block title %}
-{{ parent() }} -  {{ 'views.edit.edit'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}
+{{ parent() }} - Editar usuário
 {% endblock %}
 
 {% block page %}
 <div class="page-header">
-    <h1>{{ 'views.edit.edit'|trans({'%entity%': 'User'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
+    <h1>Editar usuário</h1>
 </div>
 <div class="row">
     <form action="{{ path('admin_users_update', { 'id': entity.id }) }}" method="POST" {{ form_enctype(form) }}>
@@ -15,7 +15,7 @@
         {% form_theme form 'MopaBootstrapBundle:Form:fields.html.twig' %}
             <input type="hidden" name="_method" value="PUT" />
             <div class="panel-heading">
-                <span class="panel-title">Basic Information</span>
+                <span class="panel-title">Informações básicas</span>
             </div>
             <div class="panel-body">
                 {{ form_row(form.username) }}
@@ -46,7 +46,7 @@
     <div class="col-sm-12 ">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">Groups</span>
+                <span class="panel-title">Grupos</span>
             </div>
             <div class="panel-body">
                 {{ form_row(form.groups) }}
@@ -56,10 +56,10 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-12 ">
+    {#<div class="col-sm-12 ">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">Profile Image</span>
+                <span class="panel-title">Imagem do perfil</span>
             </div>
             <div class="panel-body">
                 {{ form_row(form.profile.avatar.file) }}
@@ -68,11 +68,11 @@
                 <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
             </div>
         </div>
-    </div>
+    </div>#}
     <div class="col-sm-12 ">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">Configuration</span>
+                <span class="panel-title">Configurações</span>
             </div>
             <div class="panel-body">
                 {% for config in form.profile.configs %}

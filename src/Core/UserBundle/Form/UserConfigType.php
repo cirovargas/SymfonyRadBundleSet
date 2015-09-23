@@ -12,7 +12,9 @@ class UserConfigType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('teste')
+            ->add('teste',null,array(
+                'required' => false
+            ))
         ;
     }
 

@@ -3,8 +3,10 @@
 namespace {{ namespace }}\EventListener{{ entity_namespace ? '\\' ~ entity_namespace : '' }};
 
 use Core\UserBundle\Event\ConfigurePermissionsEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class {{ form_class }}
+
+class {{ form_class }} implements EventSubscriberInterface
 {
     public function addModulePermissions(ConfigurePermissionsEvent $event)
     {
@@ -32,5 +34,11 @@ class {{ form_class }}
                 )
             )
         ));
+    }
+    
+    public static function getSubscribedEvents() {
+        return array(
+            'core_user.permissions.tree'     => array('addModulePermissions', 0),
+        );
     }
 }

@@ -2,15 +2,12 @@
    
     
 <div class="page-header">
-    <h1>{{ 'views.edit.edit'|trans({'%entity%': 'Group'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
+    <h1>Editar grupo</h1>
 </div>
 <div class="row">
     <div class="col-sm-12">
         {% form_theme form 'MopaBootstrapBundle:Form:fields.html.twig' %}
         <form class="panel form-horizontal" action="{{ path('fos_user_group_edit', {'groupName': group_name} ) }}" method="POST" {{ form_enctype(form) }}>
-            <div class="panel-heading">
-                <span class="panel-title">{{ 'views.edit.edit'|trans({'%entity%': 'Group'}, 'JordiLlonchCrudGeneratorBundle') }}</span>
-            </div>
             <div class="panel-body">
                 {{ form_widget(form) }}
                

@@ -37,3 +37,6 @@ admin_users_delete:
     defaults: { _controller: "CoreUserBundle:User:delete" }
     requirements: { _method: post|delete }
 
+admin_groups_sincronizar:
+    pattern:  /groups/sincronizar-ldap
+    defaults: { _controller: "CoreUserBundle:Default:groupsSincronizarLdap" }

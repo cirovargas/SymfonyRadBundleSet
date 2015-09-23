@@ -2,10 +2,11 @@
 
 namespace {{ namespace }}\EventListener{{ entity_namespace ? '\\' ~ entity_namespace : '' }};
 
-use CoreAdminBundle\Event\ConfigureMenuEvent;
+use Core\AdminBundle\Event\ConfigureMenuEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class {{ form_class }}{
+class {{ form_class }} implements EventSubscriberInterface{
 
     public function __construct(TokenStorage $tokenStorage) {
         $this->tokenStorage = $tokenStorage;
@@ -31,7 +32,7 @@ class {{ form_class }}{
 
             $menu['{{ entity_class }}']->setUri('#');
             $menu['{{ entity_class }}']->addChild('List {{ entity_class}}', array('route' => '{{ route_prefix }}'));
-            if($user->hasRole('ROLE_ADMIN_{{ entity_class }}_NEW')){
+            if($user->hasRole('ROLE_ADMIN_{{ entity_class|upper }}_NEW')){
                 $menu['{{ entity_class }}']->addChild('New {{ entity_class }}', array('route' => '{{ route_prefix }}_new'));
             }
             {% else %}
@@ -41,5 +42,11 @@ class {{ form_class }}{
             )->setAttribute('icon', 'menu-icon fa fa-th-list');
         {% endif %}
         }
+    }
+    
+    public static function getSubscribedEvents() {
+        return array(
+            'app.menu_configure'     => array('onMenuConfigure', 0),
+        );
     }
 }

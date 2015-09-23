@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Profile
  *
- * @ORM\Table()
+ * @ORM\Table(name="user_profile")
  * @ORM\Entity
  */
 class Profile
@@ -24,56 +24,56 @@ class Profile
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255,nullable=true)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="surnames", type="string", length=255)
+     * @ORM\Column(name="surnames", type="string", length=255,nullable=true)
      */
     private $surnames;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=255)
+     * @ORM\Column(name="phone", type="string", length=255,nullable=true)
      */
     private $phone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="cellphone", type="string", length=255)
+     * @ORM\Column(name="cellphone", type="string", length=255,nullable=true)
      */
     private $cellphone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="workphone", type="string", length=255)
+     * @ORM\Column(name="workphone", type="string", length=255,nullable=true)
      */
     private $workphone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="born_date", type="date")
+     * @ORM\Column(name="born_date", type="date",nullable=true)
      */
     private $bornDate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="gender", type="string", length=1)
+     * @ORM\Column(name="gender", type="string", length=1,nullable=true)
      */
     private $gender;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="about", type="text")
+     * @ORM\Column(name="about", type="text",nullable=true)
      */
     private $about;
     
@@ -95,9 +95,8 @@ class Profile
     private $avatar;
     
     /**
-     * @var \Upload
      *
-     * @ORM\OneToOne(targetEntity="Core\UserBundle\Entity\User", inversedBy="profile")
+     * @ORM\OneToOne(targetEntity="Core\UserBundle\Entity\User", inversedBy="profile",cascade={"ALL"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
@@ -119,7 +118,7 @@ class Profile
 
     public function getName()
     {
-        return $this->name;
+        return !isset($this->name) || trim($this->name) == ''? $this->user->getUsername():$this->name;
     }
 
     public function setSurnames($surnames)

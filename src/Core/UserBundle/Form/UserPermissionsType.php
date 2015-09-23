@@ -22,7 +22,8 @@ class UserPermissionsType extends AbstractType
                 ->add('userRoles','choice',array(
                     'choices'=> $this->roles, 
                     'expanded'=> false,
-                    'multiple' => true
+                    'multiple' => true,
+                    'required' => false
                 ))
         ;
     }

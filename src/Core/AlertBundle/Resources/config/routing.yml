@@ -1,0 +1,16 @@
+core_alert_refresh:
+    path:     /notifications/refresh/{lastId}
+    defaults: { _controller: CoreAlertBundle:Default:refresh, _format: json }
+    options:
+        expose: true
+
+core_alert_set_readed:
+    path:     /notifications/set-readed
+    defaults: { _controller: CoreAlertBundle:Default:setReaded, _format: json }
+    requirements: { _method: post }
+    options:
+        expose: true
+
+core_alert_all_notifications:
+    path:     /notifications/all
+    defaults: { _controller: CoreAlertBundle:Default:all }

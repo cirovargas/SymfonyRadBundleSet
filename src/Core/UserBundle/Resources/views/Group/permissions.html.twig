@@ -6,15 +6,12 @@
 
 {% block page %}
 <div class="page-header">
-    <h1>{{ 'views.edit.edit'|trans({'%entity%': ''}, 'JordiLlonchCrudGeneratorBundle') }} {{ entity.getName() }} permissions</h1>
+    <h1>Alterar permissões de {{ entity.getName() }} </h1>
 </div>
 <div class="row">
     <div class="col-sm-12">
         <form class="panel form-horizontal" action="{{ path('admin_user_group_permissions', { 'groupName': entity.getName() }) }}" method="POST">
             <input type="hidden" name="_method" value="POST" />
-            <div class="panel-heading">
-                <span class="panel-title">{{ 'views.edit.edit'|trans({'%entity%': ''}, 'JordiLlonchCrudGeneratorBundle') }} {{ entity.getName() }} permissions</span>
-            </div>
             <div class="panel-body">
                 <ul id="permission-tree">
                     {% for permission in permissions %}

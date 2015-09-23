@@ -284,7 +284,7 @@
 }
 .theme-default #main-navbar .navbar-brand div,
 .theme-default .demo-logo {
-  background: #1d89cf;
+  /*background: #1d89cf;*/
 }
 .theme-default #main-navbar .navbar-header a {
   text-transform: uppercase;

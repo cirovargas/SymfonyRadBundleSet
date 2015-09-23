@@ -1,0 +1,19 @@
+services:
+    ad_ldap:
+        class: Core\AdLDAPBundle\Services\Adldap
+        arguments: [@service_container]
+    ad_ldap.group:
+        class: Core\AdLDAPBundle\AdldapGroup
+        arguments: [@ad_ldap]
+    ad_ldap.user:
+        class: Core\AdLDAPBundle\AdldapUser
+        arguments: [@ad_ldap]
+    ad_ldap.authentication:
+        class: Core\AdLDAPBundle\AdldapAuthentication
+        arguments: [@ad_ldap]
+    ad_ldap.contact:
+        class: Core\AdLDAPBundle\AdldapContact
+        arguments: [@ad_ldap]
+    ad_ldap.exchange:
+        class: Core\AdLDAPBundle\AdldapExchange
+        arguments: [@ad_ldap]

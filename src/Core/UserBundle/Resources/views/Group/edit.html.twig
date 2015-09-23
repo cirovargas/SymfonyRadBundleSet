@@ -9,9 +9,24 @@
     {{ parent() }}
     <script>
         $(document).ready(function(){
+            
+            $('#core_user_group_form_chefe').closest('.form-group').hide();
+            
             $('#btn-delete-confirm').click(function(){
                 $('#form-delete').submit();
             });
+            
+            function verificaUnidadeAdministrativa(){
+                console.log($('#core_user_group_form_isUnidadeAdministrativa').val());
+                if($('#core_user_group_form_isUnidadeAdministrativa').val() == 0){
+                    $('#core_user_group_form_chefe').closest('.form-group').hide();
+                } else {
+                    $('#core_user_group_form_chefe').closest('.form-group').show();
+                }
+            }
+            verificaUnidadeAdministrativa();
+            $('#core_user_group_form_isUnidadeAdministrativa').change(verificaUnidadeAdministrativa);
+            
         });
     </script>
 {% endblock %}

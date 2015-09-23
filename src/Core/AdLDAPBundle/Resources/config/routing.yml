@@ -1,0 +1,3 @@
+core_ad_ldap_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: CoreAdLDAPBundle:Default:index }

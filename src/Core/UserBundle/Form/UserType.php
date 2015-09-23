@@ -17,8 +17,10 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('groups',null,array('expanded'=>true))
-                ->add('enabled')
+                ->add('username')
+                ->add('email')
+                ->add('groups',null,array('expanded'=>true,'label'=>'Grupos'))
+                ->add('enabled',null,array('label'=>'Ativo'))
 //                ->add('avatar',new \UTIL\UploadBundle\Form\UploadsType(array('label' => 'Avatar')))
                 ->remove('plainPassword')
                 ->add('profile',new \Core\UserBundle\Form\ProfileType());
@@ -40,10 +42,6 @@ class UserType extends AbstractType
         ));
     }
     
-    public function getParent()
-    {
-        return 'fos_user_registration';
-    }
 
     public function getName()
     {
