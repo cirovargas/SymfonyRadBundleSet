@@ -11,3 +11,14 @@ sudo curl -sS https://raw.githubusercontent.com/cirovargas/SymfonyRadBundleSet/m
 sudo chmod a+x script-rad.sh
 
 ./script-rad.sh yourprojectname
+
+TODO's:
+--------
+
+Documentation
+
+Unit tests
+
+REST crud generation
+
+MORE AND MORE AND MORE,  MYYYYYYYYYYY LOOOOOOOOVE
