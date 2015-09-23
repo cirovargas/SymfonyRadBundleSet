@@ -14,7 +14,7 @@ sleep 5
 php app/console doctrine:generate:entities AppBundle
 sleep 5
 
-rm src/Project/AdminBundle/Entity/*.php~
+rm src/AppBundle/Entity/*.php~
 php app/console doctrine:schema:update --force --complete
 php app/console fos:user:create
 
