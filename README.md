@@ -1,4 +1,13 @@
-nova
-====
+Symfony Rad Bundle Set
+======================
+To use:
+-------
+Create your database
 
-A Symfony project created on September 21, 2015, 5:50 pm.
+Download the script script-rad.sh on the root of your webserver
+
+sudo curl -LsS https://raw.githubusercontent.com/cirovargas/SymfonyRadBundleSet/master/script-rad.sh
+
+sudo chmod a+x script-rad.sh
+
+./script-rad.sh yourprojectname
