@@ -8,6 +8,7 @@ git clone https://github.com/cirovargas/SymfonyRadBundleSet.git $1
 cd $1
 curl -sS https://getcomposer.org/installer | php
 php composer.phar install
+sleep 5
 php app/console doctrine:mapping:import AppBundle annotation
 sleep 5
 php app/console doctrine:generate:entities AppBundle
