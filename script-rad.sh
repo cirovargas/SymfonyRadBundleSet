@@ -19,7 +19,7 @@ php app/console doctrine:schema:update --force --complete
 sleep 5
 php app/console fos:user:create
 sleep 5
-for f in  src/Project/AdminBundle/Entity/* ; do folder=(${f//\// }) ; entity=${folder[${#folder[@]}-1]//\.php/ }; php app/console jordillonch:generate:crud --entity=AppBundle:${entity} --route-prefix=/${entity} --with-write --format=yml --overwrite --no-interaction   ; done
+for f in  src/AppBundle/Entity/* ; do folder=(${f//\// }) ; entity=${folder[${#folder[@]}-1]//\.php/ }; php app/console jordillonch:generate:crud --entity=AppBundle:${entity} --route-prefix=/${entity} --with-write --format=yml --overwrite --no-interaction   ; done
 php app/console cache:clear
 
 php app/console assets:install --symlink
