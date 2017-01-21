@@ -1,0 +1,35 @@
+//
+// Mixins / Plugins / Ion.RangeSlider
+// --------------------------------------------------
+
+@mixin ionrangeslider-base($color, $bg) {
+  .irs-bar,
+  .irs-bar-edge,
+  .irs-slider:after {
+    background: $bg;
+  }
+
+  .irs-slider.state_hover:after,
+  .irs-slider:hover:after {
+    background: darken($bg, 20%);
+  }
+
+  .irs-from,
+  .irs-to,
+  .irs-single {
+    color: $color;
+    background: $bg;
+
+    &:after { border-top-color: $bg; }
+  }
+}
+
+@mixin ionrangeslider-variant($state, $color, $bg) {
+  .px-irs-#{$state} {
+    @include ionrangeslider-base($color, $bg);
+  }
+}
+
+@mixin ionrangeslider-theme($color, $bg) {
+  @include ionrangeslider-variant(primary, $color, $bg);
+}

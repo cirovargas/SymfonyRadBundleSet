@@ -1,0 +1,10 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="page-signin-container" id="page-signin-form">
+    <h2 class="m-t-0 m-b-4 text-xs-center font-weight-semibold font-size-20">{{ 'resetting.request.submit'|trans }}</h2>
+
+    <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" class="panel p-a-4" method="POST">
+        {{ form_rest(form) }}
+
+        <button type="submit" name="_submit" class="btn btn-block btn-lg btn-primary m-t-3">{{ 'resetting.reset.submit'|trans }}</button>
+    </form>
+</div>

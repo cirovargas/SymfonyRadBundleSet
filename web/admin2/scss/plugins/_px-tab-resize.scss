@@ -1,0 +1,65 @@
+//
+// Plugins / Tab resize
+// --------------------------------------------------
+
+.tab-resize-nav {
+  position: relative;
+
+  .nav-item.hide { display: none; }
+
+  .tab-resize + .nav-item { margin-left: 0; }
+}
+
+li.tab-resize {
+  display: none;
+  float: right;
+
+  margin-left: 6px;
+
+  &.show { display: block; }
+
+  > .dropdown-toggle {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  > .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+
+  + li { margin-left: 0; }
+}
+
+.tab-resize-icon {
+  position: relative;
+
+  display: inline-block;
+
+  vertical-align: middle;
+
+  top: -1px;
+
+  &,
+  &:before,
+  &:after {
+    width: 14px;
+    height: 2px;
+
+    background: $text-color;
+  }
+
+  &:before,
+  &:after {
+    position: absolute;
+    left: 0;
+
+    display: block;
+
+    content: "";
+  }
+
+  &:before { top: -4px; }
+
+  &:after { top: 4px; }
+}

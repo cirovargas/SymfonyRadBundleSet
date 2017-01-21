@@ -1,0 +1,54 @@
+//
+// Sidebar
+// --------------------------------------------------
+
+.px-sidebar-left,
+.px-sidebar-right {
+  position: fixed;
+  z-index: $zindex-sidebar;
+  top: 0;
+  bottom: 0;
+
+  float: none;
+  clear: both;
+
+  width: $sidebar-width;
+
+  background: $sidebar-bg;
+}
+
+.px-sidebar-left {
+  left: -$sidebar-width;
+
+  border-right: $sidebar-border;
+
+  &.open { left: 0 !important; }
+}
+
+.px-sidebar-right {
+  right: -$sidebar-width;
+
+  border-left: $sidebar-border;
+
+  &.open { right: 0 !important; }
+}
+
+.px-navbar ~ .px-sidebar-left,
+.px-navbar ~ .px-sidebar-right {
+  top: $navbar-height;
+}
+
+.px-sidebar-content {
+  position: relative;
+
+  height: 100%;
+}
+
+// Animations
+//
+
+.px-sidebar-left,
+.px-sidebar-right {
+  transition-duration: $sidebar-transition-duration;
+  transition-property: left, right;
+}

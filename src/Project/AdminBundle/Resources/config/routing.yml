@@ -1,4 +1,0 @@
-
-project_admin_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: ProjectAdminBundle:Default:index }

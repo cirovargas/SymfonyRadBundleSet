@@ -1,0 +1,53 @@
+//
+// Tables
+// --------------------------------------------------
+
+.table th { font-weight: 600; }
+
+.table-header,
+.table-footer {
+  position: relative;
+
+  padding: 10px 15px;
+
+  border: 1px solid $table-border-color;
+  background: $table-bg;
+}
+
+.table-header {
+  border-bottom: none;
+
+  @include border-top-radius($border-radius-base);
+}
+
+.table-footer {
+  min-height: 40px;
+
+  border-top: none;
+
+  @include border-bottom-radius($border-radius-base);
+}
+
+.table-caption {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+
+// Context
+//
+
+@include table-context-variant(success, $alert-success-text);
+@include table-context-variant(warning, $alert-warning-text);
+@include table-context-variant(info, $alert-info-text);
+@include table-context-variant(danger, $alert-danger-text);
+
+
+// Colors
+//
+
+@include table-variant(light, $text-color, $table-light-color, $table-light-color, false);
+@include table-variant(success, #fff, $brand-success);
+@include table-variant(danger, #fff, $brand-danger);
+@include table-variant(warning, #fff, $brand-warning);
+@include table-variant(info, #fff, $brand-info);

@@ -1,0 +1,46 @@
+//
+// Typography
+// --------------------------------------------------
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 50px;
+  margin-bottom: 25px;
+
+  outline: none;
+
+  font-family: $font-family-base;
+
+  &.light { font-weight: 300; }
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+code { font-weight: 400 !important; }
+
+blockquote {
+  margin-top: 25px;
+  margin-bottom: 25px;
+
+  font-size: 1.2em;
+}
+
+// Remove outline on desktops
+@media (min-width: $screen-md-min) {
+  .btn,
+  button,
+  a {
+    outline: none !important;
+  }
+
+  ::-moz-focus-inner { border: 0 !important; }
+
+  // Mozilla Firefox hack
+  // TODO: Find another solution
+  select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 $text-color;
+  }
+}

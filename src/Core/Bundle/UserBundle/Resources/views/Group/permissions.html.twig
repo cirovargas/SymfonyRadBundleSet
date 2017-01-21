@@ -1,0 +1,66 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}
+{{ parent() }} -  {{ 'views.edit.edit'|trans({'%entity%': ''}, 'CoreAdminBundle') }} {{ entity.getName() }} permissions
+{% endblock %}
+
+{% block page %}
+<div class="page-header">
+    <h1>Alterar permissões de {{ entity.getName() }} </h1>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <form class="panel form-horizontal" action="{{ path('admin_user_group_permissions', { 'groupName': entity.id }) }}" method="POST">
+            <input type="hidden" name="_method" value="POST" />
+            <div class="panel-body">
+                <ul id="permission-tree">
+                    {% for permission in permissions %}
+                        {% include 'CoreUserBundle:Group:permissions-block.html.twig' with {'group': permission} %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="panel-footer text-right">
+                                <a class="btn" href="{{ path('fos_user_group_list') }}">
+    {{ 'views.recordactions.backtothelist'|trans({}, 'CoreAdminBundle') }}
+</a>
+                
+                <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'CoreAdminBundle') }}</button>
+                <div style="display:none">
+                {{ form_widget(form) }}
+                </div>
+                
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            var atual = $('#group_permissions_roles').val();
+            if( atual != null){
+                for(var i =0;i<atual.length;i++){
+                    $('input[value="'+atual[i]+'"]').attr('checked',true);
+                }
+            }
+            
+            $('#permission-tree').find('input[type=checkbox]:checked').closest('li').children('ul').show();
+            $('#permission-tree').find('input[type=checkbox]').change(function(){
+                if($(this).is(':checked') == true){
+                    $(this).closest('li').children('ul').slideDown();
+                } else {
+                    $(this).closest('li').children('ul').slideUp();
+                    $(this).closest('li').find('input[type=checkbox]').attr('checked',false);
+                }
+                var val = [];
+                $('#permission-tree').find('input[type=checkbox]:checked').each(function(i){
+                    val[i]= $(this).val();
+                });
+                $('#group_permissions_roles').val(val);
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,59 @@
+views:
+    layout:
+        bannersadmin: Administrador
+        system: Extranet
+        welcome: Bem vindo,
+    index:
+        filters: Filtros
+        filter: Filtrar
+        reset: Limpar filtros
+        list: Listagem de %entity%
+        help: Listing of %entity%
+        actions: Ações
+        createnew: Cadastrar
+        pagprev: 'Anterior'
+        pagnext: 'Próxima'
+        to: até
+    actions:
+        show: ver
+        edit: editar
+        cancel: cancelar
+        close: Fechar
+        confirm: Confirmar
+        save: Salvar alterações
+    recordactions:
+        backtothelist: Voltar à lista
+        edit: Editar
+        delete: Excluir
+        confirm: Deseja excluír o item?
+    new:
+        creation: Cadastrar %entity%
+        help: Cadastrando um novo %entity%
+        create: Cadastrar
+    edit:
+        edit: Editar %entity%
+        editbutton: Editar
+        help: Editando %entity%
+    show:
+        show: Visualizar %entity%
+        help: Visualizando %entity%
+flash:
+    create:
+        success: O item foi criado com sucesso.
+        error: Algum erro ocorreu ao criar o item.
+    update:
+        success: O item foi atualizado com sucesso.
+        error: Algum erro ocorreu ao atualizar o item.
+    delete:
+        success: O item foi excluído com sucesso.
+        error: Algum erro ocorreu ao excluir o item.
+menu:
+    list: Listar %entity%
+    new: Cadastrar %entity%
+permissions:
+    access: Acessar %entity%
+    list: Listar %entity%
+    new: Cadastrar %entity%
+    edit: Atualizar %entity% 
+    delete: Excluír %entity%
+    show: Visualizar %entity%

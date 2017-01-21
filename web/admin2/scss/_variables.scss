@@ -1,0 +1,897 @@
+//
+// Variables
+// --------------------------------------------------
+
+// Icons
+$icon-success: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%235cb85c' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3E%3C/svg%3E") !default;
+$icon-warning: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23f0ad4e' d='M4.4 5.324h-.8v-2.46h.8zm0 1.42h-.8V5.89h.8zM3.76.63L.04 7.075c-.115.2.016.425.26.426h7.397c.242 0 .372-.226.258-.426C6.726 4.924 5.47 2.79 4.253.63c-.113-.174-.39-.174-.494 0z'/%3E%3C/svg%3E") !default;
+$icon-danger:  url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23d9534f' viewBox='-2 -2 7 7'%3E%3Cpath stroke='%23d9534f' d='M0 0l3 3m0-3L0 3'/%3E%3Ccircle r='.5'/%3E%3Ccircle cx='3' r='.5'/%3E%3Ccircle cy='3' r='.5'/%3E%3Ccircle cx='3' cy='3' r='.5'/%3E%3C/svg%3E") !default;
+
+//== Spacing
+//
+
+$spacer:   10px !default;
+$spacer-x: $spacer !default;
+$spacer-y: $spacer !default;
+$spacers: (
+  0: (
+    x: 0,
+    y: 0
+  ),
+  1: (
+    x: $spacer-x,
+    y: $spacer-y
+  ),
+  2: (
+    x: round($spacer-x * 1.5),
+    y: round($spacer-y * 1.5)
+  ),
+  3: (
+    x: $spacer-x * 2,
+    y: $spacer-y * 2
+  ),
+  4: (
+    x: $spacer-x * 3,
+    y: $spacer-y * 3
+  )
+) !default;
+
+//== Grid
+//
+
+$content-wrapper-padding:   $spacer * 2 !default;
+
+$screen-sm-min:             544px !default;
+$screen-md-min:             768px !default;
+$screen-lg-min:             992px !default;
+$screen-xl-min:             1200px !default;
+
+$screen-xs-max:             ($screen-sm-min - 1) !default;
+$screen-sm-max:             ($screen-md-min - 1) !default;
+$screen-md-max:             ($screen-lg-min - 1) !default;
+$screen-lg-max:             ($screen-xl-min - 1) !default;
+
+$grid-float-breakpoint:     $screen-md-min !default;
+$grid-float-breakpoint-max: ($grid-float-breakpoint - 1) !default;
+
+// Bootstrap-related variable (do not use it in your code)
+$screen-xs-min:             $screen-md-min;
+
+$grid-gutter-width:         22px !default;
+
+//== Colors
+//
+
+$text-color:            #444 !default;
+$text-muted:            #a1a7ab !default;
+$text-light:            #bbb !default;
+
+//** Global textual link color.
+$link-color:            #316498 !default;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      lighten($link-color, 10%) !default;
+
+$default-border-color:  rgba(0,0,0,.05) !default;
+
+$white:                 #fff !default;
+$black:                 #272634 !default;
+$gray-dark:             #373a3c !default;
+$gray:                  #55595c !default;
+$gray-light:            #818a91 !default;
+$gray-lighter:          #eceeef !default;
+$gray-lightest:         #f7f7f9 !default;
+
+$brand-success:         #78bd5d !default;
+$brand-info:            #59c4e4 !default;
+$brand-warning:         #f4ab43 !default;
+$brand-danger:          #e46050 !default;
+
+$utilities-text-darken: 10% !default;
+
+//== States
+//
+
+$state-success-text:        #6f976d !default;
+$state-success-bg:          #fcfff5 !default;
+$state-success-border:      #a3c293 !default;
+
+$state-info-text:           #528d9e !default;
+$state-info-bg:             #f8ffff !default;
+$state-info-border:         #a9d5de !default;
+
+$state-warning-text:        #8d7955 !default;
+$state-warning-bg:          #fffaf3 !default;
+$state-warning-border:      #c9ba9b !default;
+
+$state-danger-text:         #b05b59 !default;
+$state-danger-bg:           #fff6f6 !default;
+$state-danger-border:       #e0b4b4 !default;
+
+$state-dark-success-text:   #fff !default;
+$state-dark-success-bg:     $brand-success !default;
+$state-dark-success-border: $state-dark-success-bg !default;
+
+$state-dark-info-text:      #fff !default;
+$state-dark-info-bg:        $brand-info !default;
+$state-dark-info-border:    $state-dark-info-bg !default;
+
+$state-dark-warning-text:   #fff !default;
+$state-dark-warning-bg:     $brand-warning !default;
+$state-dark-warning-border: $state-dark-warning-bg !default;
+
+$state-dark-danger-text:    #fff !default;
+$state-dark-danger-bg:      $brand-danger !default;
+$state-dark-danger-border:  $state-dark-danger-bg !default;
+
+//== Typography
+//
+
+$font-family-sans-serif:     "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-monospace:      Consolas, Monaco, "Courier New", monospace !default;
+$font-family-base:           $font-family-sans-serif !default;
+
+$font-size-base:             13px !default;
+$font-size-xl:               20px !default;
+$font-size-large:            15px !default;
+$font-size-small:            12px !default;
+$font-size-xs:               11px !default;
+
+$line-height-base:           1.61539 !default;
+$line-height-xl:             1.5 !default;
+$line-height-large:          1.4 !default;
+$line-height-small:          1.42 !default;
+$line-height-xs:             1.4555 !default;
+
+$line-height-computed:       round(($font-size-base * $line-height-base)) !default; // ~21px
+$line-height-xl-computed:    round(($font-size-xl * $line-height-xl)) !default;
+$line-height-large-computed: round(($font-size-large * $line-height-large)) !default;
+$line-height-small-computed: round(($font-size-small * $line-height-small)) !default;
+$line-height-xs-computed:    round(($font-size-xs * $line-height-xs)) !default;
+
+$font-size-h1:               28px !default;
+$font-size-h2:               24px !default;
+$font-size-h3:               18px !default;
+$font-size-h4:               16px !default;
+$font-size-h5:               14px !default;
+$font-size-h6:               11px !default;
+
+$headings-font-weight:       700 !default;
+$headings-line-height:       1.15 !default;
+
+$page-header-font-size:      18px !default;
+$page-header-font-weight:    600 !default;
+$page-header-line-height:    30px !default;
+$page-header-icon-font-size: 22px !default;
+
+//== Components
+//
+
+$padding-base-vertical:    4px !default;
+$padding-base-horizontal:  12px !default;
+
+$padding-xl-vertical:      10px !default;
+$padding-xl-horizontal:    25px !default;
+
+$padding-large-vertical:   8px !default;
+$padding-large-horizontal: 18px !default;
+
+$padding-small-vertical:   3px !default;
+$padding-small-horizontal: 9px !default;
+
+$padding-xs-vertical:      2px !default;
+$padding-xs-horizontal:    7px !default;
+
+$border-radius-xl:         4px !default;
+$border-radius-base:       2px !default;
+$border-radius-large:      3px !default;
+$border-radius-small:      2px !default;
+$border-radius-xs:         2px !default;
+
+//== Z-indexes
+//
+
+$zindex-form-loading:     1000 !default;
+$zindex-footer-fixed:     1005 !default;
+$zindex-navbar:           1010 !default;
+$zindex-sidebar:          1040 !default;
+$zindex-px-nav:           1050 !default;
+$zindex-modal-background: 1060 !default;
+$zindex-fullscreen:       1070 !default;
+$zindex-modal:            1080 !default;
+$zindex-popover:          1090 !default;
+$zindex-tooltip:          1100 !default;
+$zindex-growls:           1110 !default;
+$zindex-sortable:         1120 !default;
+
+//== Tables
+//
+
+$table-border-color: $default-border-color !default;
+$table-light-color:  #fafafa !default;
+
+//== Buttons
+//
+
+$btn-default-color:                 $text-color !default;
+$btn-default-bg:                    #ececec !default;
+$btn-default-border:                darken($btn-default-bg, 5%) !default;
+
+$btn-success-color:                 #fff !default;
+$btn-success-bg:                    $brand-success !default;
+$btn-success-border:                desaturate(darken($btn-success-bg, 5%), 10%) !default;
+
+$btn-info-color:                    #fff !default;
+$btn-info-bg:                       $brand-info !default;
+$btn-info-border:                   desaturate(darken($btn-info-bg, 5%), 20%) !default;
+
+$btn-warning-color:                 #fff !default;
+$btn-warning-bg:                    $brand-warning !default;
+$btn-warning-border:                desaturate(darken($btn-warning-bg, 5%), 20%) !default;
+
+$btn-danger-color:                  #fff !default;
+$btn-danger-bg:                     $brand-danger !default;
+$btn-danger-border:                 desaturate(darken($btn-danger-bg, 5%), 20%) !default;
+
+$btn-link-disabled-color:           $gray-light !default;
+
+$btn-label-bg:                      #fff !default;
+$btn-label-icon-bg:                 rgba(0, 0, 0, .05) !default;
+$btn-label-arrow-size:              5px !default;
+
+$btn-outline-border-color:          rgba(0, 0, 0, .12) !default;
+$btn-outline-inverted-color:        #fff !default;
+$btn-outline-inverted-border-color: rgba(255, 255, 255, .12) !default;
+
+//== Forms
+//
+
+$input-color:                 $text-color !default;
+$input-border:                #d6d6d6 !default;
+$input-color-placeholder:     #999 !default;
+
+$legend-color:                $text-color !default;
+$legend-border-color:         $default-border-color !default;
+
+$input-height-base:           ($line-height-computed + ($padding-base-vertical * 2) + 2) !default;
+$input-height-large:          (round($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2) !default;
+$input-height-small:          (round($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2) !default;
+
+$form-group-margin-bottom:    $spacer * 1.5 !default;
+
+$form-help-block-arrow-width: 14px !default;
+
+$form-loading-spinner-size:   32px !default;
+
+$form-bordered-border-color:  $default-border-color !default;
+
+//== Custom control
+//
+
+$custom-control-gutter:            24px !default;
+$custom-control-spacer-x:          12px !default;
+$custom-control-spacer-y:          4px !default;
+
+$custom-control-indicator-size:    16px !default;
+$custom-control-indicator-bg:      #fff !default;
+$custom-control-indicator-bg-size: 50% 50% !default;
+
+$custom-checkbox-radius:           $border-radius-base !default;
+$custom-checkbox-checked-icon:     url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E") !default;
+$custom-radio-checked-icon:        url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='%23fff'/%3E%3C/svg%3E") !default;
+
+//== Custom select
+//
+
+$custom-select-indicator-padding:    16px !default; // Extra padding to account for the presence of the background-image based indicator
+$custom-select-bg-size:              8px 10px !default;
+$custom-select-indicator:            url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") !default;
+
+$custom-select-arrow-size:           4px !default;
+$custom-select-arrow-right-position: 7px !default;
+
+//== Custom file
+//
+
+$custom-file-button-label: "Browse" !default;
+
+//== Dropdowns
+//
+
+$dropdown-padding-y:           5px !default;
+$dropdown-item-padding-y:      5px !default;
+$dropdown-item-padding-x:      18px !default;
+
+$dropdown-border:              #ccc !default;
+$dropdown-fallback-border:     $dropdown-border !default;
+
+$dropdown-link-color:          $text-color !default;
+$dropdown-link-hover-color:    #333 !default;
+$dropdown-link-hover-bg:       #f2f2f2 !default;
+$dropdown-link-disabled-color: #999 !default;
+$dropdown-label-line-height:   1.6em !default;
+
+//== Navs
+//
+
+$nav-item-bg:                          rgba(0, 0, 0, .05) !default;
+$nav-item-focus-bg:                    rgba(0, 0, 0, .06) !default;
+
+$nav-link-padding:                     6px 20px !default;
+$nav-link-small-padding:               4px 15px !default;
+$nav-link-xs-padding:                  3px 15px !default;
+$nav-link-lg-padding:                  8px 24px !default;
+$nav-link-xl-padding:                  10px 25px !default;
+
+$nav-disabled-link-color:              #999 !default;
+$nav-disabled-link-hover-color:        $nav-disabled-link-color !default;
+
+$nav-tabs-border-color:                rgba(0, 0, 0, .11) !default;
+$nav-tabs-link-hover-border-color:     rgba(0, 0, 0, .015) !default;
+$nav-tabs-justified-link-border-color: $default-border-color !default;
+
+//== Pagination
+//
+
+$pagination-color:           lighten($text-color, 15%) !default;
+$pagination-bg:              transparent !default;
+$pagination-border:          rgba(0, 0, 0, .13) !default;
+
+$pagination-hover-color:     $text-color !default;
+$pagination-hover-bg:        transparent !default;
+
+$pagination-disabled-color:  #ccc !default;
+$pagination-disabled-bg:     transparent !default;
+$pagination-disabled-border: lighten($pagination-border, 7%) !default;
+
+//== Tooltips
+//
+
+$tooltip-color:       #fff !default;
+$tooltip-bg:          #222 !default;
+$tooltip-opacity:     1 !default;
+$tooltip-arrow-color: $tooltip-bg !default;
+
+//== Popovers
+//
+
+$popover-border-color:          $dropdown-border !default;
+$popover-fallback-border-color: $popover-border-color !default;
+
+$popover-title-bg:              #f0f0f0 !default;
+
+$popover-border-width:          3px !default;
+$popover-arrow-width:           7px !default; // + 1px
+
+//== Labels
+//
+
+$label-line-height:            1.818em !default;
+$label-padding-x:              .545em !default;
+
+$label-default-bg:             $gray-light !default;
+$label-default-outline-border: #dedede !default;
+
+$label-tag-arrow-width:        .909em !default;
+$label-tag-circle-size:        .545em !default;
+$label-tag-circle-bg:          #fff !default;
+
+$label-ribbon-outlined-bg:     #fff !default;
+
+//== Modals
+//
+
+$modal-inner-padding:  20px !default;
+$modal-title-padding:  11px $modal-inner-padding !default;
+$modal-footer-padding: $modal-title-padding !default;
+
+$modal-header-bg:      #f8f8f8 !default;
+
+//== Alerts
+//
+
+$alert-padding:              15px !default;
+
+$alert-border-width:         1px !default;
+
+$alert-default-bg:           #f8f8f8 !default;
+$alert-default-border:       #c9cacb !default;
+
+$alert-dark-text:            #fff !default;
+$alert-dark-stripes-opacity: .04 !default;
+
+$alert-dark-success-bg:      $state-dark-success-bg !default;
+$alert-dark-info-bg:         $state-dark-info-bg !default;
+$alert-dark-warning-bg:      $state-dark-warning-bg !default;
+$alert-dark-danger-bg:       $state-dark-danger-bg !default;
+
+//== Progress bars
+//
+
+$progress-bg:                      #eee !default;
+
+$progress-height:                  12px !default;
+
+$progress-bar-border:              rgba(0, 0, 0, .1) !default;
+$progress-striped-gradient:        linear-gradient(45deg, rgba(255, 255, 255, .1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .1) 50%, rgba(255, 255, 255, .1) 75%, transparent 75%, transparent) !default;
+$progress-striped-background-size: 10px !default;
+
+$progress-animated-duration:       2s !default;
+
+//== List group
+//
+
+$list-group-bg:                  transparent !default;
+$list-group-border:              $default-border-color !default;
+$list-group-hover-bg:            rgba(0, 0, 0, .04) !default;
+
+$list-group-disabled-color:      #aaa !default;
+$list-group-disabled-bg:         rgba(0, 0, 0, .06) !default;
+$list-group-disabled-border:     $list-group-border !default;
+$list-group-disabled-text-color: $list-group-disabled-color !default;
+
+$list-group-link-color:          $text-color !default;
+$list-group-link-hover-color:    $list-group-link-color !default;
+$list-group-link-heading-color:  $text-color !default;
+
+//== Panels
+//
+
+$panel-margin-bottom:      ($spacer * 2) !default;
+$panel-body-padding:       ($spacer * 2) !default;
+$panel-heading-padding-y:  9px !default;
+$panel-heading-padding:    $panel-heading-padding-y $panel-body-padding !default;
+$panel-footer-padding:     8px $panel-body-padding !default;
+
+$panel-bg:                 #fff !default;
+
+$panel-inner-border:       $default-border-color !default;
+$panel-footer-bg:          #fff !default;
+
+$panel-default-text:       $text-color !default;
+$panel-default-border:     #e2e2e2 !default;
+$panel-default-heading-bg: #fafafa !default;
+
+$hr-border:                $default-border-color !default;
+
+//== Breadcrumbs
+//
+
+$breadcrumb-color:                    #999 !default;
+$breadcrumb-active-color:             $text-color !default;
+$breadcrumb-separator-color:          #ccc !default;
+
+$breadcrumb-color-inverted:           rgba(255, 255, 255, .6) !default;
+$breadcrumb-active-color-inverted:    #fff !default;
+$breadcrumb-separator-color-inverted: rgba(255, 255, 255, .4) !default;
+
+$breadcrumb-separator:          "/" !default;
+$breadcrumb-separator-rtl:      "\\" !default;
+
+//== Dimmer
+//
+
+$dimmer-bg:                     rgba(255, 255, 255, .8) !default;
+$dimmer-spinner-bg:             rgba(0, 0, 0, .1) !default;
+$dimmer-spinner-color:          #767676 !default;
+
+$dimmer-bg-inverted:            rgba(0, 0, 0, .45) !default;
+$dimmer-spinner-bg-inverted:    rgba(255, 255, 255, .2) !default;
+$dimmer-spinner-color-inverted: #fff !default;
+
+//== Notes
+//
+
+$note-background: #fafafa !default;
+$note-border:     #ddd !default;
+
+$note-padding:    20px !default;
+
+//== Switchers
+//
+
+$switcher-default-color:  #fff !default;
+$switcher-default-bg:     $gray-light !default;
+
+$switcher-spacer-x:       12px !default;
+$switcher-spacer-y:       6px !default;
+
+$switcher-width:          56px !default;
+$switcher-height:         24px !default;
+$switcher-font-size:      11px !default;
+
+$switcher-width-sm:       42px !default;
+$switcher-height-sm:      20px !default;
+$switcher-font-size-sm:   8px !default;
+
+$switcher-width-lg:       68px !default;
+$switcher-height-lg:      30px !default;
+$switcher-font-size-lg:   13px !default;
+
+$switcher-no-state-color: #fff !default;
+$switcher-no-state-bg:    #555 !default;
+$switcher-button-bg:      #fff !default;
+
+//== Wizard
+//
+
+$wizard-bg:                                 #fff !default;
+$wizard-wrapper-bg:                         #fff !default;
+$wizard-border-color:                       $default-border-color !default;
+
+$wizard-step-color:                         lighten($text-color, 30%) !default;
+$wizard-step-completed-active-color:        $text-color !default;
+$wizard-step-description-active-color:      lighten($text-color, 30%) !default;
+$wizard-step-number-completed-border-color: $wizard-border-color !default;
+
+$wizard-step-padding-y:                     20px !default;
+$wizard-step-padding-x:                     16px !default;
+
+$wizard-step-number-size:                   28px !default;
+$wizard-step-number-border-width:           2px !default;
+
+//== PxSidebar
+//
+
+$sidebar-width:               300px !default;
+$sidebar-bg:                  $white !default;
+$sidebar-border:              1px solid $panel-default-border !default;
+$sidebar-transition-duration: .3s !default;
+
+//== Navbar / PxNavbar
+//
+
+$navbar-height:                    48px !default;
+$navbar-line-height-sm:            42px !default;
+
+$navbar-header-padding-horizontal: 20px !default;
+$navbar-item-padding-horizontal:   15px !default;
+$navbar-form-padding-vertical:     8px !default;
+
+$navbar-toggle-icon-width:         12px !default;
+
+$px-navbar-icon-font-size:         inherit !default;
+
+//== PX Nav
+//
+
+$px-nav-tablets-breakpoint:             $screen-sm-min !default;
+$px-nav-desktops-breakpoint:            $screen-lg-min !default;
+
+$px-nav-width-phone:                    80% !default;
+$px-nav-width-tablet:                   56px !default;
+$px-nav-width-desktop:                  230px !default;
+
+$px-nav-transition-duration:            .3s !default;
+
+$px-nav-dimmer-bg:                      rgba(0, 0, 0, .3) !default;
+
+$px-nav-item-padding-vertical:          12px !default;
+$px-nav-item-padding-horizontal:        22px !default;
+$px-nav-item-line-height:               20px !default;
+
+$px-nav-dropdown-item-padding-vertical: 8px !default;
+
+$px-nav-icon-font-size:                 16px !default;
+$px-nav-collapsed-icon-font-size:       18px !default;
+
+$px-nav-tooltip-padding-x:              10px !default;
+$px-nav-tooltip-padding-y:              6px !default;
+$px-nav-arrow-size:                     5px !default;
+
+//== PX Footer
+//
+
+$px-footer-padding-x: $content-wrapper-padding !default;
+$px-footer-padding-y: $content-wrapper-padding !default;
+
+//== Select2
+//
+
+$select2-choice-spacer:  4px !default;
+
+$select2-selected-color: $text-color !default;
+$select2-selected-bg:    #eee !default;
+
+//== Datepicker
+//
+
+$bootstrap-datepicker-width:                224px !default;
+
+$bootstrap-datepicker-cell-padding-y:       5px !default;
+$bootstrap-datepicker-month-year-padding-y: 12px !default;
+
+$bootstrap-datepicker-border:               #eee !default;
+$bootstrap-datepicker-hover-bg:             #f3f3f3 !default;
+$bootstrap-datepicker-old-new-color:        #bbb !default;
+$bootstrap-datepicker-today-bg:             #fff4df !default;
+$bootstrap-datepicker-highlited-bg:         #eff8fc !default;
+$bootstrap-datepicker-calendar-week-bg:     lighten($bootstrap-datepicker-hover-bg, 2%) !default;
+$bootstrap-datepicker-range-bg:             $bootstrap-datepicker-hover-bg !default;
+
+//== Timepicker
+//
+
+$bootstrap-timepicker-border: #eee !default;
+
+//== DataTables
+//
+
+$datatables-sorting-arrow-size: 4px !default;
+
+//== Growl
+//
+
+$growl-font-size:    $font-size-base !default;
+$growl-font-size-sm: $font-size-xs !default;
+$growl-font-size-lg: $font-size-large !default;
+
+$growl-padding:      10px !default;
+$growl-padding-sm:   8px !default;
+$growl-padding-lg:   14px !default;
+
+$growl-width:        256px !default;
+$growl-width-sm:     208px !default;
+$growl-width-lg:     304px !default;
+
+$growl-default-bg:   #7f8c8d !default;
+
+//== Dropzone
+//
+
+$dropzone-border-color:     $default-border-color !default;
+
+$dropzone-box-min-height:   288px !default;
+$dropzone-box-padding:      16px !default;
+$dropzone-overlay-bg:       rgba(0, 0, 0, .2) !default;
+$dropzone-thumbnail-bg:     #f2f2f2 !default;
+
+$dropzone-icon-size:        36px !default;
+$dropzone-upload-icon-size: 64px !default;
+$dropzone-upload-icon:      url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAEgUlEQVR4Xu1ai1EUQRDtjkCNQIhAjECIQI1AiECIQIxAiECIQIhAiECJQIhAjKCtd9VzNdc3/53do7idqqu6qp1fv3n9uqd3mba88ZbbTzMAMwO2HIHZBbacALMIzi7QywVE5CURvSeiD0SE//jtefPfENE9Ef0momtmxv+Nt8EMEBEY/JmI9iutARBnzHxZOa5r92YARAQGf2kw3BoAJhwxMxgyeWsCQES+EdFx592CDSed58xOVwWA+vmPxKnfEdGF+vkjM4PmJCI7RIQfWAOXeRPZGfofMPNjduedOhQDoMb/NMLmtgE/Pi0VNgXklIg+BeyYFIQaAGC8FboHIjps9V/VETDmtQFiMhCKABCRM1V6f5+3oPNQuiqzIIDWLc6ZubfOrBEuC4CeEk5/xXhmrg17Sa8VEYDwznQC8Mgl8ENegQZ9AEPQ/7LU7WKLlwBgqQ/a7w09ebuhBBNycgcgvra6YRIAETkkou9mB1DpUWJ2hG05ANzzpjCaA+BK09ul2jMzQBmtiQhEMRQdStasFs8oAErJv2bV3aE+l7NCQ+Qf7QehBSA3bl0RcZqAg7CagWFVIKQAsPS/Y2b/cpOzpfm5iIB5yCsWiVSsJcJocQRJAWCpeMLMUOUn1RLiWaRVKQBsWCqacBPoKAhgi59QwW0OcvtJAQA/RP7u2tscJXOLjfk8EkGQbidzhSAARogW+2bmbM4wpoElc0eSKQyFOyNXWCvCrBmlsR/XXZd5jQaArgVwscHBLZK3uHmRQaLuAIFdthUAMhO86pn9Gcp20RcNkb8ySAKEJeBLABLGI/WF+l/0AkA3ihTbz+8BQjLslVJE58ddBZcpe9PENEsQFgCozwM5n/b/NBZ3DX2JukJVAlMBBkCAS/sN7oCk7tEBYGM+jN/vdSL+ygmhQrei0FVqvOsXcQ1Eh0MOKT4RjZL0FOb5cLWjWiNz/UUkxIRdAGAfPDCzH/9zcxc9zwisnWNFqIoWKOgkIgiDviacAACb8XU//cZrbpfIYNzPHvY1AMCNzxe/rje+gOIXnNWiC4SqW2RQscdlzg+T9wBAVhKDjhlfppJcAkT3yLBm78gAhOp8JYb7fbpGhhAAQNmvyHa59BQqfikYXSJDIBzewQVs2au7CBohWnE5i8CYl65AxFuIoFXGe2beLT2a2n6WghMDYK/4izCImO9qcG4/o7FgUwBEEyEND6FKbBctsCe8CQCSqbACABZADF+YDR8z83ktzVP9pwZARPDxhr3Q4a6zs7wMKQh4bY1X37YhfcQEtz0uR1MAoCeOkjn0LZTWf3SFkZqCSBMRrKrXApDr37CpcEHETaTf/EATrDs0rLVeS8wZVAtYxaZAe7zKj5fEPBBAm9gHDBVrPhkA8AEH9Gzty5Pcu0EAAW1AeQn/Y5+2REGpPdHa/pGF8akOtAup+FXqdd7kpe5aF6iiW0PnGYAG0AYNmRlg6g9T3gVCJze7wCA+NwzeehdowGzUIZO7wKjWNEw+A9AA2rMaMjPgWR1ngzEzAxpAe1ZDtp4B/wGmkx9uXKTG5wAAAABJRU5ErkJggg==') !default;
+
+$dropzone-thumbnail-width:  160px !default;
+$dropzone-thumbnail-height: 120px !default;
+$dropzone-preview-padding:  10px !default;
+
+$dropzone-progress-height:  8px !default;
+
+//== Summernote
+//
+
+$summernote-statusbar-bg:                    $panel-default-heading-bg !default;
+
+$summernote-dropzone-color:                  lightskyblue !default;
+$summernote-dropzone-active-color:           darken($summernote-dropzone-color, 30) !default;
+$summernote-dropzone-bg:                     #fff !default;
+$summernote-dropzone-opacity:                .9 !default;
+$summernote-color-palette-border:            #fff !default;
+$summernote-color-palette-hover-border:      #000 !default;
+$summernote-dimension-unhighlighted-opacity: 1 !default;
+
+//== Markdown editor
+//
+
+$bootstrap-markdown-fullscreen-bg:        #fff !default;
+
+$bootstrap-markdown-fullscreen-font-size: 20px !default;
+
+$bootstrap-markdown-preview-padding-x:    16px !default;
+$bootstrap-markdown-preview-padding-y:    12px !default;
+
+//== Perfect-scrollbar
+//
+
+$ps-border-radius:                99px !default;
+
+$ps-rail-default-opacity:         0 !default;
+$ps-rail-container-hover-opacity: 0.6 !default;
+$ps-rail-hover-opacity:           0.9 !default;
+
+$ps-bar-bg:                       transparent !default;
+$ps-bar-container-hover-bg:       #aaa !default;
+$ps-bar-hover-bg:                 #999 !default;
+$ps-rail-hover-bg:                #eee !default;
+
+$ps-scrollbar-x-rail-bottom:      3px !default;
+$ps-scrollbar-x-rail-height:      4px !default;
+$ps-scrollbar-x-bottom:           0 !default;
+$ps-scrollbar-x-height:           $ps-scrollbar-x-rail-height !default;
+
+$ps-scrollbar-y-rail-right:       3px !default;
+$ps-scrollbar-y-rail-width:       4px !default;
+$ps-scrollbar-y-right:            0 !default;
+$ps-scrollbar-y-width:            $ps-scrollbar-y-rail-width !default;
+
+//== Ion.RangeSlider
+//
+
+$ionrangeslider-default-color:            #fff !default;
+$ionrangeslider-default-bg:               $gray-light !default;
+
+$ionrangeslider-line-color:               #E1E4E9 !default;
+$ionrangeslider-min-max-color:            #999 !default;
+$ionrangeslider-min-max-bg:               #e1e4e9 !default;
+$ionrangeslider-grid-color:               #e1e4e9 !default;
+$ionrangeslider-grid-text-color:          #999 !default;
+$ionrangeslider-shadow-color:             rgba(0, 0, 0, .25) !default;
+
+$ionrangeslider-bar-height:               10px !default;
+$ionrangeslider-slider-height:            16px !default;
+
+// Bullet
+
+$ionrangeslider-bullet-button-color:      #fff !default;
+
+$ionrangeslider-bullet-bar-height:        6px !default;
+$ionrangeslider-bullet-button-size:       18px !default;
+$ionrangeslider-bullet-button-point-size: 6px !default;
+
+//== jQuery Sortable
+//
+
+$jquery-sortable-dragged-opacity: .7 !default;
+
+//== Toastr
+//
+
+$toastr-default-bg:       #7f8c8d !default;
+$toastr-progress-bar-bg:  rgba(0, 0, 0, .4) !default;
+
+$toastr-icon-size:        26px !default;
+$toastr-icon-font-family: FontAwesome !default;
+$toastr-icon-success:     "\f00c" !default;
+$toastr-icon-error:       "\f057" !default;
+$toastr-icon-info:        "\f129" !default;
+$toastr-icon-warning:     "\f071" !default;
+
+//== Date Range Picker
+//
+
+$daterangepicker-width:       278px !default;
+$daterangepicker-padding:     4px !default;
+
+$daterangepicker-cell-size:   20px !default;
+$daterangepicker-cell-width:  $daterangepicker-cell-size !default;
+$daterangepicker-cell-height: $daterangepicker-cell-size !default;
+
+$daterangepicker-border:      #eee !default;
+$daterangepicker-hover-bg:    #f3f3f3 !default;
+$daterangepicker-range-bg:    #eff8fc !default;
+$daterangepicker-off-color:   #bbb !default;
+
+//== Bootstrap Tags Input
+//
+
+$bs-tagsinput-tag-height:    19px !default;
+$bs-tagsinput-padding:       floor(((($line-height-base * $font-size-base) + $padding-base-vertical * 2) - $bs-tagsinput-tag-height) / 2) !default;
+
+$bs-tagsinput-tag-height-sm: 17px !default;
+$bs-tagsinput-padding-sm:    floor(((($line-height-small * $font-size-small) + $padding-small-vertical * 2) - $bs-tagsinput-tag-height-sm) / 2) !default;
+
+$bs-tagsinput-tag-height-lg: 21px !default;
+$bs-tagsinput-padding-lg:    floor(((($line-height-large * $font-size-large) + $padding-large-vertical * 2) - $bs-tagsinput-tag-height-lg) / 2) !default;
+
+//== Seiyria Bootstrap Slider
+//
+
+$bs-slider-vertical-height: 210px !default;
+$bs-slider-default-bg:      $gray-light !default;
+$bs-slider-line-color:      #E1E4E9 !default;
+$bs-slider-bar-height:      6px !default;
+$bs-slider-handle-color:    #fff !default;
+$bs-slider-handle-size:     16px !default;
+$bs-slider-tick-size:       12px !default;
+$bs-slider-label-color:     #999 !default;
+$bs-slider-label-font-size: 11px !default;
+
+//== noUiSlider
+//
+
+$nouislider-vertical-height:       210px !default;
+$nouislider-default-bg:            $gray-light !default;
+$nouislider-line-color:            #E1E4E9 !default;
+$nouislider-bar-height:            10px !default;
+$nouislider-handle-color:          #fff !default;
+$nouislider-handle-height:         20px !default;
+$nouislider-handle-width:          30px !default;
+$nouislider-handle-stripes-height: $nouislider-handle-height - 8 !default;
+$nouislider-tick-size:             8px !default;
+$nouislider-tick-label-color:      #999 !default;
+$nouislider-tick-label-font-size:  10px !default;
+
+//== Charts
+//
+
+$c3-axis-color:      rgba(0, 0, 0, .2) !default;
+$c3-guide-color:     rgba(0, 0, 0, .4) !default;
+$c3-text-color:      rgba(0, 0, 0, .8) !default;
+$c3-arcs-background: #e0e0e0 !default;
+$c3-arcs-stroke:     #fff !default;
+
+//== Widgets
+//
+
+$widget-default-padding-x:                  15px !default;
+$widget-default-padding-y:                  8px !default;
+$widget-default-border-color:               $panel-inner-border !default;
+
+$widget-activity-item-padding-x:            $widget-default-padding-x !default;
+$widget-activity-item-padding-y:            12px !default;
+$widget-activity-avatar-size:               34px !default;
+$widget-activity-avatar-border-radius:      $border-radius-base !default;
+$widget-activity-icon-size:                 20px !default;
+$widget-activity-icon-font-size:            10px !default;
+$widget-activity-content-spacer:            3px !default;
+
+$widget-profile-heading-padding-y:          15px !default;
+$widget-profile-image-size:                 52px !default;
+$widget-profile-centered-image-size:        70px !default;
+
+$widget-messages-item-padding-x:            $widget-default-padding-x !default;
+$widget-messages-item-padding-y:            $widget-default-padding-y !default;
+
+$widget-messages-alt-item-padding-x:        $widget-default-padding-x !default;
+$widget-messages-alt-item-padding-y:        12px !default;
+$widget-messages-alt-avatar-size:           32px !default;
+$widget-messages-alt-avatar-border-radius:  $border-radius-base !default;
+
+$widget-notifications-item-padding-x:       $widget-default-padding-x !default;
+$widget-notifications-item-padding-y:       $widget-default-padding-y !default;
+$widget-notifications-icon-size:            26px !default;
+$widget-notifications-icon-font-size:       14px !default;
+
+$widget-tasks-item-padding-x:               $widget-default-padding-x !default;
+$widget-tasks-item-padding-y:               $widget-default-padding-y !default;
+
+$widget-rating-color:                       $text-muted !default;
+$widget-rating-active-color:                #ffd700 !default;
+$widget-rating-hover-color:                 lighten($widget-rating-active-color, 20%) !default;
+$widget-rating-spacer:                      .15384615384615em !default;
+
+$widget-support-tickets-item-padding-x:     $widget-default-padding-x !default;
+$widget-support-tickets-item-padding-y:     12px !default;
+
+$widget-comments-item-padding-x:            $widget-default-padding-x !default;
+$widget-comments-item-padding-y:            12px !default;
+$widget-comments-avatar-size:               32px !default;
+$widget-comments-avatar-border-radius:      $border-radius-base !default;
+$widget-comments-content-spacer:            3px !default;
+
+$widget-tree-comments-item-padding-x:       $widget-default-padding-x !default;
+$widget-tree-comments-item-padding-y:       14px !default;
+$widget-tree-comments-avatar-size:          32px !default;
+$widget-tree-comments-avatar-border-radius: $border-radius-base !default;
+
+$widget-threads-item-padding-x:             $widget-default-padding-x !default;
+$widget-threads-item-padding-y:             12px !default;
+$widget-threads-avatar-size:                32px !default;
+$widget-threads-avatar-border-radius:       $border-radius-base !default;
+
+$widget-chat-item-padding-x:                $widget-default-padding-x !default;
+$widget-chat-item-padding-y:                14px !default;
+$widget-chat-text-padding-x:                14px !default;
+$widget-chat-text-padding-y:                8px !default;
+$widget-chat-avatar-size:                   40px !default;
+$widget-chat-avatar-border-radius:          $border-radius-base !default;
+$widget-chat-text-bg:                       #f4f4f4 !default;
+
+$widget-followers-item-padding-x:           $widget-default-padding-x !default;
+$widget-followers-item-padding-y:           12px !default;
+$widget-followers-avatar-size:              32px !default;
+$widget-followers-avatar-border-radius:     $border-radius-base !default;
+
+$widget-probucts-overlay-bg:                rgba(255, 255, 255, .25) !default;
+$widget-probucts-overlay-bg-inverted:       rgba(0, 0, 0, .3) !default;
+
+$widget-pricing-padding-x:                  20px !default;
+$widget-pricing-padding-y:                  40px !default;
+$widget-pricing-section-spacer:             30px !default;
+$widget-pricing-active-bg:                  #fafafa !default;
+
+$widget-timeline-section-width:             120px !default;
+$widget-timeline-line-width:                2px !default;
+$widget-timeline-bullet-size:               8px !default;
+$widget-timeline-info-width:                90px !default;
+$widget-timeline-icon-size:                 30px !default;
+$widget-timeline-icon-font-size:            13px !default;
+$widget-timeline-item-spacer:               30px !default;

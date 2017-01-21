@@ -1,0 +1,224 @@
+//
+// Plugins / Seiyria Bootstrap Slider
+// --------------------------------------------------
+
+.slider {
+  position: relative;
+
+  vertical-align: middle;
+
+  input { display: none; }
+  .tooltip.top { margin-top: -36px; }
+  .hide { display: none; }
+
+  .tooltip-inner {
+    max-width: none;
+
+    white-space: nowrap;
+  }
+}
+
+.slider-disabled {
+  .slider-handle { box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.07); }
+
+  .slider-track {
+    cursor: not-allowed;
+
+    opacity: .3;
+  }
+}
+
+.slider-track {
+  position: absolute;
+
+  cursor: pointer;
+
+  border-radius: 999px;
+  background: $bs-slider-line-color;
+}
+
+.slider-selection {
+  position: absolute;
+
+  border-radius: 999px;
+}
+
+.slider-track-low,
+.slider-track-high {
+  position: absolute;
+
+  border-radius: 999px;
+  background: transparent;
+}
+
+.slider-handle {
+  position: absolute;
+  top: 0;
+
+  width:  $bs-slider-handle-size;
+  height: $bs-slider-handle-size;
+
+  background: $bs-slider-handle-color;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .15);
+
+  &.round { border-radius: 999px; }
+}
+
+.slider-tick {
+  position: absolute;
+
+  width: $bs-slider-tick-size;
+  height: $bs-slider-tick-size;
+
+  border: 0px solid transparent;
+  background: $bs-slider-line-color;
+
+  &.round { border-radius: 999px; }
+}
+
+.slider-tick-label {
+  color: $bs-slider-label-color;
+
+  font-size: $bs-slider-label-font-size;
+}
+
+
+// Horizontal slider
+//
+
+.slider-horizontal {
+  display: block;
+
+  width: 100%;
+  height: $bs-slider-handle-size + 2;
+
+  .slider-track {
+    top:  50%;
+    /*@noflip*/ left: 0;
+
+    width: 100%;
+    height: $bs-slider-bar-height;
+    margin-top: -($bs-slider-bar-height / 2);
+  }
+
+  .slider-selection,
+  .slider-track-low,
+  .slider-track-high {
+    top: 0;
+    bottom: 0;
+
+    height: 100%;
+  }
+
+  .slider-handle {
+    top: 1px;
+
+    /*@noflip*/ margin-left: -($bs-slider-handle-size / 2);
+  }
+
+  .slider-tick {
+    top: (($bs-slider-handle-size + 2) - $bs-slider-tick-size) / 2;
+
+    /*@noflip*/ margin-left: -($bs-slider-tick-size / 2);
+  }
+
+  .slider-tick-container {
+    position: absolute;
+    top: 0;
+    /*@noflip*/ left: 0;
+
+    width: 100%;
+
+    white-space: nowrap;
+  }
+
+  .slider-tick-label-container {
+    white-space: nowrap;
+    /*@noflip*/ direction: ltr !important;
+  }
+
+  .slider-tick-label {
+    display: inline-block;
+
+    margin-top: $bs-slider-handle-size * 1.1;
+
+    text-align: center;
+  }
+}
+
+
+// Vertical slider
+//
+
+.slider-vertical {
+  display: inline-block;
+
+  width: $bs-slider-handle-size + 2;
+  height: $bs-slider-vertical-height;
+
+  .slider-track {
+    top: 0;
+    /*@noflip*/ left: 50%;
+
+    width: $bs-slider-bar-height;
+    height: 100%;
+    /*@noflip*/ margin-left: -$bs-slider-bar-height / 2;
+  }
+
+  .slider-selection {
+    top: 0;
+    bottom: 0;
+    /*@noflip*/ left: 0;
+
+    width: 100%;
+  }
+
+  .slider-track-low,
+  .slider-track-high {
+    right: 0;
+    left: 0;
+
+    width: 100%;
+  }
+
+  .slider-handle {
+    /*@noflip*/ left: 1px;
+
+    margin-top: -($bs-slider-handle-size / 2);
+    /*@noflip*/ margin-left: 0;
+  }
+
+  .slider-tick-label-container { white-space: nowrap; }
+  .slider-tick-label { padding-left: $bs-slider-handle-size * .2; }
+
+  .slider-tick {
+    margin-top: -($bs-slider-tick-size / 2);
+    margin-left: (($bs-slider-handle-size + 2) - $bs-slider-tick-size) / 2;
+  }
+}
+
+html[dir="rtl"] .slider-vertical .slider-tick-label {
+  /*@noflip*/ margin-left: 0 !important;
+  /*@noflip*/ margin-right: $bs-slider-handle-size !important;
+}
+
+
+// Reversed slider
+//
+
+.slider-reversed {
+  .slider-selection { background: $bs-slider-line-color !important; }
+  .slider-tick.in-selection { background: $bs-slider-line-color !important; }
+}
+
+
+// Colors
+//
+
+// Default
+@include bs-slider-base($bs-slider-default-bg);
+
+@include bs-slider-variant(info, $brand-info);
+@include bs-slider-variant(success, $brand-success);
+@include bs-slider-variant(warning, $brand-warning);
+@include bs-slider-variant(danger, $brand-danger);

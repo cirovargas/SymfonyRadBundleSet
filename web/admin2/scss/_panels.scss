@@ -1,0 +1,310 @@
+//
+// Panels
+// --------------------------------------------------
+
+.panel {
+  display: block;
+  border: 1px solid $panel-default-border;
+  box-shadow: none;
+  margin-bottom: $panel-margin-bottom;
+
+  > hr { margin: 0; }
+}
+
+.panel-heading {
+  position: relative;
+
+  border-bottom: 1px solid $panel-default-border;
+  background: $panel-default-heading-bg;
+
+  @include clearfix();
+}
+
+.panel-footer {
+  border-top-color: $panel-inner-border;
+}
+
+.panel-title {
+  font-size: 14px;
+  line-height: inherit;
+}
+
+.panel-title-icon {
+  display: inline-block;
+
+  margin-right: 7px;
+
+  color: inherit;
+
+  font-size: 14px;
+  line-height: 1;
+}
+
+.panel > .panel-title {
+  padding: $panel-body-padding $panel-body-padding $panel-body-padding $panel-body-padding;
+  font-size: 16px;
+
+  @include clearfix();
+
+  + .panel-body {
+    margin-top: -10px;
+  }
+}
+
+.panel-subtitle {
+  padding: 0 $panel-body-padding;
+  margin: (-$panel-body-padding) 0 $panel-body-padding 0;
+  display: block;
+}
+
+.panel > .panel-title + .panel-body,
+.panel-subtitle + .panel-body {
+  padding-top: 0;
+}
+
+.panel-img,
+.panel-img-top,
+.panel-img-bottom {
+  width: 100%;
+}
+
+div.panel-img,
+div.panel-img-top,
+div.panel-img-bottom {
+  background: $panel-default-heading-bg;
+  text-align: center;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.panel-img-top,
+div.panel-img-top img {
+  @include border-top-radius($border-radius-base - 1px);
+}
+
+.panel-img-bottom,
+div.panel-img-top img {
+  @include border-bottom-radius($border-radius-base - 1px);
+}
+
+
+// Table within panel
+//
+
+.panel > .table,
+.panel > .table-responsive > .table {
+  tr > td:first-child,
+  tr > th:first-child {
+    padding-left: $panel-body-padding;
+  }
+
+  tr > td:last-child,
+  tr > th:last-child {
+    padding-right: $panel-body-padding;
+  }
+}
+
+
+// List group within panel
+//
+
+.panel > .list-group .list-group-item {
+  padding-left: $panel-body-padding;
+  padding-right: $panel-body-padding;
+}
+
+
+// Panel heading controls
+//
+
+.panel-heading-controls {
+  margin-top: $panel-heading-padding-y;
+  padding: 0;
+
+  > * {
+    display: block;
+    float: left;
+
+    margin: 0;
+
+    + * {
+      margin-left: 4px;
+    }
+  }
+
+  > .btn,
+  > .btn-group,
+  > .btn-toolbar,
+  > .panel-heading-text {
+    margin-top: 1px;
+  }
+
+  > .label,
+  > .badge {
+    margin-top: 2px;
+  }
+
+  > .progress {
+    height: 6px;
+    margin-top: 8px;
+  }
+
+  > .switcher {
+    margin-top: 2px;
+  }
+}
+
+.panel-heading .nav-tabs {
+  position: relative;
+  bottom: -$panel-heading-padding-y - 1px;
+
+  border-bottom-width: 1px;
+  border-bottom-color: transparent;
+
+  > li > a,
+  > li > a:hover,
+  > li > a:focus {
+    border-bottom-color: transparent;
+  }
+
+  > li > a {
+    margin-bottom: -1px !important;
+
+    border-bottom-width: 1px !important;
+  }
+}
+
+.panel-heading-icon {
+  position: absolute;
+  top: $panel-heading-padding-y;
+  right: $panel-body-padding;
+}
+
+
+// Dark panels
+//
+
+.panel-dark {
+  .panel-heading-controls {
+    .btn:not(.btn-outline) {
+      border-color: transparent !important;
+    }
+
+    .form-control {
+      border-color: transparent !important;
+    }
+
+    > .pagination,
+    > .pager {
+      li a,
+      li span {
+        color: #fff;
+        border-color: rgba(255, 255, 255, .12);
+      }
+
+      li a:hover,
+      li a:focus {
+        color: #fff;
+        border-color: #fff;
+      }
+
+      li.active a,
+      li.active span {
+        &,
+        &:hover,
+        &:focus {
+          border-color: #fff;
+          background: #fff;
+        }
+      }
+
+      li.disabled a,
+      li.disabled span {
+        color: rgba(255, 255, 255, .3) !important;
+        border-color: rgba(255, 255, 255, .1) !important;
+      }
+    }
+  }
+
+  .panel-heading .nav-tabs {
+     > li > a {
+      background: rgba(255, 255, 255, .1);
+
+      &:hover,
+      &:focus {
+        color: inherit !important;
+      }
+    }
+
+    > li.active > a,
+    > li.active > a:hover,
+    > li.active > a:focus {
+      color: $text-color !important;
+      border-bottom-color: $white !important;
+      background: $white;
+    }
+  }
+}
+
+//
+
+@media (min-width: $screen-sm-min) {
+  .panel-heading-controls {
+    float: right;
+
+    margin-top: -1px;
+    margin-bottom: -100px;
+  }
+
+  .panel-heading .nav-tabs {
+    position: absolute;
+    right: 9px;
+    bottom: -1px;
+
+    margin: 0;
+  }
+}
+
+// Colors
+//
+
+@include pixel-panel-variant(warning,
+  $state-warning-text, $state-warning-bg, $state-warning-border, // Light
+  #fff, $brand-warning // Dark
+);
+@include pixel-panel-variant(danger,
+  $state-danger-text, $state-danger-bg, $state-danger-border, // Light
+  #fff, $brand-danger // Dark
+);
+@include pixel-panel-variant(success,
+  $state-success-text, $state-success-bg, $state-success-border, // Light
+  #fff, $brand-success // Dark
+);
+@include pixel-panel-variant(info,
+  $state-info-text, $state-info-bg, $state-info-border, // Light
+  #fff, $brand-info // Dark
+);
+
+
+// Transparent panels
+//
+
+.panel-transparent {
+  border: none !important;
+  background: none !important;
+
+  > .panel-heading {
+    background: none !important;
+  }
+
+  > .panel-body {
+    background: none !important;
+  }
+
+  > .panel-footer {
+    border: none !important;
+    background: none !important;
+  }
+}

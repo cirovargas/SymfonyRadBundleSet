@@ -1,0 +1,132 @@
+//
+// Alerts
+// --------------------------------------------------
+
+// Default alert
+.alert {
+  border-color: $alert-default-border;
+  border-width: $alert-border-width;
+  background: $alert-default-bg;
+
+  p { margin-bottom: $line-height-computed / 2; }
+
+  ul,
+  ol {
+    margin-top: 12px;
+    padding-left: 20px;
+  }
+
+  p:last-child,
+  ul:last-child,
+  ol:last-child {
+    margin-bottom: 0;
+  }
+
+  .close {
+    opacity: .4;
+    color: inherit;
+    text-shadow: none;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+  }
+}
+
+.alert-heading {
+  margin-bottom: 10px;
+
+  font-weight: 700;
+}
+
+// Colors
+@include pixel-alert-variant(warning, $alert-warning-text, $alert-warning-bg, $alert-warning-border);
+@include pixel-alert-variant(danger, $alert-danger-text, $alert-danger-bg, $alert-danger-border);
+@include pixel-alert-variant(success, $alert-success-text, $alert-success-bg, $alert-success-border);
+@include pixel-alert-variant(info, $alert-info-text, $alert-info-bg, $alert-info-border);
+
+
+// Dark alerts
+//
+
+.alert-dark {
+  border-color: transparent;
+  background: none;
+  background-size: 20px 20px;
+
+  &,
+  .alert-heading,
+  .alert-link {
+    color: $alert-dark-text;
+  }
+
+  hr {
+    opacity: .35;
+    border-top-color: $alert-dark-text;
+  }
+}
+
+// Colors
+@include pixel-alert-dark-variant(warning, $alert-dark-warning-bg);
+@include pixel-alert-dark-variant(danger, $alert-dark-danger-bg);
+@include pixel-alert-dark-variant(success, $alert-dark-success-bg);
+@include pixel-alert-dark-variant(info, $alert-dark-info-bg);
+
+
+// Block alerts
+//
+
+.px-block-alerts {
+  position: relative;
+
+  @include clearfix();
+
+  .alert {
+    margin-bottom: 0;
+
+    border-width: 1px;
+    border-radius: 0;
+  }
+
+  .alert + .alert { border-top-width: 0 !important; }
+  > div:not(:empty) + div .alert { border-top-width: 0 !important; }
+}
+
+.px-content > .px-block-alerts {
+  margin: (-$content-wrapper-padding) (-$content-wrapper-padding) $content-wrapper-padding (-$content-wrapper-padding);
+
+  .alert {
+    padding-right: $content-wrapper-padding;
+    padding-left: $content-wrapper-padding;
+
+    border-top-width: 0;
+    border-right-width: 0;
+    border-left-width: 0;
+  }
+}
+
+.panel > .px-block-alerts {
+  margin: -1px -1px 0 -1px;
+
+  .alert {
+    padding: 8px $panel-body-padding;
+
+    border-width: 1px;
+
+    font-size: 12px;
+  }
+}
+
+.panel-title + .px-block-alerts,
+.panel-subtitle + .px-block-alerts {
+  transition: margin .3s;
+}
+
+.panel-title + .px-block-alerts-empty {
+  margin-bottom: -$panel-body-padding - 10px;
+}
+
+.panel-subtitle + .px-block-alerts-empty {
+  margin-bottom: -$panel-body-padding;
+}

@@ -1,0 +1,9 @@
+//
+// Grid
+// --------------------------------------------------
+
+@include make-grid-columns-xl;
+
+@media (min-width: $screen-xl-min) {
+  @include make-grid(xl);
+}

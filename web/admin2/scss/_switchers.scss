@@ -1,0 +1,149 @@
+//
+// Switchers
+// --------------------------------------------------
+
+.switcher {
+  position: relative;
+
+  display: block;
+
+  margin-bottom: $switcher-spacer-y;
+
+  cursor: pointer;
+
+  border-radius: 3px;
+
+  font-weight: normal;
+
+  // Default size
+  @include switcher-size-base($switcher-width, $switcher-height, 10px, $font-size-base, $line-height-base);
+
+  // Default color
+  @include switcher-base($switcher-default-color, $switcher-default-bg);
+
+  // Hide input
+  > input {
+    position: absolute;
+    z-index: -1;
+
+    margin: 0;
+    padding: 0;
+
+    opacity: 0;
+  }
+
+  &.switcher-blank {
+    padding: 0 !important;
+
+    .switcher-indicator {
+      top: 0 !important;
+
+      margin: 0 !important;
+    }
+  }
+
+  .form-horizontal & {
+    margin-top: $padding-base-vertical;
+    margin-bottom: 0;
+  }
+
+  .form-horizontal .form-group-lg &,
+  .form-horizontal.form-group-lg & {
+    margin-top: $padding-base-vertical + 1;
+  }
+
+  // Disabled state
+  > input:disabled ~ .switcher-indicator {
+    opacity: .65;
+    cursor: not-allowed !important;
+
+    &:after { box-shadow: none !important; }
+  }
+}
+
+.switcher-indicator {
+  position: absolute;
+  top: 50%;
+  left: 0;
+
+  overflow: hidden;
+
+  user-select: none;
+
+  border-radius: 3px;
+
+  font-weight: bold;
+
+  color: $switcher-no-state-color;
+  background: $switcher-no-state-bg;
+  transition-property: left, right, background;
+  transition-duration: .2s;
+}
+
+
+// Checked / Unchecked states
+//
+
+.switcher-no,
+.switcher-yes {
+  position: absolute;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  transition: all .2s;
+  text-align: center;
+}
+
+.switcher-no { left: 0; }
+.switcher-yes { left: -100%; }
+
+// Checked state
+.switcher > input:checked ~ .switcher-indicator {
+  .switcher-no { left: 100%; }
+  .switcher-yes { left: 0; }
+}
+
+
+// Holder
+//
+
+.switcher-indicator:after {
+  position: absolute;
+  left: 0;
+
+  display: block;
+
+  content: "";
+  transition: left .2s;
+
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background: $switcher-button-bg;
+}
+
+
+// Rounded
+//
+
+.switcher-rounded .switcher-indicator,
+.switcher-rounded .switcher-indicator:after {
+  border-radius: 999px;
+}
+
+
+// Sizes
+//
+
+@include switcher-size(sm, $switcher-width-sm, $switcher-height-sm, $switcher-font-size-sm, $font-size-base, $line-height-base);
+@include switcher-size(lg, $switcher-width-lg, $switcher-height-lg, $switcher-font-size-lg, $font-size-large, $line-height-large);
+
+
+// Colors
+//
+
+@include switcher-variant(info, #fff, $brand-info);
+@include switcher-variant(success, #fff, $brand-success);
+@include switcher-variant(warning, #fff, $brand-warning);
+@include switcher-variant(danger, #fff, $brand-danger);

@@ -1,0 +1,160 @@
+//
+// Themes / Mint Dark
+// --------------------------------------------------
+
+@import '../../variables-dark';
+@import '../../variables';
+@import '../../../libs/bootstrap-sass/assets/stylesheets/bootstrap/variables';
+@import '../../../libs/bootstrap-sass/assets/stylesheets/bootstrap/mixins';
+@import '../../mixins';
+
+
+$theme-primary-color: #81b842;
+$theme-navbar-color: #242a31;
+
+
+// Generate theme
+//
+
+@include pixel-theme(
+
+  // Basic
+  //
+
+  $primary-color:        $theme-primary-color,
+  $primary-text-color:   #fff,
+  $primary-border-color: darken($theme-primary-color, 6%),
+
+  $body-bg:              #2d353d,
+  $panel-border-color:   #3f4851,
+  $header-bg:            transparent,
+  $header-border-color:  #3a424b,
+
+  $timeline-bg:          #3F4851,
+
+  // Px-Navbar element
+  //
+
+  $px-navbar: (
+    bg:                             $theme-navbar-color,
+    border-color:                   rgba(255, 255, 255, .03),
+    link-color:                     #fff,
+    link-hover-color:               rgba(255, 255, 255, .8),
+    link-hover-bg:                  transparent,
+    shadow:                         "none",
+
+    brand-bg:                       $theme-navbar-color,
+    brand-link-color:               #fff,
+    brand-link-hover-color:         #fff,
+
+    collapse-bg:                    #23292f,
+    collapse-border-color:          darken(#23292f, 2%),
+    collapse-dropdown-bg:           rgba(255, 255, 255, .02),
+    collapse-dropdown-border-color: lighten(#23292f, 4%),
+
+    form-control-bg:                rgba(255, 255, 255, .3),
+    form-control-border-color:      transparent,
+    form-control-color:             #fff,
+
+    scrollbar-color:                rgba(255, 255, 255, .5),
+    scrollbar-rail-color:           transparent,
+
+    enable-transitions:             false
+  ),
+
+  // Px-Nav element
+  //
+
+  $px-nav: (
+    toggle-color:               #fff,
+    toggle-bg:                  $theme-navbar-color,
+
+    bg:                         #303841,
+    color:                      #93a3af,
+    link-hover-color:           #fff,
+    link-hover-bg:              rgba(0, 0, 0, .08),
+
+    // Dropdowns
+    dropdown-bg:                #2d353d,
+    dropdown-menu-title-color:  #fff,
+    dropdown-menu-title-bg:     darken(#303841, 4%),
+
+    // Active
+    active-color:               #fff,
+    active-bg:                  lighten($theme-primary-color, 6%),
+    active-icon-color:          #fff,
+    active-dropdown-icon-color: $theme-primary-color,
+
+    scrollbar-color:            rgba(255, 255, 255, .3),
+    scrollbar-rail-color:       transparent,
+
+    toggle-border-color:        rgba(255, 255, 255, .03),
+    border-color:               #3a424b,
+    item-border-color:          false,
+    box-border-color:           #3a424b,
+
+    tooltip-bg:                 $theme-primary-color,
+    tooltip-color:              #fff,
+
+    dimmer-bg:                  rgba(#000, .4),
+
+    animate-items:              true
+  ),
+
+  // Px-Footer element
+  //
+
+  $px-footer: (
+    color:            rgba(255, 255, 255, .5),
+    bg:               #2d353d,
+
+    link-color:       rgba(255, 255, 255, .6),
+    link-hover-color: #fff,
+
+    muted-color:      #939ea7,
+    border-color:     #3a424b,
+    hr-color:         #3a424b
+  )
+);
+
+// Custom styles
+//
+
+.btn { border-color: transparent; }
+
+.btn:hover,
+.btn:focus,
+.btn:active {
+  border-color: transparent !important;
+}
+
+// PxNavbar
+@if mixin-exists(px-navbar-theme) {
+  @media (min-width: $screen-md-min) {
+    .px-navbar .dropdown-menu {
+      border-color: $dropdown-bg;
+      background: $dropdown-bg;
+
+      > li.divider {
+        background: $dropdown-divider-bg;
+      }
+
+      > li > a {
+        &,
+        &:hover,
+        &:focus,
+        &:active {
+          color: #fff;
+        }
+
+        &:hover,
+        &:focus {
+          background: $dropdown-link-hover-bg;
+        }
+      }
+    }
+
+    .px-navbar [class^="widget-"],
+    .px-navbar [class*=" widget-"] { border-color: $dropdown-divider-bg; }
+  }
+}

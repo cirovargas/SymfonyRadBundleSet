@@ -1,0 +1,16 @@
+<li class="dropdown">
+    <a href="#notifications" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="button-notifications">
+        <i class="px-navbar-icon fa fa-bullhorn"></i>
+        <span class="px-navbar-icon-label">Notificações</span>
+        <span class="px-navbar-label label label-success" id="count-notifications">{% if count > 0 %}{{ count }}{% endif %}</span>
+    </a>
+    <div class="dropdown-menu p-a-0" style="width: 300px">
+        <div id="navbar-notifications" style="height: 280px; position: relative;" id="main-navbar-notifications">
+            {% for message in messages %}
+                {% include 'CoreAlertaBundle:Default:alert.html.twig' %}
+            {% endfor %}
+        </div>
+
+        <a href="{{ path('core_alert_all_notifications') }}" class="widget-more-link">TODAS AS NOTIFICAÇÕES</a>
+    </div>
+</li>

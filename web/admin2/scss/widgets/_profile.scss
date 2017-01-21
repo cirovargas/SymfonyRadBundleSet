@@ -1,0 +1,151 @@
+//
+// Widgets / Profile
+// --------------------------------------------------
+
+.widget-profile {
+  .panel-heading {
+    overflow: hidden;
+
+    width: 100%;
+    padding-top: $widget-profile-heading-padding-y;
+    padding-bottom: $widget-profile-heading-padding-y;
+
+    white-space: nowrap;
+
+    @include clearfix();
+
+    // Clear whitespace property
+    * { white-space: normal; }
+  }
+}
+
+.widget-profile-avatar {
+  display: inline-block;
+
+  width: $widget-profile-image-size;
+  height: $widget-profile-image-size;
+
+  border-radius: 999px;
+}
+
+.widget-profile-header {
+  display: inline-block;
+
+  margin: 0;
+  padding-right: $widget-profile-image-size;
+
+  vertical-align: middle;
+
+  line-height: 1.2;
+
+  .widget-profile-avatar + & { padding-left: 10px; }
+}
+
+// Profile header secondary text
+.widget-profile-secondary-text {
+  display: block;
+
+  margin-top: 5px;
+
+  font-size: $font-size-base;
+  font-weight: normal;
+}
+
+
+// Background icon
+.widget-profile-bg-icon {
+  position: absolute;
+  right: 5px;
+  bottom: -23px;
+
+  overflow: hidden;
+
+  height: 100px;
+
+  color: rgba(255, 255, 255, .3);
+
+  font-size: 100px;
+  line-height: 100px;
+}
+
+.widget-profile-counters {
+  display: table;
+
+  width: 100%;
+
+  table-layout: fixed;
+
+  text-align: center;
+
+  font-size: 11px;
+
+  > * {
+    display: table-cell;
+
+    padding: 13px 0;
+
+    color: $text-color;
+  }
+
+  > * + * { border-left: 1px solid $widget-default-border-color; }
+}
+
+.widget-profile-counter {
+  display: block;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+.widget-profile-input {
+  border: none;
+  border-radius: 0;
+  padding-left: $panel-body-padding;
+  padding-right: $panel-body-padding;
+}
+
+.widget-profile > input.widget-profile-input:focus { border-color: $widget-default-border-color; }
+
+// Borders
+.widget-profile-counters ~ *,
+.widget-profile-input ~ * {
+  border-top: 1px solid $widget-default-border-color;
+}
+
+
+// Dark panel
+//
+
+.panel-dark .widget-profile,
+.panel-dark.widget-profile {
+  // Profile header text
+  .widget-profile-header { color: #fff; }
+
+  .widget-profile-secondary-text {
+    color: #fff;
+    color: rgba(255, 255, 255, .8);
+
+    &[href]:hover { color: #fff; }
+  }
+
+}
+
+
+// Centered widget layout
+//
+
+.widget-profile-centered {
+  white-space: normal;
+
+  .panel-heading { text-align: center; }
+
+  .widget-profile-avatar {
+    width: $widget-profile-centered-image-size;
+    height: $widget-profile-centered-image-size;
+    display: block;
+    margin: 0 auto 8px auto;
+  }
+
+  .widget-profile-header { padding: 0; }
+}

@@ -1,0 +1,28 @@
+//
+// Mixins / Plugins / Seiyria Bootstrap Slider
+// --------------------------------------------------
+
+@mixin bs-slider-base($color) {
+  .slider-selection,
+  .slider-selection.tick-slider-selection,
+  .slider-tick.in-selection,
+  .slider-reversed .slider-track-high,
+  .slider-reversed .slider-tick {
+    background: $color;
+  }
+}
+
+@mixin bs-slider-variant($state, $color) {
+  .slider-#{$state} {
+    @include bs-slider-base($color);
+
+    &.slider-reversed .slider-track-high,
+    &.slider-reversed .slider-tick {
+      background: $color;
+    }
+  }
+}
+
+@mixin bs-slider-theme($color) {
+  @include bs-slider-variant(primary, $color);
+}

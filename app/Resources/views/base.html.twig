@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html>
+{% spaceless %}
+<!--[if IE 8]>         <html class="ie8"> <![endif]-->
+<!--[if IE 9]>         <html class="ie9 gt-ie8"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="gt-ie8 gt-ie9 not-ie"> <!--<![endif]-->
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Projeto{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body>
+    <body class="{% block body_class %}{% endblock %}">
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
+{% endspaceless %}

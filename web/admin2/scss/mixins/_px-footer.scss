@@ -1,0 +1,33 @@
+//
+// Mixins / Px Footer
+// --------------------------------------------------
+
+@mixin px-footer-theme($color, $bg, $link-color, $link-hover-color, $muted-color: false, $hr-color: false, $border-color: false) {
+  $bg-color: $bg;
+
+  @if type-of($bg) == list {
+    $bg-color: nth($bg, 1);
+  }
+
+  $footer-muted-color: if($muted-color, $muted-color, lighten($bg-color, 10%));
+  $footer-hr-color: if($hr-color, $hr-color, lighten($bg-color, 10%));
+
+  .px-footer {
+    background: $bg;
+    color: $color;
+
+    @if ($border-color) {
+      border-color: $border-color;
+    }
+
+    a { color: $link-color; }
+
+    a:hover,
+    a:focus {
+      color: $link-hover-color;
+    }
+
+    hr { border-color: $footer-hr-color; }
+    .text-muted { color: $footer-muted-color !important; }
+  }
+}

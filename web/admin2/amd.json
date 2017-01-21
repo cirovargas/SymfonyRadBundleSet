@@ -1,0 +1,93 @@
+{
+  "dependencies": {
+    "bootstrap/affix.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" }
+    ],
+    "bootstrap/alert.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" }
+    ],
+    "bootstrap/button.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" }
+    ],
+    "bootstrap/carousel.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" }
+    ],
+    "bootstrap/collapse.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" },
+      { "name": "px-bootstrap/transition", "param": "_transition_", "global": "_transition_" }
+    ],
+    "bootstrap/dropdown.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" }
+    ],
+    "bootstrap/modal.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" }
+    ],
+    "bootstrap/popover.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" },
+      { "name": "px-bootstrap/tooltip", "param": "_tooltip_", "global": "_tooltip_" }
+    ],
+    "bootstrap/scrollspy.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" },
+      { "name": "px-bootstrap/tab", "param": "_tab_", "global": "_tab_" }
+    ],
+    "bootstrap/tab.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" }
+    ],
+    "bootstrap/tooltip.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" }
+    ],
+    "bootstrap/transition.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" }
+    ],
+    "libs/bootstrap-timepicker.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" },
+      { "name": "px-bootstrap/modal", "param": "_modal_", "global": "_modal_" }
+    ],
+    "libs/dropzone.js": [],
+    "libs/jquery.flot.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" }
+    ],
+    "libs/jquery.flot.categories.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" },
+      { "name": "px-libs/jquery.flot", "param": "_flot_", "global": "_flot_" }
+    ],
+    "libs/jquery.flot.pie.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" },
+      { "name": "px-libs/jquery.flot", "param": "_flot_", "global": "_flot_" }
+    ],
+    "libs/jquery.flot.resize.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" },
+      { "name": "px-libs/jquery.flot", "param": "_flot_", "global": "_flot_" }
+    ],
+    "libs/jquery.flot.tooltip.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" },
+      { "name": "px-libs/jquery.flot", "param": "_flot_", "global": "_flot_" }
+    ],
+    "libs/jquery.growl.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" }
+    ],
+    "libs/jquery.autosize.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" }
+    ],
+    "libs/markdown.js": [],
+    "libs/morris.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" },
+      { "name": "px-libs/raphael", "param": "Raphael ", "global": "Raphael" }
+    ],
+    "libs/jquery-sortable.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" }
+    ],
+    "libs/jquery.bootstrap-touchspin.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" }
+    ],
+    "libs/mindmup-editabletable.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" }
+    ],
+    "libs/bootstrap-tagsinput.js": [
+      { "name": "jquery", "param": "jQuery", "global": "jQuery" }
+    ]
+  },
+  "exports": {
+    "libs/morris.js": "window.Morris"
+  }
+}

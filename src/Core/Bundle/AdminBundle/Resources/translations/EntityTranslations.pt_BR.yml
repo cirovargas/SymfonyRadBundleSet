@@ -1,0 +1,6 @@
+(optional): (opcional)
+boolean:
+    yes_or_no: Selecionar
+    yes: Sim
+    no: Não
+app:

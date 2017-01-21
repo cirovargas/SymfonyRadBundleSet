@@ -1,0 +1,145 @@
+<nav class="px-nav px-nav-left" id="extranet-nav">
+    <button type="button" class="px-nav-toggle" data-toggle="px-nav">
+        <span class="px-nav-toggle-arrow"></span>
+        <span class="navbar-toggle-icon"></span>
+        <span class="px-nav-toggle-label font-size-11">ESCONDER MENU</span>
+    </button>
+    {% block menu %}
+        {{ knp_menu_render('CoreAdminBundle:Builder:admin', {'currentClass': 'active','allow_safe_labels':true, 'template': 'CoreAdminBundle:Menu:knp_menu_admin.html.twig'}) }}
+    {% endblock %}
+</nav>
+<nav class="navbar px-navbar">
+    <!-- Header -->
+    <div class="navbar-header">
+        <a class="navbar-brand px-demo-brand" href="{{ path('admin_home') }}">
+            <span><img alt="" src="{{ asset('apple-touch-icon.png') }}" width="18px" style="width: 18px; height: 18px;vertical-align: text-top"></span>
+            <strong>{{ 'views.layout.system'|trans({},'CoreAdminBundle') }}</strong> SF
+        </a>
+    </div>
+
+
+    <!-- Navbar togglers -->
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#px-demo-navbar-collapse" aria-expanded="false"><i class="navbar-toggle-icon"></i></button>
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="px-demo-navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="#" target="_blank">Menu</a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            {#
+            <li class="dropdown">
+                <a href="https://google.com" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="px-navbar-icon fa fa-envelope"></i>
+                    <span class="px-navbar-icon-label">Income messages</span>
+                    <span class="px-navbar-label label label-danger">8</span>
+                </a>
+                <div class="dropdown-menu p-a-0" style="width: 300px;">
+                    <div id="navbar-messages" style="height: 280px; position: relative;">
+                        <div class="widget-messages-alt-item">
+                            <img src="../../dist/demo/avatars/2.jpg" alt="" class="widget-messages-alt-avatar">
+                            <a href="#" class="widget-messages-alt-subject text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+                            <div class="widget-messages-alt-description">from <a href="#">Robert Jang</a></div>
+                            <div class="widget-messages-alt-date">2h ago</div>
+                        </div>
+
+                        <div class="widget-messages-alt-item">
+                            <img src="../../dist/demo/avatars/3.jpg" alt="" class="widget-messages-alt-avatar">
+                            <a href="#" class="widget-messages-alt-subject text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
+                            <div class="widget-messages-alt-description">from <a href="#">Michelle Bortz</a></div>
+                            <div class="widget-messages-alt-date">2h ago</div>
+                        </div>
+
+                        <div class="widget-messages-alt-item">
+                            <img src="../../dist/demo/avatars/4.jpg" alt="" class="widget-messages-alt-avatar">
+                            <a href="#" class="widget-messages-alt-subject text-truncate">Lorem ipsum dolor sit amet.</a>
+                            <div class="widget-messages-alt-description">from <a href="#">Timothy Owens</a></div>
+                            <div class="widget-messages-alt-date">2h ago</div>
+                        </div>
+
+                        <div class="widget-messages-alt-item">
+                            <img src="../../dist/demo/avatars/5.jpg" alt="" class="widget-messages-alt-avatar">
+                            <a href="#" class="widget-messages-alt-subject text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
+                            <div class="widget-messages-alt-description">from <a href="#">Denise Steiner</a></div>
+                            <div class="widget-messages-alt-date">2h ago</div>
+                        </div>
+
+                        <div class="widget-messages-alt-item">
+                            <img src="../../dist/demo/avatars/2.jpg" alt="" class="widget-messages-alt-avatar">
+                            <a href="#" class="widget-messages-alt-subject text-truncate">Lorem ipsum dolor sit amet.</a>
+                            <div class="widget-messages-alt-description">from <a href="#">Robert Jang</a></div>
+                            <div class="widget-messages-alt-date">2h ago</div>
+                        </div>
+
+                        <div class="widget-messages-alt-item">
+                            <img src="../../dist/demo/avatars/3.jpg" alt="" class="widget-messages-alt-avatar">
+                            <a href="#" class="widget-messages-alt-subject text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
+                            <div class="widget-messages-alt-description">from <a href="#">Michelle Bortz</a></div>
+                            <div class="widget-messages-alt-date">2h ago</div>
+                        </div>
+
+                        <div class="widget-messages-alt-item">
+                            <img src="../../dist/demo/avatars/4.jpg" alt="" class="widget-messages-alt-avatar">
+                            <a href="#" class="widget-messages-alt-subject text-truncate">Lorem ipsum dolor sit amet.</a>
+                            <div class="widget-messages-alt-description">from <a href="#">Timothy Owens</a></div>
+                            <div class="widget-messages-alt-date">2h ago</div>
+                        </div>
+
+                        <div class="widget-messages-alt-item">
+                            <img src="../../dist/demo/avatars/5.jpg" alt="" class="widget-messages-alt-avatar">
+                            <a href="#" class="widget-messages-alt-subject text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
+                            <div class="widget-messages-alt-description">from <a href="#">Denise Steiner</a></div>
+                            <div class="widget-messages-alt-date">2h ago</div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="widget-more-link">MORE MESSAGES</a>
+                </div> <!-- / .dropdown-menu -->
+            </li>
+            #}
+
+            {{ render_esi(controller('CoreInstanciaBundle:Default:barra')) }}
+            {{ render_esi(controller('CoreAlertaBundle:Default:container')) }}
+
+
+            <li class="nav-icon-btn nav-icon-btn-success">
+                <a href="#" id="comunicador" >
+                    <i class="nav-icon fa fa-comments"></i>
+                    {#<span class="small-screen-text">Comunicador</span>#}
+                </a>
+            </li>
+
+
+            <li>
+                <form class="navbar-form" action="#" method="GET">
+                    <div class="form-group">
+                        <input type="text" name="q" class="form-control" placeholder="Pesquisar">
+                    </div>
+                </form>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img src="{{ asset(app.user.profile.avatar.asset|default('admin/images/user.svg')) }}" style="max-width: 22px; max-height: 22px" alt="" class="px-navbar-image">
+                    <span class="hidden-md">{{ app.user.profile.name|default(app.user.username) }}</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ path('fos_user_profile_show') }}">Perfil</a></li>
+                    <li><a href="{{ path('fos_user_change_password') }}">Alterar a senha</a></li>
+                    <li><a href="{{ path('fos_user_profile_edit') }}"><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Configurações</a></li>
+                    <li class="divider"></li>
+                    {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                        <li><a href="{{ path('admin_home', {'_switch_user': '_exit'}) }}"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Sair</a></li>
+                    {% else %}
+                        <li><a href="{{ path('logout') }}"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Sair</a></li>
+                    {% endif %}
+                </ul>
+            </li>
+
+        </ul>
+    </div><!-- /.navbar-collapse -->
+</nav>

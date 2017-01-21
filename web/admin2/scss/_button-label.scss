@@ -1,0 +1,171 @@
+//
+// Button label
+// --------------------------------------------------
+
+.btn-label,
+.btn-label-icon {
+  position: relative;
+
+  display: block;
+
+  font-size: inherit;
+  line-height: inherit;
+
+  // Default size
+  @include button-label-size-base($padding-base-horizontal, $padding-base-vertical, $border-radius-base);
+
+  &.left {
+    float: left;
+
+    border-right: 1px solid;
+    border-right-color: inherit;
+  }
+
+  &.right {
+    float: right;
+
+    border-left: 1px solid;
+    border-left-color: inherit;
+  }
+}
+
+.btn-label {
+  color: $text-color;
+  background: $btn-label-bg;
+
+  font-weight: 600;
+}
+
+.btn-label-icon { background: $btn-label-icon-bg; }
+
+
+// Button group
+//
+
+.btn-group {
+  > .btn:not(:first-child):not(:last-child) {
+    .btn-label,
+    .btn-label-icon {
+      border-radius: 0;
+    }
+  }
+
+  > .btn:first-child:not(:last-child) {
+    .btn-label,
+    .btn-label-icon {
+      @include border-right-radius(0);
+    }
+  }
+
+  > .btn:last-child:not(:first-child) {
+    .btn-label,
+    .btn-label-icon {
+      @include border-left-radius(0);
+    }
+  }
+}
+
+.btn-group-vertical {
+  > .btn:not(:first-child):not(:last-child) {
+    .btn-label,
+    .btn-label-icon {
+      border-radius: 0;
+    }
+  }
+
+  > .btn:first-child:not(:last-child) {
+    .btn-label,
+    .btn-label-icon {
+      @include border-bottom-radius(0);
+    }
+  }
+
+  > .btn:last-child:not(:first-child) {
+    .btn-label,
+    .btn-label-icon {
+      @include border-top-radius(0);
+    }
+  }
+
+  .btn-label-icon {
+    width: 2.5em;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+
+    text-align: center;
+  }
+}
+
+
+// Rouded buttons
+//
+
+.btn-rounded .btn-label,
+.btn-rounded .btn-label-icon {
+  &.left { @include border-left-radius(999px); }
+  &.right { @include border-right-radius(999px); }
+}
+
+
+// Outline buttons
+//
+
+.btn-outline {
+  &:hover,
+  &:active,
+  &:focus,
+  &.focus {
+    .btn-label {
+      color: $text-color;
+      background: $btn-label-bg;
+    }
+
+    .btn-label-icon {
+      background: $btn-label-icon-bg;
+    }
+  }
+
+  .btn-label,
+  .btn-label-icon {
+    background: none;
+  }
+}
+
+.btn-outline-colorless-inverted .btn-label {
+  color: inherit;
+}
+
+
+// Disabled
+//
+
+.btn-outline.disabled,
+.btn-outline:disabled,
+fieldset[disabled] .btn-outline {
+  .btn-label-icon { background: none !important; }
+
+  &.active {
+    .btn-label {
+      color: $text-color !important;
+      background: $btn-label-bg !important;
+    }
+
+    .btn-label-icon { background: $btn-label-icon-bg !important; }
+  }
+}
+
+.btn-outline-colorless-inverted.disabled .btn-label,
+.btn-outline-colorless-inverted:disabled .btn-label,
+fieldset[disabled] .btn-outline-colorless-inverted .btn-label {
+  color: inherit !important;
+  background: none !important;
+}
+
+
+// Sizes
+//
+
+@include button-label-size(xs, $padding-xs-horizontal, $padding-xs-vertical, $border-radius-xs);
+@include button-label-size(sm, $padding-small-horizontal, $padding-small-vertical, $border-radius-small);
+@include button-label-size(lg, $padding-large-horizontal, $padding-large-vertical, $border-radius-large);
+@include button-label-size(xl, $padding-xl-horizontal, $padding-xl-vertical, $border-radius-xl);

@@ -1,0 +1,193 @@
+//
+// Plugins / Toastr
+// --------------------------------------------------
+
+.toast-title { font-weight: bold; }
+
+.toast-message {
+  word-wrap: break-word;
+
+  a {
+    text-decoration: underline !important;
+
+    &:hover,
+    &:focus  {
+      opacity: .4 !important;
+    }
+  }
+}
+
+// Close button
+//
+
+.toast-close-button {
+  position: relative;
+  top: -0.3em;
+  right: -0.3em;
+
+  float: right;
+
+  cursor: pointer;
+  text-decoration: none !important;
+
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+
+  &:hover,
+  &:focus {
+    opacity: .4;
+  }
+}
+
+button.toast-close-button {
+  padding: 0;
+
+  cursor: pointer;
+
+  border: 0;
+  background: transparent;
+
+  -webkit-appearance: none;
+}
+
+// Position
+//
+
+.toast-top-center {
+  top: 0;
+  right: 0;
+
+  width: 100%;
+}
+
+.toast-bottom-center {
+  right: 0;
+  bottom: 0;
+
+  width: 100%;
+}
+
+.toast-top-full-width {
+  top: 0;
+  right: 0;
+
+  width: 100%;
+}
+
+.toast-bottom-full-width {
+  right: 0;
+  bottom: 0;
+
+  width: 100%;
+}
+
+.toast-top-left {
+  top: 8px;
+  left: 8px;
+}
+
+.toast-top-right {
+  top: 8px;
+  right: 8px;
+}
+
+.toast-bottom-right {
+  right: 8px;
+  bottom: 8px;
+}
+
+.toast-bottom-left {
+  bottom: 8px;
+  left: 8px;
+}
+
+// Container
+//
+
+#toast-container {
+  position: fixed;
+  z-index: $zindex-growls;
+
+  pointer-events: none;
+
+  > div {
+    position: relative;
+
+    overflow: hidden;
+
+    width: 300px;
+    margin: 8px 0 0 0;
+    padding: 15px 15px 15px 50px;
+
+    pointer-events: auto;
+
+    border-radius: $border-radius-base;
+  }
+
+  > div:hover {
+    cursor: pointer;
+  }
+
+  &.toast-top-center > div,
+  &.toast-bottom-center > div {
+    width: 300px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  &.toast-top-full-width > div,
+  &.toast-bottom-full-width > div {
+    width: 96%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  height: 4px;
+
+  background-color: $toastr-progress-bar-bg;
+}
+
+// Icons
+//
+
+.toast:before {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 0;
+
+  display: block;
+
+  width: 50px;
+  height: $toastr-icon-size;
+  margin-top: -($toastr-icon-size / 2);
+
+  text-align: center;
+
+  font-family: $toastr-icon-font-family;
+  font-size: $toastr-icon-size;
+  line-height: $toastr-icon-size;
+}
+
+.toast-success:before { content: $toastr-icon-success; }
+.toast-error:before { content: $toastr-icon-error; }
+.toast-info:before { content: $toastr-icon-info; }
+.toast-warning:before { content: $toastr-icon-warning; }
+
+// Colors
+//
+
+// Default
+.toast { @include toastr-base(#fff, $toastr-default-bg); }
+
+@include toastr-variant(success, #fff, $brand-success);
+@include toastr-variant(error, #fff, $brand-danger);
+@include toastr-variant(info, #fff, $brand-info);
+@include toastr-variant(warning, #fff, $brand-warning);

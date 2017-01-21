@@ -1,0 +1,61 @@
+
+    /**
+{% block phpdoc_method_header %}
+     * Creates a new {{ entity }} entity.
+{% endblock phpdoc_method_header %}
+     *
+{% block phpdoc_method_annotations %}
+{% if 'annotation' == format %}
+     * @Route("/new", name="{{ route_name_prefix }}_new")
+     * @Method({"GET", "POST"})
+{% endif %}
+     * @Security("is_granted('ROLE_ADMIN_{{ entity_class|upper }}_NEW')")
+{% endblock phpdoc_method_annotations %}
+     */
+{% block method_definition %}
+    public function newAction(Request $request)
+{% endblock method_definition %}
+    {
+{% block method_body %}
+        ${{ entity_class }}Manager = $this->get('app.{{ route_name_prefix }}.manager_service');
+        ${{ entity_singularized }} = ${{ entity_class }}Manager->create();
+        $form = $this->createForm({{ entity_class }}Type::class, ${{ entity_singularized }});
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try{
+                ${{ entity_class }}Manager->validate(${{ entity_singularized }});
+                $em = $this->getDoctrine()->getManager();
+                $em->persist(${{ entity_singularized }});
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('success', 
+                    $this->get('translator')->trans('flash.create.success',array(),'CoreAdminBundle')
+                );
+
+                {% if 'show' in actions -%}
+                    return $this->redirectToRoute('{{ route_name_prefix }}_show', array('id' => ${{ entity_singularized }}->getId()));
+                {%- else -%}
+                    return $this->redirectToRoute('{{ route_name_prefix }}_index'));
+                {%- endif %}
+                
+            } catch (\Exception $e){
+                $this->get('session')->getFlashBag()->add('danger', 
+                    $this->get('translator')->trans('flash.create.error',array(),'CoreAdminBundle')
+                );
+                if($this->getUser()->hasRole('ROLE_SUPERADMIN')){
+                    $this->get('session')->getFlashBag()->add('danger', 
+                        $e->getMessage()
+                    );
+                }
+            }
+
+        }
+{% endblock method_body %}
+
+{% block method_return %}
+        return $this->render('{{ entity|lower|replace({'\\': '/'}) }}/new.html.twig', array(
+            '{{ entity_singularized }}' => ${{ entity_singularized }},
+            'form' => $form->createView(),
+        ));
+{% endblock method_return %}
+    }

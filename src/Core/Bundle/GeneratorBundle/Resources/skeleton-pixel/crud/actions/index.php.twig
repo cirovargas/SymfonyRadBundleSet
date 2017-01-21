@@ -1,0 +1,39 @@
+    /**
+{% block phpdoc_method_header %}
+     * Lists all {{ entity }} entities.
+{% endblock phpdoc_method_header %}
+     *
+{% block phpdoc_method_annotations %}
+{% if 'annotation' == format %}
+     * @Route("/", name="{{ route_name_prefix }}_index")
+     * @Method("GET")
+{% endif %}
+     * @Security("is_granted('ROLE_ADMIN_{{ entity_class|upper }}')")
+{% endblock phpdoc_method_annotations %}
+     */
+{% block method_definition %}
+    public function indexAction({% if 'new' in actions or 'edit' in actions or 'delete' in actions %}Request $request{% endif %})
+{% endblock method_definition %}
+    {
+{% block method_body %}
+        
+        list($filterForm, $queryBuilder) = 
+            $this
+                ->get('core_admin.list_filter')
+                ->filter('{{ namespace }}\Form\{{ entity_class }}FilterType','{{ bundle }}:{{ entity }}');
+                
+        list(${{ entity_pluralized }}, $pagerHtml) = 
+            $this
+                ->get('core_admin.list_paginator')
+                ->paginator($queryBuilder,'{{ route_name_prefix }}_index');
+        
+{% endblock method_body %}
+
+{% block method_return %}
+        return $this->render('{{ entity|lower|replace({'\\': '/'}) }}/index.html.twig', array(
+            '{{ entity_pluralized }}' => ${{ entity_pluralized }},
+            'pagerHtml' => $pagerHtml,
+            'filterForm' => $filterForm->createView(),
+        ));
+{% endblock method_return %}
+    }

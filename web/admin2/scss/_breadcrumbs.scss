@@ -1,0 +1,65 @@
+//
+// Breadcrumbs
+// --------------------------------------------------
+
+.breadcrumb {
+  position: relative;
+
+  margin-bottom: $content-wrapper-padding;
+
+  color: $breadcrumb-color;
+  background: none;
+
+  font-size: 12px;
+
+  li,
+  a {
+    color: $breadcrumb-color;
+  }
+
+  .active,
+  .active a {
+    cursor: default;
+  }
+
+  a:hover,
+  .active,
+  .active a {
+    color: $breadcrumb-active-color;
+  }
+
+  li + li:before { color: $breadcrumb-separator-color; }
+}
+
+html[dir="rtl"] .breadcrumb li + li:before {
+  content: $breadcrumb-separator-rtl;
+}
+
+.breadcrumb-inverted {
+  li,
+  a {
+    color: $breadcrumb-color-inverted;
+  }
+
+  a:hover,
+  .active,
+  .active a {
+    color: $breadcrumb-active-color-inverted;
+  }
+
+  li + li:before { color: $breadcrumb-separator-color-inverted; }
+}
+
+.breadcrumb-label {
+  float: left;
+
+  padding-right: 15px;
+}
+
+.page-breadcrumb {
+  margin: (-$content-wrapper-padding) (-$content-wrapper-padding) $content-wrapper-padding (-$content-wrapper-padding);
+  padding: 6px $content-wrapper-padding;
+
+  border-bottom: 1px solid;
+  border-radius: 0;
+}

@@ -1,0 +1,71 @@
+//
+// Px Footer
+// --------------------------------------------------
+
+.px-footer {
+  padding: $px-footer-padding-y $content-wrapper-padding;
+  border-top: 1px solid transparent;
+}
+
+.px-footer-bottom,
+.px-footer-fixed {
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.px-footer-bottom { position: absolute; }
+.px-footer-fixed {
+  position: fixed;
+  z-index: $zindex-footer-fixed;
+}
+
+// Tablets
+@media (min-width: $px-nav-tablets-breakpoint) {
+  @each $pos in ('left', 'right') {
+    .px-nav-#{$pos} ~ .px-footer { padding-#{$pos}: $px-nav-width-tablet + $content-wrapper-padding; }
+  }
+}
+
+// Desktops
+@media (min-width: $px-nav-desktops-breakpoint) {
+  @each $pos in ('left', 'right') {
+    .px-nav-#{$pos} ~ .px-footer,
+    .px-nav-#{$pos}.px-nav-expand ~ .px-footer {
+      padding-#{$pos}: $px-nav-width-desktop + $content-wrapper-padding;
+    }
+
+    .px-nav-#{$pos}.px-nav-collapse ~ .px-footer { padding-#{$pos}: $px-nav-width-tablet + $content-wrapper-padding; }
+  }
+}
+
+// Hidden nav
+//
+
+// Tablets
+@media (min-width: $px-nav-tablets-breakpoint) and (max-width: $px-nav-desktops-breakpoint - 1) {
+  .px-nav-off-canvas,
+  .px-nav-off-canvas-tablets {
+    @each $pos in ('left', 'right') {
+      &.px-nav-#{$pos} ~ .px-footer { padding-#{$pos}: $content-wrapper-padding; }
+    }
+  }
+}
+
+// Desktops
+@media (min-width: $px-nav-desktops-breakpoint) {
+  .px-nav-off-canvas,
+  .px-nav-off-canvas-desktops {
+    @each $pos in ('left', 'right') {
+      &.px-nav-#{$pos}.px-nav-collapse ~ .px-footer { padding-#{$pos}: $content-wrapper-padding; }
+    }
+  }
+}
+
+// Animations
+//
+
+.px-nav-transitioning ~ .px-footer {
+  transition-property: padding, left, right;
+  transition-duration: $px-nav-transition-duration;
+}

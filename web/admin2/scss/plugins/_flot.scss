@@ -1,0 +1,17 @@
+//
+// Plugins / Flot
+// --------------------------------------------------
+
+
+.flotTip {
+  border-radius: $border-radius-base !important;
+  background-color: $tooltip-bg !important;
+  color: $tooltip-color !important;
+  font-size: 11px !important;
+  padding: 4px 10px !important;
+}
+
+.flot-overlay ~ .legend {
+  > * { right: 0 !important; }
+  .legendColorBox { padding-right: 5px; }
+}

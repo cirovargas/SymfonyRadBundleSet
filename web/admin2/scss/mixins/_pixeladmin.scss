@@ -1,0 +1,193 @@
+//
+// Mixins / PixelAdmin
+// --------------------------------------------------
+
+@mixin pixel-theme($primary-color, $primary-text-color, $primary-border-color, $body-bg, $panel-border-color, $px-navbar, $px-nav, $px-footer, $header-bg: transparent, $header-border-color: false, $timeline-bg: false){
+
+  // Base / Default
+  //
+
+  @include px-base-theme(
+    $body-bg:             $body-bg,
+    $panel-border-color:  $panel-border-color,
+    $header-bg:           $header-bg,
+    $header-border-color: $header-border-color
+  );
+  @include pixel-colors(primary, $primary-color);
+  @include table-theme($primary-text-color, $primary-color);
+  @include form-theme($primary-color);
+  @include button-theme($primary-text-color, $primary-color, $primary-border-color);
+
+  // Elements
+  //
+
+  @if mixin-exists(px-navbar-theme) {
+    @include px-navbar-theme($px-navbar...);
+  }
+  @if mixin-exists(px-nav-theme) {
+    @include px-nav-theme($px-nav...);
+  }
+  @if mixin-exists(px-footer-theme) {
+    @include px-footer-theme($px-footer...);
+  }
+  @if mixin-exists(label-theme) {
+    @include label-theme($primary-text-color, $primary-color);
+  }
+  @if mixin-exists(progress-bar-theme) {
+    @include progress-bar-theme($primary-color);
+  }
+  @if mixin-exists(dropdown-theme) {
+    @include dropdown-theme($primary-text-color, $primary-color);
+  }
+  @if mixin-exists(pixel-panel-variant) {
+    @include pixel-panel-variant(primary,
+      $primary-text-color, $primary-color, $primary-border-color, // Light
+      $primary-text-color, $primary-color // Dark
+    );
+  }
+  @if mixin-exists(custom-form-theme) {
+    @include custom-form-theme($primary-color);
+  }
+  @if mixin-exists(tooltip-theme) {
+    @include tooltip-theme($primary-color);
+  }
+  @if mixin-exists(popover-theme) {
+    @include popover-theme($primary-text-color, $primary-color, $primary-border-color);
+  }
+  @if mixin-exists(nav-theme) {
+    @include nav-theme($primary-text-color, $primary-color);
+  }
+  @if mixin-exists(pagination-theme) {
+    @include pagination-theme($primary-text-color, $primary-color);
+  }
+  @if mixin-exists(thumbnail-theme) {
+    @include thumbnail-theme($primary-color);
+  }
+  @if mixin-exists(list-groups-theme) {
+    @include list-groups-theme($primary-text-color, $primary-color);
+  }
+  @if mixin-exists(switcher-theme) {
+    @include switcher-theme($primary-text-color, $primary-color);
+  }
+
+
+  // Plugins
+  //
+
+  @if mixin-exists(pace-theme) {
+    @include pace-theme($primary-color);
+  }
+  @if mixin-exists(select2-theme) {
+    @include select2-theme($primary-text-color, $primary-color, $primary-color);
+  }
+  @if mixin-exists(datepicker-theme) {
+    @include datepicker-theme($primary-text-color, $primary-color);
+  }
+  @if mixin-exists(timepicker-theme) {
+    @include timepicker-theme($primary-text-color, $primary-color);
+  }
+  @if mixin-exists(dropzone-theme) {
+    @include dropzone-theme($primary-color);
+  }
+  @if mixin-exists(ionrangeslider-theme) {
+    @include ionrangeslider-theme($primary-text-color, $primary-color);
+  }
+  @if mixin-exists(daterangepicker-theme) {
+    @include daterangepicker-theme($primary-text-color, $primary-color);
+  }
+  @if mixin-exists(bs-tagsinput-theme) {
+    @include bs-tagsinput-theme($primary-color);
+  }
+  @if mixin-exists(bs-slider-theme) {
+    @include bs-slider-theme($primary-color);
+  }
+  @if mixin-exists(nouislider-theme) {
+    @include nouislider-theme($primary-color);
+  }
+
+  // Widgets
+  //
+
+  @if mixin-exists(widget-pricing-theme) {
+    @include widget-pricing-theme($panel-border-color);
+  }
+  @if mixin-exists(widget-timeline-theme) {
+    @if($timeline-bg) {
+      @include widget-timeline-theme($timeline-bg);
+    }
+    @else {
+      @if type-of($body-bg) == list {
+        @include widget-timeline-theme(darken(nth($body-bg, 1), 6%));
+      }
+      @else {
+        @include widget-timeline-theme(darken($body-bg, 6%));
+      }
+    }
+  }
+}
+
+// Generate colors
+
+@mixin pixel-color-variant($name, $color, $text) {
+
+  @include pixel-colors($name, $color);
+  @include table-variant($name, $text, $color);
+  @include pixel-button-variant($name, $text, $color, desaturate(darken($color, 5%), 10%));
+
+  @if mixin-exists(dropdown-variant) {
+    @include dropdown-variant($name, $text, $color);
+  }//
+
+  @if mixin-exists(nav-variant) {
+    @include nav-variant($name, $text, $color);
+  }//
+
+  @if mixin-exists(pixel-label-variant) {
+    @include pixel-label-variant($name, $text, $color);
+  }//
+
+  @if mixin-exists(pixel-alert-variant) {
+    @include pixel-alert-variant($name, $text, $color, darken($color, 5%));
+    @include pixel-alert-dark-variant($name, $color);
+  }//
+
+  @if mixin-exists(pixel-progress-bar-variant) {
+    @include pixel-progress-bar-variant($name, $color);
+  }//
+
+  @if mixin-exists(list-groups-variant) {
+    @include list-groups-variant($name, $text, $color);
+  }//
+
+  @if mixin-exists(pixel-panel-dark-base) {
+    .panel-#{$name} {
+      @include pixel-panel-dark-base($text, $color);
+    }
+  }//
+
+  @if mixin-exists(panel-wizard-base) {
+    .panel-#{$name}.panel-dark.panel-body-colorful .panel-wizard {
+      @include panel-wizard-base($text, $color, lighten($color, 15%));
+    }
+  }//
+
+  @if mixin-exists(pixel-tooltip-variant) {
+    @include pixel-tooltip-variant($name, $color, $text);
+  }//
+
+  @if mixin-exists(pixel-popover-variant) {
+    @include pixel-popover-variant($name, $text, $color, $color, $text, $color);
+  }//
+
+  @if mixin-exists(panel-group-variant) {
+    @include panel-group-variant($name, $text, $color);
+  }//
+
+  @if mixin-exists(switcher-variant) {
+    @include switcher-variant($name, $text, $color);
+  }//
+
+  @if mixin-exists(custom-control-variant) {
+    @include custom-control-variant($name, $color);
+  }//
+}

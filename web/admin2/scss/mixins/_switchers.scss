@@ -1,0 +1,72 @@
+//
+// Mixins / Switchers
+// --------------------------------------------------
+
+@mixin switcher-size-base($width, $height, $font-size, $label-font-size, $label-line-height) {
+  $btn-spacer: 2px;
+  $lh-computed: round($label-font-size * $label-line-height);
+  $label-vertical-padding: if($height > $lh-computed, round(($height - $lh-computed) / 2), 0);
+
+  padding-top: $label-vertical-padding;
+  padding-bottom: $label-vertical-padding;
+  padding-left: $width + $switcher-spacer-x;
+
+  font-size: $label-font-size;
+  line-height: $label-line-height;
+
+  &.switcher-blank {
+    width: $width;
+    height: $height;
+  }
+
+  .switcher-indicator {
+    width: $width;
+    height: $height;
+    margin-top: -$height / 2;
+
+    font-size: $font-size;
+    line-height: $height;
+  }
+
+  > input:checked ~ .switcher-indicator:after { left: $width - $height; }
+
+  .switcher-indicator:after {
+    width: $height - $btn-spacer * 2;
+    height: $height - $btn-spacer * 2;
+    margin: $btn-spacer 0 0 $btn-spacer;
+  }
+
+  .switcher-no { padding-left: $height - $btn-spacer; }
+  .switcher-yes { padding-right: $height - $btn-spacer; }
+}
+
+@mixin switcher-size($state, $width, $height, $font-size, $label-font-size, $label-line-height) {
+  .switcher-#{$state},
+  .form-group-#{$state} .switcher {
+    @include switcher-size-base($width, $height, $font-size, $label-font-size, $label-line-height);
+  }
+}
+
+@mixin switcher-base($color, $background) {
+  > input:checked ~ .switcher-indicator {
+    color: $color;
+    background: $background;
+  }
+
+  // Active state
+  > input:focus ~ .switcher-indicator:after,
+  > input:active ~ .switcher-indicator:after,
+  &:active .switcher-indicator:after {
+    box-shadow: 0 0 0 1px $background inset;
+  }
+}
+
+@mixin switcher-variant($state, $color, $background) {
+  .switcher-#{$state} {
+    @include switcher-base($color, $background);
+  }
+}
+
+@mixin switcher-theme($color, $background) {
+  @include switcher-variant(primary, $color, $background);
+}

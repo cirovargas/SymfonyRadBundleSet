@@ -1,0 +1,103 @@
+//
+// Plugins / Bootstrap Tags Input
+// --------------------------------------------------
+
+.bootstrap-tagsinput {
+  display: block;
+
+  max-width: 100%;
+
+  cursor: text;
+  transition: border-color .15s;
+  vertical-align: middle;
+
+  color: $input-color;
+  border: 1px solid $input-border;
+  background-color: $input-bg;
+
+  // Clearfix
+
+  &:before,
+  &:after {
+    display: table;
+
+    content: " ";
+  }
+
+  &:after { clear: both; }
+}
+
+.bootstrap-tagsinput input,
+.bootstrap-tagsinput-input {
+  display: block;
+  float: left;
+
+  width: auto;
+  max-width: 100% !important;
+  padding: 0 6px !important;
+
+  border: none !important;
+  outline: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.bootstrap-tagsinput-input {
+  max-width: none !important;
+}
+
+.bootstrap-tagsinput.form-control input::-moz-placeholder {
+  opacity: 1;
+  color: $input-color-placeholder !important;
+}
+
+.bootstrap-tagsinput.form-control input:-ms-input-placeholder { color: $input-color-placeholder !important; }
+.bootstrap-tagsinput.form-control input::-webkit-input-placeholder { color: $input-color-placeholder !important; }
+
+.bootstrap-tagsinput .tag {
+  position: relative;
+
+  display: block;
+  float: left;
+
+  font-size: 11px;
+}
+
+.bootstrap-tagsinput .tag [data-role="remove"] {
+  position: absolute;
+  right: 0;
+
+  display: inline-block;
+
+  cursor: pointer;
+  text-align: center;
+  text-align: center;
+
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.bootstrap-tagsinput .tag [data-role="remove"]:after {
+  padding: 0px 2px;
+
+  content: "×";
+}
+
+.bootstrap-tagsinput .tag [data-role="remove"]:hover,
+.bootstrap-tagsinput .tag [data-role="remove"]:focus {
+  opacity: .5;
+}
+
+// Sizes
+//
+
+@include bs-tagsinput-size-base($bs-tagsinput-tag-height, $bs-tagsinput-padding, $border-radius-base);
+@include bs-tagsinput-size(sm, $bs-tagsinput-tag-height-sm, $bs-tagsinput-padding-sm, $border-radius-small);
+@include bs-tagsinput-size(lg, $bs-tagsinput-tag-height-lg, $bs-tagsinput-padding-lg, $border-radius-large);
+
+// States
+//
+
+@include bs-tagsinput-state-variant(error, $brand-danger);
+@include bs-tagsinput-state-variant(warning, $brand-warning);
+@include bs-tagsinput-state-variant(success, $brand-success);

@@ -1,0 +1,35 @@
+//
+// Mixins / Widgets
+// --------------------------------------------------
+
+@mixin pixel-widget-item($widget, $padding-x: false, $padding-y: false, $padding-left: 0, $padding-right: 0){
+  @if ($padding-x != false) {
+    $padding-left: $padding-x;
+    $padding-right: $padding-x;
+  }
+
+  .widget-#{$widget}-item {
+    position: relative;
+
+    padding: $padding-y $padding-right $padding-y $padding-left;
+
+    @include clearfix();
+
+    + .widget-#{$widget}-item { border-top: 1px solid $widget-default-border-color; }
+
+    @content;
+  }
+}
+
+@mixin pixel-widget-within-panel($widget, $padding-left: $panel-body-padding, $padding-right: $panel-body-padding){
+  .panel.widget-#{$widget} .panel-body { padding: 0; }
+
+  .panel .widget-#{$widget}-item {
+    padding-right: $padding-right;
+    padding-left: $padding-left;
+
+    @content;
+  }
+
+  .panel-title + .widget-#{$widget}-item { border-top: 1px solid $widget-default-border-color; }
+}

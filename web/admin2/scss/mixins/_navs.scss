@@ -1,0 +1,38 @@
+//
+// Mixins / Navs
+// --------------------------------------------------
+
+@mixin nav-size($size, $padding, $font-size: null) {
+  .nav-#{$size} > li > a {
+    padding: $padding;
+
+    font-size: $font-size;
+
+    @content;
+  }
+}
+
+@mixin nav-base($color, $background, $border: darken($background, 5%)) {
+  > li.active > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $color;
+      background: $background;
+    }
+  }
+
+  &.nav-tabs > li.active > a { border-bottom-color: $border !important; }
+}
+
+@mixin nav-theme($color, $background, $border: darken($background, 5%)) {
+  .nav {
+    @include nav-base($color, $background, $border);
+  }
+}
+
+@mixin nav-variant($state, $color, $background, $border: darken($background, 5%)) {
+  .nav.nav-#{$state} {
+    @include nav-base($color, $background, $border);
+  }
+}

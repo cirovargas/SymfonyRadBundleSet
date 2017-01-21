@@ -1,0 +1,122 @@
+//
+// Plugins / Bootstrap-timepicker
+// --------------------------------------------------
+
+.bootstrap-timepicker-trigger { cursor: pointer; }
+
+.bootstrap-timepicker-widget {
+  &.dropdown-menu {
+    padding: 12px;
+
+    /*@noflip*/ right: auto;
+    /*@noflip*/ float: left;
+
+    border: $popover-border-width solid;
+    border-color: $popover-fallback-border-color;
+    border-color: $popover-border-color;
+
+    &.open { display: block; }
+
+    // Arrow
+    &:after {
+      position: absolute;
+
+      display: block;
+
+      content: "";
+
+      border-width: $popover-arrow-width;
+      border-style: solid;
+      border-color: transparent;
+    }
+  }
+
+  .table {
+    width: auto;
+    margin: 0;
+
+    table-layout: fixed;
+
+    td {
+      width: 48px;
+      padding: 0;
+
+      text-align: center;
+      vertical-align: middle;
+
+      border: none;
+    }
+  }
+
+  &.modal .table {
+    width: 100%;
+
+    td { width: auto; }
+  }
+
+  .separator { width: 12px !important; }
+}
+
+.timepicker-input,
+.timepicker-value {
+  margin: 8px 0;
+}
+
+.timepicker-value,
+.timepicker-increment,
+.timepicker-decrement {
+  display: block;
+
+  padding: $padding-base-vertical 0;
+
+  text-align: center;
+  vertical-align: middle;
+
+  font-weight: 600;
+}
+
+.timepicker-input { text-align: center; }
+
+.timepicker-increment,
+.timepicker-decrement {
+  color: $text-color;
+  border: 1px solid $bootstrap-timepicker-border;
+  border-radius: $border-radius-base;
+
+  font-size: 16px;
+  line-height: $font-size-base * $line-height-base;
+
+  &:focus {
+    text-decoration: none;
+
+    color: $text-color;
+    outline: none;
+  }
+}
+
+
+// Arrows
+//
+
+.timepicker-orient-top.dropdown-menu {
+  margin-top: $popover-arrow-width;
+
+  &:after {
+    top: -$popover-arrow-width - $popover-border-width;
+
+    border-top-width: 0;
+    border-bottom-color: $popover-fallback-border-color;
+    border-bottom-color: $popover-border-color;
+  }
+}
+
+.timepicker-orient-bottom.dropdown-menu:after {
+  bottom: -$popover-arrow-width - $popover-border-width;
+
+  border-top-color: $popover-fallback-border-color;
+  border-top-color: $popover-border-color;
+  border-bottom-width: 0;
+}
+
+.timepicker-orient-left.dropdown-menu:after { /*@noflip*/ left: 12px; }
+.timepicker-orient-right.dropdown-menu:after { /*@noflip*/ right: 12px; }

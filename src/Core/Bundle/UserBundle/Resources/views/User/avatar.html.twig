@@ -1,0 +1,36 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}
+{{ parent() }} - Adicionar usuário
+{% endblock %}
+
+{% block page %}
+<div class="page-header">
+    <h1>Alterar imagem do perfil</h1>
+</div>
+<div class="row">
+    {{ form_start(form) }}
+    <div class="col-sm-12">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="row text-center">
+                    <p>Imagem atual</p>
+                    <p><img src="{{ asset(app.user.profile.avatar.asset|default('admin/images/user.svg')) }}" style="max-width: 250px" /></p>
+                    <br />
+                </div>
+                    <div class="col-md-12">
+                        {{ form_row(form.avatarArquivo) }}
+                    </div>
+
+               
+            </div>
+            <div class="panel-footer text-right">
+                
+                <button type="submit" class="btn btn-success">Salvar</button>
+            </div>
+        </div>
+    </div>
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+</div>
+{% endblock %}

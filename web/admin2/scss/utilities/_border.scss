@@ -1,0 +1,57 @@
+//
+// Utilities / Border
+// --------------------------------------------------
+
+@each $size in (1, 2, 3, 4) {
+  .b-a-#{$size} {
+    border-width: #{$size}px !important;
+    border-style: solid !important;
+  }
+  .b-t-#{$size} {
+    border-top-width: #{$size}px !important;
+    border-top-style: solid !important;
+  }
+  .b-r-#{$size} {
+    border-right-width: #{$size}px !important;
+    border-right-style: solid !important;
+  }
+  .b-b-#{$size} {
+    border-bottom-width: #{$size}px !important;
+    border-bottom-style: solid !important;
+  }
+  .b-l-#{$size} {
+    border-left-width: #{$size}px !important;
+    border-left-style: solid !important;
+  }
+
+  // Axes
+  .b-x-#{$size} {
+    border-right-width: #{$size}px !important;
+    border-right-style: solid !important;
+
+    border-left-width: #{$size}px !important;
+    border-left-style: solid !important;
+  }
+  .b-y-#{$size} {
+    border-top-width: #{$size}px !important;
+    border-top-style: solid !important;
+
+    border-bottom-width: #{$size}px !important;
+    border-bottom-style: solid !important;
+  }
+}
+
+// Eliminate borders
+.b-t-0 { border-top-width:    0 !important; }
+.b-r-0 { border-right-width:  0 !important; }
+.b-b-0 { border-bottom-width: 0 !important; }
+.b-l-0 { border-left-width:   0 !important; }
+.b-x-0 {
+  border-right-width: 0 !important;
+  border-left-width:  0 !important;
+}
+.b-y-0 {
+  border-top-width:    0 !important;
+  border-bottom-width: 0 !important;
+}
+.b-a-0 { border-width: 0 !important; }

@@ -1,0 +1,314 @@
+//
+// Custom forms
+// --------------------------------------------------
+
+.custom-control {
+  position: relative;
+
+  display: block;
+
+  margin-bottom: $custom-control-spacer-y;
+  padding: 0;
+  padding-left: $custom-control-gutter;
+
+  cursor: pointer;
+  user-select: none;
+
+  font-weight: normal;
+
+  @include clearfix();
+
+  // Inline control
+  .form-inline &,
+  &.radio-inline,
+  &.checkbox-inline {
+    display: inline-block;
+
+    margin-bottom: 0;
+
+    & + .custom-control { margin-left: $custom-control-spacer-x; }
+  }
+
+  .form-horizontal & {
+    margin-top: ($padding-base-vertical + 1);
+    margin-bottom: 0;
+    padding-top: 0;
+  }
+}
+
+// Hidden input
+.custom-control-input {
+  position: absolute;
+  z-index: -1;
+
+  margin: 0;
+  padding: 0;
+
+  opacity: 0;
+}
+
+// Custom indicator
+.custom-control-indicator {
+  position: absolute;
+  top: 50%;
+  left: 0;
+
+  display: block;
+
+  width: $custom-control-indicator-size;
+  height: $custom-control-indicator-size;
+  margin-top: -$custom-control-indicator-size / 2;
+
+  user-select: none;
+  pointer-events: none;
+
+  background-color: $custom-control-indicator-bg;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: $custom-control-indicator-bg-size;
+  box-shadow: 0 0 0 1px $input-border inset;
+}
+
+// Checkboxes
+.custom-checkbox {
+  .custom-control-indicator { border-radius: $custom-checkbox-radius; }
+  .custom-control-input:checked ~ .custom-control-indicator { background-image: $custom-checkbox-checked-icon; }
+}
+
+// Radios
+.custom-radio {
+  .custom-control-indicator { border-radius: 999px; }
+  .custom-control-input:checked ~ .custom-control-indicator { background-image: $custom-radio-checked-icon; }
+}
+
+// Blank
+.custom-control-blank {
+  padding: 0;
+  min-height: $line-height-base * $font-size-base;
+  min-width: $custom-control-indicator-size;
+}
+
+// Input group
+.input-group-addon .custom-control-blank {
+  min-height: 0;
+  margin: 0;
+
+  .custom-control-indicator {
+    margin: 0;
+    position: relative;
+    top: auto;
+  }
+}
+
+// Disabled state
+.custom-control-input:disabled,
+fieldset[disabled] .custom-control-input {
+  + .custom-control-indicator {
+    opacity: .65;
+    background-color: $input-bg-disabled !important;
+    box-shadow: 0 0 0 1px $input-border inset !important;
+  }
+
+  + .custom-control-indicator,
+  + .custom-control-description {
+    cursor: $cursor-disabled !important;
+  }
+}
+
+.custom-control.disabled,
+fieldset[disabled] .custom-control {
+  cursor: $cursor-disabled !important;
+}
+
+// Form validation states
+.custom-control {
+  &.has-success,
+  .has-success & {
+    color: $state-success-text;
+
+    .custom-control-indicator { box-shadow: 0 0 0 1px $brand-success inset; }
+  }
+
+  &.has-warning,
+  .has-warning & {
+    color: $state-warning-text;
+
+    .custom-control-indicator { box-shadow: 0 0 0 1px $brand-warning inset; }
+  }
+
+  &.has-error,
+  .has-error & {
+    color: $state-danger-text;
+
+    .custom-control-indicator { box-shadow: 0 0 0 1px $brand-danger inset; }
+  }
+}
+
+// Custom select
+//
+
+.custom-select {
+  padding-right: $padding-base-horizontal + $custom-select-indicator-padding;
+  padding-right: 0 \9;
+
+  vertical-align: middle;
+
+  outline: none !important;
+  background: $input-bg $custom-select-indicator no-repeat right $padding-base-horizontal center;
+  background-image: none \9;
+  background-size: $custom-select-bg-size;
+  // Use vendor prefixes as `appearance` isn't part of the CSS spec.
+
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  &:focus { outline: none !important; }
+  &.form-control { line-height: $line-height-base; }
+
+  // Hides the default caret in IE11
+  &::-ms-expand { opacity: 0; }
+
+  // RTL
+  /*@noflip*/
+  html[dir="rtl"] & {
+    background: $input-bg $custom-select-indicator no-repeat left $padding-base-horizontal center;
+    background-image: none \9;
+    background-size: $custom-select-bg-size;
+  }
+}
+
+.custom-select.input-sm,
+.form-group-sm .custom-select.form-control {
+  line-height: $line-height-small;
+}
+
+.custom-select.input-lg,
+.form-group-lg .custom-select.form-control {
+  line-height: $line-height-large;
+}
+
+// Disabled state
+.custom-select:disabled,
+fieldset[disabled] .custom-select {
+  background-color: $input-bg-disabled !important;
+}
+
+
+// Custom file input
+//
+
+.custom-file {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+  margin: 0;
+
+  cursor: pointer;
+
+  @include clearfix();
+}
+
+.custom-file-input {
+  position: absolute;
+
+  display: block;
+
+  width: 100%;
+
+  opacity: 0;
+
+  filter: alpha(opacity = 0);
+}
+
+.custom-file-control {
+  position: relative;
+
+  overflow: hidden;
+
+  height: auto;
+
+  user-select: none;
+  white-space: nowrap;
+
+  color: $input-color-placeholder;
+
+  font-weight: normal;
+
+  @include custom-file-control-size-base($font-size-base, $padding-base-horizontal, $padding-base-vertical, $line-height-base, $border-radius-base);
+
+  &:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    display: block;
+
+    content: $custom-file-button-label;
+
+    color: $btn-default-color;
+    border: 0 solid $input-border;
+    border-left-width: 1px;
+    background: $btn-default-bg;
+  }
+
+  &:hover:after {
+    border-color: darken($input-border, 2%);
+    background: darken($btn-default-bg, 3%);
+  }
+}
+
+// Disabled state
+.custom-file-input:disabled ~ .custom-file-control {
+  cursor: $cursor-disabled;
+
+  border-color: $input-border !important;
+  background: $input-bg-disabled !important;
+
+  &:after {
+    opacity: .65;
+    border-color: $input-border;
+    background: $btn-default-bg;
+    box-shadow: none;
+  }
+
+  + .px-file-buttons { background-color: $input-bg-disabled; }
+}
+
+
+// PixelAdmin's file input
+//
+
+// Hide browse button
+.px-file .custom-file-control:after { display: none; }
+
+.px-file-buttons {
+  position: absolute;
+  right: 1px;
+
+  background: $input-bg;
+
+  .btn {
+    position: relative;
+
+    float: left;
+
+    margin-left: 6px;
+    padding: 0 7px;
+
+    font-size: $font-size-xs;
+  }
+}
+
+.px-file-clear { display: none; }
+
+.px-file-has-value {
+  .px-file-clear { display: block; }
+  .custom-file-control { color: $input-color; }
+}
+
+// Sizes
+@include custom-file-control-size(sm, $font-size-small, $padding-small-horizontal, $padding-small-vertical, $line-height-small, $border-radius-small, 2px);
+@include custom-file-control-size(lg, $font-size-large, $padding-large-horizontal, $padding-large-vertical, $line-height-large, $border-radius-large, 7px);

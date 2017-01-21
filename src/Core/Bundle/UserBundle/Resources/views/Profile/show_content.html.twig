@@ -1,0 +1,202 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="row m-t-1">
+    <div class="col-md-4 col-lg-3">
+        {% if user.id == app.user.id %}
+            <a href="{{ path('admin_user_avatar') }}" style="position: absolute; width: 100%; left: 0;"><i class="profile-list-icon fa fa-camera-retro"></i> Alterar foto</a>
+        {% endif %}
+        <div class="text-xs-center"><img src="{{ asset(user.profile.avatar.asset|default('admin/images/user.svg')) }}" width="160px" alt="" class="page-profile-v1-avatar border-round"></div>
+        <div class="m-y-3 text-xs-center">
+            {#<a href="#" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;&nbsp;Following</a>&nbsp;&nbsp;#}
+            {#<a href="#" class="btn"><i class="fa fa-envelope"></i></a>#}
+        </div>
+        <div class="panel panel-transparent">
+            <div class="panel-heading p-x-1">
+                <span class="panel-title">Sobre</span>
+            </div>
+            <div class="panel-body p-a-1">
+                {{ user.profile.about|default('') }}
+            </div>
+        </div>
+        {#<div class="panel panel-transparent">#}
+            {#<div class="panel-heading p-x-1">#}
+                {#<span class="panel-title">Statistics</span>#}
+            {#</div>#}
+            {#<div class="list-group m-y-1">#}
+                {#<a href="#" class="list-group-item p-x-1 b-a-0"><strong>126</strong> Likes</a>#}
+                {#<a href="#" class="list-group-item p-x-1 b-a-0"><strong>579</strong> Followers</a>#}
+                {#<a href="#" class="list-group-item p-x-1 b-a-0"><strong>100</strong> Following</a>#}
+            {#</div>#}
+        {#</div>#}
+        {#<div class="panel panel-transparent">#}
+            {#<div class="panel-heading p-x-1">#}
+                {#<span class="panel-title">Skills</span>#}
+            {#</div>#}
+            {#<div class="panel-body p-a-1">#}
+                {#<span class="label label-primary">UI/UX</span>#}
+                {#<span class="label label-primary">Web design</span>#}
+                {#<span class="label label-primary">Photoshop</span>#}
+                {#<span class="label label-primary">HTML</span>#}
+                {#<span class="label label-primary">CSS</span>#}
+            {#</div>#}
+        {#</div>#}
+        <div class="panel panel-transparent">
+            <div class="panel-heading p-x-1">
+                <span class="panel-title">Contato</span>
+            </div>
+            <div class="list-group m-t-1">
+                <a href="#" class="list-group-item p-x-1 b-a-0" title="Trabalho"><i class="profile-list-icon fa fa-phone" style="color: #4ab6d5"></i> {{ user.profile.phone }}</a>
+                <a href="#" class="list-group-item p-x-1 b-a-0" title="Celular"><i class="profile-list-icon fa fa-mobile" style="color: #1a7ab9"></i> {{ user.profile.cellphone }}</a>
+                <a href="#" class="list-group-item p-x-1 b-a-0" title="Ramal"><i class="profile-list-icon fa fa-phone-square" style="color: #1a7ab9"></i> {{ user.profile.workphone }}</a>
+                <a href="#" class="list-group-item p-x-1 b-a-0"><i class="profile-list-icon fa fa-envelope" style="color: #888"></i> {{ user.email }}</a>
+            </div>
+        </div>
+    </div>
+
+    <hr class="page-wide-block visible-xs visible-sm">
+
+    <div class="col-md-8 col-lg-9">
+        <h1 class="font-size-20 m-y-4"><span class="font-weight-normal">Perfil de</span> {{ user.profile.name|default(user.username) }}</h1>
+
+        <ul class="nav nav-tabs tab-resize-nav" id="profile-tabs"><li class="dropdown tab-resize">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="tab-resize-icon"></span></a>
+                <ul class="dropdown-menu"></ul>
+            </li>
+            <li class="active">
+                <a href="#profile-banco-talentos" data-toggle="tab">
+                    Banco de talentos
+                </a>
+            </li>
+            <li>
+                <a href="#profile-timeline" data-toggle="tab">
+                    Grupos e comissões
+                </a>
+            </li>
+            <li>
+                <a href="#profile-followers" data-toggle="tab">
+                    Agenda
+                </a>
+            </li>
+            <li>
+        </ul>
+
+        <div class="tab-content tab-content-bordered p-a-2 bg-white">
+
+            <div class="tab-pane fade in active" id="profile-banco-talentos">
+                <h2 style="margin-top: 0">Atividades desenvolvidas</h2>
+                <hr />
+                <p>
+                    {{ user.profile.atividadesDesenvolvidas }}
+                </p>
+                <br />
+                <br />
+                <h2>Atividades que está apto a desenvolver</h2>
+                <hr />
+                <p>
+                    {{ user.profile.aptidao }}
+                </p>
+                <br />
+                <br />
+                <h2>Experiência</h2>
+                <hr />
+                {% for experiencia in user.experiencias %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <b>Título</b><br />
+                            {{ experiencia.titulo }}
+                        </div>
+                        <div class="col-md-5">
+                            <b>Empresa</b><br />
+                            {{ experiencia.empresa }}
+                        </div>
+                        <div class="col-md-3">
+                            <b>Cidade</b><br />
+                            {{ experiencia.cidade }}
+                        </div>
+                        <div class="col-md-2">
+                            <b>Início</b><br />
+                            {{ experiencia.inicio|date('d/m/Y') }}
+                        </div>
+                        <div class="col-md-2">
+                            <b>Término</b><br />
+                            {{ experiencia.termino|date('d/m/Y') }}
+                        </div>
+                        <div class="col-md-12">
+                            <b>Descrição</b><br />
+                            {{ experiencia.descricao }}
+                        </div>
+                    </div>
+                {% endfor %}
+                <br />
+                <br />
+                <h2>Formação </h2>
+                <hr />
+                {% for formacao in user.formacoes %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <b>Título</b><br />
+                            {{ formacao.formacao }}
+                        </div>
+                        <div class="col-md-6">
+                            <b>Instituição</b><br />
+                            {{ formacao.instituicao }}
+                        </div>
+                        <div class="col-md-3">
+                            <b>Início</b><br />
+                            {{ formacao.anoInicio }}
+                        </div>
+                        <div class="col-md-3">
+                            <b>Termino</b><br />
+                            {{ formacao.anoTermino }}
+                        </div>
+                        <div class="col-md-6">
+                            <b>Atividades</b><br />
+                            {{ formacao.atividades }}
+                        </div>
+                        <div class="col-md-6">
+                            <b>Descrição</b><br />
+                            {{ formacao.descricao }}
+                        </div>
+                    </div>
+                {% endfor %}
+                <br />
+                <br />
+                <h2>Qualificação</h2>
+                <hr />
+                {% for qualificacao in user.qualificacoes %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <b>Título</b><br />
+                            {{ qualificacao.nome }}
+                        </div>
+                        <div class="col-md-6">
+                            <b>Instituição</b><br />
+                            {{ qualificacao.instituicao }}
+                        </div>
+                        <div class="col-md-6">
+                            <b>Carga horária</b><br />
+                            {{ qualificacao.carga }} horas
+                        </div>
+                    </div>
+                {% endfor %}
+                <br />
+                <br />
+                <h2>Idiomas</h2>
+                <hr />
+                <ul class="list-group list-unstyled">
+                    {% for idioma in user.idiomas %}
+                        <li class="">
+                            {{ idioma.idioma }} - {{ idioma.proficienciaString }}
+                        </li>
+                    {% endfor %}
+                </ul>
+                <br />
+                <br />
+            </div> <!-- / .tab-pane -->
+
+
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,16 @@
+//= require ../libs/bootstrap-sweetalert/lib/sweet-alert.js
+//= require ../libs/multiselect/js/jquery.multi-select.js
+//= require ../libs/slimScroll/jquery.slimscroll.min.js
+//= require ../libs/jquery-timeago/jquery.timeago.js
+//= require ../libs/jquery-timeago/locales/jquery.timeago.pt-br-short.js
+//= require ../libs/list.js/dist/list.js
+//= require ../libs/flot/jquery.flot.stack.js
+//= require ../libs/moment/locale/pt-br.js
+//= require ../libs/select2/dist/js/i18n/pt-BR.js
+//= require ../libs/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js
+//= require ../../shared/masks.js
+//= require ../../shared/cpf.js
+//= require ../../shared/form.js
+//= require ../../bundles/mopabootstrap/js/mopabootstrap-collection.js
+//= require ../../bundles/fosjsrouting/js/router.js
+//= require ../../js/fos_js_routes.js

@@ -1,0 +1,117 @@
+//
+// Utilities / Background
+// --------------------------------------------------
+
+
+.bg-white {
+  background-color: $white;
+  border-color: $default-border-color;
+
+  &[href]:hover { background-color: darken($white, 3%); }
+
+  * { border-color: $default-border-color; }
+
+  &.darken,
+  & &.darken {
+    background-color: darken($white, 3%);
+
+    &[href]:hover { background-color: darken($white, 6%); }
+  }
+
+  &.darker,
+  & &.darker {
+    background-color: darken($white, 6%);
+
+    &[href]:hover { background-color: darken($white, 9%); }
+  }
+}
+
+.bg-black {
+  @include pixel-bg-color($black);
+}
+
+.bg-default {
+  @include pixel-bg-color($gray-light);
+}
+
+.bg-success {
+  @include pixel-bg-color($brand-success);
+}
+
+.bg-danger {
+  @include pixel-bg-color($brand-danger);
+}
+
+.bg-warning {
+  @include pixel-bg-color($brand-warning);
+}
+
+.bg-info {
+  @include pixel-bg-color($brand-info);
+}
+
+.bg-transparent { background: transparent !important; }
+
+
+// Text
+//
+
+.text-white {
+  color: #fff !important;
+}
+
+.text-default {
+  @include pixel-text-color($text-color);
+}
+
+.text-muted {
+  @include pixel-text-color($gray-light);
+}
+
+.text-light {
+  @include pixel-text-color($text-light);
+}
+
+.text-success {
+  @include pixel-text-color(darken($brand-success, 8%));
+}
+
+.text-danger {
+  @include pixel-text-color(darken($brand-danger, 8%));
+}
+
+.text-warning {
+  @include pixel-text-color(darken($brand-warning, 8%));
+}
+
+.text-info {
+  @include pixel-text-color(darken($brand-info, 8%));
+}
+
+
+// Borders
+//
+
+.border-default {
+  @include pixel-border-color($default-border-color);
+}
+
+.border-panel {
+  @include pixel-border-color($panel-default-border);
+}
+
+.border-success {
+  @include pixel-border-color($brand-success);
+}
+
+.border-danger {
+  @include pixel-border-color($brand-danger);
+}
+
+.border-warning {
+  @include pixel-border-color($brand-warning);
+}
+
+.border-info {
+  @include pixel-border-color($brand-info);
+}

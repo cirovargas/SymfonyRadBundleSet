@@ -1,0 +1,33 @@
+//
+// Mixins / Plugins / Date Range Picker
+// --------------------------------------------------
+
+@mixin daterangepicker-theme($color, $background) {
+  .daterangepicker .calendar td.active,
+  .daterangepicker .calendar th,
+  .daterangepicker .ranges .active,
+  .daterangepicker .ranges li:hover,
+  .daterangepicker .ranges li:focus {
+    background: $background;
+    color: $color;
+  }
+
+  .daterangepicker .calendar th { border-color: $background; }
+
+  .daterangepicker select:focus {
+    border-color: $background;
+  }
+
+  .daterangepicker .calendar th.available:hover {
+    background: lighten($background, 3%);
+  }
+
+  .daterangepicker .calendar thead tr + tr th {
+    border-top-color: darken(desaturate($background, 20%), 10%) !important;
+    background: darken(desaturate($background, 20%), 5%) !important;
+  }
+
+  .daterangepicker select:focus {
+
+  }
+}

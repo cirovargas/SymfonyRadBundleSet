@@ -1,0 +1,130 @@
+//
+// Mixins / Buttons
+// --------------------------------------------------
+
+@mixin pixel-button-outline-colorless-base($color, $border) {
+  color: $color;
+  border-color: $border;
+  background: none;
+
+  &.disabled,
+  &:disabled,
+  fieldset[disabled] & {
+    &,
+    &:active {
+      color: $color;
+      border-color: $border !important;
+      background: none;
+    }
+  }
+}
+
+@mixin pixel-button-base($color, $background, $border, $postfix: "") {
+  $selector: ".btn#{$postfix}";
+
+  $hover-background: darken($background, 3%);
+  $hover-border: darken($border, 2%);
+
+  $active-background: darken($background, 6%);
+  $active-border: darken($border, 10%);
+  $active-hover-background: darken($background, 8%);
+
+  #{$selector} {
+    color: $color;
+    border-color: $border;
+    background: $background;
+  }
+
+  #{$selector}.btn-outline {
+    color: $hover-border;
+    border-color: $border;
+    background: none;
+  }
+
+  #{$selector},
+  #{$selector}.btn-outline {
+    &:hover,
+    &:focus,
+    &.focus {
+      color: $color;
+      border-color: $hover-border;
+      border-bottom-color: darken($hover-border, 18%);
+      background: $hover-background;
+    }
+  }
+
+  #{$selector}:active,
+  #{$selector}.active,
+  .open > #{$selector}.dropdown-toggle,
+  #{$selector}.btn-outline:active,
+  #{$selector}.btn-outline.active,
+  .open > #{$selector}.dropdown-toggle.btn-outline {
+    color: $color;
+    border-color: $active-border;
+    background: $active-background;
+
+    &:hover,
+    &:focus,
+    &.focus {
+      border-color: $active-border;
+      background: $active-hover-background;
+    }
+  }
+
+  // 3D buttons
+  //
+
+  #{$selector}.btn-3d,
+  #{$selector}.btn-3d.btn-outline {
+    &:hover,
+    &:focus,
+    &.focus {
+      border-bottom-color: darken($border, 10%);
+    }
+  }
+
+  #{$selector}.btn-3d:active,
+  #{$selector}.btn-3d.active,
+  .open > #{$selector}.dropdown-toggle.btn-3d {
+    &,
+    &:hover,
+    &:focus,
+    &.focus {
+      background: $hover-background;
+    }
+  }
+
+  // Disabled state
+  //
+
+  #{$selector}.disabled,
+  #{$selector}[disabled],
+  fieldset[disabled] #{$selector} {
+    border-color: $border !important;
+    background: $background !important;
+  }
+
+  #{$selector}.btn-outline.disabled,
+  #{$selector}.btn-outline[disabled],
+  fieldset[disabled] #{$selector}.btn-outline {
+    color: $hover-border;
+    border-color: $border !important;
+    background: none !important;
+  }
+
+  #{$selector}.disabled.active,
+  #{$selector}[disabled].active,
+  fieldset[disabled] #{$selector}.active {
+    color: $color !important;
+    border-color: $active-border !important;
+    background: $active-background !important;
+  }
+}
+
+@mixin pixel-button-variant($state, $color, $background, $border) {
+  @include pixel-button-base($color, $background, $border, "-#{$state}");
+}
+
+@mixin button-theme($color, $background, $border) {
+  @include pixel-button-variant(primary, $color, $background, $border);
+}

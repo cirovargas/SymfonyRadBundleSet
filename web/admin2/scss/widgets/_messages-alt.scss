@@ -1,0 +1,62 @@
+//
+// Widgets / Messages alt
+// --------------------------------------------------
+
+@include pixel-widget-item(
+  messages-alt,
+  $padding-y: $widget-messages-alt-item-padding-y,
+  $padding-left: ($widget-messages-alt-item-padding-x * 2 + $widget-messages-alt-avatar-size),
+  $padding-right: $widget-messages-alt-item-padding-x
+);
+
+.widget-messages-alt-avatar {
+  display: block;
+  float: left;
+
+  width: $widget-messages-alt-avatar-size;
+  height: $widget-messages-alt-avatar-size;
+  margin-top: 3px;
+  margin-left: -($widget-messages-alt-item-padding-x + $widget-messages-alt-avatar-size);
+
+  border-radius: $widget-messages-alt-avatar-border-radius;
+}
+
+.widget-messages-alt-subject {
+  display: block;
+  clear: right;
+
+  margin-bottom: 1px;
+}
+
+.widget-messages-alt-description,
+.widget-messages-alt-date {
+  display: block;
+  float: left;
+
+  color: $text-muted;
+
+  font-size: 11px;
+}
+
+.widget-messages-alt-description a {
+  color: $text-color;
+
+  &:hover,
+  &:focus {
+    color: $text-muted;
+  }
+}
+
+.widget-messages-alt-description + .widget-messages-alt-date:before {
+  display: inline-block;
+
+  padding: 0 5px;
+
+  content: "·";
+}
+
+
+// Widget within panel
+//
+
+@include pixel-widget-within-panel(messages-alt, $padding-left: ($panel-body-padding + $widget-messages-alt-item-padding-x + $widget-messages-alt-avatar-size));

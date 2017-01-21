@@ -1,0 +1,235 @@
+//
+// Labels
+// --------------------------------------------------
+
+.label,
+.badge {
+  display: inline-block;
+
+  padding: 0 $label-padding-x;
+
+  font-size: 85%;
+  font-weight: 600;
+  line-height: $label-line-height;
+
+  @include pixel-label-base(#fff, $label-default-bg, $label-default-outline-border);
+
+  h1 &, h2 &, h3 &, h4 &, h5 &, h6 & {
+    vertical-align: top;
+
+    font-size: 60%;
+  }
+}
+
+.badge,
+.label-pill {
+  padding-right: .818em;
+  padding-left: .818em;
+
+  border-radius: 999px;
+}
+
+
+// Outline
+//
+
+.label.label-outline { background: none !important; }
+
+
+// Label tags
+//
+
+.label-tag {
+  position: relative;
+
+  margin-left: $label-tag-arrow-width;
+
+  @include border-left-radius(0);
+
+  &:before,
+  &:after {
+    position: absolute;
+    right: 100%;
+
+    display: block;
+
+    width: 0;
+    height: 0;
+
+    content: "";
+    transform: rotate(360deg);
+  }
+
+  &:before {
+    top: 0;
+
+    border-width: .909em $label-tag-arrow-width .909em 0;
+    border-style: solid;
+    border-color: transparent;
+    border-right-color: inherit;
+  }
+
+  &:after {
+    top: 50%;
+
+    width: $label-tag-circle-size;
+    height: $label-tag-circle-size;
+    margin-top: -$label-tag-circle-size/2;
+    margin-right: -.182em;
+
+    border-radius: 999px;
+    background: $label-tag-circle-bg;
+  }
+}
+
+
+// Images
+//
+
+.label-image {
+  display: block;
+
+  width: auto !important;
+  height: $label-line-height !important;
+
+  &.left {
+    float: left;
+
+    margin: 0 $label-padding-x 0 (-$label-padding-x);
+
+    @include border-left-radius(.25em);
+  }
+
+  &.right {
+    float: right;
+
+    margin: 0 (-$label-padding-x) 0 $label-padding-x;
+
+    @include border-right-radius(.25em);
+  }
+}
+
+
+// Corners
+//
+
+.label-corner {
+  position: absolute !important;
+  top: 0;
+
+  width: 24px;
+  height: 24px;
+  padding: 8px 0 0;
+
+  border-radius: 0;
+
+  font-size: 14px;
+  line-height: 16px;
+
+  &:before {
+    position: absolute;
+    top: 0;
+
+    display: block;
+
+    content: "";
+
+    border-top: 48px solid;
+    border-top-color: inherit;
+    border-right: 0 solid transparent;
+    border-bottom: 0 solid transparent;
+    border-left: 0 solid transparent;
+    background: transparent;
+  }
+
+  &.left {
+    left: 0;
+
+    padding-left: 4px;
+
+    &:before {
+      left: 0;
+
+      border-right-width: 48px;
+    }
+  }
+
+  &.right {
+    right: 0;
+
+    padding-right: 4px;
+
+    &:before {
+      right: 0;
+
+      border-left-width: 48px;
+    }
+  }
+}
+
+.label-corner-content { position: relative; }
+
+
+// Ribbons
+//
+
+.label-ribbon {
+  position: absolute !important;
+  top: 12px;
+
+  &:before {
+    position: absolute;
+    top: 100%;
+
+    display: block;
+
+    content: "";
+
+    border-top: 12px solid;
+    border-right: 0 solid transparent;
+    border-bottom: 0 solid transparent;
+    border-left: 0 solid transparent;
+    background: transparent;
+  }
+
+  &.label-outline {
+    background: $label-ribbon-outlined-bg !important;
+  }
+
+  &.left {
+    left: -12px;
+
+    padding-left: 12px;
+
+    @include border-left-radius(0);
+
+    &:before {
+      left: 0;
+
+      border-left-width: 12px;
+    }
+  }
+
+  &.right {
+    right: -12px;
+
+    padding-right: 12px;
+
+    @include border-right-radius(0);
+
+    &:before {
+      right: 0;
+
+      border-right-width: 12px;
+    }
+  }
+}
+
+
+// Colors
+//
+
+@include pixel-label-variant(success, #fff, $label-success-bg);
+@include pixel-label-variant(warning, #fff, $label-warning-bg);
+@include pixel-label-variant(danger, #fff, $label-danger-bg);
+@include pixel-label-variant(info, #fff, $label-info-bg);

@@ -1,0 +1,48 @@
+//
+// Plugins / Expanding Input
+// --------------------------------------------------
+
+.expanding-input {
+  position: relative;
+
+  @include clearfix();
+
+  &.expanded .expanding-input-overlay { display: none; }
+}
+
+.expanding-input-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  cursor: pointer;
+  user-select: none;
+
+  color: $input-color-placeholder;
+
+  @include expanding-input-size-base($padding-base-vertical, $padding-base-horizontal, $font-size-base, $line-height-base);
+}
+
+.expanding-input-control {
+  cursor: pointer;
+
+  .expanding-input.expanded & { cursor: text; }
+}
+
+.expanding-input-content {
+  display: none;
+  margin-top: 10px;
+
+  @include clearfix();
+
+  .expanding-input.expanded & { display: block; }
+}
+
+
+// Sizing
+//
+
+@include expanding-input-size(sm, 8px, $padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small);
+@include expanding-input-size(lg, 12px, $padding-large-vertical, $padding-large-horizontal, $font-size-large, $line-height-large);

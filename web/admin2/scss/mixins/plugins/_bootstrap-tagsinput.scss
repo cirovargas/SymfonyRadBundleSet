@@ -1,0 +1,52 @@
+//
+// Mixins / Plugins / Bootstrap Tags Input
+// --------------------------------------------------
+
+@mixin bs-tagsinput-theme($border) {
+  .bootstrap-tagsinput.focus {
+    border-color: $border !important;
+  }
+}
+
+@mixin bs-tagsinput-state-variant($state, $border-color) {
+  .has-#{$state} .bootstrap-tagsinput { border-color: $border-color; }
+}
+
+@mixin bs-tagsinput-size-base($tag-height, $padding, $border-radius) {
+  .bootstrap-tagsinput {
+    padding: $padding $padding 0;
+
+    border-radius: $border-radius;
+
+    line-height: $tag-height;
+  }
+
+  .bootstrap-tagsinput input {
+    height: $tag-height;
+    margin: 0 0 $padding 0 !important;
+
+    line-height: $tag-height;
+  }
+
+  .bootstrap-tagsinput .tag {
+    height: $tag-height;
+    margin: 0 $padding $padding 0;
+    padding-right: $tag-height;
+
+    line-height: $tag-height;
+  }
+
+  .bootstrap-tagsinput .tag [data-role="remove"] {
+    width: $tag-height;
+    height: $tag-height;
+
+    line-height: $tag-height;
+  }
+}
+
+@mixin bs-tagsinput-size($size, $tag-height, $padding, $border-radius) {
+  .bootstrap-tagsinput-#{$size},
+  .form-group-#{$size} {
+    @include bs-tagsinput-size-base($tag-height, $padding, $border-radius);
+  }
+}

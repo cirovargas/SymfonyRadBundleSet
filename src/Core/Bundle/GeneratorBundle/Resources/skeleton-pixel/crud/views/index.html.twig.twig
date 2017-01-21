@@ -1,0 +1,145 @@
+{% block extends %}
+{{ "{% extends 'admin.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block page %}" }}
+    <div class="page-header">
+        <div class="col-sm-6">
+        <h1>
+            {{ "{{ 'views.index.list'|trans({'%entity%': 'app."~ entity|lower ~".entity'|trans({},'EntityTranslations') }, 'CoreAdminBundle') }}" }}
+        </h1>
+        </div>
+        <div class="col-sm-6 text-right">
+                <a href="#" data-toggle="modal" data-target="#filterForm" class="btn btn-primary btn-icon-text">
+                    <i class="fa fa-search"></i> {{ "{{ 'views.index.filter'|trans({},'CoreAdminBundle') }}" }}
+                </a>
+                {% if 'new' in actions -%}
+                {{ "{% if is_granted('ROLE_ADMIN_"~entity|upper~"_NEW') %}" }}
+                <a href="{{ "{{ path('" ~ route_name_prefix ~ "_new') }}" }}" class="btn btn-success m-l-10">
+                    <i class="fa fa-plus"></i> {{ "{{ 'views.index.createnew'|trans({},'CoreAdminBundle') }}" }}
+                </a>
+                {{ "{%- endif %}" }}
+                {%- endif %}
+            </div>
+    </div>
+    <div class="modal fade" id="filterForm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            {{ "{{ form_start(filterForm,{'method':'GET'}) }}" }}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ "{{ 'views.index.filter'|trans({},'CoreAdminBundle') }}" }}</h4>
+                </div>
+                <div class="modal-body">
+
+                    {{ "{{ form_widget(filterForm) }}" }}
+
+                </div>
+                <div class="modal-footer">
+                    <input name="filter_action" type="submit" class="btn btn-link" value='{{ "{{ 'views.index.filter'|trans({},'CoreAdminBundle') }}" }}' />
+                    <input name="filter_action" type="submit" class="btn btn-link" value='{{ "{{ 'views.index.reset'|trans({},'CoreAdminBundle') }}" }}' />
+                    <button type="button" class="btn btn-link" data-dismiss="modal">{{ "{{ 'views.actions.cancel'|trans({},'CoreAdminBundle') }}" }}</button>
+                </div>
+            </div>
+            {{ "{{ form_end(filterForm) }}" }}
+        </div>
+    </div>
+    <div class="panel">
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    {%- for field, metadata in fields %}
+
+                    <th>{{ "{{ 'app."~ entity|lower ~"."~ field|lower ~"'|trans({},'EntityTranslations')|capitalize }}" }}</th>
+
+                    {%- endfor %}
+
+                    <th>{{ "{{ 'views.index.actions'|trans({},'CoreAdminBundle') }}" }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{ '{% for ' ~ entity_singularized ~ ' in ' ~ entity_pluralized ~ ' %}' }}
+                
+                    <tr>
+                    {%- for field, metadata in fields %}
+                    {%- if loop.first and ('show' in actions) %}
+
+                        <td>
+                            {{ "{% if is_granted('ROLE_ADMIN_"~entity|upper~"_SHOW') %}" }}
+                            <a href="{{ "{{ path('" ~ route_name_prefix ~ "_show', { 'id': " ~ entity_singularized ~ "."~ identifier ~" }) }}" }}">{{ '{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' }}' }}</a>
+                            {{ "{% else %}" }}
+                            {{ '{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' }}' }}
+                            {{ "{% endif %}" }}
+                        </td>
+
+                    {%- elseif metadata.type in ['datetime'] %}
+
+                        <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}{% endif %}' }}</td>
+
+                    {%- elseif metadata.type in ['date'] %}
+
+                        <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d\') }}{% endif %}' }}</td>
+
+                    {%- elseif metadata.type in ['time'] %}
+
+                        <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|date(\'H:i:s\') }}{% endif %}' }}</td>
+
+                    {%- elseif metadata.type in ['array'] %}
+
+                        <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|join(\', \') }}{% endif %}' }}</td>
+
+                    {%- elseif metadata.type in ['boolean'] %}
+
+                        <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}Sim{% else %}Não{% endif %}' }}</td>
+
+                    {%- else %}
+
+                        <td>{{ '{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' }}' }}</td>
+
+                    {%- endif %}
+
+                    {%- if loop.last %}
+                    
+                        <td>
+                            <ul>
+                                {{ "{% if is_granted(expression('\"ROLE_ADMIN_" ~ entity|upper ~ "_SHOW\" in roles or \"ROLE_ADMIN_" ~ entity|upper ~ "_EDIT\" in roles')) %}" }}
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{{ "{{ 'views.index.actions'|trans({},'CoreAdminBundle') }}" }}&nbsp;<i class="fa fa-caret-down"></i></button>
+                                    <ul class="dropdown-menu">
+                                        {%- for action in record_actions %}
+                                        
+                                        {{ "{% if is_granted('ROLE_ADMIN_"~ entity|upper ~"_"~ action|upper ~"') %}" }}
+                                        
+                                        <li>
+                                            <a href="{{ "{{ path('" ~ route_name_prefix ~ "_" ~ action ~ "', { 'id': " ~ entity_singularized ~ "."~ identifier ~" }) }}" }}">{{ "{{ 'views.actions."~ action|lower ~"'|trans({},'CoreAdminBundle')|capitalize }}" }}</a>
+                                        </li>
+                                        
+                                        {{ "{% endif %}" }}
+                                        
+                                        {%- endfor %}
+                                        
+                                    </ul>
+                                </div>
+                                {{ "{% endif %}" }}
+                            </ul>
+                        </td>
+
+                    {%- endif %}
+                    {%- endfor %}
+                    
+                    </tr>
+                    
+                {{ '{% endfor %}' }}
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    {{ "{{ pagerHtml|raw }}" }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{{ "{% endblock %}" }}
+{% endblock body %}

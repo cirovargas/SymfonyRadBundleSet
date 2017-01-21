@@ -1,0 +1,50 @@
+//
+// Mixins / Pagination
+// --------------------------------------------------
+
+@mixin pagination-size($size, $padding, $font-size: null, $border-radius: null) {
+  .pagination-#{$size} > li,
+  .pager-#{$size} > li {
+    > a,
+    > span {
+      padding: $padding;
+
+      font-size: $font-size;
+    }
+  }
+
+  .pagination-#{$size} > li > a,
+  .pagination-#{$size} > li > span {
+    border-radius: $border-radius;
+  }
+}
+
+@mixin pagination-theme($color, $background, $border: $background) {
+  .pagination > li {
+    > a:hover,
+    > a:focus,
+    > a:active {
+      border-color: $border;
+    }
+
+    &.active {
+      > a,
+      > a:hover,
+      > a:focus,
+      > a:active,
+      > span {
+        color: $color;
+        border-color: $border;
+        background: $background;
+      }
+    }
+  }
+
+  .pager li > a {
+    &:hover,
+    &:focus,
+    &:active {
+      border-color: $border;
+    }
+  }
+}

@@ -1,0 +1,171 @@
+//
+// Navs
+// --------------------------------------------------
+
+.nav-tabs > li > a,
+.nav-pills > li > a {
+  margin: 0;
+
+  color: lighten($text-color, 20%);
+  background-color: $nav-item-bg;
+  cursor: pointer !important;
+
+  &:hover,
+  &:focus {
+    color: $text-color;
+    background: $nav-item-focus-bg;
+  }
+
+  .label,
+  .badge {
+    position: relative;
+    top: .3em;
+
+    margin: 0 -.455em 0 .455em;
+
+    vertical-align: top;
+
+    font-size: .848em;
+    line-height: 1.455em;
+  }
+
+  .label { padding: 0 .455em; }
+  .badge, .label-pill { padding: 0 .545em; }
+}
+
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus {
+  background-color: $nav-item-focus-bg;
+}
+
+.nav > li + li { margin-left: 6px; }
+
+.nav-justified > li + li,
+.nav.nav-stacked > li + li {
+  margin-left: 0;
+}
+
+// Active labels
+.nav-tabs:not(.nav-tabs-simple) > li.active > a,
+.nav-pills > li.active > a {
+  .badge,
+  .label {
+    color: #fff;
+    background: rgba(0, 0, 0, .25);
+  }
+}
+
+.nav > li.disabled > a {
+  background: none !important;
+  border-color: transparent !important;
+}
+
+
+// Tabs
+//
+
+.nav-tabs,
+.nav-tabs.nav-justified {
+  border-bottom: 2px solid $nav-tabs-border-color;
+  border-color: $nav-tabs-border-color;
+
+  .dropdown-menu { margin-top: 0; }
+}
+
+.nav-tabs > li,
+.nav-tabs.nav-justified > li {
+  margin-bottom: 0;
+
+  > a,
+  &.active > a {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      border: none;
+      border-bottom: 2px solid;
+    }
+  }
+
+  > a {
+    margin-bottom: -2px;
+
+    border-color: transparent;
+    border-bottom-color: transparent;
+  }
+
+  > a:hover,
+  > a:focus,
+  > a:active,
+  &.open > a {
+    border-color: $nav-tabs-link-hover-border-color;
+  }
+}
+
+.nav-tabs.nav-stacked > li {
+  > a:hover,
+  > a:focus,
+  > a:active,
+  &.open > a {
+    border-color: $nav-tabs-link-hover-border-color;
+  }
+
+  .dropdown-menu { margin-top: -2px; }
+}
+
+
+// Simple tabs
+//
+
+.nav.nav-tabs.nav-tabs-simple {
+  > li > a {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      background: none;
+    }
+  }
+
+  > li.active > a {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: $text-color;
+      background: none;
+    }
+  }
+}
+
+
+// Nav sizes
+//
+
+@include nav-size(sm, $nav-link-small-padding);
+@include nav-size(xs, $nav-link-xs-padding, 12px) {
+  > .label,
+  > .badge {
+    padding: 0 .4em;
+  }
+};
+@include nav-size(lg, $nav-link-lg-padding, $font-size-large);
+@include nav-size(xl, $nav-link-xl-padding, $font-size-xl);
+
+
+// Tab content
+//
+
+.tab-content {
+  padding: 15px 0;
+
+  &.tab-content-bordered {
+    padding: 15px;
+
+    border: 1px solid $nav-tabs-border-color;
+    border-top: none;
+
+    @include border-bottom-radius($border-radius-base);
+  }
+}

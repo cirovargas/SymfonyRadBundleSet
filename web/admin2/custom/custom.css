@@ -1,0 +1,19 @@
+@import "../dist/css/pixeladmin.css";
+@import "../dist/css/themes/default.css";
+@import "../dist/css/widgets.css";
+@import "../libs/jsxc/build/css/jquery-ui.min.css";
+@import "../libs/multiselect/css/multi-select.css";
+@import "../libs/bootstrap-sweetalert/lib/sweet-alert.css";
+@import "../libs/jsxc/build/css/jsxc.css";
+
+.ms-container{
+    width: 100%;
+}
+
+.m-t-25{
+    margin-top:25px !important
+}
+
+.px-nav-item>a {
+    padding: 11px 14px;
+}

@@ -1,0 +1,12 @@
+{% spaceless %}
+    {% if link is defined and is_granted('ROLE_ADMIN_USERS_SHOW') %}
+        <a href="{{ path('admin_users_show', { 'id': usuario.id }) }}" class="name">
+    {% endif %}
+        {{ usuario.profile.name|default(usuario.username) }}
+    {% if link is defined and is_granted('ROLE_ADMIN_USERS_SHOW') %}
+        </a>
+    {% endif %}
+    {% if subtext is defined %}
+        <span class="subtext">{{ subtext }}</span>
+    {% endif %}
+{% endspaceless %}

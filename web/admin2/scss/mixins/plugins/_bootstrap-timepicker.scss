@@ -1,0 +1,18 @@
+//
+// Mixins / Plugins / Bootstrap-timepicker
+// --------------------------------------------------
+
+@mixin timepicker-theme($color, $background) {
+  .timepicker-increment,
+  .timepicker-decrement {
+    &:hover,
+    &:focus {
+      border-color: $background;
+    }
+
+    &:hover {
+      color: $color;
+      background: $background;
+    }
+  }
+}

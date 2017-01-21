@@ -1,0 +1,35 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% set buttom_register = false %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <div class="page-signin-container" id="page-signin-form">
+        <h2 class="m-t-0 m-b-4 text-xs-center font-weight-semibold font-size-20">Acesse com suas credenciais</h2>
+
+        <form action="{{ path("fos_user_security_check") }}" class="panel p-a-4" method="POST">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            <fieldset class=" form-group form-group-lg">
+                <input value="{{ last_username }}" type="text" name="_username" class="form-control" placeholder="{{ 'security.login.username'|trans }}">
+            </fieldset>
+
+            <fieldset class=" form-group form-group-lg">
+                <input type="password" name="_password" class="form-control" placeholder="{{ 'security.login.password'|trans }}">
+            </fieldset>
+
+            <div class="clearfix">
+                <label class="custom-control custom-checkbox pull-xs-left">
+                    <input type="checkbox" class="custom-control-input"  value="on" name="_remember_me">
+                    <span class="custom-control-indicator"></span>
+                    {{ 'security.login.remember_me'|trans }}
+                </label>
+                <a href="{{ path('fos_user_resetting_request') }}" class="font-size-12 text-muted pull-xs-right" id="page-signin-forgot-link">{{ 'resetting.request.submit'|trans }}?</a>
+            </div>
+
+            <button type="submit" class="btn btn-block btn-lg btn-primary m-t-3">{{ 'security.login.submit'|trans }}</button>
+        </form>
+    </div>
+{% endblock fos_user_content %}
+{% block javascripts %}
+    {{ parent() }}
+   
+{% endblock %}

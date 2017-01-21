@@ -1,0 +1,17 @@
+app:
+    user:
+        entity: usuário
+        pluralized: usuários
+        name: nome
+        username: login
+        lastLogin: último aceso
+        email: e-mail
+        expired: expirado
+        profile: perfil
+        groups: grupos
+        roles: papéis
+        locked: bloqueado
+        enabled: ativo
+    group:
+        entity: grupo
+        pluralized: grupos

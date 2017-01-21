@@ -1,0 +1,121 @@
+//
+// Navbar
+// --------------------------------------------------
+
+.navbar { border: none; }
+.navbar-collapse { padding: 0; }
+.navbar-header { padding: 0 $navbar-header-padding-horizontal; }
+
+.navbar-brand {
+  height: $navbar-height;
+  padding: 0 ;
+
+  line-height: $navbar-height;
+}
+
+.navbar-toggle {
+  position: absolute;
+  top: 0;
+
+  width: $px-nav-width-tablet;
+  height: $navbar-height;
+  margin: 0;
+
+  text-align: center;
+
+  border: none;
+  border-radius: 0;
+
+  line-height: $navbar-height;
+}
+
+.navbar-nav {
+  margin: 0;
+
+  > li + li { margin: 0; }
+}
+
+.navbar-toggle-icon {
+  position: relative;
+
+  &,
+  &:before,
+  &:after {
+    display: block;
+
+    width: $navbar-toggle-icon-width;
+    height: 2px;
+    margin: auto;
+
+    vertical-align: middle;
+
+    background: #666;
+  }
+
+  &:before,
+  &:after {
+    position: absolute;
+
+    content: "";
+  }
+
+  &:before { top: -4px; }
+  &:after { top: 4px; }
+
+  .navbar-toggle & { opacity: .5; }
+  .navbar-toggle.collapsed & { opacity: 1; }
+}
+
+.navbar-nav > li > a {
+  padding: 0 $navbar-item-padding-horizontal;
+
+  line-height: $navbar-line-height-sm;
+}
+
+.navbar-form {
+  margin: 0;
+  padding-right: $navbar-item-padding-horizontal;
+  padding-left: $navbar-item-padding-horizontal;
+}
+
+
+@media (max-width: 767px) {
+  .navbar-nav .open .dropdown-menu > li > a,
+  .navbar-nav .open .dropdown-menu .dropdown-header {
+    padding-top: 0;
+    padding-bottom: 0;
+
+    line-height: $navbar-line-height-sm;
+  }
+}
+
+// Desktops
+//
+
+@media (min-width: $screen-md-min) {
+  .navbar-header { padding-left: $navbar-header-padding-horizontal; }
+
+  .navbar-nav > li > a {
+    height: $navbar-height;
+
+    line-height: $navbar-height;
+  }
+
+  .navbar-form {
+    height: $navbar-height;
+    padding-top: $navbar-form-padding-vertical;
+    padding-bottom: 0;
+
+    $navbar-control-height: $navbar-height - ($navbar-form-padding-vertical * 2);
+
+    .btn,
+    input,
+    select {
+      height: $navbar-control-height;
+      padding-top: 0;
+      padding-bottom: 0;
+
+      line-height: $navbar-control-height - 2px;
+    }
+  }
+}

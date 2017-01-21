@@ -1,0 +1,49 @@
+//
+// Widgets / Threads
+// --------------------------------------------------
+
+@include pixel-widget-item(
+  threads,
+  $padding-y: $widget-threads-item-padding-y,
+  $padding-left: ($widget-threads-item-padding-x * 2 + $widget-threads-avatar-size),
+  $padding-right: $widget-threads-item-padding-x
+);
+
+.widget-threads-avatar {
+  display: block;
+  float: left;
+
+  width: $widget-threads-avatar-size;
+  height: $widget-threads-avatar-size;
+  margin-top: 4px;
+  margin-left: -$widget-threads-avatar-size - $widget-threads-item-padding-x;
+
+  border-radius: $widget-threads-avatar-border-radius;
+}
+
+.widget-threads-date {
+  float: right;
+
+  color: $text-muted;
+
+  font-size: 12px;
+}
+
+.widget-threads-info {
+  color: $text-muted;
+
+  font-size: 12px;
+
+  a { color: $text-color }
+
+  a:hover,
+  a:focus {
+    color: $text-muted;
+  }
+}
+
+
+// Widget within panel
+//
+
+@include pixel-widget-within-panel(threads, $padding-left: ($widget-threads-item-padding-x + $panel-body-padding + $widget-threads-avatar-size));

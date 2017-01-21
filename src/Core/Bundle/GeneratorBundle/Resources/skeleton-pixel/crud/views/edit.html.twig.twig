@@ -1,0 +1,36 @@
+{% block extends %}
+{{ "{% extends 'admin.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block page %}" }}
+    
+    <div class="page-header">
+        <h1>
+            <span class="text-muted font-weight-light">{{ "{{ 'app."~ entity|lower ~".entity'|trans({},'EntityTranslations') }}" }} / </span>{{ "{{ 'views.edit.edit'|trans({'%entity%': 'app."~ entity|lower ~".entity'|trans({},'EntityTranslations') }, 'CoreAdminBundle') }}" }}
+        </h1>
+    </div>
+
+    {{ "{{ form_start(edit_form,{attr:{'class':'panel form-horizontal' } }) }}" }}
+        
+        <div class="panel-body">
+            
+            {{ '{{ form_widget(edit_form) }}' }}
+            
+        </div>
+        <div class="panel-footer">
+            <button type="submit" class="btn btn-primary  m-l-10">{{ "{{ 'views.edit.editbutton'|trans({},'CoreAdminBundle') }}" }}</button>
+            
+            {% set hide_edit, hide_delete = true, false %}
+            
+                {{ include('crud/views/others/record_actions.html.twig.twig') -}}
+            
+        </div>
+            
+    {{ '{{ form_end(edit_form) }}' }}
+            
+    {{ include('crud/views/others/delete_form.html.twig.twig') -}}
+            
+{{ "{% endblock %}" }}
+
+{% endblock body %}

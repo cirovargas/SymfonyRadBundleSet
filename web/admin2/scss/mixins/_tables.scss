@@ -1,0 +1,58 @@
+//
+// Mixins / Tables
+// --------------------------------------------------
+
+@mixin table-variant($state, $color, $background, $border: $background, $form-control-no-border: true) {
+  $header-border: darken(desaturate($border, 15%), 12%);
+  $header-background: darken(desaturate($background, 8%), 6%);
+
+  .table-#{$state} .table,
+  .table-#{$state}.table {
+    margin: 0;
+    border-top-color: $header-border !important;
+  }
+
+  .table-#{$state} {
+    margin-bottom: $line-height-computed;
+
+    thead,
+    thead tr,
+    thead th,
+    .table-header {
+      border-color: $header-border !important;
+      color: $color;
+    }
+
+    thead tr,
+    thead th {
+      background: $header-background;
+    }
+
+    .table-header {
+      background: $background;
+
+      @if $form-control-no-border { .form-control { border: none; } }
+    }
+  }
+}
+
+@mixin table-context-variant($state, $color) {
+  .table > thead > tr > td.#{$state},
+  .table > thead > tr > th.#{$state},
+  .table > thead > tr.#{$state} > td,
+  .table > thead > tr.#{$state} > th,
+  .table > tbody > tr > td.#{$state},
+  .table > tbody > tr > th.#{$state},
+  .table > tbody > tr.#{$state} > td,
+  .table > tbody > tr.#{$state} > th,
+  .table > tfoot > tr > td.#{$state},
+  .table > tfoot > tr > th.#{$state},
+  .table > tfoot > tr.#{$state} > td,
+  .table > tfoot > tr.#{$state} > th {
+    color: $color;
+  }
+}
+
+@mixin table-theme($color, $background) {
+  @include table-variant(primary, $color, $background);
+}

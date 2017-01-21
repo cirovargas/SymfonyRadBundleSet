@@ -15,5 +15,12 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
 
+    web_socket_port: 8080
+    web_socket_host: 127.0.0.1
+
+#    router.request_context.host: mysite.com
+#    router.request_context.scheme: http
+#    router.request_context.base_url:
+
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt

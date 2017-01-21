@@ -1,0 +1,27 @@
+//
+// Mixins / List groups
+// --------------------------------------------------
+
+@mixin list-group-base($color, $background, $border: $background) {
+  .list-group-item.active {
+    color: $color;
+    border-color: $border;
+
+    background: $background;
+
+    .list-group-item-text,
+    .list-group-icon { color: $color; }
+  }
+}
+
+@mixin list-groups-theme($color, $background, $border: $background) {
+  .list-group {
+    @include list-group-base($color, $background, $border);
+  }
+}
+
+@mixin list-groups-variant($state, $color, $background, $border: $background) {
+  .list-group.list-group-#{$state} {
+    @include list-group-base($color, $background, $border);
+  }
+}

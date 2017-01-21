@@ -1,0 +1,533 @@
+//
+// Plugins / Summernote
+// --------------------------------------------------
+
+.summernote-fullscreen {
+  overflow: hidden !important;
+}
+
+.note-editor {
+  position: relative;
+
+  .modal-body {
+    overflow: auto !important;
+
+    max-height: none !important;
+  }
+}
+
+.note-toolbar {
+  padding: 6px 8px 0 8px;
+
+  > .note-btn-group { margin-bottom: 6px; }
+}
+
+.note-btn-group {
+  margin: 0;
+
+  + .note-btn-group { margin-left: 5px; }
+}
+
+.note-btn {
+  > i { font-size: 14px; }
+
+  &.dropdown-toggle:after { margin: 0; }
+}
+
+
+.note-editing-area {
+  position: relative;
+
+  overflow: hidden;
+}
+
+.note-editable {
+  outline: none;
+  background: $input-bg;
+}
+
+.note-editor.codeview {
+  .note-editable { display: none; }
+
+  .note-codable { display: block; }
+}
+
+
+// Fullscreen mode
+//
+
+.note-editor.fullscreen {
+  position: fixed;
+  z-index: $zindex-fullscreen;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  border: none;
+  border-radius: 0;
+
+  .note-resizebar { display: none; }
+
+  .modal { background-color: rgba(0, 0, 0, $modal-backdrop-opacity); }
+}
+
+
+// Statusbar
+//
+
+.note-statusbar {
+  border-top: 1px solid $panel-default-border;
+  background-color: $summernote-statusbar-bg;
+
+  @include clearfix();
+  @include border-bottom-radius($border-radius-base);
+}
+
+.note-resizebar {
+  width: 100%;
+
+  cursor: ns-resize;
+}
+
+.note-icon-bar {
+  width: 20px;
+  height: 1px;
+  margin: 1px auto;
+
+  background: $panel-default-border;
+}
+
+
+// Popover
+//
+
+.note-popover,
+.note-popover.note-air-popover {
+  max-width: none;
+
+  .arrow {
+    left: 8px;
+
+    margin-left: 0;
+  }
+}
+
+.note-popover {
+  display: none;
+
+  .popover-content {
+    padding: $dropdown-padding-y $dropdown-padding-y 0 $dropdown-padding-y;
+
+    a {
+      display: inline-block;
+      overflow: hidden;
+
+      max-width: 200px;
+      margin-right: $dropdown-padding-y;
+
+      vertical-align: middle;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    > .note-btn-group { padding-bottom: $dropdown-padding-y; }
+  }
+
+  .arrow {
+    left: 8px;
+
+    margin-left: 0;
+  }
+
+  .note-btn > i { font-size: 14px; }
+}
+
+.note-link-popover .note-btn-group { margin-right: 0; }
+
+
+// Editable
+//
+
+.note-editable {
+  overflow: auto;
+
+  padding: $padding-base-vertical $padding-base-horizontal;
+
+  &[contenteditable="false"] {
+    opacity: 1;
+    background-color: $input-bg-disabled;
+  }
+}
+
+
+// Codeable
+//
+
+.note-codable,
+.CodeMirror-code pre {
+  font-family: $font-family-monospace !important;
+}
+
+.note-codable {
+  display: none;
+
+  width: 100%;
+  padding: $padding-base-vertical $padding-base-horizontal;
+
+  resize: none;
+
+  color: #ccc;
+  border: none;
+  border-radius: 0;
+  background-color: #333;
+}
+
+
+// Dropdown-menu
+//
+
+.note-editor .dropdown-menu,
+.note-air-popover .dropdown-menu {
+  min-width: 90px;
+
+  &.right {
+    right: 0;
+    left: auto;
+  }
+
+  // Dropdown-menu for selectbox
+  &.note-check {
+    padding-right: 0;
+    padding-left: 0;
+
+    a > i {
+      visibility: hidden;
+
+      margin: 0 6px 0 -4px;
+
+      color: deepskyblue;
+    }
+
+    a.checked > i { visibility: visible; }
+    a.checked:hover > i { color: inherit; }
+  }
+}
+
+
+// Placeholder
+//
+
+.note-placeholder {
+  position: absolute;
+
+  display: none;
+
+  padding: $padding-base-vertical $padding-base-horizontal;
+
+  color: gray;
+}
+
+
+// Color picker
+//
+
+.note-color {
+  .dropdown-menu > li { white-space: nowrap; }
+
+  .dropdown-menu .btn-group {
+    margin-right: $dropdown-padding-y !important;
+
+    &:first-child { margin-left: $dropdown-padding-y; }
+  }
+}
+
+.note-palette-title {
+  margin: 4px 0 0 0;
+
+  text-align: center;
+
+  border-bottom: 1px solid $dropdown-divider-bg;
+
+  font-size: 12px;
+}
+
+.note-color-reset {
+  display: block;
+
+  width: 100%;
+  margin: 8px 0;
+}
+
+.note-color-palette { line-height: 1; }
+
+.note-color-btn {
+  width: 20px;
+  height: 20px;
+
+  border: 1px solid $summernote-color-palette-border;
+
+  &:hover { border-color: $summernote-color-palette-hover-border; }
+}
+
+.note-color-reset,
+.note-color-default {
+  padding: $padding-small-vertical $padding-small-horizontal;
+
+  font-size: $font-size-small;
+}
+
+
+// Paragraph
+//
+
+.note-paragraph .dropdown-menu,
+.note-para .dropdown-menu {
+  padding: $dropdown-padding-y;
+
+  white-space: nowrap;
+
+  .note-btn {
+    display: inline-block;
+    float: none;
+  }
+
+  .note-btn-group {
+    white-space: nowrap;
+
+    + .note-btn-group { margin-left: $dropdown-padding-y; }
+  }
+}
+
+
+// Font size
+//
+
+.note-current-fontsize:after { content: " "; }
+
+
+// Style
+//
+
+.dropdown-menu.dropdown-style {
+  padding-right: 0;
+  padding-left: 0;
+
+  a > * { margin: 0 !important; }
+}
+
+
+// Table picker
+//
+
+.note-table.dropdown-menu {
+  min-width: 0;
+  padding: $dropdown-padding-y;
+}
+
+.note-dimension-picker { font-size: 18px; }
+
+.note-dimension-picker-mousecatcher {
+  position: absolute !important;
+  z-index: 3;
+
+  width: 10em;
+  height: 10em;
+
+  cursor: pointer;
+}
+
+.note-dimension-picker-unhighlighted {
+  position: relative !important;
+  z-index: 1;
+
+  width: 5em;
+  height: 5em;
+
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAgMAAAAroGbEAAAACVBMVEUAAIj4+Pjp6ekKlAqjAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfYAR0BKhmnaJzPAAAAG0lEQVQI12NgAAOtVatWMTCohoaGUY+EmIkEAEruEzK2J7tvAAAAAElFTkSuQmCC') repeat;
+  opacity: $summernote-dimension-unhighlighted-opacity;
+}
+
+.note-dimension-picker-highlighted {
+  position: absolute !important;
+  z-index: 2;
+
+  width: 1em;
+  height: 1em;
+
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAgMAAAAroGbEAAAACVBMVEUAAIjd6vvD2f9LKLW+AAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfYAR0BKwNDEVT0AAAAG0lEQVQI12NgAAOtVatWMTCohoaGUY+EmIkEAEruEzK2J7tvAAAAAElFTkSuQmCC') repeat;
+}
+
+
+// Control selection
+//
+
+.note-control-selection {
+  position: absolute;
+
+  display: none;
+
+  border: 1px solid black;
+
+  & > div { position: absolute; }
+}
+
+.note-control-selection-bg {
+  width: 100%;
+  height: 100%;
+
+  opacity: .3;
+  background-color: black;
+}
+
+.note-control-handle {
+  width: 7px;
+  height: 7px;
+
+  border: 1px solid black;
+}
+
+.note-control-holder {
+  @extend .note-control-handle;
+}
+
+.note-control-sizing {
+  background-color: white;
+
+  @extend .note-control-handle;
+}
+
+.note-control-nw {
+  top: -5px;
+  left: -5px;
+
+  border-right: none;
+  border-bottom: none;
+}
+
+.note-control-ne {
+  top: -5px;
+  right: -5px;
+
+  border-bottom: none;
+  border-left: none;
+}
+
+.note-control-sw {
+  bottom: -5px;
+  left: -5px;
+
+  border-top: none;
+  border-right: none;
+}
+
+.note-control-se {
+  right: -5px;
+  bottom: -5px;
+
+  cursor: se-resize;
+}
+
+.note-control-se.note-control-holder {
+  cursor: default;
+
+  border-top: none;
+  border-left: none;
+}
+
+.note-control-selection-info {
+  right: 0;
+  bottom: 0;
+
+  margin: 5px;
+  padding: 5px;
+
+  opacity: .7;
+  color: white;
+  border-radius: $border-radius-base;
+  background-color: #000;
+
+  font-size: 12px;
+}
+
+
+// Dropzone
+//
+
+.note-dropzone {
+  position: absolute;
+  z-index: 100;
+
+  display: none;
+
+  opacity: $summernote-dropzone-opacity;
+  color: $summernote-dropzone-color;
+  background-color: $summernote-dropzone-bg;
+
+  .note-dropzone-message {
+    display: table-cell;
+
+    text-align: center;
+    vertical-align: middle;
+
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  &.hover { color: $summernote-dropzone-active-color; }
+}
+
+.note-editor.dragover .note-dropzone { display: table; }
+
+.note-image-dialog .note-dropzone {
+  min-height: 100px;
+  margin-bottom: 10px;
+
+  text-align: center;
+
+  color: lightgray;
+  border: 4px dashed lightgray;
+
+  font-size: 30px;
+  line-height: 4;
+}
+
+
+// Hint popover
+//
+
+.note-hint-popover {
+  min-width: 100px;
+
+  .popover-content {
+    overflow: auto;
+
+    max-height: 150px;
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.note-hint-item {
+  display: block !important;
+  clear: both;
+
+  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+
+  cursor: pointer;
+  white-space: nowrap;
+
+  color: $dropdown-link-color;
+
+  line-height: $line-height-base;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    text-decoration: none;
+
+    color: $dropdown-link-hover-color;
+    background-color: $dropdown-link-hover-bg;
+  }
+}

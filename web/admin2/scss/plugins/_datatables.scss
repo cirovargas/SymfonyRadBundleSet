@@ -1,0 +1,181 @@
+//
+// Plugins / Datatables
+// --------------------------------------------------
+
+.dataTables_table_wrapper {
+  overflow-x: auto;
+
+  min-height: 0.01%; // Workaround for IE9 bug (see https://github.com/twbs/bootstrap/issues/14837)
+  margin: 0 !important;
+
+  // Fix repaint issue
+  transform: translateZ(0);
+
+  @media screen and (max-width: $screen-xs-max) {
+    overflow-y: hidden;
+
+    width: 100%;
+
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+
+    // Tighten up spacing
+    > .table {
+      // Ensure the content doesn't wrap
+      > thead,
+      > tbody,
+      > tfoot {
+        > tr {
+          > th,
+          > td {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}
+
+.dataTable {
+  .sorting,
+  .sorting_asc,
+  .sorting_desc {
+    cursor: pointer;
+  }
+
+  thead th {
+    position: relative;
+
+    vertical-align: middle !important;
+
+    &:before,
+    &:after {
+      position: absolute;
+      top: 50%;
+      right: 7px;
+
+      display: none;
+
+      width: 0;
+      height: 0;
+
+      content: "";
+
+      border-right: $datatables-sorting-arrow-size solid transparent;
+      border-left: $datatables-sorting-arrow-size solid transparent;
+    }
+
+    &:before {
+      margin-top: -$datatables-sorting-arrow-size - 1px;
+
+      border-bottom: $datatables-sorting-arrow-size solid;
+    }
+
+    &:after {
+      margin-top: 1px;
+
+      border-top: $datatables-sorting-arrow-size solid;
+    }
+  }
+
+  .sorting:before,
+  .sorting:after {
+    display: block;
+  }
+
+
+  .sorting_asc:before { display: block; }
+
+  .sorting_desc:after { display: block; }
+
+  // Disabled
+  //
+
+  .sorting_asc_disabled:before,
+  .sorting_desc_disabled:after {
+    opacity: .3;
+  }
+}
+
+// Header
+//
+
+.dataTables_wrapper {
+  .table-caption { float: left; }
+
+  label {
+    margin: 0;
+
+    white-space: nowrap;
+  }
+
+  .form-control {
+    display: inline-block;
+
+    width: auto;
+  }
+
+  .table-header,
+  .table-footer {
+    padding-top: 0;
+
+    > div { margin-top: 10px; }
+  }
+}
+
+.DT-lf-right {
+  float: right;
+
+  > div {
+    position: relative;
+
+    float: left;
+  }
+
+  > div + div {
+    margin-left: 20px;
+
+    &:before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -10px;
+
+      width: 1px;
+
+      content: "";
+
+      background: rgba(255, 255, 255, .3);
+    }
+  }
+}
+
+.DT-search .form-control { width: 130px; }
+
+// Footer
+//
+
+.DT-label {
+  float: left;
+
+  color: #888;
+
+  font-size: 12px;
+}
+
+.DT-pagination {
+  float: right;
+
+  .pagination {
+    display: block;
+
+    margin: 0;
+
+    a,
+    span {
+      padding: 5px 10px;
+
+      font-size: 12px;
+      line-height: $line-height-small;
+    }
+  }
+}

@@ -1,37 +1,27 @@
-# Cache and logs (Symfony2)
+/web/bundles/
+/web/uploads/
+/web/temp/
+/web/media/
+/web/admin/bower_components/
+/web/vendor/bower_components/
+/web/shared/bower_components/
+/web/externo/bower_components/
+/web/admin2/node_modules/
+/web/admin2/dist/
+/web/admin2/libs/
+/web/admin2/js/build/
+/app/bootstrap.php.cache
 /app/cache/*
+/app/config/parameters.yml
 /app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
-
-# Cache and logs (Symfony3)
-/var/cache/*
-/var/logs/*
-!var/cache/.gitkeep
-!var/logs/.gitkeep
-
-# Parameters
-/app/config/parameters.yml
-/app/config/parameters.ini
-
-# Managed by Composer
-/app/bootstrap.php.cache
-/var/bootstrap.php.cache
-/bin/*
-!bin/console
-!bin/symfony_requirements
-/vendor/
-
-# Assets and user uploads
-/web/bundles/
-/web/uploads/
-
-# PHPUnit
 /app/phpunit.xml
-/phpunit.xml
-
-# Build data
 /build/
-
-# Composer PHAR
+/vendor/
+/var/
+/src/LixoBundle/
+/.idea/
+/nbproject/
 /composer.phar
+/temp/

@@ -1,0 +1,43 @@
+//
+// Mixins / Popovers
+// --------------------------------------------------
+
+@mixin pixel-popover-base($color, $background, $border) {
+  .popover-title,
+  &.popover-colorful {
+    color: $color;
+
+    background: $background;
+  }
+
+  &,
+  .popover-title,
+  &.popover-colorful {
+    border-color: $border;
+  }
+}
+
+@mixin pixel-popover-variant($state, $color, $background, $border, $color-dark, $background-dark, $border-dark: $background-dark) {
+  .popover-#{$state} {
+    // TODO: Find universal solution
+    border-width: 1px;
+    &.top .arrow { /*@noflip*/ bottom: -$popover-arrow-width - 2px; }
+    &.bottom .arrow { /*@noflip*/ top: -$popover-arrow-width - 2px; }
+    &.left .arrow { /*@noflip*/ right: -$popover-arrow-width - 2px; }
+    &.right .arrow { /*@noflip*/ left: -$popover-arrow-width - 2px; }
+
+    @include pixel-popover-base($color, $background, $border);
+  }
+
+  .popover-#{$state}.popover-dark {
+    @include pixel-popover-base($color-dark, $background-dark, $border-dark);
+
+    &.popover-colorful .popover-title {
+      border-color: lighten($background-dark, 8%);
+    }
+  }
+}
+
+@mixin popover-theme($color, $background, $border: $background) {
+  @include pixel-popover-variant(primary, $color, $background, $border, $color, $background);
+}

@@ -1,0 +1,10 @@
+//
+// Mixins / Plugins / Growl
+// --------------------------------------------------
+
+@mixin growl-variant($state, $color, $background) {
+  .growl-#{$state} {
+    color: $color;
+    background: $background;
+  }
+}

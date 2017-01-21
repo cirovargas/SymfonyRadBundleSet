@@ -1,0 +1,85 @@
+<?php
+
+namespace {{ namespace }}\EventListener{{ entity_namespace ? '\\' ~ entity_namespace : '' }};
+
+use Core\Bundle\AdminBundle\Event\ConfigureMenuEvent;
+use Core\Bundle\UserBundle\Entity\User;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
+
+class {{ form_class }} implements EventSubscriberInterface{
+
+    private $tokenStorage;
+    private $translator;
+    private $authorizationChecker;
+
+    public function __construct(
+        TokenStorage $tokenStorage,
+         $translator,
+        AuthorizationChecker $authorizationChecker
+    ) {
+        $this->tokenStorage = $tokenStorage;
+        $this->translator = $translator;
+        $this->authorizationChecker = $authorizationChecker;
+    }
+    
+    /**
+     * @param \AppBundle\Event\ConfigureMenuEvent $event
+     */
+    public function onMenuConfigure(ConfigureMenuEvent $event)
+    {
+        $user = $this->tokenStorage->getToken()->getUser();
+
+        if($user instanceof User){
+            if($this->authorizationChecker->isGranted('ROLE_ADMIN_{{ entity_class|upper }}')){
+
+                $menuRootKey = $this->translator->trans('app.{{ entity_class|lower }}.entity', array(), 'EntityTranslations');
+
+                $list = $this->translator->trans(
+                    'menu.list',
+                    array(
+                        '%entity%' => $this->translator->trans('app.{{ entity_class|lower }}.pluralized', array(), 'EntityTranslations')
+                    ),
+                    'CoreAdminBundle'
+                );
+                $new = $this->translator->trans(
+                    'menu.new',
+                    array(
+                        '%entity%' => $menuRootKey
+                    ),
+                    'CoreAdminBundle'
+                );
+
+
+                $menu = $event->getMenu();
+
+                {% if needWriteActions == true %}
+                $menu->addChild($menuRootKey, array(
+                    'attributes'    => array(
+                        'class'             => '',
+                        )
+                    )
+                )->setAttribute('icon', 'px-nav-icon fa fa-th-list');
+
+                $menu[$menuRootKey]->setUri('#');
+                $menu[$menuRootKey]->addChild($list, array('route' => '{{ route_prefix }}_index'));
+                if($this->authorizationChecker->isGranted('ROLE_ADMIN_{{ entity_class|upper }}_NEW')){
+                    $menu[$menuRootKey]->addChild($new, array('route' => '{{ route_prefix }}_new'));
+                }
+                {% else %}
+                $menu->addChild($menuRootKey, array(
+                    'route'    => '{{ route_prefix }}'
+                    )
+                )->setAttribute('icon', 'px-nav-icon fa fa-th-list');
+                {% endif %}
+            }
+        }
+    }
+    
+    public static function getSubscribedEvents() {
+        return array(
+            'app.menu_configure'     => array('onMenuConfigure', 0),
+        );
+    }
+}

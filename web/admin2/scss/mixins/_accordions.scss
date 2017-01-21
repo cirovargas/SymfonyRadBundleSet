@@ -1,0 +1,32 @@
+//
+// Mixins / Accordions
+// --------------------------------------------------
+
+@mixin panel-group-base($color, $background, $border: $background) {
+  .accordion-toggle,
+  .accordion-toggle:hover,
+  .accordion-toggle:focus {
+    color: $color;
+
+    background: $background;
+  }
+
+  .panel,
+  .panel-heading,
+  .panel-heading + .panel-collapse > .panel-body,
+  .panel-heading + .panel-collapse > .list-group {
+    border-color: $border;
+  }
+}
+
+@mixin panel-group-variant($state, $color, $background, $border: $background) {
+  .panel-group.panel-group-#{$state} {
+    @include panel-group-base($color, $background, $border);
+  }
+}
+
+@mixin panel-group-dark-variant($state, $color, $background, $border: $background) {
+  .panel-group-#{$state}.panel-group-dark {
+    @include panel-group-base($color, $background, $border);
+  }
+}

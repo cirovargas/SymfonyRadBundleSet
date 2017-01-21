@@ -1,0 +1,24 @@
+//
+// Mixins / Plugins / Bootstrap TouchSpin
+// --------------------------------------------------
+
+@mixin bs-touchspin-size-base($line-height, $button-v-padding, $border-radius) {
+  $vertical-btn-height: ceil(($line-height + ($button-v-padding * 2) + 3px) / 2);
+
+  .input-group-btn-vertical > .btn { height: $vertical-btn-height; }
+  .input-group-btn-vertical .bootstrap-touchspin-up { border-top-right-radius: $border-radius; }
+  .input-group-btn-vertical .bootstrap-touchspin-down { border-bottom-right-radius: $border-radius; }
+
+  .input-group-btn-vertical i {
+    height: $vertical-btn-height - 2;
+    line-height: $vertical-btn-height - 2;
+  }
+}
+
+@mixin bs-touchspin-size($sizeClass, $line-height, $button-v-padding, $border-radius) {
+  .bootstrap-touchspin#{$sizeClass} {
+    @include bs-touchspin-size-base($line-height, $button-v-padding, $border-radius);
+  }
+
+  #{$sizeClass} .bootstrap-touchspin-prefix:empty + input { @include border-left-radius($border-radius !important); }
+}

@@ -1,0 +1,8 @@
+//
+// Mixins / Plugins / Dropzone
+// --------------------------------------------------
+
+@mixin dropzone-theme($background, $border: $background) {
+  .dz-upload-icon { background-color: $background; }
+  .dropzone-box.dz-drag-hover { border-color: $border; }
+}

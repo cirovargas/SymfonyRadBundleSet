@@ -1,0 +1,31 @@
+//
+// Mixins / Button label
+// --------------------------------------------------
+
+@mixin button-label-size-base($padding-x, $padding-y, $radius) {
+  margin: (-$padding-y) 0;
+  padding: $padding-y $padding-x;
+
+  &.left {
+    margin-right: $padding-x;
+    margin-left: -$padding-x;
+
+    @include border-left-radius($radius - 1px);
+  }
+
+  &.right {
+    margin-right: -$padding-x;
+    margin-left: $padding-x;
+
+    @include border-right-radius($radius - 1px);
+  }
+}
+
+@mixin button-label-size($size, $padding-x, $padding-y, $radius) {
+  .btn-#{$size} .btn-label,
+  .btn-#{$size} .btn-label-icon,
+  .btn-group-#{$size} > .btn .btn-label,
+  .btn-group-#{$size} > .btn .btn-label-icon {
+    @include button-label-size-base($padding-x, $padding-y, $radius);
+  }
+}

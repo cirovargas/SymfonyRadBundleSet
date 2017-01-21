@@ -1,0 +1,26 @@
+//
+// Tooltips
+// --------------------------------------------------
+
+.tooltip {
+  &.right { /*@noflip*/ margin-left: 3px; }
+  &.left { /*@noflip*/ margin-left: -3px; }
+  &.right .tooltip-arrow {
+    /*@noflip*/ left: 0;
+    /*@noflip*/ right: auto;
+    /*@noflip*/ border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width 0;
+    /*@noflip*/ border-right-color: $tooltip-arrow-color;
+  }
+  &.left .tooltip-arrow {
+    /*@noflip*/ right: 0;
+    /*@noflip*/ left: auto;
+    /*@noflip*/ border-width: $tooltip-arrow-width 0 $tooltip-arrow-width $tooltip-arrow-width;
+    /*@noflip*/ border-left-color: $tooltip-arrow-color;
+  }
+}
+
+
+@include pixel-tooltip-variant(warning, darken($brand-warning, 10%));
+@include pixel-tooltip-variant(danger, darken($brand-danger, 10%));
+@include pixel-tooltip-variant(success, darken($brand-success, 10%));
+@include pixel-tooltip-variant(info, darken($brand-info, 10%));

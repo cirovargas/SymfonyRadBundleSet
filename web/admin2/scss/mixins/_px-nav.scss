@@ -1,0 +1,251 @@
+//
+// Mixins / Px Nav
+// --------------------------------------------------
+
+@mixin px-nav-nesting($nesting-level, $dir: "left") {
+  $path: " > .px-nav-item > a";
+
+  @for $i from 1 through $nesting-level {
+    $path: '.px-nav-dropdown-menu ' + $path;
+
+    #{$path},
+    .px-nav-dropdown-menu.px-show #{$path} {
+      padding-#{$dir}: $px-nav-item-padding-horizontal * ($i + 1);
+    }
+  }
+}
+
+@mixin px-nav-collapsed() {
+  .px-nav-content > .px-nav-item > a {
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+
+    @include clearfix();
+
+    .px-nav-label { display: none; }
+
+    .px-nav-icon {
+      margin: 0;
+      font-size: $px-nav-collapsed-icon-font-size;
+      height: $px-nav-collapsed-icon-font-size;
+      display: block;
+      width: auto;
+    }
+
+    .label,
+    .badge {
+      display: none;
+    }
+  }
+
+  .px-nav-content > .px-nav-dropdown {
+    > a:after {
+      right: 7px;
+      transform: rotate(45deg);
+    }
+
+    > .px-nav-dropdown-menu { display: none; }
+  }
+
+  .px-nav-content > .px-nav-dropdown.px-show > a { box-shadow: none !important; }
+
+  &.px-nav-right .px-nav-content > .px-nav-dropdown > a:after {
+    right: auto;
+    left: 7px;
+    transform: rotate(-135deg);
+  }
+
+  html[dir="rtl"] & {
+    .px-nav-content > .px-nav-dropdown > a:after { transform: rotate(-45deg); }
+    &.px-nav-right .px-nav-content > .px-nav-dropdown > a:after { transform: rotate(135deg); }
+  }
+}
+
+@mixin px-nav-theme($toggle-color, $toggle-bg, $bg, $color, $link-hover-color, $link-hover-bg, $dropdown-bg, $dropdown-menu-title-color, $dropdown-menu-title-bg, $active-color, $active-bg, $active-icon-color, $scrollbar-color, $scrollbar-rail-color, $active-dropdown-icon-color: $active-icon-color, $toggle-border-color: false, $border-color: false, $item-border-color: false, $dropdown-item-border-color: false, $box-border-color: transparent, $tooltip-bg: $active-bg, $tooltip-color: $active-color, $dimmer-bg: $px-nav-dimmer-bg, $animate-items: false) {
+  .px-nav {
+    color: $color;
+
+    @if type-of($bg) == list {
+      background-color: nth($bg, 1);
+      background-image: nth($bg, 2);
+    }
+    @else {
+      background: $bg;
+    }
+
+    .ps-scrollbar-x-rail,
+    .ps-scrollbar-y-rail {
+      background-color: $scrollbar-rail-color !important;
+    }
+
+    .ps-scrollbar-x-rail > .ps-scrollbar-x,
+    .ps-scrollbar-y-rail > .ps-scrollbar-y {
+      background-color: $scrollbar-color !important;
+    }
+  }
+
+  .px-nav-dimmer { background: $dimmer-bg; }
+
+  .px-nav-item a {
+    color: $color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $link-hover-color;
+      background: $link-hover-bg;
+    }
+  }
+
+  .px-nav-item.active > a {
+    color: $active-color !important;
+    background: $active-bg;
+
+    .px-nav-icon { color: $active-icon-color; }
+  }
+
+  .px-nav-dropdown.active > a .px-nav-icon { color: $active-dropdown-icon-color; }
+
+  .px-nav-dropdown.active > a {
+    background: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: $link-hover-bg;
+    }
+  }
+
+  .px-nav-tooltip {
+    background: $tooltip-bg;
+    color: $tooltip-color;
+  }
+
+  .px-nav-left .px-nav-tooltip:before { border-right-color: $tooltip-bg; }
+  .px-nav-right .px-nav-tooltip:before { border-left-color: $tooltip-bg; }
+
+  .px-show > a,
+  .px-nav-dropdown-menu-title {
+    background: $dropdown-menu-title-bg !important;
+    color: $dropdown-menu-title-color !important;
+    .px-nav-icon { color: $dropdown-menu-title-color !important; }
+  }
+
+  .px-nav-dropdown-menu { background: $dropdown-bg; }
+
+  .px-nav-toggle {
+    color: $toggle-color;
+
+    @if type-of($toggle-bg) == list {
+      background-color: nth($toggle-bg, 1);
+      background-image: nth($toggle-bg, 2);
+    }
+    @else {
+      background: $toggle-bg;
+    }
+
+    .navbar-toggle-icon,
+    .navbar-toggle-icon:before,
+    .navbar-toggle-icon:after {
+      color: $toggle-color;
+      background: $toggle-color;
+    }
+  }
+
+  .px-nav-box {
+    border-color: $box-border-color;
+    color: $link-hover-color;
+
+    .close {
+      color: $color;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $link-hover-color;
+      }
+    }
+
+    .btn-outline {
+      border-color: $box-border-color;
+      color: $color;
+    }
+  }
+
+  &.px-nav-static .px-nav-dropdown > a,
+  &.px-nav-static .px-nav-dropdown > a:hover,
+  &.px-nav-static .px-nav-dropdown > a:focus {
+    color: $color;
+  }
+
+  @if ($border-color) {
+    .px-nav-toggle ~ .px-nav-content { padding-top: $navbar-height + 1; }
+
+    .px-nav-toggle ~ .px-nav-scrollable-area .px-nav-content { padding-top: 1px; }
+
+    .px-nav.px-nav-left {
+      box-shadow: -1px 0 0 $border-color inset;
+
+      .px-nav-content > .px-nav-item > .px-nav-dropdown-menu { margin-right: 1px; }
+      .px-nav-content > .px-nav-item.active > a { box-shadow: -1px 0 0 $border-color inset; }
+    }
+
+    .px-nav.px-nav-right {
+      box-shadow: 1px 0 0 $border-color inset;
+
+      .px-nav-content > .px-nav-item > .px-nav-dropdown-menu { margin-left: 1px; }
+      .px-nav-content > .px-nav-item.active > a { box-shadow: 1px 0 0 $border-color inset; }
+    }
+
+    .px-nav-dropdown-menu.px-show { box-shadow: 0 0 0 1px $border-color; }
+  }
+
+  @if ($item-border-color) {
+    .px-nav-content > .px-nav-item > a,
+    .px-nav-content > .px-nav-item > .px-nav-dropdown-menu,
+    .px-nav-dropdown-menu-title {
+      border-bottom: 1px solid $item-border-color;
+    }
+
+    .px-nav-dropdown-menu-wrapper ~ .px-nav-dropdown-menu-title {
+      border-top: 1px solid $item-border-color;
+      border-bottom: none;
+    }
+
+    .px-nav-dropdown-menu-top.px-show { margin-bottom: 1px !important; }
+  }
+
+  @if ($dropdown-item-border-color) {
+    .px-nav-dropdown-menu .px-nav-item + .px-nav-item > a,
+    .px-nav-dropdown-menu .px-nav-dropdown-menu .px-nav-item > a {
+      border-top: 1px solid $dropdown-item-border-color;
+    }
+  }
+
+  @if ($toggle-border-color) {
+    .px-nav.px-nav-left .px-nav-toggle { border-right: 1px solid $toggle-border-color; }
+    .px-nav.px-nav-right .px-nav-toggle { border-left: 1px solid $toggle-border-color; }
+  }
+
+  @media (max-width: $px-nav-desktops-breakpoint - 1) {
+    .px-nav.px-nav-expand .px-open > a,
+    .px-nav-dropdown-menu .px-open > a {
+      color: $link-hover-color;
+    }
+  }
+
+  @media (min-width: $px-nav-desktops-breakpoint) {
+    .px-nav:not(.px-nav-collapse) .px-open > a,
+    .px-nav-dropdown-menu .px-open > a {
+      color: $link-hover-color;
+    }
+  }
+
+  @if ($animate-items) {
+    .px-nav-item a {
+      transition-property: color, background;
+      transition-duration: $px-nav-transition-duration;
+    }
+  }
+}

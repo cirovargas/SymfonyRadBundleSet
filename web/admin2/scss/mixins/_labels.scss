@@ -1,0 +1,40 @@
+//
+// Mixins / Labels
+// --------------------------------------------------
+
+@mixin pixel-label-base($color, $background, $outline-border: $background) {
+  border-color: $background;
+  background: $background;
+  color: $color;
+
+  &[href]:hover,
+  &[href]:focus {
+    border-color: darken($background, 4%);
+    background: darken($background, 4%);
+    color: $color;
+  }
+
+  &.label-outline {
+    color: darken($background, 10%);
+    box-shadow: 0 0 0 1px $outline-border inset;
+
+    &[href]:hover,
+    &[href]:focus {
+      color: darken($background, 20%);
+    }
+  }
+
+  &.label-ribbon:before { border-top-color: desaturate(darken($background, 10%), 15%); }
+}
+
+@mixin pixel-label-variant($state, $color, $background, $outline-border: $background) {
+  .label-#{$state},
+  .badge-#{$state},
+  .panel-warning > .panel-heading .badge-#{$state} {
+    @include pixel-label-base($color, $background, $outline-border);
+  }
+}
+
+@mixin label-theme($color, $background) {
+  @include pixel-label-variant(primary, $color, $background);
+}

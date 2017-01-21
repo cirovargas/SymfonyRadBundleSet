@@ -1,0 +1,43 @@
+//
+// Accordions
+// --------------------------------------------------
+
+.panel-group .panel-heading { padding: 0; }
+
+.accordion-toggle {
+  position: relative;
+
+  display: block;
+
+  padding: $panel-heading-padding;
+
+  color: $text-color;
+
+  &:hover,
+  &:focus,
+  &.collapsed:hover,
+  &.collapsed:focus {
+    text-decoration: none;
+
+    color: $text-color;
+    background: rgba(0, 0, 0, .015);
+  }
+}
+
+.panel-group .panel-heading + .panel-collapse > .panel-body,
+.panel-group .panel-heading + .panel-collapse > .list-group {
+  border-top-color: $panel-default-border;
+}
+
+// Colors
+//
+
+@include panel-group-variant(success, $state-success-text, $state-success-bg, $state-success-border);
+@include panel-group-variant(danger, $state-danger-text, $state-danger-bg, $state-danger-border);
+@include panel-group-variant(warning, $state-warning-text, $state-warning-bg, $state-warning-border);
+@include panel-group-variant(info, $state-info-text, $state-info-bg, $state-info-border);
+
+@include panel-group-dark-variant(success, #fff, $brand-success);
+@include panel-group-dark-variant(danger, #fff, $brand-danger);
+@include panel-group-dark-variant(warning, #fff, $brand-warning);
+@include panel-group-dark-variant(info, #fff, $brand-info);

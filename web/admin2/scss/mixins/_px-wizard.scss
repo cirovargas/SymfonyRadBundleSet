@@ -1,0 +1,48 @@
+//
+// Mixins / Plugins / Wizard
+// --------------------------------------------------
+
+@mixin panel-wizard-base($color, $background, $border) {
+  background: $background;
+  color: $color;
+
+  .wizard-wrapper,
+  + .panel-body {
+    background: $background;
+    border-color: $border;
+  }
+
+  .wizard-steps > li + li:before { background: $border; }
+
+  .wizard-step-caption,
+  .wizard-step-description {
+    color: transparentize($color, .3);
+  }
+
+  .wizard-step-number,
+  .wizard-steps > li.completed .wizard-step-complete,
+  &.finished .wizard-steps > li .wizard-step-complete {
+    color: transparentize($color, .3);
+    border-color: transparentize($border, .3);
+  }
+
+  .wizard-steps > li.active,
+  .wizard-steps > li.completed {
+    .wizard-step-caption { color: $color; }
+
+    .wizard-step-number {
+      color: $color;
+      border-color: $color;
+    }
+  }
+}
+
+@mixin panel-wizard-variant($state, $color, $background, $border, $color-dark, $background-dark, $border-dark: lighten($background-dark, 15%)) {
+  .panel-#{$state}.panel-body-colorful .panel-wizard {
+    @include panel-wizard-base($color, $background, $border);
+  }
+
+  .panel-#{$state}.panel-dark.panel-body-colorful .panel-wizard {
+    @include panel-wizard-base($color-dark, $background-dark, $border-dark);
+  }
+}

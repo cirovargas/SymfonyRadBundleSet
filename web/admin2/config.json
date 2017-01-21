@@ -1,0 +1,9 @@
+{
+  "paths": {
+    "dist": "dist"
+  },
+  "compileSources": true,
+  "compileAmd": true,
+  "minifyAmdModules": true,
+  "includeRtlSupport": true
+}

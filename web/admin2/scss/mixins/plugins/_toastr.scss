@@ -1,0 +1,20 @@
+//
+// Mixins / Plugins / Toastr
+// --------------------------------------------------
+
+@mixin toastr-base($color, $background) {
+  background: $background;
+
+  &,
+  a,
+  label,
+  .toast-close-button {
+    color: $color;
+  }
+}
+
+@mixin toastr-variant($state, $color, $background) {
+  .toast-#{$state} {
+    @include toastr-base($color, $background);
+  }
+}

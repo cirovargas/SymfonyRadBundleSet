@@ -1,0 +1,9 @@
+{{ translationPreviousContent }}
+    {{ entity_class|lower }}:
+        entity: {{ entity_class }}
+        pluralized: {{ entity_class }}s
+        {%- for data in fields_data %}
+        
+        {{ data.fieldName|lower }}: {{ data.fieldName }}
+        
+        {%- endfor %}

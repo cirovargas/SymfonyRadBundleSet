@@ -1,0 +1,108 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<div class="page-header">
+    <h1>{{ 'views.edit.edit'|trans({'%entity%': 'Perfil'}, 'CoreAdminBundle') }}</h1>
+</div>
+
+
+{{ form_start(form,{attr:{class:" "}}) }}
+<ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+    <li class="active">
+        <a href="#uidemo-tabs-default-demo-home" data-toggle="tab">
+            {{ form.profile.vars.label }}
+        </a>
+    </li>
+    <li class="">
+        <a href="#uidemo-tabs-default-demo-profile" data-toggle="tab">{{ form.profile.configs.vars.label }}</a>
+    </li>
+    <li class="">
+        <a href="#uidemo-tabs-default-demo-banco-talentos" data-toggle="tab">Banco de talentos</a>
+    </li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Outros&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+        <ul class="dropdown-menu">
+            <li><a href="{{ path('fos_user_change_password') }}" >Alterar senha</a></li>
+            <li><a href="{{ path('admin_user_avatar') }}">Foto do perfil</a></li>
+        </ul>
+    </li> <!-- / .dropdown -->
+</ul>
+<div class="tab-content tab-content-bordered">
+    <div class="tab-pane fade active in" id="uidemo-tabs-default-demo-home">
+        <div class="panel">
+            <div class="panel-body">
+                {#{{ form_errors(form.current_password)}}#}
+                {{ form_row(form.username) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.profile.name) }}
+                {{ form_row(form.profile.nomeCompleto) }}
+                {{ form_row(form.profile.phone) }}
+                {{ form_row(form.profile.workphone) }}
+                {{ form_row(form.profile.cellphone) }}
+                {{ form_row(form.profile.bornDate) }}
+                {{ form_row(form.profile.gender) }}
+                {{ form_row(form.profile.about) }}
+                {{ form_row(form.profile.atividadesDesenvolvidas) }}
+                {{ form_row(form.profile.aptidao) }}
+            </div>
+            <div class="panel-footer text-right">
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal-save-changes">{{ 'profile.edit.submit'|trans }}</button>
+            </div>
+        </div>
+    </div> <!-- / .tab-pane -->
+    <div class="tab-pane fade" id="uidemo-tabs-default-demo-profile">
+        <div class="panel">
+            <div class="panel-body">
+                {% for config in form.profile.configs %}
+                    {{ form_row(config) }}
+                {% endfor %}
+            </div>
+            <div class="panel-footer text-right">
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal-save-changes">{{ 'profile.edit.submit'|trans }}</button>
+            </div>
+        </div>
+    </div> <!-- / .tab-pane -->
+    <div class="tab-pane fade" id="uidemo-tabs-default-demo-banco-talentos">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_row(form.experiencias) }}
+                    </div>
+                </div>
+                {{ form_row(form.idiomas) }}
+                {{ form_row(form.qualificacoes) }}
+                {{ form_row(form.formacoes) }}
+            </div>
+            <div class="panel-footer text-right">
+                {#<button class="btn btn-success" data-toggle="modal" data-target="#modal-save-changes">{{ 'profile.edit.submit'|trans }}</button>#}
+                <button type="submit" class="btn btn-success">{{ 'profile.edit.submit'|trans }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+            
+            
+{#<div id="modal-save-changes" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                    <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">{{ form.current_password.vars.label|trans }}</h4>
+                    </div>
+                    <div class="modal-body">
+                            {{ form_widget(form.current_password)}}
+                    </div> <!-- / .modal-body -->
+                    <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">{{ 'profile.edit.submit'|trans }}</button>
+                    </div>
+            </div> <!-- / .modal-content -->
+    </div> <!-- / .modal-dialog -->
+</div>#}
+<div style='display:none'>
+    {{ form_row(form.profile) }}
+    {{ form_row(form.profile.configs) }}
+</div>
+{{ form_rest(form) }}
+{{ form_end(form) }}

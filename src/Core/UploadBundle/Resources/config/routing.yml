@@ -1,3 +1,0 @@
-core_upload_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: CoreUploadBundle:Default:index }

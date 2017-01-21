@@ -1,0 +1,17 @@
+app:
+    user:
+        entity: user
+        pluralized: users
+        name: name
+        username: username
+        lastLogin: last login
+        email: e-mail
+        expired: Expired
+        profile: profile
+        groups: groups
+        roles: roles
+        locked: locked
+        enabled: enabled
+    group:
+        entity: group
+        pluralized: groups

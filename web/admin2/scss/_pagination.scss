@@ -1,0 +1,49 @@
+//
+// Pagination
+// --------------------------------------------------
+
+.pagination > li {
+  > a,
+  > span {
+    margin: 0 4px 0 0;
+    padding: 6px 12px;
+
+    border-radius: $border-radius-base;
+  }
+
+  &.active > a,
+  &.active > span {
+    font-weight: 600;
+  }
+}
+
+
+// Pager
+//
+
+.pager > li > a {
+  color: $pagination-color;
+  border-radius: 999px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $pagination-hover-color;
+  }
+}
+
+// Disabled
+//
+
+.pagination > li.disabled > a,
+.pager > li.disabled > a {
+  border-color: $pagination-disabled-border !important;
+}
+
+
+// Sizes
+//
+
+@include pagination-size(xs, 3px 8px, $font-size-xs);
+@include pagination-size(sm, 5px 10px, $font-size-small);
+@include pagination-size(lg, 11px 17px, $font-size-large, $border-radius-large);

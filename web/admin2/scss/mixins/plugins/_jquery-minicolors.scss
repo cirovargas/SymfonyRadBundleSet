@@ -1,0 +1,48 @@
+//
+// Mixins / Plugins / jQuery Minicolors
+// --------------------------------------------------
+
+@mixin minicolors-size-base($padding-vertical, $padding-horizontal, $border-radius, $font-size, $line-height, $swatch-position) {
+  $swatch-size: ($padding-vertical * 2) + round($font-size * $line-height) - ($swatch-position * 2);
+
+  + .minicolors-swatch {
+    top: $swatch-position;
+    left: $swatch-position;
+
+    width: $swatch-size;
+    height: $swatch-size;
+  }
+
+  &[type=hidden] + .minicolors-swatch {
+    height: ($padding-vertical * 2) + round($font-size * $line-height);
+
+    cursor: pointer;
+
+    border-radius: $border-radius;
+
+    .minicolors-swatch-color { border-radius: $border-radius; }
+  }
+
+  .minicolors-position-left & {
+    padding-left: $swatch-size + $padding-horizontal;
+
+    ~ .minicolors-panel:after { left: ($swatch-size / 2) + $swatch-position; }
+  }
+
+  .minicolors-position-right & {
+    padding-right: $swatch-size + $padding-horizontal;
+
+    + .minicolors-swatch {
+      left: auto;
+      right: $swatch-position;
+    }
+
+    ~ .minicolors-panel:after { right: ($swatch-size / 2) + $swatch-position; }
+  }
+}
+
+@mixin minicolors-size($size, $padding-vertical, $padding-horizontal, $border-radius, $font-size, $line-height, $swatch-position) {
+  .minicolors-input.input-#{$size} {
+    @include minicolors-size-base($padding-vertical, $padding-horizontal, $border-radius, $font-size, $line-height, $swatch-position);
+  }
+}

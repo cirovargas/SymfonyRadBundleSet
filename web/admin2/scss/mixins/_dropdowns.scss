@@ -1,0 +1,49 @@
+//
+// Mixins / Dropdowns
+// --------------------------------------------------
+
+@mixin dropdown-multi-column-breakpoint($breakpoint, $media-width) {
+  @media (min-width: $media-width) {
+    .dropdown-column[class^="col-#{$breakpoint}-"],
+    .dropdown-column[class*=" col-#{$breakpoint}-"] {
+      display: table-cell;
+
+      > li > a { white-space: normal; }
+
+      + .dropdown-column {
+        border-left: 1px solid $dropdown-divider-bg;
+        border-top: none;
+      }
+    }
+  }
+}
+
+@mixin dropdown-theme($color, $background) {
+  .dropdown-menu > .active > a {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: $color;
+      background-color: $background;
+    }
+  }
+}
+
+@mixin dropdown-variant($state, $color, $background) {
+  .dropdown-menu.dropdown-menu-#{$state} {
+    > .active > a {
+      color: $color;
+      background-color: $background;
+    }
+
+    > li > a {
+      &:hover,
+      &:focus,
+      &:active {
+        color: $color;
+        background-color: $background;
+      }
+    }
+  }
+}

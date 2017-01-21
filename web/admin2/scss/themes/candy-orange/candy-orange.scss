@@ -1,0 +1,138 @@
+//
+// Themes / Candy Orange
+// --------------------------------------------------
+
+@import '../../variables';
+@import '../../../libs/bootstrap-sass/assets/stylesheets/bootstrap/variables';
+@import '../../../libs/bootstrap-sass/assets/stylesheets/bootstrap/mixins';
+@import '../../mixins';
+
+
+$theme-primary-color: #eb613e;
+
+
+// Generate theme
+//
+
+@include pixel-theme(
+
+  // Basic
+  //
+
+  $primary-color:        $theme-primary-color,
+  $primary-text-color:   #fff,
+  $primary-border-color: darken($theme-primary-color, 6%),
+
+  $body-bg:              #f6f6f6,
+  $panel-border-color:   #e2e2e2,
+  $header-bg:            transparent,
+  $header-border-color:  rgba(0, 0, 0, .07),
+
+  // Px-Navbar element
+  //
+
+  $px-navbar: (
+    bg:                             $theme-primary-color,
+    border-color:                   rgba(0, 0, 0, .09),
+    link-color:                     #fff,
+    link-hover-color:               rgba(255, 255, 255, .8),
+    link-hover-bg:                  rgba(0, 0, 0, .04),
+    shadow:                         "0 1px 1px rgba(0, 0, 0 , .1)",
+
+    brand-bg:                       $theme-primary-color,
+    brand-link-color:               #fff,
+    brand-link-hover-color:         #fff,
+
+    collapse-bg:                    desaturate(darken($theme-primary-color, 5%), 5%),
+    collapse-border-color:          desaturate(darken($theme-primary-color, 11%), 11%),
+    collapse-dropdown-bg:           rgba(255, 255, 255, .06),
+    collapse-dropdown-border-color: saturate(lighten($theme-primary-color, 4%), 4%),
+
+    form-control-bg:                rgba(255, 255, 255, .3),
+    form-control-border-color:      transparent,
+    form-control-color:             #fff,
+
+    scrollbar-color:                rgba(255, 255, 255, .5),
+    scrollbar-rail-color:           transparent,
+
+    enable-transitions:             false
+  ),
+
+  // Px-Nav element
+  //
+
+  $px-nav: (
+    toggle-color:              #fff,
+    toggle-bg:                 $theme-primary-color,
+
+    bg:                        #5c5b58,
+    color:                     #d1c7be,
+    link-hover-color:          #fff,
+    link-hover-bg:             rgba(0, 0, 0, .08),
+
+    // Dropdowns
+    dropdown-bg:               #555451,
+    dropdown-menu-title-color: #fff,
+    dropdown-menu-title-bg:    darken(#5c5b58, 8%),
+
+    // Active
+    active-color:              #fff,
+    active-bg:                 lighten($theme-primary-color, 5%),
+    active-icon-color:         #fff,
+
+    scrollbar-color:           rgba(255, 255, 255, .3),
+    scrollbar-rail-color:      transparent,
+
+    toggle-border-color:       rgba(0, 0, 0, .09),
+    border-color:              false,
+    item-border-color:         #555451,
+    box-border-color:          #555451,
+
+    tooltip-bg:                $theme-primary-color,
+    tooltip-color:             #fff,
+
+    dimmer-bg:                 rgba(#485056, .5),
+
+    animate-items:             true
+  ),
+
+  // Px-Footer element
+  //
+
+  $px-footer: (
+    color:            rgba(255, 255, 255, .5),
+    bg:               #6c6b67,
+
+    link-color:       rgba(255, 255, 255, .6),
+    link-hover-color: #fff,
+
+    muted-color:      #a9a6a2,
+    border-color:     false,
+    hr-color:         #777470
+  )
+);
+
+// Custom styles
+//
+
+// PxNavbar
+@if mixin-exists(px-navbar-theme) {
+  @media (min-width: $screen-md-min) {
+    .px-navbar .dropdown-menu {
+      border-top: 0;
+      background: #fff;
+      margin-left: -1px;
+
+      a { color: $text-color !important; }
+      .divider { background: $panel-inner-border !important; }
+    }
+
+    .px-navbar .ps-scrollbar-x-rail > .ps-scrollbar-x,
+    .px-navbar .ps-scrollbar-y-rail > .ps-scrollbar-y {
+      background: #aaa !important;
+    }
+
+    .px-navbar [class^="widget-"],
+    .px-navbar [class*=" widget-"] { border-color: $panel-inner-border; }
+  }
+}

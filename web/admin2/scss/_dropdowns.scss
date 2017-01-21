@@ -1,0 +1,240 @@
+//
+// Dropdowns
+// --------------------------------------------------
+
+// Hide Font Awesome carets
+.dropdown-toggle > .fa-caret-down,
+.dropdown-toggle > .fa-caret-up {
+  display: none;
+}
+
+
+// Dropdown toggle caret
+//
+
+.dropdown-toggle:after {
+  display: inline-block;
+
+  width: 0;
+  height: 0;
+  margin-left: .3076923076em;
+
+  content: "";
+  vertical-align: middle;
+
+  @include arrow-down(.3em);
+
+  .dropup & {
+    @include arrow-up(.3em);
+  }
+}
+
+.dropdown-toggle:empty:after { margin: 0; }
+
+.dropdown-toggle:empty,
+.btn-group > .btn + .dropdown-toggle,
+.input-group-btn > .btn + .dropdown-toggle {
+  padding-right: .692em !important;
+  padding-left: .692em !important;
+}
+
+
+// Dropdown menu
+//
+
+.dropdown-menu > li > a,
+.dropdown-header {
+  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+}
+
+.dropdown-menu {
+  padding: $dropdown-padding-y 0;
+
+  border-width: 2px;
+  box-shadow: none;
+
+  $dropdown-label-tag-circle-size: .4em;
+
+  > li > a:hover { background: $dropdown-link-hover-bg; }
+
+  .label,
+  .badge {
+    position: relative;
+    top: .2em;
+
+    padding: 0 .5em;
+
+    vertical-align: top;
+
+    font-size: .77em;
+    line-height: $dropdown-label-line-height;
+  }
+
+  .label-pill,
+  .badge {
+    padding-right: .7em;
+    padding-left: .7em;
+  }
+
+  .label-tag {
+    &:before {
+      border-top-width: $dropdown-label-line-height / 2;
+      border-bottom-width: $dropdown-label-line-height / 2;
+    }
+
+    &:after {
+      width: $dropdown-label-tag-circle-size;
+      height: $dropdown-label-tag-circle-size;
+      margin-top: -$dropdown-label-tag-circle-size / 2;
+      margin-right: 0;
+    }
+  }
+}
+
+.dropdown-header {
+  margin: 0 0 2px;
+
+  text-transform: uppercase;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.dropdown-menu .divider { margin: $dropdown-padding-y 0; }
+
+
+// Multi-level dropdowns
+//
+
+.dropdown-menu .dropdown-toggle {
+  position: relative;
+
+  box-shadow: none !important;
+
+  &:after { display: none; }
+
+  > a {
+    position: relative;
+
+    // Arrow
+    &:after {
+      display: inline-block;
+
+      width: 0;
+      height: 0;
+      margin: -1px 0 0 6px;
+
+      content: "";
+      vertical-align: middle;
+
+      @include arrow-down(4px);
+    }
+
+    + .dropdown-menu {
+      position: static;
+
+      display: block;
+
+      margin: 0;
+
+      border-width: 0;
+      border-radius: 0;
+      background: rgba(0, 0, 0, .05);
+    }
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  .dropdown-menu {
+    .dropdown-toggle > a {
+      // Arrow
+      &:after {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+
+        margin: -4px 0 0;
+
+        @include arrow-right(4px);
+      }
+
+      + .dropdown-menu {
+        position: absolute;
+        top: 0;
+        left: 100%;
+
+        display: none;
+
+        margin-top: -2px;
+
+        border-width: 2px;
+        border-radius: $border-radius-base;
+        background: $dropdown-bg;
+      }
+    }
+
+    .dropdown-toggle > a + .dropdown-menu-right,
+    &.dropdown-menu-right .dropdown-toggle > a + .dropdown-menu {
+      right: 100%;
+      left: auto;
+    }
+
+    // Show dropdown on hover
+    .dropdown-toggle:hover > a:not(.disabled) + .dropdown-menu { display: block; }
+  }
+
+  .dropdown-menu.dropdown-menu-right .dropdown-menu {
+    right: 100%;
+    left: auto;
+  }
+}
+
+
+// Multi-column dropdown
+//
+
+.dropdown-multi-column {
+  position: absolute;
+  z-index: $zindex-dropdown;
+  top: 100%;
+  left: 0;
+
+  display: none;
+  float: left;
+
+  margin: 2px 0 0;
+
+  table-layout: fixed;
+
+  border: 2px solid $dropdown-border;
+  border-radius: $border-radius-base;
+  background-color: $dropdown-bg;
+  background-clip: padding-box;
+
+  .open & { display: table; }
+
+  &.dropdown-menu-right {
+    right: 0;
+    left: auto;
+  }
+}
+
+.dropdown-column {
+  position: static;
+
+  display: block;
+  float: none;
+
+  min-width: 180px;
+  margin: 0;
+  padding: $dropdown-padding-y 0;
+
+  border: none;
+  border-radius: 0;
+
+  & + & { border-top: 1px solid $dropdown-divider-bg; }
+}
+
+@include dropdown-multi-column-breakpoint(sm, $screen-sm-min);
+@include dropdown-multi-column-breakpoint(md, $screen-md-min);
+@include dropdown-multi-column-breakpoint(lg, $screen-lg-min);

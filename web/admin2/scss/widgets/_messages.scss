@@ -1,0 +1,93 @@
+//
+// Widgets / Messages
+// --------------------------------------------------
+
+$_widget-sm-padding-left: 30px;
+
+@include pixel-widget-item(messages, $widget-messages-item-padding-x, $widget-messages-item-padding-y) {
+  &.unread .widget-messages-title { font-weight: bold; }
+};
+
+.widget-messages-checkbox {
+  position: absolute;
+  top: $widget-messages-item-padding-y - 1px;
+
+  width: 20px;
+}
+
+&.unread .widget-messages-title { font-weight: bold; }
+
+.widget-messages-from,
+.widget-messages-title,
+.widget-messages-date {
+  display: block;
+  float: left;
+  clear: left;
+
+  margin-left: $_widget-sm-padding-left;
+}
+
+.widget-messages-from {
+  color: $text-color;
+
+  &:hover { color: $text-muted; }
+}
+
+.widget-messages-date { color: $text-muted; }
+
+.widget-messages-icon {
+  display: inline-block;
+
+  margin-right: 7px;
+
+  text-decoration: none !important;
+
+  color: $text-color;
+
+  font-size: 14px;
+  font-weight: 400 !important;
+}
+
+// Desktops
+@media (min-width: $screen-md-min) {
+  .widget-messages-from {
+    float: left;
+    clear: none;
+    overflow: hidden;
+
+    width: 25%;
+    min-width: 115px;
+    max-width: 180px;
+    padding-right: 8px;
+  }
+
+  .widget-messages-title {
+    float: none;
+    clear: none;
+    overflow: hidden;
+
+    margin: 0;
+    padding-right: 60px;
+  }
+
+  .widget-messages-date {
+    position: absolute;
+    top: $widget-messages-item-padding-y;
+    right: $widget-messages-item-padding-x;
+
+    width: 50px;
+
+    text-align: right;
+  }
+}
+
+
+// Widget within panel
+//
+
+@include pixel-widget-within-panel(messages);
+
+// Desktops
+@media (min-width: $screen-md-min) {
+  .panel .widget-messages-date { right: $panel-body-padding; }
+}

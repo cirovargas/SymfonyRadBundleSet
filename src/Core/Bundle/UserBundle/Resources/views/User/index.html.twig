@@ -1,0 +1,125 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}
+{{ parent() }} - {{ 'views.index.list'|trans({'%entity%': 'app.user.entity'|trans({},'EntityTranslations')|capitalize}, 'CoreAdminBundle') }}
+{% endblock %}
+
+{% block page %}
+<div class="page-header">
+    <h1>{{ 'views.index.list'|trans({'%entity%': 'app.user.entity'|trans({},'EntityTranslations')|capitalize}, 'CoreAdminBundle') }}</h1>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        {% if form_errors(filterForm) %}
+        <div class="alert alert-block alert-error fade in form-errors">
+            {{ form_errors(filterForm) }}
+        </div>
+        {% endif %}
+        <div class="panel-group panel-group-info">
+            <div class="panel">
+                <div class="panel-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-example" href="#collapseOne">
+                        {{ 'views.index.filters'|trans({}, 'CoreAdminBundle') }}
+                    </a>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse{% if form_errors(filterForm) %} in{% endif %}" style="height: auto;">
+                    <div class="panel-body">
+                        {{ form_start(filterForm,{'method':'GET', 'attr':{'class':'form-horizontal'} }) }}
+                        {{ form_rest(filterForm) }}
+                        <div class="col-sm-1 col-sm-offset-10">
+                            <button type="submit" class="btn btn-warning" name="filter_action" value="reset">{{ 'views.index.reset'|trans({}, 'CoreAdminBundle') }}</button>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="submit" class="btn btn-info" name="filter_action" value="filter">{{ 'views.index.filter'|trans({}, 'CoreAdminBundle') }}</button>
+                        </div>
+                        {{ form_end(filterForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel">
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col-md-4">
+                                 {{ 'app.user.name'|trans({},'EntityTranslations') }}
+                            </th>
+                            <th class="col-md-3">
+                                <span class="line"></span>{{ 'app.user.lastLogin'|trans({},'EntityTranslations') }}
+                            </th>
+                            <th class="col-md-3 align-right">
+                                <span class="line"></span>{{ 'app.user.email'|trans({},'EntityTranslations') }}
+                            </th>
+                            <th class="col-md-2">
+                                <span class="line"></span>{{ 'views.index.actions'|trans({}, 'CoreAdminBundle') }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entity in entities %}
+                        <tr class="first">
+                            <td>
+                                <a href="{{ path('admin_users_show', { 'id': entity.id }) }}" class="name">{{ entity.username }}</a>
+                                <span class="subtext"></span>
+                            </td>
+                            <td>
+                                {{ entity.lastLogin|date('d/m/Y H:i:s')}}
+                            </td>
+                            <td class="align-right">
+                                <a href="#">{{ entity.email }}</a>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                        {{ 'views.index.actions'|trans({}, 'CoreAdminBundle') }} &nbsp;<i class="fa fa-caret-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        {% if is_granted('ROLE_ADMIN_USERS_SHOW') %}
+                                        <li><a href="{{ path('admin_users_show', { 'id': entity.id }) }}">{{ 'views.actions.show'|trans({}, 'CoreAdminBundle') }}</a></li>
+                                        {% endif %}
+                                        {% if is_granted('ROLE_ADMIN_USERS_EDIT') %}
+                                        <li><a href="{{ path('admin_users_edit', { 'id': entity.id }) }}">{{ 'views.actions.edit'|trans({}, 'CoreAdminBundle') }}</a></li>
+                                        {% endif %}
+                                        {% if is_granted('ROLE_ADMIN_USERS_ATIVAR') and entity.enabled == false %}
+                                        <li><a href="{{ path('admin_users_ativar', { 'id': entity.id }) }}">Ativar</a></li>
+                                        {% endif %}
+                                        {% if is_granted('ROLE_ADMIN_USERS_INATIVAR') and entity.enabled == true %}
+                                        <li><a href="{{ path('admin_users_inativar', { 'id': entity.id }) }}">Inativar</a></li>
+                                        {% endif %}
+                                        {#{% if is_granted('ROLE_ADMIN_USERS_PERMISSIONS') %}#}
+                                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                        <li><a href="{{ path('admin_users_permissions', { 'id': entity.id }) }}">Permissões</a></li>
+                                        {% endif %}
+                                        {#{% if is_granted('ROLE_ALLOWED_TO_SWITCH') %}#}
+                                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                        <li><a href="{{ path('admin_home') }}?_switch_user={{ entity.username }}">Personificar</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10">
+        {{ pagerHtml|raw }}
+    </div>
+    <div class="col-md-2 text-right">
+        {% if is_granted('ROLE_ADMIN_USERS_ADD') %}
+        <a class="btn btn-primary likepaginator" href="{{ path('admin_users_new') }}">
+            {{ 'views.index.createnew'|trans({},'CoreAdminBundle') }}
+        </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

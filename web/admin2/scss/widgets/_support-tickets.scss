@@ -1,0 +1,40 @@
+//
+// Widgets / Support tickets
+// --------------------------------------------------
+
+@include pixel-widget-item(support-tickets, $widget-support-tickets-item-padding-x, $widget-support-tickets-item-padding-y) {
+  .label,
+  .badge {
+    font-size: 11px;
+  }
+};
+
+.widget-support-tickets-title {
+  display: block;
+
+  font-size: 14px;
+}
+
+.widget-support-tickets-id {
+  text-decoration: none !important;
+
+  color: $text-muted;
+}
+
+.widget-support-tickets-info {
+  color: $text-muted;
+
+  font-size: 12px;
+
+  a { color: $text-color; }
+
+  a:hover,
+  a:focus {
+    color: $text-muted;
+  }
+}
+
+// Widget within panel
+//
+
+@include pixel-widget-within-panel(support-tickets);

@@ -1,0 +1,213 @@
+//
+// Mixins / Px Navbar
+// --------------------------------------------------
+
+@mixin px-navbar-theme($bg, $border-color, $link-color, $link-hover-color, $link-hover-bg, $brand-bg, $brand-link-color, $brand-link-hover-color, $collapse-border-color, $collapse-dropdown-bg, $collapse-dropdown-border-color, $form-control-bg, $form-control-border-color, $form-control-color, $scrollbar-color, $scrollbar-rail-color, $collapse-bg: $bg, $shadow: "none", $enable-transitions: true) {
+  .px-navbar {
+    color: $link-color;
+    box-shadow: #{$shadow};
+
+    .navbar-nav a,
+    .dropdown-menu a {
+      color: $link-color;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $link-hover-color;
+        background: $link-hover-bg;
+      }
+    }
+
+    li.active,
+    .dropdown.open,
+    .dropdown.active {
+      > a,
+      > a:hover,
+      > a:focus,
+      > a:active {
+        color: $link-hover-color;
+        background: $link-hover-bg;
+      }
+    }
+
+    .navbar-nav li:hover,
+    .dropdown-menu li:hover {
+      background: none;
+    }
+
+    .navbar-brand { background: none !important; }
+
+    form.navbar-form .form-control {
+      color: $form-control-color;
+      border-color: $form-control-border-color !important;
+      background: $form-control-bg;
+    }
+
+    .navbar-toggle {
+      color: $link-hover-color;
+
+      .navbar-toggle-icon,
+      .navbar-toggle-icon:before,
+      .navbar-toggle-icon:after {
+        opacity: 1;
+        color: $link-hover-color;
+        background: $link-hover-color;
+      }
+
+      &.collapsed {
+        color: $link-color;
+
+        .navbar-toggle-icon,
+        .navbar-toggle-icon:before,
+        .navbar-toggle-icon:after {
+          color: $link-color;
+          background: $link-color;
+        }
+      }
+    }
+
+    .ps-scrollbar-x-rail,
+    .ps-scrollbar-y-rail {
+      background-color: $scrollbar-rail-color !important;
+    }
+
+    .ps-scrollbar-x-rail > .ps-scrollbar-x,
+    .ps-scrollbar-y-rail > .ps-scrollbar-y {
+      background-color: $scrollbar-color !important;
+    }
+
+    .navbar-header {
+      color: $link-color;
+
+      @if type-of($bg) == list {
+        background-color: nth($bg, 1);
+        background-image: nth($bg, 2);
+      }
+      @else {
+        background: $bg;
+      }
+
+      a {
+        color: $link-color;
+
+        &:hover,
+        &:focus {
+          color: $link-hover-color;
+          background: $link-hover-bg;
+        }
+      }
+    }
+
+    .dropdown-menu > li.divider {
+      background: $collapse-border-color;
+    }
+
+    @media (max-width: $screen-sm-max) {
+      .navbar-collapse {
+        border-color: $collapse-border-color;
+
+        @if type-of($collapse-bg) == list {
+          background-color: nth($collapse-bg, 1);
+          background-image: nth($collapse-bg, 2);
+        }
+        @else {
+          background: $collapse-bg;
+        }
+      }
+
+      .navbar-nav li,
+      .dropdown-menu li {
+        border-color: $collapse-border-color;
+      }
+
+      .dropdown.open {
+        background: $collapse-dropdown-bg !important;
+        border-color: $collapse-dropdown-border-color;
+      }
+      .dropdown.open li { border-color: $collapse-dropdown-border-color; }
+    }
+
+    @media (min-width: $screen-md-min) {
+      .navbar-collapse {
+        border-color: $border-color;
+
+        @if type-of($bg) == list {
+          background-color: nth($bg, 1);
+          background-image: nth($bg, 2);
+        }
+        @else {
+          background: $bg;
+        }
+      }
+
+      .navbar-nav > li { border-color: $border-color; }
+      .dropdown-menu {
+        @if type-of($collapse-bg) == list {
+          background-color: nth($collapse-bg, 1);
+          background-image: nth($collapse-bg, 2);
+        }
+        @else {
+          background: $collapse-bg;
+        }
+      }
+
+      // Widgets
+      [class^="widget-"],
+      [class*=" widget-"] {
+        border-color: $collapse-border-color;
+
+        a,
+        a:hover,
+        a:focus {
+          background: transparent;
+        }
+      }
+
+      @if ($enable-transitions) {
+        .navbar-header a,
+        .navbar-nav > li > a {
+          transition: all .3s;
+        }
+      }
+    }
+  }
+
+  @media (min-width: $px-nav-desktops-breakpoint) {
+    .px-nav-left:not(.px-nav-collapse) ~ .px-navbar .navbar-header {
+      color: $brand-link-color;
+
+      @if type-of($brand-bg) == list {
+        background-color: nth($brand-bg, 1);
+        background-image: nth($brand-bg, 2);
+      }
+      @else {
+        background: $brand-bg;
+      }
+
+      @if ($border-color == transparent) {
+        margin-right: 1px;
+
+        @if type-of($brand-bg) == list {
+          box-shadow: 1px 0 0 0 nth($brand-bg, 1);
+        }
+        @else {
+          box-shadow: 1px 0 0 0 $brand-bg;
+        }
+      }
+
+      a {
+        color: $brand-link-color;
+
+        &:hover,
+        &:focus {
+          color: $brand-link-hover-color;
+        }
+      }
+    }
+  }
+
+  @media (min-width: $px-nav-desktops-breakpoint) {
+    .px-nav-toggle { box-shadow: #{$shadow}; }
+  }
+}

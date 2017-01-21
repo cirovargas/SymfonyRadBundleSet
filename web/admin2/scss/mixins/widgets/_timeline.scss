@@ -1,0 +1,35 @@
+//
+// Mixins / Widgets / Timeline
+// --------------------------------------------------
+
+@mixin widget-timeline-theme($line-color, $section-bg: $line-color, $section-color: $text-color, $bullet-bg: $line-color, $icon-bg: $line-color, $icon-color: $text-color, $time-bg: $line-color, $time-color: $text-color) {
+  .widget-timeline:before,
+  .widget-timeline:after {
+    background: $line-color;
+  }
+
+  .widget-timeline-section {
+    color: $section-color;
+    background: $section-bg;
+  }
+
+  .widget-timeline-bullet:before,
+  .widget-timeline-icon:before,
+  .widget-timeline-image:before {
+    background: $line-color;
+  }
+
+  .widget-timeline-bullet {
+    background: $bullet-bg;
+  }
+
+  .widget-timeline-icon {
+    background: $icon-bg;
+    color: $icon-color;
+  }
+
+  .widget-timeline-time {
+    color: $time-color;
+    background: $time-bg;
+  }
+}

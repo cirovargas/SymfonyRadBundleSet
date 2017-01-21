@@ -1,0 +1,48 @@
+//
+// List groups
+// --------------------------------------------------
+
+.list-group-item {
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  > .label,
+  > .badge {
+    float: right;
+
+    margin: 1px 0 0 5px;
+    padding: 0 6px;
+
+    line-height: 1.635em;
+  }
+
+  &.active {
+    .list-group-item-heading {
+      color: inherit;
+    }
+
+    > .label,
+    > .badge {
+      color: #fff;
+      border-color: transparent;
+      background: #fff; // IE fallback
+      background: rgba(0, 0, 0, .25);
+    }
+  }
+}
+
+.list-group-item-heading {
+  margin-top: 5px;
+
+  + .list-group-item-text { margin-bottom: 5px; }
+}
+
+.list-group-icon {
+  width: 26px;
+
+  color: #aaa;
+
+  font-size: 14px;
+
+  .list-group-item.active & { color: #fff; }
+}

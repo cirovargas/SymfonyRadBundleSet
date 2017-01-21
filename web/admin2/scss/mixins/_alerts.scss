@@ -1,0 +1,33 @@
+//
+// Mixins / Alerts
+// --------------------------------------------------
+
+@mixin pixel-alert-variant($state, $color, $background, $border) {
+  .alert-#{$state} {
+    color: $color;
+    border-color: $border;
+    background-color: $background;
+
+    .alert-heading,
+    .alert-link {
+      color: darken($color, 6%);
+    }
+
+    hr { border-top-color: $border !important; }
+  }
+}
+
+@mixin pixel-alert-dark-variant($state, $background) {
+  .alert-#{$state}.alert-dark {
+    $stripes-color: rgba(255, 255, 255, $alert-dark-stripes-opacity);
+
+    background-color: $background;
+    background-image: linear-gradient(45deg, $stripes-color 25%, transparent 25%, transparent 50%, $stripes-color 50%, $stripes-color 75%, transparent 75%, transparent);
+
+    hr { border-color: lighten($background, 15%) !important; }
+  }
+
+  .px-block-alerts .alert-#{$state}.alert-dark {
+    border-color: darken($background, 5%);
+  }
+}

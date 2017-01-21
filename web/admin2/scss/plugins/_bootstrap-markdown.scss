@@ -1,0 +1,178 @@
+//
+// Plugins / Bootstrap-markdown
+// --------------------------------------------------
+
+.md-editor {
+  border: 1px solid $panel-default-border;
+  border-radius: $border-radius-base;
+
+  @include clearfix();
+}
+
+
+// Header and footer
+//
+
+.md-header,
+.md-footer {
+  padding: 6px 8px;
+
+  background: $panel-default-heading-bg;
+}
+
+.md-header {
+  margin: 0;
+  padding-bottom: 0;
+
+  @include border-top-radius($border-radius-base);
+
+  .btn-group {
+    margin-bottom: 6px;
+
+    &:first-child { margin-left: 0; }
+  }
+
+  .btn > span { font-size: 14px; }
+}
+
+.md-footer { border-top: 1px solid $panel-default-border; }
+
+
+// Input and preview
+//
+
+.md-input,
+.md-preview {
+  width: 100% !important;
+}
+
+.md-input {
+  border: none;
+  border-top: 1px solid $panel-default-border !important;
+  border-radius: 0;
+
+  font-family: $font-family-monospace;
+  font-size: 14px;
+}
+
+.md-preview {
+  overflow: auto;
+
+  min-height: 1rem;
+  padding: $bootstrap-markdown-preview-padding-y $bootstrap-markdown-preview-padding-x;
+
+  border-top: 1px solid $panel-default-border;
+}
+
+
+// Controls
+//
+
+.md-controls {
+  float: right;
+
+  margin-top: 2px;
+}
+
+.md-control,
+.md-fullscreen-controls a {
+  color: lighten($text-color, 40%);
+
+  &:hover,
+  &:focus {
+    color: $text-color;
+  }
+}
+
+.md-fullscreen-controls {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+
+  display: none;
+
+  @include clearfix();
+
+  a {
+    display: block;
+    float: left;
+
+    width: 32px;
+    height: 32px;
+
+    text-align: center;
+
+    border-radius: $border-radius-base;
+    background: $panel-default-heading-bg;
+
+    line-height: 32px;
+  }
+}
+
+.md-nooverflow {
+  position: fixed;
+
+  overflow: hidden;
+
+  width: 100%;
+}
+
+
+// Fullscreen mode
+//
+
+.md-fullscreen-mode {
+  position: fixed;
+  z-index: $zindex-fullscreen;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  background: $bootstrap-markdown-fullscreen-bg;
+
+
+  // Header
+  //
+
+  .md-header {
+    position: fixed;
+    top: 0;
+
+    width: 100%;
+  }
+
+
+  // Input and preview
+  //
+
+  .md-input,
+  .md-preview {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    height: auto !important;
+    padding: 16px;
+
+    resize: none;
+
+    background: $bootstrap-markdown-fullscreen-bg;
+
+    font-size: $bootstrap-markdown-fullscreen-font-size;
+    line-height: 1.6em;
+  }
+
+
+  // Controls
+  //
+
+  .md-fullscreen-controls { display: block; }
+
+  .md-footer,
+  .md-controls {
+    display: none;
+  }
+}

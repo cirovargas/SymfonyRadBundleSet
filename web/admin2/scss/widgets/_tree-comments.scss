@@ -1,0 +1,73 @@
+//
+// Widgets / Tree comments
+// --------------------------------------------------
+
+.widget-tree-comments-item {
+  position: relative;
+
+  margin-left: $widget-tree-comments-item-padding-x + $widget-tree-comments-avatar-size;
+  padding: $widget-tree-comments-item-padding-y $widget-tree-comments-item-padding-x;
+
+  @include clearfix();
+
+  .widget-tree-comments-item {
+    top: $widget-tree-comments-item-padding-y;
+
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0 !important;
+  }
+
+  @media (min-width: $screen-md-min) {
+    .widget-tree-comments-item { margin-left: $widget-tree-comments-avatar-size; }
+  }
+
+  + .widget-tree-comments-item { padding-top: 0; }
+}
+
+.widget-tree-comments-avatar {
+  display: block;
+  float: left;
+
+  width: $widget-tree-comments-avatar-size;
+  height: $widget-tree-comments-avatar-size;
+  margin-top: 4px;
+  margin-left: -$widget-tree-comments-avatar-size - $widget-tree-comments-item-padding-x;
+
+  border-radius: $widget-tree-comments-avatar-border-radius;
+}
+
+.widget-tree-comments-header {
+  color: $text-muted;
+
+  font-size: 11px;
+
+  a { font-size: $font-size-base; }
+}
+
+.widget-tree-comments-footer {
+  margin-top: 3px;
+
+  font-size: 12px;
+
+  &,
+  a {
+    color: $text-muted;
+  }
+
+  a:hover,
+  a:focus {
+    color: $text-color;
+  }
+}
+
+.widget-tree-comments-input {
+  margin: 4px 0 7px 0;
+
+  .widget-tree-comments-header + & { margin-top: 7px; }
+}
+
+// Widget within panel
+//
+
+@include pixel-widget-within-panel(tree-comments);

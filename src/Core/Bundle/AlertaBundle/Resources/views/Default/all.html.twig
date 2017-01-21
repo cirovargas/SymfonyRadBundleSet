@@ -1,0 +1,32 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}
+{{ parent() }} - Notificações
+{% endblock %}
+
+{% block page %}
+    <div class="page-header">
+        <h1>Notificações</h1>
+    </div>
+
+
+    <div class="widget-timeline">
+        <div class="widget-timeline-section font-weight-semibold bg-primary">AGORA</div>
+
+        {% for message in messages %}
+            <div class="widget-timeline-item" data-id="{{ message.id }}">
+                <div class="widget-timeline-info">
+                    <div class="widget-timeline-icon bg-{{ message.alert.level }}"><i class="fa {{ message.alert.icon|default('fa-bell-o') }}"></i></div>
+                    <div class="widget-timeline-time" title="{{ message.alert.data|date('d/m/Y H:i:s') }}">{{ (message.alert.data|ago)|replace({' horas':'h',' minuto':'min'}) }}</div>
+                </div>
+                <div class="panel">
+                    <div class="panel-title text-{{ message.alert.level }}">{{ message.alert.sistema }}</div>
+                    <div class="panel-body">
+                        {{ message.alert.texto }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

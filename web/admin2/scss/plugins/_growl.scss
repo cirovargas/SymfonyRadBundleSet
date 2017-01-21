@@ -1,0 +1,88 @@
+//
+// Plugins / Growl
+// --------------------------------------------------
+
+$growl-padding-right: 24px;
+
+#growls {
+  position: fixed;
+  z-index: $zindex-growls;
+  top: 8px;
+  right: 0;
+}
+
+// Growls
+//
+
+.growl {
+  position: relative;
+  float: right;
+  clear: right;
+
+  margin: 8px;
+
+  transition: all .2s ease-in-out;
+
+  opacity: 1;
+  border-radius: $border-radius-base;
+}
+
+.growl-title {
+  display: inline-block;
+
+  font-size: 1.077em;
+  font-weight: 600;
+}
+
+.growl-close {
+  position: absolute;
+  top: 4px;
+  right: 12px;
+
+  cursor: pointer;
+
+  font-family: helvetica, verdana, sans-serif;
+  font-size: 14px;
+}
+
+
+// Sizes
+//
+
+.growl-medium {
+  width: $growl-width;
+  padding: $growl-padding $growl-padding-right $growl-padding $growl-padding;
+
+  font-size: $growl-font-size;
+}
+
+.growl-small {
+  width: $growl-width-sm;
+  padding: $growl-padding-sm $growl-padding-right $growl-padding-sm $growl-padding-sm;
+
+  font-size: $growl-font-size-sm;
+}
+
+.growl-large {
+  width: $growl-width-lg;
+  padding: $growl-padding-lg $growl-padding-right $growl-padding-lg $growl-padding-lg;
+
+  font-size: $growl-font-size-lg;
+}
+
+
+// States
+//
+
+.growl-incoming { opacity: 0; }
+.growl-outgoing { opacity: 0; }
+
+
+// Colors
+//
+
+@include growl-variant(default, #fff, $growl-default-bg);
+@include growl-variant(success, #fff, $brand-success);
+@include growl-variant(error, #fff, $brand-danger);
+@include growl-variant(notice, #fff, $brand-info);
+@include growl-variant(warning, #fff, $brand-warning);

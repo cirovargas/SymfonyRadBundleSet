@@ -1,0 +1,56 @@
+//
+// Widgets / Notifications
+// --------------------------------------------------
+
+@include pixel-widget-item(notifications, $widget-notifications-item-padding-x, $widget-notifications-item-padding-y);
+
+.widget-notifications-title,
+.widget-notifications-description,
+.widget-notifications-date {
+  display: block;
+
+  margin-right: $widget-notifications-icon-size + $widget-notifications-item-padding-x;
+}
+
+.widget-notifications-title {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.widget-notifications-description {
+  color: lighten($text-color, 16%);
+
+  font-size: 11px;
+}
+
+.widget-notifications-date {
+  color: $text-muted;
+
+  font-size: 11px;
+  font-style: italic;
+}
+
+.widget-notifications-icon {
+  position: absolute;
+  top: 50%;
+  right: $widget-notifications-item-padding-x;
+
+  width: $widget-notifications-icon-size;
+  height: $widget-notifications-icon-size;
+  margin-top: -(round($widget-notifications-icon-size / 2));
+
+  text-align: center;
+
+  border-radius: $border-radius-base;
+
+  font-size: $widget-notifications-icon-font-size;
+  line-height: $widget-notifications-icon-size;
+}
+
+
+// Widget within panel
+//
+
+@include pixel-widget-within-panel(notifications) {
+  .widget-notifications-icon { right: $panel-body-padding; }
+};

@@ -1,0 +1,20 @@
+//
+// Mixins / Plugins / Expanding Input
+// --------------------------------------------------
+
+@mixin expanding-input-size-base($padding-vertical, $padding-horizontal, $font-size, $line-height) {
+  padding: ($padding-vertical + 1px) ($padding-horizontal + 1px);
+
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+@mixin expanding-input-size($size, $content-margin, $padding-vertical, $padding-horizontal, $font-size, $line-height) {
+  .expanding-input-control.input-#{$size} {
+    ~ .expanding-input-overlay {
+      @include expanding-input-size-base($padding-vertical, $padding-horizontal, $font-size, $line-height);
+    }
+
+    ~ .expanding-input-content { margin-top: $content-margin; }
+  }
+}

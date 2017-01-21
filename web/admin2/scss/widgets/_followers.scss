@@ -1,0 +1,56 @@
+//
+// Widgets / Followers
+// --------------------------------------------------
+
+@include pixel-widget-item(
+  followers,
+  $padding-y: $widget-followers-item-padding-y,
+  $padding-left: ($widget-followers-item-padding-x * 2 + $widget-followers-avatar-size),
+  $padding-right: $widget-followers-item-padding-x
+);
+
+.widget-followers-avatar {
+  display: block;
+  float: left;
+
+  width: $widget-followers-avatar-size;
+  height: $widget-followers-avatar-size;
+  margin-top: 2px;
+  margin-left: -($widget-followers-item-padding-x + $widget-followers-avatar-size);
+
+  border-radius: $widget-followers-avatar-border-radius;
+}
+
+.widget-followers-controls { float: right; }
+
+.widget-followers-name,
+.widget-followers-username {
+  display: block;
+}
+
+.widget-followers-name {
+  color: $text-color;
+
+  &:hover,
+  &:focus {
+    color: $text-muted;
+  }
+}
+
+.widget-followers-username {
+  color: $text-muted;
+
+  font-size: 12px;
+  line-height: 14px;
+
+  &:hover,
+  &:focus {
+    color: $text-muted;
+  }
+}
+
+
+// Widget within panel
+//
+
+@include pixel-widget-within-panel(followers, $padding-left: ($panel-body-padding + $widget-followers-item-padding-x + $widget-followers-avatar-size));

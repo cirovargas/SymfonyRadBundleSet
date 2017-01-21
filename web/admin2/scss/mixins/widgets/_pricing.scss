@@ -1,0 +1,46 @@
+//
+// Mixins / Widgets / Pricing
+// --------------------------------------------------
+
+@mixin widget-pricing-theme($border-color) {
+  *:not(.panel) {
+    .widget-pricing .widget-pricing-item { border-color: $border-color; }
+
+
+    // Simple
+    //
+
+    .widget-pricing-simple {
+      .widget-pricing-item {
+        border-color: rgba($border-color, 0);
+      }
+
+      .widget-pricing-active {
+        border-color: $border-color;
+      }
+    }
+
+    // Hover
+    .widget-pricing-simple.widget-pricing-hover:hover {
+      .widget-pricing-item {
+        border-color: rgba($border-color, 0);
+      }
+
+      .widget-pricing-item:hover {
+        border-color: $border-color;
+      }
+    }
+
+
+    // Expanded
+    //
+
+    .widget-pricing-expanded .widget-pricing-item { border-color: $border-color; }
+
+    // Simple
+    .widget-pricing-expanded.widget-pricing-simple .widget-pricing-active,
+    .widget-pricing-expanded.widget-pricing-simple.widget-pricing-hover:hover .widget-pricing-item {
+      border-color: $border-color;
+    }
+  }
+}

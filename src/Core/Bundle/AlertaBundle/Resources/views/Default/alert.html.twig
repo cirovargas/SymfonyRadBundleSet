@@ -1,0 +1,6 @@
+<div class="widget-notifications-item notification" data-id="{{ message.id }}" data-readed="{{ message.readed }}">
+    <div class="widget-notifications-title text-{{ message.alert.level }}">{{ message.alert.sistema }}</div>
+    <div class="widget-notifications-description">{{ message.alert.texto|raw }}</div>
+    <div class="widget-notifications-date" title="{{ message.alert.data|date('d/m/Y H:i:s') }}">{{ message.alert.data|ago }}</div>
+    <div class="widget-notifications-icon fa {{ message.alert.icon|default('fa-bell-o') }} bg-{{ message.alert.level }}"></div>
+</div>

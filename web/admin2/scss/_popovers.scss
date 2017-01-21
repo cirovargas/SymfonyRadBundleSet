@@ -1,0 +1,103 @@
+//
+// Popovers
+// --------------------------------------------------
+
+.popover {
+  border-width: $popover-border-width;
+  box-shadow: none;
+
+  .arrow:after { display: none; }
+
+  &.top {
+    margin-top: -$popover-arrow-width - 2px;
+
+    .arrow {
+      bottom: -$popover-arrow-width - $popover-border-width - 1px;
+
+      border-top-color: inherit;
+    }
+  }
+
+  &.bottom {
+    margin-top: $popover-arrow-width + 2px;
+
+    .arrow {
+      top: -$popover-arrow-width - $popover-border-width - 1px;
+
+      border-bottom-color: inherit;
+    }
+  }
+
+  &.left {
+    /*@noflip*/ margin-left: -$popover-arrow-width - 2px;
+    /*@noflip*/ margin-right: 0;
+
+    .arrow {
+      /*@noflip*/ right: -$popover-arrow-width - $popover-border-width - 1px;
+      /*@noflip*/ left: auto;
+
+      /*@noflip*/ border-left-color: inherit;
+      /*@noflip*/ border-left-width: $popover-arrow-width + 1;
+      /*@noflip*/ border-right-width: 0;
+    }
+  }
+
+  &.right {
+    /*@noflip*/ margin-left: $popover-arrow-width + 2px;
+    /*@noflip*/ margin-right: 0;
+
+    .arrow {
+      /*@noflip*/ left: -$popover-arrow-width - $popover-border-width - 1px;
+      /*@noflip*/ right: auto;
+
+      /*@noflip*/ border-right-color: inherit;
+      /*@noflip*/ border-right-width: $popover-arrow-width + 1;
+      /*@noflip*/ border-left-width: 0;
+    }
+  }
+}
+
+/*@noflip*/
+html[dir="rtl"] .popover { left: 0; right: auto; }
+
+// Popover title
+.popover-title {
+  padding-top: 6px;
+  padding-bottom: 6px;
+
+  border-bottom-color: #ddd;
+  border-radius: 0;
+
+  font-weight: 600;
+
+  background-color: rgba(0, 0, 0, .06);
+
+  line-height: $line-height-base;
+}
+
+
+// Colorful popovers
+//
+
+.popover-dark.popover-colorful .popover-title { border-bottom-width: 2px; }
+
+
+// Colors
+//
+
+@include pixel-popover-variant(warning,
+  $state-warning-text, $state-warning-bg, $state-warning-border, // Light
+  #fff, $brand-warning // Dark
+);
+@include pixel-popover-variant(danger,
+  $state-danger-text, $state-danger-bg, $state-danger-border, // Light
+  #fff, $brand-danger // Dark
+);
+@include pixel-popover-variant(success,
+  $state-success-text, $state-success-bg, $state-success-border, // Light
+  #fff, $brand-success // Dark
+);
+@include pixel-popover-variant(info,
+  $state-info-text, $state-info-bg, $state-info-border, // Light
+  #fff, $brand-info // Dark
+);

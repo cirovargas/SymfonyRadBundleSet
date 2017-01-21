@@ -1,0 +1,28 @@
+<html>
+<head>
+  <meta charset="UTF-8" />
+</head>
+<body>
+
+<table>
+  <thead>
+  <tr>
+    {% for h in header %}
+      <th>{{ h }}</th>
+    {% endfor %}
+  </tr>
+  </thead>
+  <tbody>
+  {% for line in data %}
+  <tr>
+    {% for col in line %}
+    <td>{{ col }}</td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+  </tbody>
+
+</table>
+
+</body>
+</html>

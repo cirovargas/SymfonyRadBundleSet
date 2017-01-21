@@ -1,0 +1,80 @@
+<?php
+
+namespace {{ namespace }}\EventListener{{ entity_namespace ? '\\' ~ entity_namespace : '' }};
+
+use Core\Bundle\UserBundle\Event\ConfigurePermissionsEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+
+
+class {{ form_class }} implements EventSubscriberInterface
+{
+    private $translator;
+
+    public function __construct( $translator){
+        $this->translator = $translator;
+    }
+
+    public function addModulePermissions(ConfigurePermissionsEvent $event)
+    {
+        $entity = $this->translator->trans('app.{{ entity_class|lower }}.entity', array(), 'EntityTranslations');
+       
+        $event->addRootNode('{{ entity_class }}',array(
+            'label' => $this->translator->trans(
+                        'permissions.access', 
+                        array('%entity%' => $entity), 
+                        'CoreAdminBundle'
+                    ),
+            'role' => 'ROLE_ADMIN_{{ entity_class|upper }}',
+            'children' => array(
+                array(
+                    'label' => $this->translator->trans(
+                            'permissions.list', 
+                            array('%entity%' => $entity), 
+                            'CoreAdminBundle'
+                        ),
+                    'role' => 'ROLE_ADMIN_{{ entity_class|upper }}_INDEX',
+                ),
+                {% if needWriteActions == true %}
+                array(
+                    'label' => $this->translator->trans(
+                        'permissions.new', 
+                        array('%entity%' => $entity), 
+                        'CoreAdminBundle'
+                    ),
+                    'role' => 'ROLE_ADMIN_{{ entity_class|upper }}_NEW'
+                ),
+                array(
+                    'label' => $this->translator->trans(
+                        'permissions.edit', 
+                        array('%entity%' => $entity), 
+                        'CoreAdminBundle'
+                    ),
+                    'role' => 'ROLE_ADMIN_{{ entity_class|upper }}_EDIT'
+                ),
+                array(
+                    'label' => $this->translator->trans(
+                        'permissions.delete', 
+                        array('%entity%' => $entity), 
+                        'CoreAdminBundle'
+                    ),
+                    'role' => 'ROLE_ADMIN_{{ entity_class|upper }}_DELETE'
+                ),
+                {% endif %}
+                array(
+                    'label' => $this->translator->trans(
+                        'permissions.show', 
+                        array('%entity%' => $entity), 
+                        'CoreAdminBundle'
+                    ),
+                    'role' => 'ROLE_ADMIN_{{ entity_class|upper }}_SHOW'
+                )
+            )
+        ));
+    }
+    
+    public static function getSubscribedEvents() {
+        return array(
+            'Core_user.permissions.tree'     => array('addModulePermissions', 0),
+        );
+    }
+}

@@ -1,0 +1,11 @@
+core_upload_homepage:
+    path:     /
+    defaults: { _controller: CoreUploadBundle:Default:index }
+    
+core_upload_arquivo:
+    path:     /{id}/baixar
+    defaults: { _controller: CoreUploadBundle:Default:arquivoSigiloso }
+    
+core_upload_md5:
+    path:     /{md5}/md5
+    defaults: { _controller: CoreUploadBundle:Default:arquivoSigilosoMd5 }

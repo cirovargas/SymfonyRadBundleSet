@@ -1,0 +1,19 @@
+//
+// Mixins / Progress bars
+// --------------------------------------------------
+
+@mixin pixel-progress-bar-base($background) {
+  background-color: $background;
+}
+
+@mixin pixel-progress-bar-variant($state, $background) {
+  .progress .progress-bar.progress-bar-#{$state} {
+    @include pixel-progress-bar-base($background);
+  }
+}
+
+@mixin progress-bar-theme($background) {
+  .progress-bar {
+    @include pixel-progress-bar-base($background);
+  }
+}

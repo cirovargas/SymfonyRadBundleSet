@@ -1,0 +1,14 @@
+//
+// Plugins / jQuery Sortable
+// --------------------------------------------------
+
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  z-index: $zindex-sortable;
+
+  opacity: $jquery-sortable-dragged-opacity;
+}

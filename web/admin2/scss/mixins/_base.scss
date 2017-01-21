@@ -1,0 +1,35 @@
+//
+// Mixins / Base
+// --------------------------------------------------
+
+@mixin px-base-theme($body-bg, $panel-border-color: false, $header-bg: transparent, $header-border-color: false) {
+  body {
+    background: $body-bg;
+  }
+
+  .page-breadcrumb,
+  .page-header:not(.panel) {
+    background: $header-bg;
+  }
+
+  @if ($header-border-color) {
+    .page-breadcrumb,
+    .page-header,
+    hr,
+    .nav-tabs,
+    .nav-tabs.nav-justified {
+      border-color: $header-border-color;
+    }
+
+    .panel .nav-tabs { border-color: $nav-tabs-border-color; }
+  }
+
+  @if($panel-border-color) {
+    .panel,
+    .widget-more-link.b-a-1,
+    .widget-products-image,
+    *:not(.panel) .thumbnail {
+      border-color: $panel-border-color;
+    }
+  }
+}

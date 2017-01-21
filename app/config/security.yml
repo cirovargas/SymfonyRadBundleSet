@@ -2,23 +2,17 @@
 # http://symfony.com/doc/current/book/security.html
 security:
 
-    encoders:
-        FOS\UserBundle\Model\UserInterface: sha512
-        
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        chain_provider:
-            chain:
-                #providers: [fos_userbundle, fr3d_ldapbundle]
-                providers: [fos_userbundle]
-        #fr3d_ldapbundle:
-        #    id: fr3d_ldap.security.user.provider
         fos_userbundle:
             id: fos_user.user_provider.username
             
-    role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+#    role_hierarchy:
+#            ROLE_ADMIN:      [ROLE_USER]
+#            ROLE_SUPERADMIN: [ROLE_ADMIN,ROLE_ADMIN_USERS,ROLE_ADMIN_USERS_ADD,ROLE_ADMIN_USERS_SHOW,ROLE_ADMIN_USERS_EDIT,ROLE_ADMIN_USERS_DELETE,ROLE_ALLOWED_TO_SWITCH,ROLE_ADMIN_USERS_PERMISSIONS,ROLE_ADMIN_USERGROUPS,ROLE_ADMIN_USERGROUPS_ADD,ROLE_ADMIN_USERGROUPS_SHOW,ROLE_ADMIN_USERGROUPS_EDIT,ROLE_ADMIN_USERGROUPS_DELETE,ROLE_ADMIN_USERGROUPS_PERMISSIONS ]
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -28,19 +22,23 @@ security:
 
         main:
             pattern: ^/
-            #fr3d_ldap:  ~
             form_login:
                 provider: fos_userbundle
-                csrf_provider: form.csrf_provider
             logout:       true
-            anonymous:    true
+            anonymous: true
             switch_user: true
             remember_me:
-                lifetime: 432000
-                key: ch4v3S3cr3t4
-                
+                lifetime: 432000000
+                secret: chavesecreta
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_USER }
+        - { path: ^/admin/, role: IS_AUTHENTICATED_FULLY }

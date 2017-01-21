@@ -1,0 +1,56 @@
+//
+// Widgets / Comments
+// --------------------------------------------------
+
+@include pixel-widget-item(
+  comments,
+  $padding-y: $widget-comments-item-padding-y,
+  $padding-left: ($widget-comments-item-padding-x * 2 + $widget-comments-avatar-size),
+  $padding-right: $widget-comments-item-padding-x
+);
+
+.widget-comments-avatar {
+  display: block;
+  float: left;
+
+  width: $widget-comments-avatar-size;
+  height: $widget-comments-avatar-size;
+  margin-top: 3px;
+  margin-left: -$widget-comments-avatar-size - $widget-comments-item-padding-x;
+
+  border-radius: $widget-comments-avatar-border-radius;
+}
+
+.widget-comments-header,
+.widget-comments-footer {
+  color: $text-muted;
+}
+
+.widget-comments-header { margin-bottom: $widget-comments-content-spacer; }
+
+.widget-comments-footer {
+  margin-top: $widget-comments-content-spacer;
+
+  &,
+  a {
+    color: $text-muted;
+
+    font-size: 12px;
+  }
+
+  a {
+    display: inline-block;
+
+    margin-right: 10px;
+
+    &:hover,
+    &:focus {
+      color: $text-color;
+    }
+  }
+}
+
+// Widget within panel
+//
+
+@include pixel-widget-within-panel(comments, $padding-left: ($widget-comments-item-padding-x + $panel-body-padding + $widget-comments-avatar-size));

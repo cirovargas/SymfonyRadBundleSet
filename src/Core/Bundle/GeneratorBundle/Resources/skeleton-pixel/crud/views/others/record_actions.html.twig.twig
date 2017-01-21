@@ -1,0 +1,23 @@
+
+<a href="{{ "{{ path('" ~ route_name_prefix ~ "_index') }}" }}" class="btn m-l-10">{{ "{{ 'views.recordactions.backtothelist'|trans({},'CoreAdminBundle') }}" }}</a>
+
+{%- if ('edit' in actions) and (not hide_edit) %}
+
+{{ "{% if is_granted('ROLE_ADMIN_"~entity|upper~"_EDIT') %}" }}
+
+<a href="{{ "{{ path('" ~ route_name_prefix ~ "_edit', { 'id': " ~ entity_singularized ~ "."~ identifier ~" }) }}" }}" class="btn btn-primary m-l-10">{{ "{{ 'views.edit.editbutton'|trans({},'CoreAdminBundle') }}" }}</a>
+
+{{ "{% endif %}" }}
+
+{%- endif %}
+
+{%- if ('delete' in actions) and (not hide_delete) %}
+
+{{ "{% if is_granted('ROLE_ADMIN_"~entity|upper~"_DELETE') %}" }}
+
+<a id="delete-buttom" class="btn m-l-10 btn-danger">{{ "{{ 'views.recordactions.delete'|trans({},'CoreAdminBundle') }}" }}</a>
+
+{{ "{% endif %}" }}
+
+{%- endif %}
+

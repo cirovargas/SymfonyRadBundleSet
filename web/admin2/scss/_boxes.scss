@@ -1,0 +1,154 @@
+//
+// Boxes
+// --------------------------------------------------
+
+.box {
+  position: relative;
+
+  display: table;
+  overflow: hidden;
+
+  width: 100%;
+  height:100%;
+  margin-bottom: $panel-margin-bottom;
+
+  table-layout: fixed !important;
+
+  border-radius: $border-radius-base;
+  background: $panel-bg;
+
+  z-index:1;
+  // Fix overflow for the border-radius
+
+  // -webkit-mask-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC");
+}
+
+.box.position-static .box-row,
+.box.position-static .box-cell,
+.box.position-static .box-container,
+.box-container.position-static .box-row,
+.box-container.position-static .box-cell {
+  position: static !important;
+}
+
+// Container
+//
+
+.box-container {
+  display: table;
+
+  width: 100%;
+  height: 100%;
+
+  table-layout: fixed !important;
+}
+
+
+// Rows and cells
+
+.box-row,
+.box-cell {
+  float: none;
+}
+
+.box-row {
+  display: table-row;
+  float: none;
+
+  width: 100%;
+  padding: 0;
+
+  vertical-align: top;
+}
+
+.box-cell {
+  position: relative;
+
+  display: table-cell;
+  overflow: hidden;
+
+  padding: 0;
+
+  vertical-align: inherit;
+
+  border-color: $panel-inner-border;
+
+  > * { position: relative; }
+}
+
+a.box-cell:hover { text-decoration: none; }
+
+
+// Icons
+//
+
+.box-icon { line-height: $line-height-base; }
+
+
+// Background icons
+//
+
+.box-bg-icon {
+  position: absolute;
+
+  color: rgba(0, 0, 0, .08);
+
+  font-size: 100px;
+  line-height: 1;
+
+  &.left { left: 15px; }
+  &.right { right: 15px; }
+  &.top { top: 0; }
+  &.bottom { bottom: 0; }
+  &.middle {
+    top: 50%;
+
+    transform: translateY(-50%);
+  }
+}
+
+//
+
+.box-cell[class^="col-sm-"],
+.box-cell[class*=" col-sm-"],
+.box-cell[class^="col-md-"],
+.box-cell[class*=" col-md-"],
+.box-cell[class^="col-lg-"],
+.box-cell[class*=" col-lg-"],
+.box-cell[class^="col-xl-"],
+.box-cell[class*=" col-xl-"] {
+  display: block;
+}
+
+.box-cell[class^="col-xs-"],
+.box-cell[class*=" col-xs-"] {
+  display: table-cell;
+}
+
+@media (min-width: $screen-sm-min) {
+  .box-cell[class^="col-sm-"],
+  .box-cell[class*=" col-sm-"] {
+    display: table-cell;
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  .box-cell[class^="col-md-"],
+  .box-cell[class*=" col-md-"] {
+    display: table-cell;
+  }
+}
+
+@media (min-width: $screen-lg-min) {
+  .box-cell[class^="col-lg-"],
+  .box-cell[class*=" col-lg-"] {
+    display: table-cell;
+  }
+}
+
+@media (min-width: $screen-xl-min) {
+  .box-cell[class^="col-xl-"],
+  .box-cell[class*=" col-xl-"] {
+    display: table-cell;
+  }
+}

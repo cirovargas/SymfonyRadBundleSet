@@ -1,0 +1,25 @@
+//
+// Plugins / Easy Pie Chart
+// --------------------------------------------------
+
+.easy-pie-chart {
+  position: relative;
+
+  display: block;
+
+  text-align: center;
+  @include clearfix();
+
+  > canvas {
+    display: block;
+    margin: 0 auto;
+  }
+
+  > span {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+  }
+}

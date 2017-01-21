@@ -1,0 +1,4 @@
+services:
+    core.alert:
+        class: Core\Bundle\AlertaBundle\Services\AlertService
+        arguments: ['@doctrine.orm.entity_manager']

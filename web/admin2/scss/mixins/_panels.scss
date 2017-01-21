@@ -1,0 +1,99 @@
+//
+// Mixins / Panels
+// --------------------------------------------------
+
+@mixin pixel-panel-base($color, $background, $border) {
+  border-color: $border !important;
+
+  .panel-heading {
+    background: $background;
+    border-color: $border;
+    color: $color;
+  }
+
+  .panel-heading-text a,
+  &.panel-body-colorful a {
+    color: $color;
+
+    &:hover,
+    &:focus {
+      color: lighten($color, 10%);
+    }
+  }
+
+  .panel-heading-text a,
+  &.panel-body-colorful .panel-body a,
+  &.panel-body-colorful .panel-footer a {
+    text-decoration: underline;
+  }
+
+  .panel-footer { border-color: $border; }
+
+  &.panel-body-colorful {
+    &,
+    .panel-body,
+    .panel-footer {
+      background: $background;
+      color: $color;
+    }
+
+    hr,
+    .panel-body {
+      border-color: $border !important;
+    }
+  }
+}
+
+@mixin pixel-panel-dark-base($color, $background, $border: $background) {
+  &.panel-dark {
+    @include pixel-panel-base($color, $background, $border);
+
+    .panel-heading {
+      .pagination,
+      .pager {
+        a,
+        span {
+          &,
+          &:hover,
+          &:focus {
+            color: $color;
+          }
+        }
+
+        li.active a,
+        li.active span {
+          &,
+          &:hover,
+          &:focus {
+            color: $background;
+          }
+        }
+      }
+
+      .nav-tabs > li > a { color: transparentize($color, .1); }
+    }
+
+    &.panel-body-colorful {
+      .text-muted { color: transparentize($color, .3) !important; }
+
+      .panel-heading,
+      .panel-footer,
+      .panel-body,
+      hr,
+      table,
+      table tr,
+      table th,
+      table td,
+      .list-group-item {
+        border-color: lighten($background, 15%) !important;
+      }
+    }
+  }
+}
+
+@mixin pixel-panel-variant($state, $color, $background, $border, $color-dark, $background-dark, $border-dark: $background-dark) {
+  .panel-#{$state} {
+    @include pixel-panel-base($color, $background, $border);
+    @include pixel-panel-dark-base($color-dark, $background-dark, $border-dark);
+  }
+}

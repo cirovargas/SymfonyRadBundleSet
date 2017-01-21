@@ -1,0 +1,29 @@
+//
+// Progress bars
+// --------------------------------------------------
+
+.progress {
+  height: $progress-height;
+}
+
+.progress-bar {
+  border: none;
+  box-shadow: 0 0 0 1px $progress-bar-border inset;
+}
+
+.progress-striped .progress-bar,
+.progress-bar-striped {
+  background-image: $progress-striped-gradient;
+  background-size: $progress-striped-background-size $progress-striped-background-size;
+
+  &.active { animation-duration: $progress-animated-duration; }
+}
+
+
+// Colors
+//
+
+@include pixel-progress-bar-variant(success, $progress-bar-success-bg);
+@include pixel-progress-bar-variant(info, $progress-bar-info-bg);
+@include pixel-progress-bar-variant(warning, $progress-bar-warning-bg);
+@include pixel-progress-bar-variant(danger, $progress-bar-danger-bg);

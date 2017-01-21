@@ -1,0 +1,77 @@
+//
+// Mixins / Plugins / Select2
+// --------------------------------------------------
+
+
+@mixin select2-size-base($font-size, $line-height, $border-radius, $padding-vertical, $padding-horizontal, $choice-spacer: $select2-choice-spacer, $choice-font-size: 85%, $choice-line-height: 1.909em) {
+  font-size: $font-size;
+
+  .select2-selection {
+    border-radius: $border-radius;
+
+    line-height: $line-height;
+  }
+
+  .select2-selection__rendered { line-height: $line-height; }
+  .select2-selection--single .select2-selection__rendered { padding: $padding-vertical $padding-horizontal; }
+  .select2-selection--single .select2-selection__arrow { padding: $padding-vertical $padding-horizontal $padding-vertical 0; }
+  .select2-selection--multiple .select2-selection__rendered { padding: ($padding-vertical - $choice-spacer) ($padding-vertical - $choice-spacer) $padding-vertical $padding-vertical; }
+
+  .select2-selection__choice {
+    margin: $choice-spacer $choice-spacer 0 0;
+
+    font-size: $choice-font-size;
+    line-height: $choice-line-height;
+  }
+
+  .select2-selection__clear { line-height: $font-size * $line-height; }
+
+  .select2-search--inline .select2-search__field {
+    margin-top: $choice-spacer;
+
+    font-size: $font-size;
+    line-height: $line-height;
+  }
+}
+
+@mixin select2-size($size, $font-size, $line-height, $border-radius, $padding-vertical, $padding-horizontal, $choice-spacer, $choice-font-size: 85%, $choice-line-height: 1.909em) {
+  .select2-container.select2-#{$size},
+  .select2-#{$size} + .select2-container,
+  .form-group-#{$size} .select2-container {
+    @include select2-size-base($font-size, $line-height, $border-radius, $padding-vertical, $padding-horizontal, $choice-spacer, $choice-font-size, $choice-line-height);
+  }
+}
+
+@mixin select2-base($background) {
+  .select2-selection__choice,
+  + .select2-container .select2-selection__choice {
+    background-color: $background;
+  }
+}
+
+@mixin select2-variant($state, $background) {
+  .select2-#{$state} {
+    @include select2-base($background);
+  }
+}
+
+@mixin select2-state-variant($state, $border-color) {
+  .has-#{$state} .select2-selection { border-color: $border-color; }
+}
+
+@mixin select2-theme($color, $background, $border) {
+  @include select2-variant(primary, $background);
+
+  .select2-results__option--highlighted[aria-selected] {
+    color: $color;
+    background: $background;
+  }
+
+  .select2-container--focus,
+  .select2-container--open {
+    .select2-selection,
+    .select2-dropdown {
+      border-color: $border;
+    }
+  }
+}

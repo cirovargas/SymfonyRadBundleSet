@@ -1,0 +1,11 @@
+//
+// Button groups
+// --------------------------------------------------
+
+.btn-group-xs > .btn {
+  @extend .btn-xs;
+}
+
+.btn-group-xl > .btn {
+  @extend .btn-xl;
+}

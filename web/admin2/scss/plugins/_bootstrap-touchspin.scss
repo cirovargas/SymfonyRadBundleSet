@@ -1,0 +1,72 @@
+//
+// Plugins / Bootstrap TouchSpin
+// --------------------------------------------------
+
+.bootstrap-touchspin .input-group-btn-vertical {
+  position: relative;
+
+  display: table-cell;
+
+  width: 1%;
+
+  vertical-align: top;
+  white-space: nowrap;
+
+  > .btn {
+    position: relative;
+
+    display: block;
+    float: none;
+
+    width: 100%;
+    max-width: 100%;
+    margin-left: -1px;
+    padding: 0 10px;
+  }
+
+  i {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    font-size: .65em;
+    font-weight: normal;
+  }
+
+  .glyphicon:before {
+    position: relative;
+    top: -1px;
+
+    display: inline-block;
+
+    content: "";
+
+    color: inherit;
+  }
+
+  .bootstrap-touchspin-up {
+    border-radius: 0;
+
+    .glyphicon:before { @include arrow-up(.5em); }
+  }
+
+  .bootstrap-touchspin-down {
+    margin-top: -1px;
+
+    border-radius: 0;
+
+    .glyphicon:before { @include arrow-down(.5em); }
+  }
+}
+
+// Sizes
+
+@include bs-touchspin-size("", $line-height-computed, $padding-base-vertical, $border-radius-base);
+@include bs-touchspin-size(".input-group-sm", $line-height-small-computed, $padding-small-vertical, $border-radius-small);
+@include bs-touchspin-size(".input-group-lg", $line-height-large-computed, $padding-large-vertical, $border-radius-large);
+
+.bootstrap-touchspin .input-group-btn + .bootstrap-touchspin-prefix + input { border-radius: 0 !important; }

@@ -1,0 +1,240 @@
+//
+// Plugins / Wizard
+// --------------------------------------------------
+
+.wizard {
+  background: $wizard-bg;
+
+  // Freezed wizard
+  &.freezed .wizard-steps > li { cursor: default !important; }
+}
+
+// Wizard in modal window
+.modal-content {
+  .wizard {
+    border: none;
+    border-radius: $border-radius-base;
+
+    + * { border-top: 1px solid $wizard-border-color; }
+  }
+
+  .wizard-wrapper {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    @include border-top-radius($border-radius-base);
+  }
+
+  .wizard-content { padding: $panel-body-padding; }
+}
+
+
+// Steps
+//
+
+.wizard-wrapper {
+  position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+
+  border-bottom: 1px solid $wizard-border-color;
+  background: $wizard-wrapper-bg;
+  border: 1px solid $wizard-border-color;
+  border-radius: $border-radius-base;
+}
+
+.wizard-steps {
+  position: relative;
+
+  display: table;
+
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  table-layout: fixed;
+
+  cursor: default;
+  user-select: none;
+  transition: left .3s;
+
+  > li {
+    position: relative;
+
+    display: table-cell;
+    line-height: 1.231;
+
+    margin: 0;
+    padding: 0;
+    padding: $wizard-step-padding-y $wizard-step-padding-x $wizard-step-padding-y (($wizard-step-padding-x * 2) + $wizard-step-number-size);
+
+    list-style: none;
+
+    vertical-align: middle;
+
+    // Step border
+    + li:before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+
+      width: 1px;
+
+      content: "";
+
+      background: $wizard-border-color;
+    }
+  }
+
+  // Completed step
+  > li.completed { cursor: pointer; }
+
+  // Active and completed steps
+  > li.active,
+  > li.completed {
+    .wizard-step-caption {
+      color: $wizard-step-completed-active-color;
+    }
+
+    .wizard-step-description { color: $wizard-step-description-active-color; }
+
+    .wizard-step-number {
+      color: $wizard-step-completed-active-color;
+      border-color: $wizard-step-completed-active-color;
+    }
+  }
+}
+
+
+// Wizard step number
+//
+
+.wizard-step-number,
+.wizard-step-complete {
+  position: absolute;
+  top: 50%;
+  left: $wizard-step-padding-x;
+
+  display: block;
+
+  box-sizing: content-box;
+  width: $wizard-step-number-size;
+  height: $wizard-step-number-size;
+  margin-top: -$wizard-step-number-border-width;
+
+  transform: translateY(-($wizard-step-number-size / 2));
+  text-align: center;
+
+  color: $wizard-step-color;
+  border: $wizard-step-number-border-width solid $wizard-border-color;
+  border-radius: 9999px;
+
+  font-weight: 700;
+  line-height: $wizard-step-number-size;
+}
+
+.wizard-step-complete { display: none; }
+
+.wizard-steps > li.completed,
+.wizard.finished .wizard-steps > li {
+  .wizard-step-number { display: none; }
+  .wizard-step-complete { display: block; }
+}
+
+
+// Wizard step caption
+//
+
+.wizard-step-caption,
+.wizard-step-description { color: $wizard-step-color; }
+
+.wizard-step-caption {
+  display: inline-block;
+
+  font-weight: 600;
+}
+
+.wizard-step-description {
+  position: relative;
+
+  display: block;
+
+  margin-top: 4px;
+
+  font-size: 11px;
+  font-weight: 400;
+}
+
+
+// Wizard content
+//
+
+.wizard-content {
+  @include clearfix();
+}
+
+.wizard-pane {
+  display: none;
+
+  @include clearfix();
+
+  &.active { display: block; }
+}
+
+
+// Bordered wizard
+//
+
+.wizard-bordered {
+  margin-bottom: $line-height-computed;
+
+  .wizard-wrapper {
+    @include border-bottom-radius(0);
+  }
+
+  .wizard-content {
+    border: 1px solid $wizard-border-color;
+    border-top: none;
+    padding: $panel-body-padding;
+  }
+}
+
+
+// Wizard within panel
+//
+
+.panel-wizard {
+  margin-bottom: 0;
+
+  .wizard-wrapper {
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+  }
+
+  .wizard-content { padding: $panel-body-padding; }
+
+  + .panel-body { border-top: 1px solid $wizard-border-color; }
+}
+
+.panel-heading + .panel-wizard .wizard-wrapper { border-top: none; }
+
+@include panel-wizard-variant(warning,
+  $state-warning-text, $state-warning-bg, $state-warning-border, // Light
+  #fff, $brand-warning // Dark
+);
+@include panel-wizard-variant(danger,
+  $state-danger-text, $state-danger-bg, $state-danger-border, // Light
+  #fff, $brand-danger // Dark
+);
+@include panel-wizard-variant(success,
+  $state-success-text, $state-success-bg, $state-success-border, // Light
+  #fff, $brand-success // Dark
+);
+@include panel-wizard-variant(info,
+  $state-info-text, $state-info-bg, $state-info-border, // Light
+  #fff, $brand-info // Dark
+);

@@ -1,0 +1,83 @@
+//
+// Utilities / Blocks
+// --------------------------------------------------
+
+.page-block {
+  margin-right: -$content-wrapper-padding !important;
+  margin-left: -$content-wrapper-padding !important;
+  padding-right: $content-wrapper-padding !important;
+  padding-left: $content-wrapper-padding !important;
+}
+
+.panel-block {
+  padding-right: $panel-body-padding !important;
+  padding-left: $panel-body-padding !important;
+
+  .panel-body & {
+    margin-right: -$panel-body-padding !important;
+    margin-left: -$panel-body-padding !important;
+  }
+}
+
+.page-wide-block {
+  margin-right: -$content-wrapper-padding !important;
+  margin-left: -$content-wrapper-padding !important;
+}
+
+.panel-wide-block {
+  margin-right: -$panel-body-padding !important;
+  margin-left: -$panel-body-padding !important;
+}
+
+
+// Block width
+//
+
+@media (max-width: $screen-xs-max) {
+  .width-xs-auto { width: auto !important; }
+}
+
+@media (min-width: $screen-sm-min) {
+  .width-sm-auto { width: auto !important; }
+}
+
+@media (min-width: $screen-md-min) {
+  .width-md-auto { width: auto !important; }
+}
+
+@media (min-width: $screen-lg-min) {
+  .width-lg-auto { width: auto !important; }
+}
+
+@media (min-width: $screen-xl-min) {
+  .width-xl-auto { width: auto !important; }
+}
+
+
+// Display
+//
+
+.display-block { display: block !important; }
+.display-inline-block { display: inline-block !important; }
+
+
+// Position
+//
+
+.position-static { position: static !important; }
+.position-relative { position: relative !important; }
+.position-absolute { position: absolute !important; }
+
+
+// Images
+//
+
+.image-inline {
+  position: relative;
+  top: -2px;
+
+  display: inline-block;
+
+  height: #{$line-height-base}em;
+  margin-bottom: -2px;
+}

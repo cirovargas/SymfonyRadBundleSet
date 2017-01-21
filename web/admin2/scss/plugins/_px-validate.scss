@@ -1,0 +1,18 @@
+//
+// Plugins / Validate
+// --------------------------------------------------
+
+.has-validation-error {
+  .help-block { display: none; }
+  .help-block.validation-error { display: block; }
+}
+
+.validation-error-no-arrow {
+  position: relative;
+  top: 5px;
+
+  &:before,
+  &:after {
+    display: none;
+  }
+}

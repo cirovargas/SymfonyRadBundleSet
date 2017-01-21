@@ -1,0 +1,86 @@
+//
+// Mixins / Utilities
+// --------------------------------------------------
+
+@mixin pixel-text-color($color) {
+  &,
+  &:hover,
+  &:focus,
+  &:active,
+  &[href],
+  a {
+    color: darken($color, $utilities-text-darken) !important;
+  }
+
+  &[href],
+  a {
+    &:hover,
+    &:focus,
+    &:active {
+      color: darken($color, $utilities-text-darken + 10%) !important;
+    }
+  }
+}
+
+@mixin pixel-bg-color($background, $color: #fff) {
+  background-color: $background !important;
+  border-color: desaturate(darken($background, 9%), 6%) !important;
+
+  &[href]:hover { background-color: desaturate(darken($background, 3%), 6%) !important; }
+
+  & & { border-color: desaturate(darken($background, 9%), 6%) !important; }
+
+  &.darken,
+  & &.darken {
+    background-color: desaturate(darken($background, 3%), 6%) !important;
+    border-color: desaturate(darken($background, 12%), 6%) !important;
+
+    &[href]:hover { background-color: desaturate(darken($background, 6%), 6%) !important; }
+  }
+
+  &.darker,
+  & &.darker {
+    background-color: desaturate(darken($background, 6%), 6%) !important;
+    border-color: desaturate(darken($background, 14%), 6%) !important;
+
+    &[href]:hover { background-color: desaturate(darken($background, 9%), 6%) !important; }
+  }
+
+  @include pixel-text-color($color);
+
+  &[href],
+  a {
+    &:hover,
+    &:focus,
+    &:active {
+      color: $color !important;
+    }
+  }
+
+  .text-muted,
+  .text-muted:hover,
+  .text-muted:focus,
+  .text-muted:active,
+  .text-muted[href],
+  .text-muted a {
+    color: rgba(255, 255, 255, .6) !important;
+  }
+}
+
+@mixin pixel-border-color($border) {
+  border-color: $border !important;
+}
+
+@mixin pixel-colors($name, $color) {
+  .bg-#{$name} {
+    @include pixel-bg-color($color);
+  }
+
+  .text-#{$name} {
+    @include pixel-text-color($color);
+  }
+
+  .border-#{$name} {
+    @include pixel-border-color($color);
+  }
+}

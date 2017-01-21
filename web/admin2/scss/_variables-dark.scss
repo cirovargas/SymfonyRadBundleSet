@@ -1,0 +1,186 @@
+//
+// Dark version variables
+// --------------------------------------------------
+
+$text-color:                                 #fff !default;
+$text-muted:                                 #8f979f !default;
+$text-light:                                 #bbb !default;
+$utilities-text-darken:                      0% !default;
+
+$link-color:                                 #5cc7ff !default;
+$link-hover-color:                           lighten($link-color, 10%) !default;
+
+$default-border-color:                       #4B535B !default;
+
+$white:                                      #374049 !default;
+$gray-light:                                 $text-muted !default;
+$gray-lighter:                               #4B535B !default;
+
+$brand-success:                              #78bd5d !default;
+$brand-info:                                 #59c4e4 !default;
+$brand-warning:                              #f4ab43 !default;
+$brand-danger:                               #e46050 !default;
+
+$state-success-text:                         #fff !default;
+$state-success-bg:                           $brand-success !default;
+$state-success-border:                       $state-success-bg !default;
+
+$state-info-text:                            #fff !default;
+$state-info-bg:                              $brand-info !default;
+$state-info-border:                          $state-info-bg !default;
+
+$state-warning-text:                         #fff !default;
+$state-warning-bg:                           $brand-warning !default;
+$state-warning-border:                       $state-warning-bg !default;
+
+$state-danger-text:                          #fff !default;
+$state-danger-bg:                            $brand-danger !default;
+$state-danger-border:                        $state-danger-bg !default;
+
+$table-bg-accent:                            rgba(255, 255, 255, .05) !default;
+$table-bg-hover:                             rgba(255, 255, 255, .05) !default;
+$table-light-color:                          rgba(255, 255, 255, .05) !default;
+
+$btn-default-bg:                             #272e35 !default;
+$btn-default-border:                         $btn-default-bg !default;
+$btn-success-border:                         $brand-success !default;
+$btn-info-border:                            $brand-info !default;
+$btn-warning-border:                         $brand-warning !default;
+$btn-danger-border:                          $brand-danger !default;
+
+$btn-link-disabled-color:                    $gray-light !default;
+$btn-label-bg:                               $white !default;
+$btn-label-icon-bg:                          rgba(0, 0, 0, .11) !default;
+$btn-outline-border-color:                   rgba(255, 255, 255, .12) !default;
+
+$input-bg:                                   #4d5762 !default;
+$input-bg-disabled:                          #323c47 !default;
+$input-border:                               #4d5762 !default;
+$input-color-placeholder:                    rgba(255, 255, 255, .5) !default;
+$input-group-addon-bg:                       $input-bg-disabled !default;
+$input-group-addon-border-color:             $input-border !default;
+
+$custom-control-indicator-bg:                $input-bg !default;
+
+$dropdown-bg:                                #272e35;
+$dropdown-border:                            #272e35 !default;
+$dropdown-fallback-border:                   $dropdown-border !default;
+$dropdown-link-hover-color:                  $text-color !default;
+$dropdown-link-hover-bg:                     #22282f !default;
+$dropdown-link-disabled-color:               #666 !default;
+$dropdown-divider-bg:                        #343d46 !default;
+
+$nav-item-bg:                                rgba(0, 0, 0, .1) !default;
+$nav-item-focus-bg:                          rgba(0, 0, 0, .15) !default;
+$nav-tabs-border-color:                      rgba(255, 255, 255, .11) !default;
+$nav-tabs-link-hover-border-color:           rgba(255, 255, 255, .05) !default;
+$nav-tabs-justified-link-border-color:       $default-border-color !default;
+
+$popover-bg:                                 $white !default;
+$popover-popover-bg:                         #f0f0f0 !default;
+
+$label-default-outline-border:               rgba(255, 255, 255, .12) !default;
+$label-tag-circle-bg:                        $white !default;
+$label-ribbon-outlined-bg:                   $white !default;
+
+$modal-content-bg:                           $white !default;
+$modal-header-bg:                            $modal-content-bg !default;
+$modal-content-border-color:                 #272e35 !default;
+$modal-content-fallback-border-color:        #272e35 !default;
+$modal-backdrop-opacity:                     .6 !default;
+$modal-header-border-color:                  #272e35 !default;
+$modal-footer-border-color:                  #272e35 !default;
+
+$alert-default-bg:                           rgba(255, 255, 255, .12) !default;
+$alert-default-border:                       rgba(255, 255, 255, .12) !default;
+$alert-border-width:                         0 !default;
+
+$progress-bg:                                rgba(0, 0, 0, .15) !default;
+
+$list-group-hover-bg:                        rgba(0, 0, 0, .1) !default;
+
+$panel-bg:                                   $white !default;
+$panel-default-border:                       $default-border-color !default;
+$panel-default-heading-bg:                   transparent !default;
+$panel-footer-bg:                            $panel-bg !default;
+
+$close-color:                                #fff !default;
+$close-text-shadow:                          none !default;
+
+$dimmer-bg:                                  rgba(255, 255, 255, .1) !default;
+$dimmer-spinner-bg:                          rgba(255, 255, 255, .2) !default;
+$dimmer-spinner-color:                       #fff !default;
+
+$switcher-default-bg:                        #697583 !default;
+$switcher-no-state-bg:                       #292e35 !default;
+
+$wizard-bg:                                  $white !default;
+$wizard-wrapper-bg:                          $white !default;
+$wizard-border-color:                        $default-border-color !default;
+
+$wizard-step-color:                          darken($text-color, 50%) !default;
+$wizard-step-completed-active-color:         $text-color !default;
+$wizard-step-description-active-color:       darken($text-color, 50%) !default;
+$wizard-step-number-completed-border-color:  $wizard-border-color !default;
+
+$select2-selected-bg:                        #414b56 !default;
+
+$bootstrap-datepicker-border:                $dropdown-divider-bg !default;
+$bootstrap-datepicker-hover-bg:              rgba(255, 255, 255, .12) !default;
+$bootstrap-datepicker-old-new-color:         #777 !default;
+$bootstrap-datepicker-today-bg:              rgba(0, 0, 0, .12) !default;
+$bootstrap-datepicker-highlited-bg:          rgba(0, 0, 0, .12) !default;
+$bootstrap-datepicker-calendar-week-bg:      rgba(0, 0, 0, .12) !default;
+$bootstrap-datepicker-range-bg:              $bootstrap-datepicker-hover-bg !default;
+
+$bootstrap-timepicker-border:                $default-border-color !default;
+
+$dropzone-thumbnail-bg:                      rgba(0, 0, 0, .12) !default;
+$summernote-dropzone-color:                  #fff !default;
+$summernote-dropzone-active-color:           #fff !default;
+$summernote-dropzone-bg:                     #000 !default;
+$summernote-dropzone-opacity:                .4 !default;
+$summernote-color-palette-border:            $dropdown-bg !default;
+$summernote-color-palette-hover-border:      #fff !default;
+$summernote-dimension-unhighlighted-opacity: .2 !default;
+
+$bootstrap-markdown-fullscreen-bg:           $input-bg !default;
+
+$ps-bar-container-hover-bg:                  #888 !default;
+$ps-bar-hover-bg:                            #fff !default;
+$ps-rail-hover-bg:                           #666 !default;
+
+$ionrangeslider-default-color:               #fff !default;
+$ionrangeslider-default-bg:                  #9ea8b3 !default;
+$ionrangeslider-line-color:                  #4D5762 !default;
+$ionrangeslider-min-max-color:               $text-muted !default;
+$ionrangeslider-min-max-bg:                  rgba(0, 0, 0, .3) !default;
+$ionrangeslider-grid-color:                  $text-muted !default;
+$ionrangeslider-grid-text-color:             $text-muted !default;
+$ionrangeslider-shadow-color:                rgba(0, 0, 0, .4) !default;
+
+$daterangepicker-border:                     $dropdown-divider-bg !default;
+$daterangepicker-hover-bg:                   rgba(0, 0, 0, .2) !default;
+$daterangepicker-range-bg:                   rgba(255, 255, 255, .12) !default;
+$daterangepicker-off-color:                  #777 !default;
+
+$bs-slider-default-bg:                       #9ea8b3 !default;
+$bs-slider-line-color:                       #4D5762 !default;
+$bs-slider-label-color:                      $text-muted !default;
+
+$nouislider-default-bg:                      #9ea8b3 !default;
+$nouislider-line-color:                      #4D5762 !default;
+$nouislider-tick-label-color:                $text-muted !default;
+
+$pre-bg:                                     rgba(255, 255, 255, .15) !default;
+$pre-color:                                  #fff !default;
+$pre-border-color:                           transparent !default;
+
+$c3-axis-color:                              rgba(255, 255, 255, .2) !default;
+$c3-guide-color:                             rgba(255, 255, 255, .4) !default;
+$c3-text-color:                              rgba(255, 255, 255, .8) !default;
+$c3-arcs-background:                         rgba(255, 255, 255, .06) !default;
+$c3-arcs-stroke:                             rgba(255, 255, 255, 0) !default;
+
+$widget-chat-text-bg:                        rgba(0, 0, 0, .15) !default;
+$widget-pricing-active-bg:                   #3F4851 !default;

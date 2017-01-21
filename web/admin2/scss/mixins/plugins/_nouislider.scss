@@ -1,0 +1,22 @@
+//
+// Mixins / Plugins / noUiSlider
+// --------------------------------------------------
+
+@mixin nouislider-base($color) {
+  .noUi-connect { background: $color; }
+}
+
+@mixin nouislider-variant($state, $color) {
+  .noUi-#{$state} {
+    @include nouislider-base($color);
+  }
+}
+
+@mixin nouislider-theme($color) {
+  @include nouislider-variant(primary, $color);
+
+  .noUi-active:before,
+  .noUi-active:after {
+    background: $color;
+  }
+}

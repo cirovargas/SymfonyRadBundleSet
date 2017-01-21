@@ -1,0 +1,117 @@
+//
+// Themes / Clean
+// --------------------------------------------------
+
+@import '../../variables';
+@import '../../../libs/bootstrap-sass/assets/stylesheets/bootstrap/variables';
+@import '../../../libs/bootstrap-sass/assets/stylesheets/bootstrap/mixins';
+@import '../../mixins';
+
+
+$theme-primary-color: #51bf99;
+
+
+// Generate theme
+//
+
+@include pixel-theme(
+  $primary-color:        $theme-primary-color,
+  $primary-text-color:   #fff,
+  $primary-border-color: darken($theme-primary-color, 6%),
+
+  $body-bg:              #fafafa,
+  $panel-border-color:   #dcdcdc,
+  $header-bg:            transparent,
+  $header-border-color:  #eee,
+
+  $px-navbar: (
+    bg:                             #3d4a5d,
+    border-color:                   transparent,
+    link-color:                     #fff,
+    link-hover-color:               #fff,
+    link-hover-bg:                  rgba(0, 0, 0, .09),
+    shadow:                         "none",
+
+    brand-bg:                       transparent,
+    brand-link-color:               #fff,
+    brand-link-hover-color:         #fff,
+
+    collapse-border-color:          #4c5b71,
+    collapse-dropdown-bg:           #4c5b71,
+    collapse-dropdown-border-color: #55657b,
+
+    form-control-bg:                #fff,
+    form-control-border-color:      transparent,
+    form-control-color:             $text-color,
+
+    scrollbar-color:                rgba(255, 255, 255, .4),
+    scrollbar-rail-color:           transparent,
+
+    enable-transitions:             true
+  ),
+
+  $px-nav: (
+    toggle-color:               #fff,
+    toggle-bg:                  #3d4a5d,
+
+    bg:                         #edf0f1,
+    color:                      #626b7a,
+    link-hover-color:           #2c333e,
+    link-hover-bg:              transparent,
+
+    // Dropdowns
+    dropdown-bg:                #e6eaeb,
+    dropdown-menu-title-color:  #2c333e,
+    dropdown-menu-title-bg:     #edf0f1,
+
+    // Active
+    active-color:               #2c333e,
+    active-bg:                  #fafafa,
+    active-icon-color:          #2c333e,
+
+    scrollbar-color:            rgba(#3d4a5d, .4),
+    scrollbar-rail-color:       transparent,
+
+    toggle-border-color:        false,
+    border-color:               #d8dddf,
+    item-border-color:          #dfe4e6,
+    dropdown-item-border-color: #dbe0e2,
+    box-border-color:           #dbe0e2,
+
+    tooltip-bg:                 #3d4a5d,
+    tooltip-color:              #fff,
+
+    dimmer-bg:                  rgba(#000, .35),
+
+    animate-items:              false
+  ),
+
+  $px-footer: (
+    color:            #656a73,
+    bg:               #f4f5f5,
+
+    link-color:       #656a73,
+    link-hover-color: $text-color,
+
+    muted-color:      #98a0ae,
+    border-color:     #e4e8ea,
+    hr-color:         #e4e8ea
+  )
+);
+
+
+// Custom styles
+//
+
+// PxNav
+@if mixin-exists(px-nav-theme) {
+  @media (min-width: $screen-md-min) {
+    .px-navbar .dropdown-menu {
+      border-top-width: 2px;
+      border-top-color: $theme-primary-color;
+      border-right: none;
+      border-bottom: none;
+      border-left: none;
+    }
+  }
+}

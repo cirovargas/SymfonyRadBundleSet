@@ -1,0 +1,41 @@
+//
+// Widgets / Rating
+// --------------------------------------------------
+
+.widget-rating {
+  position: relative;
+
+  display: block;
+  float: left;
+
+  @include clearfix();
+
+  input {
+    position: absolute;
+    z-index: -1;
+
+    margin: 0;
+    padding: 0;
+
+    opacity: 0;
+  }
+
+  label {
+    display: block;
+    float: right;
+
+    margin: 0;
+    padding-left: $widget-rating-spacer;
+
+    color: $widget-rating-color;
+  }
+
+  input:not(:disabled) + label { cursor: pointer; }
+
+  input:checked ~ label { color: $widget-rating-active-color; }
+
+  input:not(:disabled) + label:hover,
+  input:not(:disabled) + label:hover ~ label {
+    color: $widget-rating-hover-color !important;
+  }
+}

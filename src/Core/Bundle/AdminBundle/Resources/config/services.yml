@@ -1,0 +1,30 @@
+services:
+    core_admin.list_filter:
+        class: Core\Bundle\AdminBundle\Services\ListFilterService
+        arguments: ["@request_stack","@doctrine.orm.entity_manager","@lexik_form_filter.query_builder_updater","@form.factory", "@translator"]
+    core_admin.list_paginator:
+        class: Core\Bundle\AdminBundle\Services\ListPaginatorService
+        arguments: ["@request_stack", "@translator","@router"]
+    core_admin.pdf:
+            class: Core\Bundle\AdminBundle\Services\PDFService
+    reports:
+            class: Core\Bundle\AdminBundle\Services\ReportService
+            arguments: ["@phpexcel","@templating","@twig","@knp_snappy.pdf"]
+            
+    app.admin_configure_menu_listener:
+        class: %app.admin_configure_menu_listener.class%
+        tags:
+          - { name: kernel.event_listener, event: app.menu_configure, method: onMenuConfigure }
+    app.twig_extension:
+        class: Core\Bundle\AdminBundle\Twig\InstanceofSimpleTest
+        public: false
+        tags:
+            - { name: twig.extension }
+    app.extenso_filter:
+        class: Core\Bundle\AdminBundle\Twig\ExtensoFilter
+        public: false
+        tags:
+            - { name: twig.extension }
+parameters:
+    app.admin_configure_menu_listener.class: Core\Bundle\AdminBundle\EventListener\ConfigureMenuListener
+

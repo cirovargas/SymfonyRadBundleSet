@@ -1,0 +1,14 @@
+//
+// Mixins / Thumbnails
+// --------------------------------------------------
+
+@mixin thumbnail-theme($border) {
+  a.thumbnail:hover,
+  a.thumbnail:focus,
+  a.thumbnail.active,
+  a:hover .thumbnail,
+  a:focus .thumbnail,
+  a.active .thumbnail {
+    border-color: $border !important;
+  }
+}

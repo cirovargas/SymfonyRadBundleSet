@@ -1,0 +1,142 @@
+//
+// Themes / Silver
+// --------------------------------------------------
+
+@import '../../variables';
+@import '../../../libs/bootstrap-sass/assets/stylesheets/bootstrap/variables';
+@import '../../../libs/bootstrap-sass/assets/stylesheets/bootstrap/mixins';
+@import '../../mixins';
+
+
+$theme-primary-color: #64bed8;
+
+
+// Generate theme
+//
+
+@include pixel-theme(
+  $primary-color:        $theme-primary-color,
+  $primary-text-color:   #fff,
+  $primary-border-color: darken($theme-primary-color, 6%),
+
+  $body-bg:              #fafafa,
+  $panel-border-color:   #e5e5e5,
+  $header-bg:            transparent,
+  $header-border-color:  rgba(0, 0, 0, .06),
+
+  $px-navbar: (
+    bg:                             #eee linear-gradient(to bottom, #f6f6f6 0, #ebebeb 100%),
+    border-color:                   transparent,
+    link-color:                     $text-color,
+    link-hover-color:               $text-color,
+    link-hover-bg:                  rgba(0, 0, 0, .06),
+    shadow:                         "0 2px 2px rgba(0,0,0,.08),0 1px 0 rgba(0,0,0,.08);",
+
+    brand-bg:                       transparent,
+    brand-link-color:               $text-color,
+    brand-link-hover-color:         $text-color,
+
+    collapse-bg:                    #ebebeb,
+    collapse-border-color:          #ddd,
+    collapse-dropdown-bg:           #e0e0e0,
+    collapse-dropdown-border-color: darken(#e0e0e0, 6%),
+
+    form-control-bg:                #fff,
+    form-control-border-color:      transparent,
+    form-control-color:             $text-color,
+
+    scrollbar-color:                rgba(0, 0, 0, .3),
+    scrollbar-rail-color:           transparent,
+
+    enable-transitions:             true
+  ),
+
+  $px-nav: (
+    toggle-color:               $text-color,
+    toggle-bg:                  #eee linear-gradient(to bottom, #f6f6f6 0, #ebebeb 100%),
+
+    bg:                         #3a3a3a,
+    color:                      #afafaf,
+    link-hover-color:           #fff,
+    link-hover-bg:              rgba(255, 255, 255, .03),
+
+    // Dropdowns
+    dropdown-bg:                #333,
+    dropdown-menu-title-color:  #fff,
+    dropdown-menu-title-bg:     #3a3a3a,
+
+    // Active
+    active-color:               #fff,
+    active-bg:                  $theme-primary-color,
+    active-icon-color:          #fff,
+
+    scrollbar-color:            rgba(255, 255, 255, .3),
+    scrollbar-rail-color:       transparent,
+
+    toggle-border-color:        false,
+    border-color:               false,
+    item-border-color:          #444,
+    dropdown-item-border-color: false,
+    box-border-color:           #444,
+
+    tooltip-bg:                 #2b2e30,
+    tooltip-color:              #fff,
+
+    dimmer-bg:                  rgba(#333, .4),
+
+    animate-items:              false
+  ),
+
+  $px-footer: (
+    color:            $text-color,
+    bg:               #f5f5f5,
+
+    link-color:       #666,
+    link-hover-color: $text-color,
+
+    muted-color:      #888,
+    border-color:     #e8e8e8,
+    hr-color:         #e8e8e8
+  )
+);
+
+
+// Custom styles
+//
+
+// PxNavbar
+@if mixin-exists(px-navbar-theme) {
+  @media (min-width: $screen-md-min) {
+    .px-navbar .navbar-nav > li > a {
+      border-left: 1px solid transparent;
+      border-right: 1px solid transparent;
+
+      &:hover,
+      &:focus,
+      &.active,
+      &.open {
+        border-color: rgba(0, 0, 0, .06);
+      }
+    }
+
+    .px-navbar .dropdown-menu {
+      margin-top: 3px;
+      border-radius: $border-radius-base;
+      background: #fff;
+    }
+
+    .px-navbar [class^="widget-"],
+    .px-navbar [class*=" widget-"] { border-color: $panel-inner-border; }
+  }
+}
+
+// PxNav
+@if mixin-exists(px-nav-theme) {
+  .px-nav-toggle { border-right: 1px solid rgba(0, 0, 0, .1); }
+
+  @media (min-width: $screen-md-min) {
+    .px-nav-toggle {
+      box-shadow: 0 2px 2px rgba(0, 0, 0, .08), 0 1px 0 rgba(0, 0, 0, .08);
+    }
+  }
+}

@@ -1,0 +1,171 @@
+//
+// Buttons
+// --------------------------------------------------
+
+.btn {
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:active {
+      box-shadow: none;
+    }
+  }
+
+  &.active,
+  &:active,
+  .open > &.dropdown-toggle,
+  fieldset[disabled] &.active {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .1) inset;
+  }
+}
+
+// Link button
+//
+
+.btn-link {
+  color: $link-color !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+
+  &:hover,
+  &:active,
+  &.active,
+  &:focus {
+    color: $link-hover-color !important;
+  }
+}
+
+
+// Rounded button
+//
+
+.btn-rounded { border-radius: 999px; }
+
+
+// 3D button
+//
+
+.btn-3d {
+  position: relative;
+
+  box-shadow: none !important;
+
+  &,
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:active {
+      margin-top: 0;
+
+      border-bottom-width: 3px;
+    }
+  }
+
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle,
+  fieldset[disabled] &.active {
+    margin-top: 2px;
+
+    border-bottom-width: 1px;
+  }
+}
+
+
+// Outline button
+//
+
+.btn.btn-outline {
+  color: $btn-default-color;
+
+  &.btn-outline-colorless {
+    @include pixel-button-outline-colorless-base($text-color, $btn-outline-border-color);
+  }
+
+  &.btn-outline-colorless-inverted {
+    @include pixel-button-outline-colorless-base($btn-outline-inverted-color, $btn-outline-inverted-border-color);
+  }
+}
+
+
+// Loading indicator
+//
+
+.btn-loading {
+  position: relative;
+
+  cursor: default;
+
+  color: transparent !important;
+
+  &:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 1.28em;
+    height: 1.28em;
+    margin: -.64em 0 0 -.64em;
+
+    content: '';
+
+    border: 2px solid rgba(0,0,0,.15);
+    border-radius: 9999px;
+  }
+
+  &:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 1.28em;
+    height: 1.28em;
+    margin: -.64em 0 0 -.64em;
+
+    content: "";
+    animation: button-loading .6s linear;
+    animation-iteration-count: infinite;
+
+    border: 2px solid;
+    border-color: #fff transparent transparent;
+    border-radius: 9999px;
+    box-shadow: 0 0 0 1px transparent;
+  }
+}
+
+@include keyframes(button-loading) {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+// Sizes
+//
+
+.btn-xs {
+  font-size: $font-size-xs;
+  line-height: $line-height-xs;
+}
+
+.btn-xl {
+  @include button-size($padding-xl-vertical, $padding-xl-horizontal, $font-size-xl, $line-height-xl, $border-radius-xl);
+}
+
+
+// Colors
+//
+
+@include pixel-button-base($btn-default-color, $btn-default-bg, $btn-default-border);
+.btn.btn-outline { color: $btn-default-color; }
+
+@include pixel-button-variant(success, $btn-success-color, $btn-success-bg, $btn-success-border);
+@include pixel-button-variant(warning, $btn-warning-color, $btn-warning-bg, $btn-warning-border);
+@include pixel-button-variant(info, $btn-info-color, $btn-info-bg, $btn-info-border);
+@include pixel-button-variant(danger, $btn-danger-color, $btn-danger-bg, $btn-danger-border);

@@ -1,0 +1,103 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}
+{{ parent() }} - Editar usuário
+{% endblock %}
+
+{% block page %}
+<div class="page-header">
+    <h1>Editar usuário</h1>
+</div>
+<div class="row">
+    {{ form_start(form,{'action':path('admin_users_update', { 'id': entity.id })}) }}
+    {{ form_errors(form) }}
+    <div class="col-sm-12">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">{{ form.profile.vars.label }}</span>
+            </div>
+            <div class="panel-body">
+                {{ form_row(form.username) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.enabled) }}
+                {{ form_row(form.profile.name) }}
+                {{ form_row(form.profile.nomeCompleto) }}
+                {{ form_row(form.profile.phone) }}
+                {{ form_row(form.profile.cellphone) }}
+                {{ form_row(form.profile.workphone) }}
+                {{ form_row(form.profile.bornDate) }}
+                {{ form_row(form.profile.gender) }}
+                {{ form_row(form.profile.about) }}
+            </div>
+            <div class="panel-footer text-right">
+                <a class="btn" href="{{ path('admin_users') }}">
+                    {{ 'views.recordactions.backtothelist'|trans({}, 'CoreAdminBundle') }}
+                </a>
+                <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'CoreAdminBundle') }}</button>
+                <a href="#" class="btn btn-danger" id="delete-buttom">{{ 'views.recordactions.delete'|trans({}, 'CoreAdminBundle') }}</a>
+            </div>
+        </div>
+    </div>
+    {% if form.instancias is defined %}
+    <div class="col-sm-12 ">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">{{ form.instancias.vars.label }}</span>
+            </div>
+            <div class="panel-body">
+                {{ form_row(form.instancias) }}
+            </div>
+            <div class="panel-footer text-right">
+                <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'CoreAdminBundle') }}</button>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {#<div class="col-sm-12 ">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">Imagem do perfil</span>
+            </div>
+            <div class="panel-body">
+                {{ form_row(form.profile.avatar.file) }}
+            </div>
+            <div class="panel-footer text-right">
+                <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'CoreAdminBundle') }}</button>
+            </div>
+        </div>
+    </div>#}
+    <div class="col-sm-12 ">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">{{ form.profile.configs.vars.label }}</span>
+            </div>
+            <div class="panel-body">
+                {% if form.ldap is defined and is_granted('ROLE_SUPERADMIN') %}
+                {{ form_row(form.ldap) }}
+                {% endif %}
+                {% for config in form.profile.configs %}
+                {{ form_row(config) }}
+                {% endfor %}
+            </div>
+            <div class="panel-footer text-right">
+                <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'CoreAdminBundle') }}</button>
+            </div>
+        </div>
+    </div>
+    <div style='display:none'>
+        {{ form_row(form.profile) }}
+        {{ form_row(form.profile.configs) }}
+    </div>
+    {{ form_rest(form) }}
+{{ form_end(form) }}
+</div>
+
+<form id="delete-form" action="{{ path('admin_users_delete', { 'id': entity.id }) }}" method="POST" style="display:none">
+    <input type="hidden" name="_method" value="DELETE" />
+    {{ form_widget(delete_form) }}
+</form>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

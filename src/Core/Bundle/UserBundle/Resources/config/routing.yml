@@ -1,0 +1,50 @@
+admin_users:
+    path:  /
+    defaults: { _controller: "CoreUserBundle:User:index" }
+
+admin_users_pendentes:
+    path:  /pendentes
+    defaults: { _controller: "CoreUserBundle:User:pendentes" }
+    
+admin_users_show:
+    path:  /{id}/show
+    defaults: { _controller: "CoreUserBundle:User:show" }
+
+admin_user_avatar:
+    path:  /avatar
+    defaults: { _controller: "CoreUserBundle:User:avatar" }
+
+admin_users_new:
+    path:  /new
+    defaults: { _controller: "CoreUserBundle:User:new" }
+
+admin_users_create:
+    path:  /create
+    defaults: { _controller: "CoreUserBundle:User:create" }
+    methods: [POST]
+
+admin_users_edit:
+    path:  /{id}/edit
+    defaults: { _controller: "CoreUserBundle:User:edit" }
+    
+admin_users_ativar:
+    path:  /{id}/ativar
+    defaults: { _controller: "CoreUserBundle:User:ativarUsuario" }
+    
+admin_users_inativar:
+    path:  /{id}/inativar
+    defaults: { _controller: "CoreUserBundle:User:inativarUsuario" }
+
+admin_users_permissions:
+    path:  /{id}/permissions
+    defaults: { _controller: "CoreUserBundle:User:permissions" }
+
+admin_users_update:
+    path:  /{id}/update
+    defaults: { _controller: "CoreUserBundle:User:update" }
+    methods:  [POST, PUT]
+    
+admin_users_delete:
+    path:  /{id}/delete
+    defaults: { _controller: "CoreUserBundle:User:delete" }
+    methods: [POST, DELETE]

@@ -1,0 +1,38 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="page-header">
+        <h1>
+            <span class="text-muted font-weight-light">{{ 'app.group.entity'|trans({},'EntityTranslations') }} / </span>{{ 'views.show.show'|trans({'%entity%': 'app.group.entity'|trans({},'EntityTranslations') }, 'CoreAdminBundle') }}
+        </h1>
+    </div>
+
+    <div class="panel">
+        <div class="panel-body">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th> {{ 'group.show.name'|trans }}</th>
+                        <td>{{ group.getName() }}</td>
+                    </tr>
+                    {% if is_granted('ROLE_SUPERADMIN') %}
+                    <tr>
+                        <th> Instância</th>
+                        <td>{{ group.instancia.nome }}</td>
+                    </tr>
+                    {% endif %}
+                    </tbody>
+            </table>
+                    </div>
+        <div class="panel-footer">
+            
+                
+<a href="{{ path('fos_user_group_list') }}" class="btn m-l-10">{{ 'views.recordactions.backtothelist'|trans({},'CoreAdminBundle') }}</a>
+{% if is_granted('ROLE_ADMIN_USERGROUPS_EDIT') %}
+
+<a href="{{ path('fos_user_group_edit', {'groupName': group.id}) }}" class="btn btn-primary m-l-10">{{ 'views.edit.editbutton'|trans({},'CoreAdminBundle') }}</a>
+
+{% endif %}
+{% if is_granted('ROLE_ADMIN_USERGROUPS_DELETE') %}
+<a href="{{ path('fos_user_group_delete', {'groupName': group.id}) }}" class="btn m-l-10 btn-danger" onclick="return confirm('{{ 'views.recordactions.confirm'|trans({}, 'CoreAdminBundle') }}')">{{ 'views.recordactions.delete'|trans({},'CoreAdminBundle') }}</a>
+{% endif %}
+</div>
+    </div>

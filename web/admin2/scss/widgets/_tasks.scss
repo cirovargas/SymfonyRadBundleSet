@@ -1,0 +1,28 @@
+//
+// Widgets / Tasks
+// --------------------------------------------------
+
+@include pixel-widget-item(tasks, $widget-tasks-item-padding-x, $widget-tasks-item-padding-y) {
+  .custom-control { margin: 0; }
+
+  input[type=checkbox]:checked {
+    ~ .widget-tasks-title {
+      color: $text-muted;
+      text-decoration: line-through;
+    }
+
+    ~ .widget-tasks-timer { display: none; }
+  }
+};
+
+.widget-tasks-timer {
+  color: $text-muted;
+  font-size: 12px;
+  font-style: italic;
+}
+
+
+// Widget within panel
+//
+
+@include pixel-widget-within-panel(tasks);

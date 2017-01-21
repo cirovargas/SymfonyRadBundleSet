@@ -1,0 +1,209 @@
+//
+// Widgets / Timeline
+// --------------------------------------------------
+
+.widget-timeline {
+  position: relative;
+
+  padding-bottom: $widget-timeline-item-spacer;
+
+  @include clearfix();
+
+  &:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: ($widget-timeline-info-width / 2) - ($widget-timeline-line-width / 2);
+
+    display: block;
+
+    width: $widget-timeline-line-width;
+
+    content: "";
+  }
+
+  &:after {
+    position: absolute;
+    bottom: -$widget-timeline-bullet-size / 2;
+    left: ($widget-timeline-info-width / 2) - ($widget-timeline-bullet-size / 2);
+
+    display: block;
+
+    width: $widget-timeline-bullet-size;
+    height: $widget-timeline-bullet-size;
+
+    content: "";
+
+    border-radius: 999px;
+  }
+}
+
+.widget-timeline-section {
+  position: relative;
+  z-index: 10;
+
+  width: $widget-timeline-section-width;
+  margin-bottom: $widget-timeline-item-spacer;
+  padding: 6px 0;
+
+  text-align: center;
+
+  border-radius: $border-radius-base;
+}
+
+.widget-timeline-item {
+  position: relative;
+
+  margin-bottom: $widget-timeline-item-spacer;
+  padding-left: $widget-timeline-info-width;
+
+  &:last-child { margin-bottom: 0; }
+
+  .panel { margin: 0; }
+}
+
+.widget-timeline-info {
+  position: absolute;
+  left: 0;
+
+  width: $widget-timeline-info-width;
+
+  text-align: center;
+}
+
+.widget-timeline-bullet:before,
+.widget-timeline-icon:before,
+.widget-timeline-image:before {
+  position: absolute;
+  right: 5px;
+  left: 50%;
+
+  display: block;
+
+  height: $widget-timeline-line-width;
+
+  content: "";
+}
+
+.widget-timeline-bullet {
+  display: block;
+
+  width: $widget-timeline-bullet-size;
+  height: $widget-timeline-bullet-size;
+  margin: 10px auto;
+
+  border-radius: 999px;
+
+  &:before {
+    margin-top: ($widget-timeline-bullet-size / 2) - ($widget-timeline-line-width / 2);
+    margin-left: ($widget-timeline-bullet-size / 2) + 5px;
+  }
+}
+
+.widget-timeline-icon,
+.widget-timeline-image {
+  display: block;
+
+  width: $widget-timeline-icon-size;
+  height: $widget-timeline-icon-size;
+  margin: 0 auto 10px auto;
+
+  &:before {
+    margin-top: ($widget-timeline-icon-size / 2) - ($widget-timeline-line-width / 2);
+    margin-left: ($widget-timeline-icon-size / 2) + 5px;
+  }
+}
+
+.widget-timeline-icon {
+  border-radius: 999px;
+
+  font-size: $widget-timeline-icon-font-size;
+  line-height: $widget-timeline-icon-size;
+}
+
+.widget-timeline-image img {
+  display: block;
+
+  width: $widget-timeline-icon-size;
+  height: $widget-timeline-icon-size;
+
+  border-radius: 999px;
+}
+
+.widget-timeline-time {
+  position: relative;
+  z-index: 10;
+
+  display: inline-block;
+
+  padding: 2px 6px;
+
+  border-radius: $border-radius-base;
+
+  font-size: 11px;
+}
+
+
+// Centered
+//
+
+@media (min-width: $screen-md-min) {
+  .widget-timeline-centered {
+    &:before {
+      left: 50%;
+
+      margin-left: -($widget-timeline-line-width / 2);
+    }
+
+    &:after {
+      left: 50%;
+
+      margin-left: -($widget-timeline-bullet-size / 2);
+    }
+
+    .widget-timeline-section {
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .widget-timeline-item.right {
+      margin-left: 50%;
+      padding-left: $widget-timeline-info-width / 2;
+
+      .widget-timeline-info {
+        left: -$widget-timeline-info-width / 2;
+      }
+    }
+
+    .widget-timeline-item.left {
+      margin-right: 50%;
+      padding-right: $widget-timeline-info-width / 2;
+      padding-left: 0;
+
+      .widget-timeline-info {
+        right: -$widget-timeline-info-width / 2;
+        left: auto;
+      }
+
+      .widget-timeline-bullet,
+      .widget-timeline-icon,
+      .widget-timeline-image {
+        &:before {
+          right: 50%;
+          left: 5px;
+        }
+      }
+
+      .widget-timeline-bullet:before {
+        margin-right: ($widget-timeline-bullet-size / 2) + 5px;
+        margin-left: 0;
+      }
+
+      .widget-timeline-icon:before,
+      .widget-timeline-image:before {
+        margin-right: ($widget-timeline-icon-size / 2) + 5px;
+        margin-left: 0;
+      }
+    }
+  }
+}

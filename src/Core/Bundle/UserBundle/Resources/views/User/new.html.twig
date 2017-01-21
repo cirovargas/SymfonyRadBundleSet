@@ -1,0 +1,79 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}
+{{ parent() }} - Adicionar usuário
+{% endblock %}
+
+{% block page %}
+<div class="page-header">
+    <h1>Adicionar usuário</h1>
+</div>
+
+    {{ form_start(form,{'action': path('admin_users_create') }) }}
+    {{ form_errors(form) }}
+    <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+            <li class="active">
+                <a href="#uidemo-tabs-default-demo-home" data-toggle="tab">
+                    {{ form.profile.vars.label }}
+                </a>
+            </li>
+            {% if form.instancias is defined %}
+            <li class="">
+                <a href="#uidemo-tabs-default-demo-profile" data-toggle="tab">
+                    {{ form.instancias.vars.label }}
+                </a>
+            </li>
+            {% endif %}
+            <li>
+                <a href="#uidemo-tabs-default-demo-configs" data-toggle="tab">
+                    {{ form.profile.configs.vars.label }}
+                </a>
+            </li>
+    </ul>
+
+    <div class="tab-content tab-content-bordered panel-padding" style="background: #fff">
+            <div class="tab-pane fade active in" id="uidemo-tabs-default-demo-home">
+                {{ form_row(form.username) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.enabled) }}
+                {{ form_row(form.profile.name) }}
+                {{ form_row(form.profile.nomeCompleto) }}
+                {{ form_row(form.profile.phone) }}
+                {{ form_row(form.profile.cellphone) }}
+                {{ form_row(form.profile.workphone) }}
+                {{ form_row(form.profile.bornDate) }}
+                {{ form_row(form.profile.gender) }}
+                {{ form_row(form.profile.about) }}
+            </div> <!-- / .tab-pane -->
+            {% if form.instancias is defined and is_granted('ROLE_SUPERADMIN') %}
+            <div class="tab-pane fade" id="uidemo-tabs-default-demo-profile">
+                {{ form_row(form.instancias) }}
+            </div> <!-- / .tab-pane -->
+            {% endif %}
+            <div class="tab-pane fade" id="uidemo-tabs-default-demo-configs">
+                {% if form.ldap is defined and is_granted('ROLE_SUPERADMIN') %}
+                {{ form_row(form.ldap) }}
+                {% endif %}
+                {% for config in form.profile.configs %}
+                {{ form_row(config) }}
+                {% endfor %}
+            </div> <!-- / .tab-pane -->
+            
+    </div> <!-- / .tab-content -->
+    <div class="panel">
+        <div class="panel-footer text-right">
+            <a class="btn" href="{{ path('admin_users') }}">
+                {{ 'views.recordactions.backtothelist'|trans({}, 'CoreAdminBundle') }}
+            </a>
+            <button type="submit" class="btn btn-success">{{ 'views.new.create'|trans({}, 'CoreAdminBundle') }}</button>
+        </div>
+    </div>
+
+    <div style='display:none'>
+        {{ form_row(form.profile) }}
+        {{ form_row(form.profile.configs) }}
+    </div>
+
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+{% endblock %}

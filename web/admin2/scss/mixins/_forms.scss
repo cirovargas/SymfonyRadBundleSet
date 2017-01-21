@@ -1,0 +1,57 @@
+//
+// Mixins / Forms
+// --------------------------------------------------
+
+@mixin pixel-form-state($state, $color, $background, $border) {
+  .has-#{$state} {
+    .form-control { border-color: $border; }
+
+    .input-group-addon {
+      color: $color;
+      border-color: $border !important;
+      background-color: $background;
+    }
+
+    .form-control-feedback { color: $border; }
+  }
+}
+
+@mixin form-message-variant($state, $color, $background, $border, $color-dark, $background-dark, $border-dark) {
+  .has-#{$state} .form-message {
+    color: $color;
+  }
+
+  .has-#{$state} .form-message.light,
+  .has-#{$state}.form-message-light .form-message {
+    color: $color;
+    border-color: $border;
+    background: $background;
+
+    &:after{
+      border-bottom-color: $background;
+    }
+  }
+
+  .has-#{$state} .form-message.dark,
+  .has-#{$state}.form-message-dark .form-message {
+    $stripes-color: rgba(255, 255, 255, .05);
+
+    color: $color-dark;
+    border-color: $border-dark;
+    background: $background-dark;
+    background-image: linear-gradient(45deg, $stripes-color 25%, transparent 25%, transparent 50%, $stripes-color 50%, $stripes-color 75%, transparent 75%, transparent);
+
+    &:after{
+      border-bottom-color: $background-dark;
+    }
+  }
+}
+
+@mixin form-theme($border) {
+  .form-control:focus,
+  .has-success .form-control:focus,
+  .has-warning .form-control:focus,
+  .has-error .form-control:focus {
+    border-color: $border;
+  }
+}

@@ -1,0 +1,9 @@
+{%- if ('delete' in actions) and (not hide_delete) %}
+{{ "{% if is_granted('ROLE_ADMIN_"~entity|upper~"_DELETE') %}" }}
+
+{{ "{{ form_start(delete_form,{'attr': {'id':'delete-form'} }) }}" }}
+
+{{ '{{ form_end(delete_form) }}' }}
+
+{{ "{% endif %}" }}
+{%- endif %}

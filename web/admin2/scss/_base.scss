@@ -1,0 +1,135 @@
+//
+// Base styles
+// --------------------------------------------------
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow: hidden;
+  overflow-y: auto;
+
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+}
+
+body {
+  position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  @include clearfix();
+}
+
+@media (min-width: $screen-sm-min) {
+  body { overflow: visible; }
+}
+
+hr {
+  margin-top:    $panel-body-padding;
+  margin-bottom: $panel-body-padding;
+}
+
+.panel hr,
+.box hr,
+.modal hr {
+  border-color: $panel-inner-border;
+}
+
+.no-animation { animation-duration: 0s !important; }
+
+
+// Content
+//
+
+.px-content { padding: $content-wrapper-padding; }
+
+.page-header {
+  margin: (-$content-wrapper-padding) (-$content-wrapper-padding) $content-wrapper-padding (-$content-wrapper-padding);
+  padding: 20px $content-wrapper-padding;
+
+  border-bottom: 1px solid;
+
+  @include clearfix();
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    display: inline-block;
+
+    margin: 0;
+
+    vertical-align: middle;
+
+    font-size: $page-header-font-size;
+    font-weight: $page-header-font-weight;
+    line-height: $page-header-line-height;
+  }
+}
+
+.page-header-text,
+.page-header-text a {
+  font-size: $page-header-font-size;
+}
+
+.page-header-icon {
+  display: inline-block;
+
+  margin-right: 10px;
+
+  font-size: $page-header-icon-font-size;
+  line-height: 1;
+}
+
+
+// Breakpoints
+//
+
+#px-breakpoint-xs,
+#px-breakpoint-sm,
+#px-breakpoint-md,
+#px-breakpoint-lg {
+  position: absolute;
+  top: -10000px;
+
+  display: none;
+
+  width: 1px;
+  height: 1px;
+}
+
+#px-breakpoint-xs { display: block; }
+
+@media (min-width: $screen-sm-min) {
+  #px-breakpoint-xs { display: none !important; }
+  #px-breakpoint-sm { display: block; }
+}
+
+@media (min-width: $screen-md-min) {
+  #px-breakpoint-sm { display: none !important; }
+  #px-breakpoint-md { display: block; }
+}
+
+@media (min-width: $screen-lg-min) {
+  #px-breakpoint-md { display: none !important; }
+  #px-breakpoint-lg { display: block; }
+}
+
+@media (min-width: $screen-xl-min) {
+  #px-breakpoint-lg { display: none !important; }
+}
