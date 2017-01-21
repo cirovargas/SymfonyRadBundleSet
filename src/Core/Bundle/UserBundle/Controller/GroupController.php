@@ -26,9 +26,7 @@ class GroupController extends Base
         $groups = $this
                 ->getDoctrine()
                 ->getManager()
-                ->getRepository('CoreUserBundle:Group')->findByInstancia(
-                    $request->getSession()->get('instancia')->getId()
-                );
+                ->getRepository('CoreUserBundle:Group')->findAll();
 
         return $this->render('FOSUserBundle:Group:list.html.twig', array(
             'groups' => $groups
@@ -52,15 +50,15 @@ class GroupController extends Base
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.group.form.factory');
         
-        $instancia = $this
+        $users = $this
                 ->getDoctrine()
                 ->getManager()
-                ->getRepository('CoreInstanciaBundle:Instancia')
-                ->findUsuarios(
-                        $request->getSession()->get('instancia')->getId()
+                ->getRepository('CoreUserBundle:User')
+                ->findByEnabled(
+                        1
                 );
 
-        $form = $formFactory->createForm(array('users' => $instancia->getUsers()));
+        $form = $formFactory->createForm(array('users' => $users));
         $form->setData($group);
 
         $form->handleRequest($request);
@@ -106,21 +104,18 @@ class GroupController extends Base
 
         $dispatcher->dispatch(FOSUserEvents::GROUP_CREATE_INITIALIZE, new GroupEvent($group, $request));
 
-        $instancia = $this
+        $users = $this
                 ->getDoctrine()
                 ->getManager()
-                ->getRepository('CoreInstanciaBundle:Instancia')
-                ->findUsuarios(
-                        $request->getSession()->get('instancia')->getId()
-                );
+                ->getRepository('CoreUserBundle:User')
+                ->findByEnabled(1);
 
-        $form = $formFactory->createForm(array('users' => $instancia->getUsers()));
+        $form = $formFactory->createForm(array('users' => users));
         $form->setData($group);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $group->setInstancia($instancia);
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::GROUP_CREATE_SUCCESS, $event);
 

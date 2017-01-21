@@ -35,7 +35,6 @@
 {% endblock %}
 
 {% block body_class %}
-    {% if app.session.get('instancia') == null %}no-main-menu{% endif %}
     {% if (iframe is not defined or iframe == false) and (app.request.get('iframe') is not defined or app.request.get('iframe')  == 'true') -%}
         no-main-menu
     {%- endif %}

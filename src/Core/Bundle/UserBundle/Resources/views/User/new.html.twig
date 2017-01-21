@@ -17,13 +17,6 @@
                     {{ form.profile.vars.label }}
                 </a>
             </li>
-            {% if form.instancias is defined %}
-            <li class="">
-                <a href="#uidemo-tabs-default-demo-profile" data-toggle="tab">
-                    {{ form.instancias.vars.label }}
-                </a>
-            </li>
-            {% endif %}
             <li>
                 <a href="#uidemo-tabs-default-demo-configs" data-toggle="tab">
                     {{ form.profile.configs.vars.label }}
@@ -45,19 +38,7 @@
                 {{ form_row(form.profile.gender) }}
                 {{ form_row(form.profile.about) }}
             </div> <!-- / .tab-pane -->
-            {% if form.instancias is defined and is_granted('ROLE_SUPERADMIN') %}
-            <div class="tab-pane fade" id="uidemo-tabs-default-demo-profile">
-                {{ form_row(form.instancias) }}
-            </div> <!-- / .tab-pane -->
-            {% endif %}
-            <div class="tab-pane fade" id="uidemo-tabs-default-demo-configs">
-                {% if form.ldap is defined and is_granted('ROLE_SUPERADMIN') %}
-                {{ form_row(form.ldap) }}
-                {% endif %}
-                {% for config in form.profile.configs %}
-                {{ form_row(config) }}
-                {% endfor %}
-            </div> <!-- / .tab-pane -->
+            
             
     </div> <!-- / .tab-content -->
     <div class="panel">

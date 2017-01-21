@@ -64,17 +64,17 @@
             </li>
             <li class="active">
                 <a href="#profile-banco-talentos" data-toggle="tab">
-                    Banco de talentos
+                    About
                 </a>
             </li>
             <li>
                 <a href="#profile-timeline" data-toggle="tab">
-                    Grupos e comissões
+                    Groups
                 </a>
             </li>
             <li>
                 <a href="#profile-followers" data-toggle="tab">
-                    Agenda
+                    Calendar
                 </a>
             </li>
             <li>
@@ -83,115 +83,7 @@
         <div class="tab-content tab-content-bordered p-a-2 bg-white">
 
             <div class="tab-pane fade in active" id="profile-banco-talentos">
-                <h2 style="margin-top: 0">Atividades desenvolvidas</h2>
-                <hr />
-                <p>
-                    {{ user.profile.atividadesDesenvolvidas }}
-                </p>
-                <br />
-                <br />
-                <h2>Atividades que está apto a desenvolver</h2>
-                <hr />
-                <p>
-                    {{ user.profile.aptidao }}
-                </p>
-                <br />
-                <br />
-                <h2>Experiência</h2>
-                <hr />
-                {% for experiencia in user.experiencias %}
-                    <div class="row">
-                        <div class="col-md-12">
-                            <b>Título</b><br />
-                            {{ experiencia.titulo }}
-                        </div>
-                        <div class="col-md-5">
-                            <b>Empresa</b><br />
-                            {{ experiencia.empresa }}
-                        </div>
-                        <div class="col-md-3">
-                            <b>Cidade</b><br />
-                            {{ experiencia.cidade }}
-                        </div>
-                        <div class="col-md-2">
-                            <b>Início</b><br />
-                            {{ experiencia.inicio|date('d/m/Y') }}
-                        </div>
-                        <div class="col-md-2">
-                            <b>Término</b><br />
-                            {{ experiencia.termino|date('d/m/Y') }}
-                        </div>
-                        <div class="col-md-12">
-                            <b>Descrição</b><br />
-                            {{ experiencia.descricao }}
-                        </div>
-                    </div>
-                {% endfor %}
-                <br />
-                <br />
-                <h2>Formação </h2>
-                <hr />
-                {% for formacao in user.formacoes %}
-                    <div class="row">
-                        <div class="col-md-12">
-                            <b>Título</b><br />
-                            {{ formacao.formacao }}
-                        </div>
-                        <div class="col-md-6">
-                            <b>Instituição</b><br />
-                            {{ formacao.instituicao }}
-                        </div>
-                        <div class="col-md-3">
-                            <b>Início</b><br />
-                            {{ formacao.anoInicio }}
-                        </div>
-                        <div class="col-md-3">
-                            <b>Termino</b><br />
-                            {{ formacao.anoTermino }}
-                        </div>
-                        <div class="col-md-6">
-                            <b>Atividades</b><br />
-                            {{ formacao.atividades }}
-                        </div>
-                        <div class="col-md-6">
-                            <b>Descrição</b><br />
-                            {{ formacao.descricao }}
-                        </div>
-                    </div>
-                {% endfor %}
-                <br />
-                <br />
-                <h2>Qualificação</h2>
-                <hr />
-                {% for qualificacao in user.qualificacoes %}
-                    <div class="row">
-                        <div class="col-md-12">
-                            <b>Título</b><br />
-                            {{ qualificacao.nome }}
-                        </div>
-                        <div class="col-md-6">
-                            <b>Instituição</b><br />
-                            {{ qualificacao.instituicao }}
-                        </div>
-                        <div class="col-md-6">
-                            <b>Carga horária</b><br />
-                            {{ qualificacao.carga }} horas
-                        </div>
-                    </div>
-                {% endfor %}
-                <br />
-                <br />
-                <h2>Idiomas</h2>
-                <hr />
-                <ul class="list-group list-unstyled">
-                    {% for idioma in user.idiomas %}
-                        <li class="">
-                            {{ idioma.idioma }} - {{ idioma.proficienciaString }}
-                        </li>
-                    {% endfor %}
-                </ul>
-                <br />
-                <br />
+              
             </div> <!-- / .tab-pane -->
 
 

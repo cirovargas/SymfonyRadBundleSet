@@ -8,10 +8,9 @@ use Core\Bundle\UserBundle\Entity\User;
 
 class SystemVoter extends Voter
 {
-    private $userInstancia;
     
-    public function __construct($userInstancia) {
-        $this->userInstancia = $userInstancia;
+    public function __construct() {
+        
     }
 
     protected function supports($attribute, $subject)
@@ -26,18 +25,11 @@ class SystemVoter extends Voter
         if (!$user instanceof User) {
             return false;
         }
-        
-        if('ROLE_PREVIOUS_ADMIN' == $attribute){
-            return $this->userInstancia->isGranted($attribute);
-        }
-        
+
         if ($user->hasRole('ROLE_SUPERADMIN')) {
             return true;
         }
         
-        if ($this->userInstancia->isGranted($attribute)){
-            return true;
-        }
         
 
         return false;

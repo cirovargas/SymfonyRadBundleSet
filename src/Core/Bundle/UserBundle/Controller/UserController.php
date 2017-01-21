@@ -63,11 +63,6 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('CoreUserBundle:User')
                 ->createQueryBuilder('e');
-        if(!$this->get('security.authorization_checker')->isGranted('ROLE_SUPERADMIN')){
-            $queryBuilder
-                ->innerJoin('e.instancias','i','WITH','i.id = :instancia')
-                ->setParameter('instancia', $request->getSession()->get('instancia')->getId());
-        }
 
         if($list == 'pendentes'){
             $queryBuilder->andWhere('e.enabled = false or e.enabled is null');
@@ -305,14 +300,6 @@ class UserController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             try {
-                /* TODO: Rever isso
-                if(!$this->getUser()->hasRole('ROLE_SUPERADMIN') && count($entity->getInstancias()) <= 0){
-                    $instancia = $em->getRepository('CoreInstanciaBundle:Instancia')->find(
-                        $request->getSession()->get('instancia')->getId()
-                    );
-
-                    $entity->addInstancia($instancia);
-                }*/
                 
                 if($entity->getLdap() != null){
                     $entity->setPassword('');

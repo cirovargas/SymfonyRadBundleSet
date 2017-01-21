@@ -21,15 +21,6 @@ services:
         arguments: [%fos_user.model.group.class%]
         tags:
             - { name: form.type, alias: Core_user_group }
-    security.system_roles:
-        class: %security.system_roles.class%
-        arguments: ["@event_dispatcher"]
-            
-    app.profile_update:  
-        class: Core\Bundle\UserBundle\EventListener\ProfileUpdate
-        arguments: ["@fos_user.user_manager.default", "@router"]
-        tags: 
-            - { name: kernel.event_listener, event: fos_user.resetting.reset.success, method: redirecionarInstancia } 
 parameters:
     app.user_configure_menu_listener.class: Core\Bundle\UserBundle\EventListener\UserMenuListener
     app.user_configure_permissions_listener.class: Core\Bundle\UserBundle\EventListener\UserPermissionsListener

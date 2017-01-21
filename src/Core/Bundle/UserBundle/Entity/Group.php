@@ -65,12 +65,4 @@ class Group extends BaseGroup
         $this->users->removeElement($user); 
     }
     
-    function getInstancia() {
-        return $this->instancia;
-    }
-
-    function setInstancia($instancia) {
-        $this->instancia = $instancia;
-        return $this;
-    }
 }

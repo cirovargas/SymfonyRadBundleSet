@@ -16,9 +16,6 @@
     <li class="">
         <a href="#uidemo-tabs-default-demo-profile" data-toggle="tab">{{ form.profile.configs.vars.label }}</a>
     </li>
-    <li class="">
-        <a href="#uidemo-tabs-default-demo-banco-talentos" data-toggle="tab">Banco de talentos</a>
-    </li>
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Outros&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
         <ul class="dropdown-menu">
@@ -62,24 +59,6 @@
             </div>
         </div>
     </div> <!-- / .tab-pane -->
-    <div class="tab-pane fade" id="uidemo-tabs-default-demo-banco-talentos">
-        <div class="panel">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        {{ form_row(form.experiencias) }}
-                    </div>
-                </div>
-                {{ form_row(form.idiomas) }}
-                {{ form_row(form.qualificacoes) }}
-                {{ form_row(form.formacoes) }}
-            </div>
-            <div class="panel-footer text-right">
-                {#<button class="btn btn-success" data-toggle="modal" data-target="#modal-save-changes">{{ 'profile.edit.submit'|trans }}</button>#}
-                <button type="submit" class="btn btn-success">{{ 'profile.edit.submit'|trans }}</button>
-            </div>
-        </div>
-    </div>
 </div>
             
             

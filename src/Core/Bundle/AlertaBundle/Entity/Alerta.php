@@ -127,7 +127,6 @@ class Alerta
      */
     public function __construct()
     {
-        $this->instancia = new \Doctrine\Common\Collections\ArrayCollection();
         $this->user = new \Doctrine\Common\Collections\ArrayCollection();
         $this->userGroup = new \Doctrine\Common\Collections\ArrayCollection();
     }

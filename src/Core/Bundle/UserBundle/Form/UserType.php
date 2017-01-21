@@ -29,21 +29,6 @@ class UserType extends AbstractType
 //                'invalid_message' => 'fos_user.password.mismatch',
 //            ))
         ;
-        if($options['superadmin'] ===true){
-            $builder
-                ->add('instancias',null,array(
-                    //'expanded'=>true,
-                    'label'=>'Instâncias',
-                    'by_reference' => true,
-                    'attr' => array(
-                        'class' => 'multiselect'
-                    )
-                ))
-                ->add('ldap',null,array(
-                    'label'=>'Servidor de usuários (LDAP)'
-                ))
-            ;
-        }
     }
 
     public function configureOptions(OptionsResolver $resolver)

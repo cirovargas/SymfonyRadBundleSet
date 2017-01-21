@@ -13,12 +13,7 @@
                         <th> {{ 'group.show.name'|trans }}</th>
                         <td>{{ group.getName() }}</td>
                     </tr>
-                    {% if is_granted('ROLE_SUPERADMIN') %}
-                    <tr>
-                        <th> Instância</th>
-                        <td>{{ group.instancia.nome }}</td>
-                    </tr>
-                    {% endif %}
+                   
                     </tbody>
             </table>
                     </div>
